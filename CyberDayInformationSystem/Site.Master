@@ -44,7 +44,7 @@
               </button>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active"><a class="nav-link" href="Default.aspx">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="Default.aspx">Home</a></li>
                   <li class="nav-item"><a class="nav-link" href="About.aspx">About</a></li>
                   <li class="nav-item"><a class="nav-link" href="Contact.aspx">Contact</a></li>
                 </ul>
