@@ -325,26 +325,12 @@
     <Compile Include="Student.Master.designer.cs">
       <DependentUpon>Student.Master</DependentUpon>
     </Compile>
-    <Compile Include="StudentAdministration.aspx.cs">
-      <DependentUpon>StudentAdministration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StudentAdministration.aspx.designer.cs">
-      <DependentUpon>StudentAdministration.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Teacher.Master.cs">
       <DependentUpon>Teacher.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teacher.Master.designer.cs">
       <DependentUpon>Teacher.Master</DependentUpon>
-    </Compile>
-    <Compile Include="UserCreation.aspx.cs">
-      <DependentUpon>UserCreation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserCreation.aspx.designer.cs">
-      <DependentUpon>UserCreation.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
