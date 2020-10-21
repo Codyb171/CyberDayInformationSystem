@@ -243,6 +243,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="StudentAdministration.aspx" />
+    <Content Include="Styling.css" />
     <Content Include="UserCreation.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
