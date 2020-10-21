@@ -50,9 +50,6 @@
                     </ul>
                 </div>
                 <div>
-                    <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="WhiteSmoke" Width="140px" ></asp:Label>
-                </div>
-                <div>
                     <asp:Button ID="LogBtn" runat="server" Text="Login?" OnClick="LogBtn_Click" CausesValidation="False" />
                 </div>
             </div>
