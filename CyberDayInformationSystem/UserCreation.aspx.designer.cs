@@ -186,31 +186,31 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ShirtSize;
 
         /// <summary>
-        /// tshirtColorLabel control.
+        /// tshirtTypeLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tshirtColorLabel;
+        protected global::System.Web.UI.WebControls.Label tshirtTypeLabel;
 
         /// <summary>
-        /// TshirtColorList control.
+        /// TshirtTypeList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TshirtColorList;
+        protected global::System.Web.UI.WebControls.DropDownList TshirtTypeList;
 
         /// <summary>
-        /// ColorValid control.
+        /// TypeValid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ColorValid;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TypeValid;
 
         /// <summary>
         /// SelectedView control.
