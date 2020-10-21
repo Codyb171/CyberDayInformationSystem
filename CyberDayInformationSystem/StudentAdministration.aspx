@@ -65,11 +65,11 @@
                                             <asp:ListItem>Male</asp:ListItem>
                                             <asp:ListItem>Female</asp:ListItem>
                                             <asp:ListItem>Non-binary</asp:ListItem>
-                                            <asp:ListItem>Perfer Not To Identify</asp:ListItem>
+                                            <asp:ListItem>Prefer Not To Identify</asp:ListItem>
                                         </asp:DropDownList>
                                     </asp:TableCell>
                                     <asp:TableCell>
-                                        <asp:RequiredFieldValidator ID="Gender" runat="server" ErrorMessage="Gender Required" ForeColor="Red" ControlToValidate=""></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="Gender" runat="server" ErrorMessage="Gender Required" ForeColor="Red" ControlToValidate="GenderDropDown"></asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
