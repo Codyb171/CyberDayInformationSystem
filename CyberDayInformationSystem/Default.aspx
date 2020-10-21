@@ -3,35 +3,36 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+        <h1>What is CyberDay?</h1>
+        <p class="lead">CyberDay is a technological mentorship program designated for middle school students to learn more about JMU's CIS/BSAN program while developing advanced competencies and diagnostic skills to correct software problems.</p>
         <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            <h2>Getting started</h2>
+            <h2>Inspiring a New Generation of Technology Professionals</h2>
             <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
+                Our goal with CyberDay is to give students who come from a non-technological background a chance to learn more about how technology is utilized to solve modern-day business problems.
             </p>
             <p>
                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Get more libraries</h2>
+            <h2>Interactive and Engaging Activities</h2>
             <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
+                We will be hosting several activities including: animation programming, team-building exercises, and informational sessions about careers in business and technology. 
+                Lunch will also be provided for all of our CyberDay participants!
             </p>
             <p>
                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
+            <h2>Interested in Registering?</h2>
             <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                If you are a middle school teacher that is interested in registering your students for our program, please create an account using our sign up button on the top right!
+                Fellow JMU staff and students who are interested in volunteering for CyberDay should also create an account.
             </p>
             <p>
                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>

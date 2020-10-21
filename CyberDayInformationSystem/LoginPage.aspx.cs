@@ -63,10 +63,10 @@ namespace CyberDayInformationSystem
             }
         }
 
-        protected void NewUserBtn_Click(object sender, EventArgs e)
-        {
-            //Response.Redirect("UserCreation.aspx");
-        }
+        //protected void NewUserBtn_Click(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("UserCreation.aspx");
+        //}
         public void getTeacherInfo(string first, string last)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();

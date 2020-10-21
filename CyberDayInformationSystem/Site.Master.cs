@@ -14,6 +14,7 @@ namespace CyberDayInformationSystem
             if (Session["User"] != null)
             {
                 LogBtn.Text = "Logout?";
+                SignUpBtn.Visible = false;
             }
         }
         protected void LogBtn_Click(object sender, EventArgs e)
@@ -27,6 +28,11 @@ namespace CyberDayInformationSystem
             {
                 Response.Redirect("LoginPage.aspx");
             }
+        }
+
+        protected void SignUpBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserCreation.aspx");
         }
     }
 }
