@@ -248,6 +248,7 @@
     <Content Include="Styling.css" />
     <Content Include="UserCreation.aspx" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="VolunteerAdministration.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -371,6 +372,13 @@
     </Compile>
     <Compile Include="Volunteer.Master.designer.cs">
       <DependentUpon>Volunteer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="VolunteerAdministration.aspx.cs">
+      <DependentUpon>VolunteerAdministration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VolunteerAdministration.aspx.designer.cs">
+      <DependentUpon>VolunteerAdministration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
