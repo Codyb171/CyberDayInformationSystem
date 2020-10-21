@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserCreation.aspx.cs" Inherits="CyberDayInformationSystem.UserCreation" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="text-center">
         <h1>User Creation Tool</h1>
     </div>
     <asp:Table runat="server" HorizontalAlign="Center">
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:RadioButtonList ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
                     <asp:ListItem Value="1">Teacher</asp:ListItem>
@@ -15,7 +16,7 @@
         </asp:TableRow>
     </asp:Table>
     <asp:Table ID="DefaultTable" runat="server" HorizontalAlign="Center" Visible="false">
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="TitleLbl" runat="server" Text="Title:"></asp:Label>
             </asp:TableCell>
@@ -28,7 +29,7 @@
                 </asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="FirstNameLbl" runat="server" Text="First Name: " Width="200"></asp:Label>
             </asp:TableCell>
@@ -40,7 +41,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="LastNameLbl" runat="server" Text="Last Name: " Width="200"></asp:Label>
             </asp:TableCell>
@@ -52,7 +53,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="PhoneLbl" runat="server" Text="Phone Number:"></asp:Label>
             </asp:TableCell>
@@ -64,7 +65,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="EmailLbl" runat="server" Text="Email Address:"></asp:Label>
             </asp:TableCell>
@@ -76,7 +77,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="tshirtSizeLbl" runat="server" Text="T-Shirt Size: " Width="200"></asp:Label>
             </asp:TableCell>
@@ -94,12 +95,12 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
-                <asp:Label ID="tshirtColorLabel" runat="server" Text="T-Shirt Color: " Width="200"></asp:Label>
+                <asp:Label ID="tshirtTypeLabel" runat="server" Text="T-Shirt Type: " Width="200"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:DropDownList ID="TshirtColorList" runat="server">
+                <asp:DropDownList ID="TshirtTypeList" runat="server">
                     <asp:ListItem>Blue</asp:ListItem>
                     <asp:ListItem>Orange</asp:ListItem>
                     <asp:ListItem>Green</asp:ListItem>
@@ -107,15 +108,15 @@
                 </asp:DropDownList>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:RequiredFieldValidator ID="ColorValid" runat="server" ErrorMessage="Please Pick a Color" ControlToValidate="TshirtColorList" ForeColor="Red">
+                <asp:RequiredFieldValidator ID="TypeValid" runat="server" ErrorMessage="Please Pick a Type" ControlToValidate="TshirtTypeList" ForeColor="Red">
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:MultiView ID="SelectedView" runat="server">
                     <asp:View ID="TeacherView" runat="server">
-                        <asp:TableRow runat="server">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>
                                 <asp:Label ID="SchoolLbl" runat="server" Text="School: " Width="200"></asp:Label>
                             </asp:TableCell>
@@ -128,7 +129,7 @@
                                 </asp:RequiredFieldValidator>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>
                                 <asp:Label ID="GradeLbl" runat="server" Text="Grade Taught:"></asp:Label>
                             </asp:TableCell>
@@ -146,7 +147,7 @@
                         </asp:TableRow>
                     </asp:View>
                     <asp:View ID="StaffView" runat="server">
-                        <asp:TableRow runat="server">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>
                                 <asp:Label ID="StaffTypeLbl" runat="server" Text="Staff Type:"></asp:Label>
                             </asp:TableCell>
@@ -163,7 +164,7 @@
                         </asp:TableRow>
                     </asp:View>
                     <asp:View ID="StudentView" runat="server">
-                        <asp:TableRow runat="server">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>
                                 <asp:Label ID="MajorLbl" runat="server" Text="Major: "></asp:Label>
                             </asp:TableCell>
@@ -190,7 +191,9 @@
                                 <asp:RequiredFieldValidator ID="MajorRqdValidator" runat="server" ErrorMessage="Please Choose a Major or Select Other" ForeColor="Red" ControlToValidate="MajorDropDown">
                                 </asp:RequiredFieldValidator>
                             </asp:TableCell>
-                             <asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                            <asp:TableCell>
                                 <asp:Label ID="MinorLbl" runat="server" Text="Minor: "></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
@@ -212,6 +215,8 @@
                                     <asp:ListItem>Other</asp:ListItem>
                                 </asp:DropDownList>
                             </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>
                                 <asp:Label ID="OrganizationLbl" runat="server" Text="Organization: "></asp:Label>
                             </asp:TableCell>
@@ -234,7 +239,7 @@
                 </asp:MultiView>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="PasswordLbl1" runat="server" Text="Enter a Password:"></asp:Label>
             </asp:TableCell>
@@ -246,7 +251,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="PasswordLbl2" runat="server" Text="Confirm Password:"></asp:Label>
             </asp:TableCell>

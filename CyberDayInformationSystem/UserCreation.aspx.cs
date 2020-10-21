@@ -20,11 +20,14 @@ namespace CyberDayInformationSystem
                 if (Page.IsPostBack == false)
                 {
                     SchoolList();
-                    TshirtColorList.Items.Insert(0, new ListItem(String.Empty));
+                    TshirtTypeList.Items.Insert(0, new ListItem(String.Empty));
                     TshirtSizeList.Items.Insert(0, new ListItem(String.Empty));
                     TypeDropDown.Items.Insert(0, new ListItem(String.Empty));
                     GradeDropDown.Items.Insert(0, new ListItem(String.Empty));
                     TitleDropDown.Items.Insert(0, new ListItem(String.Empty));
+                    MajorDropDown.Items.Insert(0, new ListItem(String.Empty));
+                    MinorDropDown.Items.Insert(0, new ListItem(String.Empty));
+                    OrgDropDown.Items.Insert(0, new ListItem(String.Empty));
                 }
             }
         }
@@ -60,7 +63,7 @@ namespace CyberDayInformationSystem
                     PhoneTxt.Text = "";
                     EmailTxt.Text = "";
                     TshirtSizeList.ClearSelection();
-                    TshirtColorList.ClearSelection();
+                    TshirtTypeList.ClearSelection();
                     TypeDropDown.ClearSelection();
                     SchoolDropDown.ClearSelection();
                     GradeDropDown.ClearSelection();
@@ -75,7 +78,7 @@ namespace CyberDayInformationSystem
                     PhoneTxt.Text = "";
                     EmailTxt.Text = "";
                     TshirtSizeList.ClearSelection();
-                    TshirtColorList.ClearSelection();
+                    TshirtTypeList.ClearSelection();
                     TypeDropDown.ClearSelection();
                     SchoolDropDown.ClearSelection();
                     GradeDropDown.ClearSelection();
@@ -187,7 +190,7 @@ namespace CyberDayInformationSystem
                 {
                     int id = GetID(1);
                     SendTshirt(id);
-                    string cs = ConfigurationManager.ConnectionStrings["Lab3"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
@@ -212,7 +215,7 @@ namespace CyberDayInformationSystem
             public int GetID(int type)
             {
                 int ID = 0;
-                string cs = ConfigurationManager.ConnectionStrings["Lab3"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -244,22 +247,22 @@ namespace CyberDayInformationSystem
             }
             public void SendTshirt(int id)
             {
-                string cs = ConfigurationManager.ConnectionStrings["Lab3"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 connection.Open();
-                string sql = "Insert into TSHIRTINFO values(@ID, @SIZE, @COLOR)";
+                string sql = "Insert into TSHIRTINFO values(@ID, @SIZE, @TYPE)";
                 command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@ID", id);
                 command.Parameters.AddWithValue("@SIZE", TshirtSizeList.SelectedValue);
-                command.Parameters.AddWithValue("@COLOR", TshirtColorList.SelectedValue);
+                command.Parameters.AddWithValue("@TYPE", TshirtTypeList.SelectedValue);
                 command.ExecuteNonQuery();
                 connection.Close();
             }
             public int TeacherExists()
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["Lab3"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -294,7 +297,7 @@ namespace CyberDayInformationSystem
             public int StaffExists()
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["Lab3"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
