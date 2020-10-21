@@ -24,9 +24,9 @@
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
             </asp:TableCell>
-            <asp:TableCell ColumnSpan="2">
+<%--            <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="NewUserBtn" runat="server" Text="New User?" OnClick="NewUserBtn_Click" />
-            </asp:TableCell>
+            </asp:TableCell>--%>
         </asp:TableRow>
     </asp:Table>
     <div class="text-center">

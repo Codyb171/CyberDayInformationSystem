@@ -50,6 +50,7 @@
                 </ul>
               </div>
         <div>
+            <asp:Button ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
             <asp:Button ID="LogBtn" runat="server" Text="Login?" OnClick="LogBtn_Click" CausesValidation="False"/>
         </div>
         </div>
