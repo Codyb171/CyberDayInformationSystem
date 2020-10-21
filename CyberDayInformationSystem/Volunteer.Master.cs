@@ -13,8 +13,6 @@ namespace CyberDayInformationSystem
         {
             if (Session["User"] != null)
             {
-                string user = Session["User"].ToString();
-                UserLoggedIn.Text = "Welcome " + user + "\t";
                 LogBtn.Text = "Logout?";
             }
         }
