@@ -116,7 +116,24 @@ namespace CyberDayInformationSystem
                 }
             }
         }
-
+        public void StudentVolunteerData()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            int staffID = int.Parse(SelectionDropDown.SelectedValue);
+            string sql = "SELECT SV.Major, SV.Minor, SV.ORGANIZATION, SV.PREVIOUSVOLUNTEER AS \"Previous Volunteer\" from STUDENTVOLUNTEER SV" +
+                " where SV.VOLUNTEERID = " + staffID;
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(cs);
+            SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
+            conn.Open();
+            adapt.Fill(dt);
+            conn.Close();
+            if (dt.Rows.Count > 0)
+            {
+                TertiaryGridView.DataSource = dt;
+                TertiaryGridView.DataBind();
+            }
+        }
         public void EventStaffGrid()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
@@ -298,7 +315,7 @@ namespace CyberDayInformationSystem
             }
             if(FunctionList.SelectedValue == "4")
             {
-                SelectionLbl.Text = "Event Date for Mealtickets";
+                SelectionLbl.Text = "Event Date: ";
                 EventList();
                 SelectionLbl.Visible = true;
                 SelectionDropDown.Visible = true;
@@ -317,7 +334,7 @@ namespace CyberDayInformationSystem
             if (FunctionList.SelectedValue == "2")
             {
                 StaffGrid();
-                
+                StudentVolunteerData();
             }
             if(FunctionList.SelectedValue == "3")
             {

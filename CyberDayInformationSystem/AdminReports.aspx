@@ -18,6 +18,10 @@
             <asp:TableCell ColumnSpan="4">
                 <asp:Label ID="SelectionLbl" runat="server" Text="Event: " Visible="false"></asp:Label>
                 <asp:DropDownList ID="SelectionDropDown" runat="server" Visible="false" AutoPostBack="true"></asp:DropDownList>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow runat="server" HorizontalAlign="Center">
+            <asp:TableCell ColumnSpan="4">
                 <asp:RequiredFieldValidator ID="SelectionChoice" runat="server" ErrorMessage="Please make a selection" ControlToValidate="SelectionDropDown" ForeColor="Red">
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
