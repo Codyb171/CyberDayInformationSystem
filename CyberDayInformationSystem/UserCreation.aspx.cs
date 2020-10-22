@@ -16,13 +16,16 @@ namespace CyberDayInformationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["TYPE"].ToString() == "Coordinator")
+            if (Session["TYPE"] != null)
             {
-                if(Page.IsPostBack == false)
+                if (Session["TYPE"].ToString() == "Coordinator")
                 {
-                    UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                    if (Page.IsPostBack == false)
+                    {
+                        UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                    }
+                    this.MasterPageFile = "~/Admin.Master";
                 }
-                this.MasterPageFile = "~/Admin.Master";
             }
             if (Page.IsPostBack == false)
             {

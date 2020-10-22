@@ -69,30 +69,30 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.GridView SelectedGridView;
 
         /// <summary>
-        /// StaffGridView control.
+        /// SecondaryGridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView StaffGridView;
+        protected global::System.Web.UI.WebControls.GridView SecondaryGridView1;
 
         /// <summary>
-        /// RosterGridView control.
+        /// SecondaryGridView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView RosterGridView;
+        protected global::System.Web.UI.WebControls.GridView SecondaryGridView2;
 
         /// <summary>
-        /// AssignedGridView control.
+        /// TertiaryGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView AssignedGridView;
+        protected global::System.Web.UI.WebControls.GridView TertiaryGridView;
     }
 }
