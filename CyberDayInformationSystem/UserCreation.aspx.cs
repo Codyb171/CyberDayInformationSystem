@@ -18,7 +18,11 @@ namespace CyberDayInformationSystem
         {
             if (Session["TYPE"].ToString() == "Coordinator")
             {
-                UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                if(Page.IsPostBack == false)
+                {
+                    UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                }
+                this.MasterPageFile = "~/Admin.Master";
             }
             if (Page.IsPostBack == false)
             {
