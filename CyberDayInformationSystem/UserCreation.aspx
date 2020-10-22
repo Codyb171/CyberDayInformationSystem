@@ -146,23 +146,6 @@
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:View>
-                    <asp:View ID="StaffView" runat="server">
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
-                            <asp:TableCell>
-                                <asp:Label ID="StaffTypeLbl" runat="server" Text="Staff Type:"></asp:Label>
-                            </asp:TableCell>
-                            <asp:TableCell>
-                                <asp:DropDownList ID="TypeDropDown" runat="server">
-                                    <asp:ListItem>Coordinator</asp:ListItem>
-                                    <asp:ListItem>Volunteer</asp:ListItem>
-                                </asp:DropDownList>
-                            </asp:TableCell>
-                            <asp:TableCell>
-                                <asp:RequiredFieldValidator ID="TypeValidator" runat="server" ErrorMessage="Please Choose a Staff Type" ForeColor="Red" ControlToValidate="TypeDropDown">
-                                </asp:RequiredFieldValidator>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:View>
                     <asp:View ID="StudentView" runat="server">
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>

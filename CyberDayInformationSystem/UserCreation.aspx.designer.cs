@@ -285,42 +285,6 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RequiredFieldValidator GradeValidator;
 
         /// <summary>
-        /// StaffView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View StaffView;
-
-        /// <summary>
-        /// StaffTypeLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label StaffTypeLbl;
-
-        /// <summary>
-        /// TypeDropDown control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TypeDropDown;
-
-        /// <summary>
-        /// TypeValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator TypeValidator;
-
-        /// <summary>
         /// StudentView control.
         /// </summary>
         /// <remarks>
