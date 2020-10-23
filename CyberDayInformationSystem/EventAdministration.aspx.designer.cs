@@ -96,15 +96,6 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.DropDownList EventDateDDL;
 
         /// <summary>
-        /// EventDateSRC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource EventDateSRC;
-
-        /// <summary>
         /// EventDateValid control.
         /// </summary>
         /// <remarks>
@@ -168,15 +159,6 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.DropDownList EventLocationDDL;
 
         /// <summary>
-        /// EventLocationSRC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource EventLocationSRC;
-
-        /// <summary>
         /// EventLocationReq control.
         /// </summary>
         /// <remarks>
@@ -220,15 +202,6 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList EventDDL;
-
-        /// <summary>
-        /// EventSRC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource EventSRC;
 
         /// <summary>
         /// EventDDLReq control.
