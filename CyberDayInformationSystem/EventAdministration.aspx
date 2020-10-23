@@ -141,6 +141,12 @@
                     </asp:TableCell>
                 </asp:TableRow>
 
+                <asp:TableFooterRow runat="server" HorizontalAlign="Center">
+                    <asp:TableCell>
+                        <asp:Label ID="successLBL" runat="server"></asp:Label>
+                    </asp:TableCell>
+                </asp:TableFooterRow>
+
             </asp:Table>
 
         </div>

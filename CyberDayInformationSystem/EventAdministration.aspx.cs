@@ -98,9 +98,33 @@ namespace CyberDayInformationSystem
             connection.Close();
         }
 
+        public void ClearInfo()
+        {
+            EventNameTxt.Text = String.Empty;
+            EventDateDDL.ClearSelection();
+            EventTimeTxt.Text = String.Empty;
+            EventLocationDDL.ClearSelection();
+            EventDDL.ClearSelection();
+            EventDelDDL.ClearSelection();
+        }
+
         protected void CreateBut_Click(object sender, EventArgs e)
         {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            SqlConnection connection = new SqlConnection(cs);
+            SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS VALUES(@TITLE, @EVENTTIME)");
 
+            string title = HttpUtility.HtmlEncode(EventNameTxt.Text);
+            string time = HttpUtility.HtmlEncode(EventTimeTxt.Text);
+
+            connection.Open();
+            insert.Parameters.AddWithValue("@TITLE", title);
+            insert.Parameters.AddWithValue("@EVENTTIME", time);
+            insert.ExecuteNonQuery();
+            connection.Close();
+
+            successLBL.Text = "Your event has successfully been created!";
+            ClearInfo();
         }
 
         protected void EventDDL_SelectedIndexChanged(object sender, EventArgs e)
