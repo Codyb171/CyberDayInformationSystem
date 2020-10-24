@@ -35,54 +35,52 @@ namespace CyberDayInformationSystem
                 string PassHash = loginResults["PASSWORDHASH"].ToString();
                 if (PasswordHash.ValidatePassword(pass, PassHash))
                 {
-                    Session.Add("User", loginResults["USERNAME"].ToString());
-                    string first = loginResults["FIRSTNAME"].ToString();
-                    string last = loginResults["LASTNAME"].ToString();
+
+                    Session.Add("USER", loginResults["USERNAME"].ToString());
+                    Session.Add("FIRSTNAME", loginResults["FIRSTNAME"].ToString());
+                    Session.Add("LASTNAME", loginResults["LASTNAME"].ToString());
                     string type = loginResults["USERTYPE"].ToString();
-                    if (type == "Teacher")
-                    {
-                        getTeacherInfo(first, last);
-                        Session.Add("TYPE", type);
-                    }
-                    else
-                    {
-                        if (type == "Coordinator")
-                        {
-                            Session.Add("TYPE", type);
-                        }
-                        Session.Add("TYPE", type);
-                    }
-                    connection.Close();
-                    Response.Redirect("StartPage.aspx");
+                    Session.Add("TYPE", type);
+
+                    //Label1.Text = first;
+                    //Label2.Text = last;
+                    //Label3.Text = type;
+
+                    getInfo(type);
+
                 }
 
             }
             else
             {
-                LoginStat.Visible = true;
+                Label3.Text = "bad password";
+                //LoginStat.Visible = true;
             }
         }
 
-        //protected void NewUserBtn_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("UserCreation.aspx");
-        //}
-        public void getTeacherInfo(string first, string last)
+        protected void NewUserBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UserCreation.aspx");
+        }
+
+
+        public void getInfo(String type)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand command;
-            string sql = "Select TEACHERID, SCHOOL from TEACHER where FIRSTNAME Like @FIRSTNAME AND LASTNAME Like @LASTNAME";
+            string sql = "Select " + type +"ID from " + type + " where EMAILADD Like @email"; 
             command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@FIRSTNAME", first);
-            command.Parameters.AddWithValue("@LASTNAME", last);
+            command.Parameters.AddWithValue("@EMAIL", Session["USER"].ToString());
             connection.Open();
             SqlDataReader dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
-                Session.Add("TEACHERID", dataReader["TEACHERID"].ToString());
-                Session.Add("SCHOOL", dataReader["SCHOOL"].ToString());
+                Session.Add("ID", dataReader[type + "ID"].ToString());
             }
+
+            //Response.Redirect(type + "Dashboard.aspx");
         }
+
     }
 }

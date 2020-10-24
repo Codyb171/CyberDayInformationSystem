@@ -11,7 +11,7 @@ namespace CyberDayInformationSystem
 {
 
 
-    public partial class AttendeeReport
+    public partial class TeacherReports
     {
     }
 }

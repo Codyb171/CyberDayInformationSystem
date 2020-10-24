@@ -17,7 +17,7 @@
                 </asp:TableRow>
 
                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell>
+                    <asp:TableCell HorizontalAlign="Center">
                         <asp:MultiView ID="SelectedFunction" runat="server">
                             
                             <asp:View ID="CreateView" runat="server">
@@ -39,14 +39,14 @@
                                         <asp:Label ID="EventDateLbl" runat="server" Text="Event Date: " Width="200"></asp:Label>                                        
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:DropDownList ID="EventDateDDL" runat="server" DataSourceID="EventDateSRC" DataTextField="EVENTDATE" DataValueField="EVENTID" AppendDataBoundItems="true" AutoPostBack="true">
-                                            <asp:ListItem Value="0">Please select a date</asp:ListItem>
+                                        <asp:DropDownList ID="EventDateDDL" runat="server">
+                                            <%--<asp:ListItem Value="0">Please select a date</asp:ListItem>--%>
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="EventDateSRC" runat="server" ConnectionString="<%$ ConnectionStrings:INFO %>" SelectCommand="SELECT EVENTDATE, EVENTID FROM EVENT">
-                                        </asp:SqlDataSource>
+                                        <%--<asp:SqlDataSource ID="EventDateSRC" runat="server" ConnectionString="<%$ ConnectionStrings:INFO %>" SelectCommand="SELECT EVENTDATE, EVENTID FROM EVENT">
+                                        </asp:SqlDataSource>--%>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:RequiredFieldValidator ID="EventDateValid" runat="server" ErrorMessage="Event Date Required" ControlToValidate="EventDateDDL" ForeColor="Red" InitialValue="0">
+                                        <asp:RequiredFieldValidator ID="EventDateValid" runat="server" ErrorMessage="Event Date Required" ControlToValidate="EventDateDDL" ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -72,14 +72,14 @@
                                         <asp:Label ID="EventLocationLbl" runat="server" Text="Event Location: " Width="200"></asp:Label>                                        
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:DropDownList ID="EventLocationDDL" runat="server" DataSourceID="EventLocationSRC" AppendDataBoundItems="true" DataTextField="Room" DataValueField="ROOMID" AutoPostBack="true">
-                                            <asp:ListItem Value="0">Please select a location</asp:ListItem>
+                                        <asp:DropDownList ID="EventLocationDDL" runat="server">
+                                            <%--<asp:ListItem Value="0">Please select a location</asp:ListItem>--%>
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="EventLocationSRC" runat="server" ConnectionString="<%$ ConnectionStrings:INFO %>" SelectCommand="SELECT (BUILDING + ' ' + ROOMNUMBER) AS Room, ROOMID FROM ROOMRESERVATIONS">
-                                        </asp:SqlDataSource>
+                                        <%--<asp:SqlDataSource ID="EventLocationSRC" runat="server" ConnectionString="<%$ ConnectionStrings:INFO %>" SelectCommand="SELECT (BUILDING + ' ' + ROOMNUMBER) AS Room, ROOMID FROM ROOMRESERVATIONS">
+                                        </asp:SqlDataSource>--%>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:RequiredFieldValidator ID="EventLocationReq" runat="server" ErrorMessage="Event Location Required" ControlToValidate="EventLocationDDL" ForeColor="Red" InitialValue="0">
+                                        <asp:RequiredFieldValidator ID="EventLocationReq" runat="server" ErrorMessage="Event Location Required" ControlToValidate="EventLocationDDL" ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -97,14 +97,14 @@
                                         <asp:Label ID="SelectEventLbl" runat="server" Text="Select event to modify: "></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:DropDownList ID="EventDDL" runat="server" DataSourceID="EventSRC" AppendDataBoundItems="true" AutoPostBack="true" DataValueField="TASKID" DataTextField="TITLE" OnSelectedIndexChanged="EventDDL_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">Please select an event.</asp:ListItem>
+                                        <asp:DropDownList ID="EventDDL" runat="server" OnSelectedIndexChanged="EventDDL_SelectedIndexChanged">
+                                            <%--<asp:ListItem Value="0">Please select an event.</asp:ListItem>--%>
                                         </asp:DropDownList>
-                                        <asp:SqlDataSource ID="EventSRC" runat="server" ConnectionString="<%$ ConnectionStrings:INFO %>" SelectCommand="SELECT TITLE, TASKID FROM EVENTTASKS">
-                                        </asp:SqlDataSource>
+                                        <%--<asp:SqlDataSource ID="EventSRC" runat="server" ConnectionString="<%$ ConnectionStrings:INFO %>" SelectCommand="SELECT TITLE, TASKID FROM EVENTTASKS">
+                                        </asp:SqlDataSource>--%>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:RequiredFieldValidator ID="EventDDLReq" runat="server" ErrorMessage="An event must be selected" ForeColor="Red" ControlToValidate="EventDDL" InitialValue="0"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="EventDDLReq" runat="server" ErrorMessage="An event must be selected" ForeColor="Red" ControlToValidate="EventDDL"></asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
 
@@ -121,12 +121,12 @@
                                         <asp:Label ID="Label1" runat="server" Text="Select event to delete: "></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:DropDownList ID="EventDelDDL" runat="server" DataSourceID="EventSRC" AppendDataBoundItems="true" AutoPostBack="true" DataValueField="TASKID" DataTextField="TITLE" OnSelectedIndexChanged="EventDelDDL_SelectedIndexChanged">
-                                            <asp:ListItem Value="0">Please select an event.</asp:ListItem>
+                                        <asp:DropDownList ID="EventDelDDL" runat="server" OnSelectedIndexChanged="EventDelDDL_SelectedIndexChanged">
+                                            <%--<asp:ListItem Value="0">Please select an event.</asp:ListItem>--%>
                                         </asp:DropDownList>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:RequiredFieldValidator ID="EventDelReq" runat="server" ErrorMessage="An event must be selected" ForeColor="Red" ControlToValidate="EventDelDDL" InitialValue="0"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="EventDelReq" runat="server" ErrorMessage="An event must be selected" ForeColor="Red" ControlToValidate="EventDelDDL"></asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
 
@@ -140,6 +140,12 @@
                         </asp:MultiView>
                     </asp:TableCell>
                 </asp:TableRow>
+
+                <asp:TableFooterRow runat="server" HorizontalAlign="Center">
+                    <asp:TableCell>
+                        <asp:Label ID="successLBL" runat="server"></asp:Label>
+                    </asp:TableCell>
+                </asp:TableFooterRow>
 
             </asp:Table>
 

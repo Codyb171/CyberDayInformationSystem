@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
-    public partial class AttendeeReport : System.Web.UI.Page
+    public partial class TeacherReports : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
