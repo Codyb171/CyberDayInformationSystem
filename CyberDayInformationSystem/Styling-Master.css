@@ -14,23 +14,23 @@
     background-color: #EAE1C6;
 }
 
-    .navbar ul {
-        margin: 20px;
-        padding: 0px;
-        text-transform: uppercase;
-    }
+.navbar ul {
+    margin: 20px;
+    padding: 0px;
+    text-transform: uppercase;
+}
 
-    .navbar li {
-        display: inline-block;
-    }
+.navbar li {
+    display: inline-block;
+}
 
-    .navbar a {
-        color: #450084;
-        font-size: 18px;
-        font-weight: bold;
-        padding: 15px;
-        text-align: center;
-    }
+.navbar a {
+    color: #450084;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    text-align: center;
+}
 
 .loggedin {
     color: #595959;

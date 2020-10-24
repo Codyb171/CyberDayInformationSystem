@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AdminReports-Styling.css" />
     <Content Include="AdminReports.aspx" />
     <Content Include="AdminStartPage.aspx" />
     <Content Include="BadSession.aspx" />
