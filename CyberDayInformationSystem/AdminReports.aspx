@@ -17,7 +17,7 @@
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
                 <asp:Label ID="SelectionLbl" runat="server" Text="Event: " Visible="false"></asp:Label>
-                <asp:DropDownList ID="SelectionDropDown" runat="server" Visible="false" AutoPostBack="true"></asp:DropDownList>
+                <asp:DropDownList ID="SelectionDropDown" runat="server" Visible="false"></asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -33,35 +33,62 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:GridView ID="SelectedGridView" runat="server" AutoGenerateColumns="True" CellPadding="5" Width="900">
-                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                </asp:GridView>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow runat="server" HorizontalAlign="Center">
-            <asp:TableCell ColumnSpan="2">
-                <asp:GridView ID="SecondaryGridView1" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
-                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                </asp:GridView>
-            </asp:TableCell>
-            <asp:TableCell ColumnSpan="2">
-                <asp:GridView ID="SecondaryGridView2" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
-                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                </asp:GridView>
+                <asp:Panel runat="server" ID="PrintPanel">
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:GridView ID="SelectedGridView" runat="server" AutoGenerateColumns="True" CellPadding="5" Width="900">
+                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                            </asp:GridView>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:Label ID="SecondaryGrid1Lbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:Label ID="SecondaryGrid2Lbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:GridView ID="SecondaryGridView1" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
+                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                            </asp:GridView>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:GridView ID="SecondaryGridView2" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
+                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                            </asp:GridView>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:Label ID="TertiaryGridLbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900">
+                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                            </asp:GridView>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Panel>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900" >
-                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                </asp:GridView>
+                <asp:Button ID="PrintBtn" runat="server" Text="Print Report?" Visible="false" OnClick="PrintBtn_Click" />
             </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow runat="server" HorizontalAlign="Center">
         </asp:TableRow>
     </asp:Table>
 </asp:Content>
