@@ -24,12 +24,15 @@
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
             </asp:TableCell>
-<%--            <asp:TableCell ColumnSpan="2">
+            <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="NewUserBtn" runat="server" Text="New User?" OnClick="NewUserBtn_Click" />
-            </asp:TableCell>--%>
+            </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
     <div class="text-center">
         <asp:Label ID="LoginStat" runat="server" Text="Invalid Username or Password!" ForeColor="Red" Visible="false"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
     </div>
 </asp:Content>
