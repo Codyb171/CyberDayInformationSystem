@@ -3,22 +3,27 @@
     font-size: 28px;
     color: #450084;
 }
+
 #all {
     background-color: #DACCE6;
     color: #333333;
     padding: 30px;
 }
+
 .navbar {
     background-color: #EAE1C6;
 }
+
 .navbar ul {
     margin: 20px;
     padding: 0px;
     text-transform: uppercase;
 }
+
 .navbar li {
     display: inline-block;
 }
+
 .navbar a {
     color: #450084;
     font-size: 18px;
@@ -26,9 +31,11 @@
     padding: 15px;
     text-align: center;
 }
+
 .loggedin {
     color: #595959;
 }
+
 footer {
     background-color: #DACCE6;
     color: #333333;
