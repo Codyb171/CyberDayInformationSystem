@@ -15,7 +15,8 @@ namespace CyberDayInformationSystem
             {
                 string user = Session["User"].ToString();
                 UserLoggedIn.Text = "Welcome " + user + "\t";
-                LogBtn.Text = "Logout?";
+                LogBtn.Text = "Logout";
+                
             }
         }
         protected void LogBtn_Click(object sender, EventArgs e)
