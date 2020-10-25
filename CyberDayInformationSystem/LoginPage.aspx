@@ -23,15 +23,19 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" ControlToValidate="PasswordTxt" runat="server" Text="-Required Field" ForeColor="Red"></asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
+    </asp:Table>
+
+    <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
-            <asp:TableCell ColumnSpan="2">
-                <asp:Button ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
-            </asp:TableCell>
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="NewUserBtn" runat="server" Text="New User?" OnClick="NewUserBtn_Click" CausesValidation="false"/>
             </asp:TableCell>
+            <asp:TableCell ColumnSpan="2">
+                <asp:Button ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
+            </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+
     <div class="text-center">
         <asp:Label ID="LoginStat" runat="server" Text="Invalid Username or Password!" ForeColor="Red" Visible="false"></asp:Label>
     </div>
