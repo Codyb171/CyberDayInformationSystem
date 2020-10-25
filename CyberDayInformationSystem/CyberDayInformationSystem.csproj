@@ -108,7 +108,7 @@
     <Content Include="About.aspx" />
     <Content Include="AdminReports-Styling.css" />
     <Content Include="AdminReports.aspx" />
-    <Content Include="AdminStartPage.aspx" />
+    <Content Include="AdminDashboard.aspx" />
     <Content Include="BadSession.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -276,12 +276,12 @@
     <Compile Include="AdminReports.aspx.designer.cs">
       <DependentUpon>AdminReports.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminStartPage.aspx.cs">
-      <DependentUpon>AdminStartPage.aspx</DependentUpon>
+    <Compile Include="AdminDashboard.aspx.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminStartPage.aspx.designer.cs">
-      <DependentUpon>AdminStartPage.aspx</DependentUpon>
+    <Compile Include="AdminDashboard.aspx.designer.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
