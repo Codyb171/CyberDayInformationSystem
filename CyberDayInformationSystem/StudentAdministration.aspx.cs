@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
@@ -49,21 +46,23 @@ namespace CyberDayInformationSystem
                 {
                     IDToEdit = int.Parse(Session["ID"].ToString());
                 }
-
             }
-            //if (Session["TYPE"].ToString() == "Teacher")
-            //{
-            //    TeacherID = int.Parse((string)Session["TEACHERID"]);
-            //    School = int.Parse((string)Session["SCHOOL"]);
-            //}
-            else
+
+            if (Session["TYPE"] != null)
             {
-                FunctionSelection.Items.FindByValue("3").Enabled = false;
-                TeacherID = 0;
-                School = 0;
-            }
-            CurrentStudentID = getCurrentStudent();
+                if (Session["TYPE"].ToString() == "Teacher")
+                {
+                    TeacherID = int.Parse((string) Session["TEACHERID"]);
+                    School = int.Parse((string) Session["SCHOOL"]);
+                }
+                else
+                {
+                    TeacherID = 0;
+                    School = 0;
+                }
 
+                CurrentStudentID = GetCurrentStudent();
+            }
         }
 
         protected void SaveBtn_Click(object sender, EventArgs e)
@@ -73,12 +72,12 @@ namespace CyberDayInformationSystem
                 sendShirt(CurrentStudentID);
                 sendStudent(CurrentStudentID);
             }
+
             ClearForm();
         }
 
         protected void PopulateBtn_Click(object sender, EventArgs e)
         {
-
             FirstNameTxt.Text = "Dakota";
             LastNameTxt.Text = "Lawyer";
             AgeTxt.Text = "13";
@@ -119,8 +118,8 @@ namespace CyberDayInformationSystem
                 command.ExecuteNonQuery();
                 connection.Close();
             }
-
         }
+
         public void sendStudent(int id)
         {
             if (StudentExists(1) == 0)
@@ -150,11 +149,13 @@ namespace CyberDayInformationSystem
                     command.Parameters.AddWithValue("@TEACHER", null);
                     command.Parameters.AddWithValue("@SCHOOL", null);
                 }
+
                 command.ExecuteNonQuery();
                 UserInfoLbl.Text = "Student Saved Successfully!!";
             }
         }
-        public int getCurrentStudent()
+
+        public int GetCurrentStudent()
         {
             int count = 1;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
@@ -170,10 +171,12 @@ namespace CyberDayInformationSystem
             {
                 count = dataReader.GetInt32(0);
             }
+
             dataReader.Close();
             count++;
             return count;
         }
+
         public int StudentExists(int caller)
         {
             int add = 0;
@@ -182,7 +185,8 @@ namespace CyberDayInformationSystem
             SqlConnection connection;
             SqlCommand command;
             SqlDataReader dataReader;
-            string testSql = "Select StudentID from Student where FirstName = @FIRST and LASTNAME = @LAST and Age = @AGE and TEACHER = @TEACHER and SCHOOL = @SCHOOL";
+            string testSql =
+                "Select StudentID from Student where FirstName = @FIRST and LASTNAME = @LAST and Age = @AGE and TEACHER = @TEACHER and SCHOOL = @SCHOOL";
             connection = new SqlConnection(cs);
             connection.Open();
             string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
@@ -202,6 +206,7 @@ namespace CyberDayInformationSystem
                 command.Parameters.AddWithValue("@TEACHER", null);
                 command.Parameters.AddWithValue("@SCHOOL", null);
             }
+
             dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
@@ -209,13 +214,16 @@ namespace CyberDayInformationSystem
                 id = dataReader.GetInt32(0);
                 UserInfoLbl.Text = "Student Already Exists!";
             }
+
             if (caller == 0)
             {
                 add = CheckShirt(id);
             }
+
             dataReader.Close();
             return add;
         }
+
         public int CheckShirt(int id)
         {
             int shirt = 0;
@@ -233,6 +241,7 @@ namespace CyberDayInformationSystem
             {
                 shirt = dataReader.GetInt32(0);
             }
+
             return shirt;
         }
 
@@ -254,7 +263,6 @@ namespace CyberDayInformationSystem
                 SelectedFunction.ActiveViewIndex = 3;
                 StudentListFill();
             }
-
         }
 
         // Searches based on user input to the textbox
@@ -265,9 +273,10 @@ namespace CyberDayInformationSystem
             connection = new SqlConnection(cs);
             DataTable dt = new DataTable();
             connection.Open();
-            string sql = "Select S.STUDENTID, S.FIRSTNAME, S.LASTNAME, S.AGE, TS.TSHIRTSIZE, (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"TEACHER\"," +
-            " SC.NAME FROM STUDENT S LEFT JOIN TSHIRTINFO TS on S.TSHIRT = TS.TSHIRTID JOIN TEACHER T on S.TEACHER = T.TEACHERID join SCHOOL SC ON" +
-            " SC.SCHOOLID = S.SCHOOL WHERE";
+            string sql =
+                "Select S.STUDENTID, S.FIRSTNAME, S.LASTNAME, S.AGE, TS.TSHIRTSIZE, (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"TEACHER\"," +
+                " SC.NAME FROM STUDENT S LEFT JOIN TSHIRTINFO TS on S.TSHIRT = TS.TSHIRTID JOIN TEACHER T on S.TEACHER = T.TEACHERID join SCHOOL SC ON" +
+                " SC.SCHOOLID = S.SCHOOL WHERE";
 
             try
             {
@@ -275,22 +284,26 @@ namespace CyberDayInformationSystem
                 {
                     sql += " S.FIRSTNAME LIKE @FIRST AND S.LASTNAME LIKE @LAST";
                     SqlDataAdapter select = new SqlDataAdapter(sql, connection);
-                    select.SelectCommand.Parameters.AddWithValue("@FIRST", "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
-                    select.SelectCommand.Parameters.AddWithValue("@LAST", "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@FIRST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@LAST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
                     select.Fill(dt);
                 }
                 else if (SearchByTagFN.Text != String.Empty)
                 {
                     sql += " S.FIRSTNAME LIKE @FIRST";
                     SqlDataAdapter select = new SqlDataAdapter(sql, connection);
-                    select.SelectCommand.Parameters.AddWithValue("@FIRST", "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@FIRST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
                     select.Fill(dt);
                 }
                 else
                 {
                     sql += " S.LASTNAME LIKE @LAST";
                     SqlDataAdapter select = new SqlDataAdapter(sql, connection);
-                    select.SelectCommand.Parameters.AddWithValue("@LAST", "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@LAST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
                     select.Fill(dt);
                 }
 
@@ -309,7 +322,6 @@ namespace CyberDayInformationSystem
                     dt.Rows.Add(dr1);
                     studentModifyDtl.DataSource = dt;
                     studentModifyDtl.DataBind();
-
                 }
             }
             catch (Exception ex)
@@ -320,6 +332,7 @@ namespace CyberDayInformationSystem
             {
                 connection.Close();
             }
+
             EditStudentBtn.Visible = true;
         }
 
@@ -330,7 +343,8 @@ namespace CyberDayInformationSystem
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection;
             connection = new SqlConnection(cs);
-            string sql = "Select S.FIRSTNAME, S.LASTNAME, S.AGE, TS.TSHIRTSIZE, S.TEACHER FROM STUDENT S join TSHIRTINFO TS" +
+            string sql =
+                "Select S.FIRSTNAME, S.LASTNAME, S.AGE, TS.TSHIRTSIZE, S.TEACHER FROM STUDENT S join TSHIRTINFO TS" +
                 " ON S.STUDENTID = TS.TSHIRTID WHERE STUDENTID = @ID";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@ID", IDToEdit);
@@ -346,8 +360,10 @@ namespace CyberDayInformationSystem
                 EditSizeList.SelectedValue = dataReader["TSHIRTSIZE"].ToString();
                 SchoolList(int.Parse(TeacherDropDown.SelectedValue));
             }
+
             SelectedFunction.ActiveViewIndex = 2;
         }
+
         public void TeacherList()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
@@ -363,11 +379,14 @@ namespace CyberDayInformationSystem
             TeacherDropDown.DataBind();
             TeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
         }
+
         public void SchoolList(int teacherID)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
-            string command = "select S.SCHOOLID, S.NAME from School s join Teacher t on S.SCHOOLID = T.SCHOOL where TEACHERID = " + teacherID;
+            string command =
+                "select S.SCHOOLID, S.NAME from School s join Teacher t on S.SCHOOLID = T.SCHOOL where TEACHERID = " +
+                teacherID;
             connection.Open();
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
@@ -379,6 +398,7 @@ namespace CyberDayInformationSystem
             SchoolDropDown.DataBind();
             SchoolDropDown.SelectedIndex = 0;
         }
+
         protected void TeacherDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (TeacherDropDown.SelectedIndex == 0)
@@ -391,6 +411,7 @@ namespace CyberDayInformationSystem
                 SchoolList(teacherID);
             }
         }
+
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
@@ -398,9 +419,11 @@ namespace CyberDayInformationSystem
             connection = new SqlConnection(cs);
             connection.Open();
 
-            SqlCommand updateStudent = new SqlCommand("UPDATE Student set firstname = @FIRSTNAME, lastname = @LASTNAME, age = @AGE, " +
+            SqlCommand updateStudent = new SqlCommand(
+                "UPDATE Student set firstname = @FIRSTNAME, lastname = @LASTNAME, age = @AGE, " +
                 "teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID", connection);
-            SqlCommand updateTshirt = new SqlCommand("UPDATE TSHIRTINFO TSHIRTSIZE = @SIZE WHERE TSHIRTID = @TID", connection);
+            SqlCommand updateTshirt =
+                new SqlCommand("UPDATE TSHIRTINFO TSHIRTSIZE = @SIZE WHERE TSHIRTID = @TID", connection);
             string firstname = HttpUtility.HtmlEncode(EditFirstNameTxt.Text);
             string lastname = HttpUtility.HtmlEncode(EditLastNameTxt.Text);
             int age = int.Parse(HttpUtility.HtmlEncode(EditAgeTxt.Text));
@@ -431,8 +454,8 @@ namespace CyberDayInformationSystem
             {
                 connection.Close();
             }
-
         }
+
         public void clearEditForms()
         {
             SearchByTagFN.Text = "";
@@ -447,11 +470,13 @@ namespace CyberDayInformationSystem
             SchoolDropDown.Items.Clear();
             EditStudentBtn.Visible = false;
         }
+
         public void StudentListFill()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
-            string command = "select STUDENTID, (firstname + ' '+ lastname) as NAME from STUDENT where Teacher is null or SCHOOL is null";
+            string command =
+                "select STUDENTID, (firstname + ' '+ lastname) as NAME from STUDENT where Teacher is null or SCHOOL is null";
             connection.Open();
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
@@ -462,6 +487,7 @@ namespace CyberDayInformationSystem
             StudentList.DataBind();
             StudentList.Items.Insert(0, new ListItem(String.Empty));
         }
+
         protected void ClaimBtn_Click(object sender, EventArgs e)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
@@ -469,7 +495,9 @@ namespace CyberDayInformationSystem
             connection = new SqlConnection(cs);
             int ID = int.Parse(StudentList.SelectedValue);
             connection.Open();
-            SqlCommand updateStudent = new SqlCommand("UPDATE Student set teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID", connection);
+            SqlCommand updateStudent =
+                new SqlCommand("UPDATE Student set teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID",
+                    connection);
             try
             {
                 updateStudent.Parameters.AddWithValue("@TEACHER", TeacherID);
@@ -487,6 +515,7 @@ namespace CyberDayInformationSystem
                 connection.Close();
             }
         }
+
         public void StudentGrid()
         {
             if (StudentList.SelectedIndex == 0)

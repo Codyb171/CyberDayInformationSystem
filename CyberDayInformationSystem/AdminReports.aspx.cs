@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -32,7 +28,7 @@ namespace CyberDayInformationSystem
         //}
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptInclude(PrintPanel, this.GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
+            ScriptManager.RegisterClientScriptInclude(this.Page, this.GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
             
         }
         public void EventList()
@@ -432,6 +428,8 @@ namespace CyberDayInformationSystem
                 MealTicketGrid();
                 FillPanel();
             }
+
+            PrintBtn.Visible = true;
         }
         public void EmptyGridView()
         {
@@ -456,7 +454,7 @@ namespace CyberDayInformationSystem
 
         public void FillPanel()
         {
-            PrintPanel.Controls.Add(ReportTable);
+            printPanel.Controls.Add(ReportTable);
         }
     }
 }

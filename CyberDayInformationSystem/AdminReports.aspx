@@ -33,7 +33,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Panel runat="server" ID="PrintPanel" >
+                <asp:Panel runat="server" ID="printPanel" CssClass="PrintPanel">
                     <asp:Table runat="server" ID="ReportTable" HorizontalAlign="Center">
                     <asp:TableRow runat="server" HorizontalAlign="Center">
                         <asp:TableCell ColumnSpan="4">
@@ -89,7 +89,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();" />
+                <asp:Button ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="PrintReport();" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
