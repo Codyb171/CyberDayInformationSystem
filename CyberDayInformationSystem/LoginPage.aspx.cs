@@ -14,6 +14,7 @@ namespace CyberDayInformationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         protected void LoginBtn_Click(object sender, EventArgs e)
@@ -64,13 +65,13 @@ namespace CyberDayInformationSystem
                     getInfo(type);
 
                 }
+                else
+                {
+                    LoginStat.Visible = true;
+                }
 
             }
-            else
-            {
-                Label3.Text = "bad password";
-                //LoginStat.Visible = true;
-            }
+
         }
 
         protected void NewUserBtn_Click(object sender, EventArgs e)
@@ -94,7 +95,7 @@ namespace CyberDayInformationSystem
                 Session.Add("ID", dataReader[type + "ID"].ToString());
             }
 
-            //Response.Redirect(type + "Dashboard.aspx");
+            Response.Redirect(type + "Dashboard.aspx");
         }
 
     }
