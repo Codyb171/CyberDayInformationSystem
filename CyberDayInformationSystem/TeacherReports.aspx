@@ -8,7 +8,7 @@
                 <h2 class="text-center">Select a report type:</h2>
                 <asp:RadioButtonList ID="FunctionList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionList_SelectedIndexChanged">
                     <asp:ListItem Value="1">Event Data</asp:ListItem>
-                    <asp:ListItem Value="2">Attendee Data</asp:ListItem>
+                    <asp:ListItem Value="2">Student Data</asp:ListItem>
                 </asp:RadioButtonList>
             </asp:TableCell>
         </asp:TableRow>
@@ -31,7 +31,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Panel runat="server" ID="printPanel">
+                <asp:Panel runat="server" ID="printPanel" CssClass="PrintPanel">
                     <asp:Table runat="server" ID="ReportTable" HorizontalAlign="Center">
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell ColumnSpan="4">
@@ -87,7 +87,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();" />
+                <asp:Button ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();"  />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

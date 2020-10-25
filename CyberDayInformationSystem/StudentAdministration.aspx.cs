@@ -42,9 +42,9 @@ namespace CyberDayInformationSystem
 
             if (Page.IsPostBack == true)
             {
-                if (Session["ID"] != null)
+                if (Session["StudentID"] != null)
                 {
-                    IDToEdit = int.Parse(Session["ID"].ToString());
+                    IDToEdit = int.Parse(Session["StudentID"].ToString());
                 }
             }
 
@@ -52,7 +52,7 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Teacher")
                 {
-                    TeacherID = int.Parse((string) Session["TEACHERID"]);
+                    TeacherID = int.Parse((string) Session["ID"]);
                     School = int.Parse((string) Session["SCHOOL"]);
                 }
                 else
@@ -340,7 +340,7 @@ namespace CyberDayInformationSystem
         protected void EditStudentBtn_Click(object sender, EventArgs e)
         {
             IDToEdit = int.Parse(studentModifyDtl.DataKey[0].ToString());
-            Session.Add("ID", IDToEdit);
+            Session.Add("StudentID", IDToEdit);
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             connection = new SqlConnection(cs);
@@ -354,7 +354,7 @@ namespace CyberDayInformationSystem
             TeacherList(2);
             if (dataReader.Read())
             {
-                TeacherDropDown.SelectedValue = dataReader["TEACHER"].ToString();
+                EditTeacherDropDown.SelectedValue = dataReader["TEACHER"].ToString();
                 EditFirstNameTxt.Text = dataReader["FIRSTNAME"].ToString();
                 EditLastNameTxt.Text = dataReader["LASTNAME"].ToString();
                 EditAgeTxt.Text = dataReader["AGE"].ToString();

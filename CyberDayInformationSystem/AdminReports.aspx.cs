@@ -29,7 +29,10 @@ namespace CyberDayInformationSystem
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptInclude(this.Page, this.GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
-            
+            if (Page.IsPostBack == true)
+            {
+                FillPanel();
+            }
         }
         public void EventList()
         {
