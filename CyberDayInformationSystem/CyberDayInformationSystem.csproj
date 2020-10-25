@@ -64,6 +64,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -163,6 +164,7 @@
     <Content Include="Scripts\src\methods\disableEventListeners.js" />
     <Content Include="Scripts\src\methods\enableEventListeners.js" />
     <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\PrintReport.js" />
     <Content Include="Scripts\src\methods\update.js" />
     <Content Include="Scripts\src\modifiers\applyStyle.js" />
     <Content Include="Scripts\src\modifiers\arrow.js" />

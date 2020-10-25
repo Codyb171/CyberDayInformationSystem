@@ -33,7 +33,8 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Panel runat="server" ID="PrintPanel">
+                <asp:Panel runat="server" ID="PrintPanel" >
+                    <asp:Table runat="server" ID="ReportTable" HorizontalAlign="Center">
                     <asp:TableRow runat="server" HorizontalAlign="Center">
                         <asp:TableCell ColumnSpan="4">
                             <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
@@ -82,12 +83,13 @@
                             </asp:GridView>
                         </asp:TableCell>
                     </asp:TableRow>
+                   </asp:Table>
                 </asp:Panel>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="PrintBtn" runat="server" Text="Print Report?" Visible="false" OnClick="PrintBtn_Click" />
+                <asp:Button ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

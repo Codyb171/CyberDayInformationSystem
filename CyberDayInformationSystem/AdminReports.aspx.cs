@@ -32,7 +32,8 @@ namespace CyberDayInformationSystem
         //}
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ScriptManager.RegisterClientScriptInclude(PrintPanel, this.GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
+            
         }
         public void EventList()
         {
@@ -409,11 +410,13 @@ namespace CyberDayInformationSystem
                 EventStaffGrid();
                 EventRosterGrid();
                 EventItinerary();
+                FillPanel();
             }
             if (FunctionList.SelectedValue == "2")
             {
                 StaffGrid();
                 StudentVolunteerData();
+                FillPanel();
             }
             if(FunctionList.SelectedValue == "3")
             {
@@ -421,11 +424,13 @@ namespace CyberDayInformationSystem
                 StudentGridFill(StudentID);
                 StudentNotesInfo(StudentID);
                 StudentTeacherInfo(StudentID);
+                FillPanel();
             }
             if(FunctionList.SelectedValue == "4")
             {
                 EventGrid();
                 MealTicketGrid();
+                FillPanel();
             }
         }
         public void EmptyGridView()
@@ -446,11 +451,12 @@ namespace CyberDayInformationSystem
             SecondaryGrid2Lbl.Visible = false;
             TertiaryGridLbl.Text = "";
             TertiaryGridLbl.Visible = false;
+            PrintBtn.Visible = false;
         }
 
-        protected void PrintBtn_Click(object sender, EventArgs e)
+        public void FillPanel()
         {
-
+            PrintPanel.Controls.Add(ReportTable);
         }
     }
 }
