@@ -103,7 +103,7 @@ namespace CyberDayInformationSystem
         {
             if (StudentExists(0) == 0)
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 string sql;
@@ -124,7 +124,7 @@ namespace CyberDayInformationSystem
         {
             if (StudentExists(1) == 0)
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 string sql = "Insert into Student values( @FIRSTNAME, @LASTNAME, @AGE, @TSHIRT, @TEACHER, @SCHOOL)";
@@ -158,7 +158,7 @@ namespace CyberDayInformationSystem
         public int GetCurrentStudent()
         {
             int count = 1;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             SqlCommand command;
             SqlDataReader dataReader;
@@ -181,7 +181,7 @@ namespace CyberDayInformationSystem
         {
             int add = 0;
             int id = 0;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             SqlCommand command;
             SqlDataReader dataReader;
@@ -227,7 +227,7 @@ namespace CyberDayInformationSystem
         public int CheckShirt(int id)
         {
             int shirt = 0;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             SqlCommand command;
             SqlDataReader dataReader;
@@ -268,7 +268,7 @@ namespace CyberDayInformationSystem
         // Searches based on user input to the textbox
         protected void SearchByTagButton_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             connection = new SqlConnection(cs);
             DataTable dt = new DataTable();
@@ -340,7 +340,7 @@ namespace CyberDayInformationSystem
         {
             IDToEdit = int.Parse(studentModifyDtl.DataKey[0].ToString());
             Session.Add("ID", IDToEdit);
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             connection = new SqlConnection(cs);
             string sql =
@@ -366,7 +366,7 @@ namespace CyberDayInformationSystem
 
         public void TeacherList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "select teacherid, (title + ' ' + firstname + ' '+ lastname) as NAME from Teacher";
             connection.Open();
@@ -382,7 +382,7 @@ namespace CyberDayInformationSystem
 
         public void SchoolList(int teacherID)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command =
                 "select S.SCHOOLID, S.NAME from School s join Teacher t on S.SCHOOLID = T.SCHOOL where TEACHERID = " +
@@ -414,7 +414,7 @@ namespace CyberDayInformationSystem
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             connection = new SqlConnection(cs);
             connection.Open();
@@ -429,7 +429,7 @@ namespace CyberDayInformationSystem
             int age = int.Parse(HttpUtility.HtmlEncode(EditAgeTxt.Text));
             int teacher = int.Parse(TeacherDropDown.SelectedValue);
             int school = int.Parse(SchoolDropDown.SelectedValue);
-            string size = EditSizeList.SelectedValue.ToString();
+            string size = EditSizeList.SelectedValue;
 
 
             try
@@ -473,7 +473,7 @@ namespace CyberDayInformationSystem
 
         public void StudentListFill()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command =
                 "select STUDENTID, (firstname + ' '+ lastname) as NAME from STUDENT where Teacher is null or SCHOOL is null";
@@ -490,7 +490,7 @@ namespace CyberDayInformationSystem
 
         protected void ClaimBtn_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection;
             connection = new SqlConnection(cs);
             int ID = int.Parse(StudentList.SelectedValue);
@@ -526,7 +526,7 @@ namespace CyberDayInformationSystem
             else
             {
                 int ID = int.Parse(StudentList.SelectedValue);
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 string sql = "Select FIRSTNAME, LASTNAME, Age from STUDENT where STUDENTID = " + ID;
                 DataTable dt = new DataTable();
                 SqlConnection conn = new SqlConnection(cs);

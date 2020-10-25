@@ -38,22 +38,30 @@ namespace CyberDayInformationSystem
                     var type = loginResults["USERTYPE"].ToString();
                     Session.Add("TYPE", type);
 
-                    if(type == "Teacher")
+                    if (type == "Teacher")
                     {
                         Session.Add("Master", "~/Teacher.Master");
+                    }
                     else if (type == "Coordinator")
+                    {
                         Session.Add("Master", "~/Admin.Master");
+                    }
                     else if (type == "Student Volunteer" || type == "Staff Volunteer")
+                    {
                         Session.Add("Master", "~/Volunteer.Master");
+                    }
                     else
+                    {
                         Session.Add("Master", "~/Site.Master");
-
+                    }
+                    
                     getInfo(type);
                 }
                 else
-                {
+                { 
                     LoginStat.Visible = true;
                 }
+               
             }
         }
 

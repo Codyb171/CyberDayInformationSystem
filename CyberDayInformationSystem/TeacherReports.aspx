@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="TeacherReports.aspx.cs" Inherits="CyberDayInformationSystem.TeacherReports" %>
+﻿<%@ Page Title="Teacher Reports" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="TeacherReports.aspx.cs" Inherits="CyberDayInformationSystem.TeacherReports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1 class="text-center">Report Access</h1>

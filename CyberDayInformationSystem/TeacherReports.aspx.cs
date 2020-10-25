@@ -53,7 +53,7 @@ namespace CyberDayInformationSystem
         public void StudentList()
         {
             SelectionDropDown.Items.Clear();
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT " /*+*/
                              /*"where Teacher = " + TeacherID*/;
@@ -71,7 +71,7 @@ namespace CyberDayInformationSystem
         {
             SelectedGridLbl.Text = "Student Data";
             SelectedGridLbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select FIRSTNAME, LASTNAME, GENDER, AGE from STUDENT where STUDENTID = " + StudentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
@@ -89,7 +89,7 @@ namespace CyberDayInformationSystem
         {
             SecondaryGrid1Lbl.Text = "Student Notes";
             SecondaryGrid1Lbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select NOTES FROM STUDENTNOTES where STUDENT = " + StudentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
@@ -118,7 +118,7 @@ namespace CyberDayInformationSystem
         {
             SecondaryGrid2Lbl.Text = "Contact People";
             SecondaryGrid2Lbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"Name\", FORMAT(T.PHONE,'(###)-###-####') AS \"PHONE NUMBER\", 'Teacher' as Type from TEACHER T join " +
                 " STUDENT S ON T.TEACHERID = S.TEACHER where STUDENTID = " + StudentID +
                 " UNION " +

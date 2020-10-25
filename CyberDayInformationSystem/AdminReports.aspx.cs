@@ -33,7 +33,7 @@ namespace CyberDayInformationSystem
         }
         public void EventList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "select EVENTID, EVENTDATE from EVENT";
             connection.Open();
@@ -64,7 +64,7 @@ namespace CyberDayInformationSystem
         public void StudentList()
         {
             SelectionDropDown.Items.Clear();
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT ";
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
@@ -88,7 +88,7 @@ namespace CyberDayInformationSystem
             }
             else
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int eventID = int.Parse(SelectionDropDown.SelectedValue);
                 string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\", " +
                     " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),EV.STARTTIME),4),3,0,':')as datetime),100),7) AS \"START\"," +
@@ -119,7 +119,7 @@ namespace CyberDayInformationSystem
             }
             else
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int staffID = int.Parse(SelectionDropDown.SelectedValue);
                 string sql = "SELECT (V.FIRSTNAME + ' ' + V.LASTNAME) AS NAME, FORMAT(V.PHONE,'(###)-###-####') AS \"PHONE NUMBER\", V.EMAILADD AS \"EMAIL ADDRESS\", V.TYPE FROM VOLUNTEER V" +
                     " where V.STAFFID = " + staffID;
@@ -140,7 +140,7 @@ namespace CyberDayInformationSystem
         {
             TertiaryGridLbl.Text = "Student Volunteer Data";
             TertiaryGridLbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int staffID = int.Parse(SelectionDropDown.SelectedValue);
             string sql = "SELECT SV.Major, SV.Minor, SV.ORGANIZATION, SV.PREVIOUSVOLUNTEER AS \"Previous Volunteer\" from STUDENTVOLUNTEER SV" +
                 " where SV.VOLUNTEERID = " + staffID;
@@ -165,7 +165,7 @@ namespace CyberDayInformationSystem
         {
             SecondaryGrid1Lbl.Text = "Event Volunteers";
             SecondaryGrid1Lbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
             string sql = "SELECT(V.FIRSTNAME + ' ' + V.LASTNAME) AS NAME, V.TYPE as ROLE FROM VOLUNTEER V join EVENTSTAFF ES on ES.STAFF = V.STAFFID join " +
             "EVENT EV on EV.EVENTID = ES.EVENT where EVENTID = " + eventID;
@@ -196,7 +196,7 @@ namespace CyberDayInformationSystem
         {
             SecondaryGrid2Lbl.Text = "Event Roster";
             SecondaryGrid2Lbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
             string sql = "SELECT (S.FIRSTNAME + ' ' + S.LASTNAME) AS NAME FROM STUDENT S RIGHT OUTER JOIN EVENTROSTER ER on " +
                 "ER.STUDENT = S.STUDENTID WHERE ER.EVENT = " + eventID;
@@ -227,7 +227,7 @@ namespace CyberDayInformationSystem
         {
             SelectedGridLbl.Text = "Student Data";
             SelectedGridLbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select FIRSTNAME, LASTNAME, GENDER, AGE from STUDENT where STUDENTID = " + StudentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
@@ -245,7 +245,7 @@ namespace CyberDayInformationSystem
         {
             SecondaryGrid1Lbl.Text = "Student Notes";
             SecondaryGrid1Lbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select NOTES FROM STUDENTNOTES where STUDENT = " + StudentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
@@ -274,7 +274,7 @@ namespace CyberDayInformationSystem
         {
             SecondaryGrid2Lbl.Text = "Contact People";
             SecondaryGrid2Lbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"Name\", FORMAT(T.PHONE,'(###)-###-####') AS \"PHONE NUMBER\", 'Teacher' as Type from TEACHER T join " +
                 " STUDENT S ON T.TEACHERID = S.TEACHER where STUDENTID = " + StudentID +
                 " UNION " +
@@ -308,7 +308,7 @@ namespace CyberDayInformationSystem
             TertiaryGridLbl.Text = "Meal Ticket Data";
             TertiaryGridLbl.Visible = true;
             int EventID = int.Parse(SelectionDropDown.SelectedValue);
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "select(S.FIRSTNAME + ' ' + S.LASTNAME) AS NAME, MT.USED AS RECIEVED FROM MEALTICKET MT JOIN STUDENT S " +
                 "ON MT.MEALTICKETID = S.MEALTICKET JOIN EVENT EV ON MT.EVENT = EV.EVENTID WHERE EV.EVENTID = " + EventID + " UNION" +
                 " select (T.FIRSTNAME + ' ' + T.LASTNAME) AS NAME, MT.USED AS RECIEVED FROM MEALTICKET MT JOIN TEACHER T ON MT.MEALTICKETID = T.MEALTICKET" +
@@ -333,7 +333,7 @@ namespace CyberDayInformationSystem
 
             TertiaryGridLbl.Text = "Event Itinerary";
             TertiaryGridLbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
             string sql = "select ET.TITLE, (V.FIRSTNAME + ' ' + V.LASTNAME) AS INSTRUCTOR," +
                 " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),ET.STARTTIME),4),3,0,':')as datetime),100),7) AS \"START\"," +

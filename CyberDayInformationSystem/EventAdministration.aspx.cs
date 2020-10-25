@@ -52,7 +52,7 @@ namespace CyberDayInformationSystem
 
         public void EventDateList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "SELECT EVENTDATE, EVENTID FROM EVENT";
             connection.Open();
@@ -70,7 +70,7 @@ namespace CyberDayInformationSystem
 
         public void EventRoomList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "SELECT (BUILDING + ' ' + ROOMNUMBER) AS Room, ROOMID FROM ROOMRESERVATIONS";
             connection.Open();
@@ -88,7 +88,7 @@ namespace CyberDayInformationSystem
 
         public void EventList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "SELECT TITLE, TASKID FROM EVENTTASKS";
             connection.Open();
@@ -122,7 +122,7 @@ namespace CyberDayInformationSystem
 
         protected void CreateBut_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS VALUES(@TITLE, @EVENTTIME)");
 
