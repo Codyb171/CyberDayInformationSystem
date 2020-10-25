@@ -11,7 +11,7 @@
             <%: Scripts.Render("~/bundles/modernizr") %>
         </asp:PlaceHolder>
 
-        <link href="Styling.css" rel="stylesheet" type="text/css" />
+        <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
 
         <webopt:BundleReference runat="server" Path="~/Content/css" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -41,7 +41,7 @@
 
             <nav class="navbar">
 
-                <a class="to-home" href="Default.aspx">CyberDay</a>
+                <a class="to-home" >CyberDay</a>
 
 <%--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">

@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
-    public partial class LoginPage : System.Web.UI.Page
+    public partial class LoginPage : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,11 +15,11 @@ namespace CyberDayInformationSystem
 
         protected void LoginBtn_Click(object sender, EventArgs e)
         {
-            string user = HttpUtility.HtmlEncode(UsernameTxt.Text);
-            string pass = HttpUtility.HtmlEncode(PasswordTxt.Text);
-            string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand loginCommand = new SqlCommand();
+            var user = HttpUtility.HtmlEncode(UsernameTxt.Text);
+            var pass = HttpUtility.HtmlEncode(PasswordTxt.Text);
+            var cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            var connection = new SqlConnection(cs);
+            var loginCommand = new SqlCommand();
             SqlDataReader loginResults;
             connection.Open();
             loginCommand.Connection = connection;
@@ -32,57 +29,61 @@ namespace CyberDayInformationSystem
             loginResults = loginCommand.ExecuteReader();
             if (loginResults.Read())
             {
-                string PassHash = loginResults["PASSWORDHASH"].ToString();
+                var PassHash = loginResults["PASSWORDHASH"].ToString();
                 if (PasswordHash.ValidatePassword(pass, PassHash))
                 {
-                    Session.Add("User", loginResults["USERNAME"].ToString());
-                    string first = loginResults["FIRSTNAME"].ToString();
-                    string last = loginResults["LASTNAME"].ToString();
-                    string type = loginResults["USERTYPE"].ToString();
+                    Session.Add("USER", loginResults["USERNAME"].ToString());
+                    Session.Add("FIRSTNAME", loginResults["FIRSTNAME"].ToString());
+                    Session.Add("LASTNAME", loginResults["LASTNAME"].ToString());
+                    var type = loginResults["USERTYPE"].ToString();
+                    Session.Add("TYPE", type);
+
                     if (type == "Teacher")
                     {
-                        getTeacherInfo(first, last);
-                        Session.Add("TYPE", type);
+                        Session.Add("Master", "~/Teacher.Master");
+                    }
+                    else if (type == "Coordinator")
+                    {
+                        Session.Add("Master", "~/Admin.Master");
+                    }
+                    else if (type == "Student Volunteer" || type == "Staff Volunteer")
+                    {
+                        Session.Add("Master", "~/Volunteer.Master");
                     }
                     else
                     {
-                        if (type == "Coordinator")
-                        {
-                            Session.Add("TYPE", type);
-                        }
-                        Session.Add("TYPE", type);
+                        Session.Add("Master", "~/Site.Master");
                     }
-                    connection.Close();
-                    Response.Redirect("StartPage.aspx");
+                    
+                    getInfo(type);
                 }
-
-            }
-            else
-            {
-                LoginStat.Visible = true;
+                else
+                { 
+                    LoginStat.Visible = true;
+                }
+               
             }
         }
 
-        //protected void NewUserBtn_Click(object sender, EventArgs e)
-        //{
-        //    Response.Redirect("UserCreation.aspx");
-        //}
-        public void getTeacherInfo(string first, string last)
+        protected void NewUserBtn_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
-            SqlConnection connection = new SqlConnection(cs);
+            Response.Redirect("UserCreation.aspx");
+        }
+
+
+        public void getInfo(string type)
+        {
+            var cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            var connection = new SqlConnection(cs);
             SqlCommand command;
-            string sql = "Select TEACHERID, SCHOOL from TEACHER where FIRSTNAME Like @FIRSTNAME AND LASTNAME Like @LASTNAME";
+            var sql = "Select " + type + "ID from " + type + " where EMAILADD Like @email";
             command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@FIRSTNAME", first);
-            command.Parameters.AddWithValue("@LASTNAME", last);
+            command.Parameters.AddWithValue("@EMAIL", Session["USER"].ToString());
             connection.Open();
-            SqlDataReader dataReader = command.ExecuteReader();
-            if (dataReader.Read())
-            {
-                Session.Add("TEACHERID", dataReader["TEACHERID"].ToString());
-                Session.Add("SCHOOL", dataReader["SCHOOL"].ToString());
-            }
+            var dataReader = command.ExecuteReader();
+            if (dataReader.Read()) Session.Add("ID", dataReader[type + "ID"].ToString());
+
+            Response.Redirect(type + "Dashboard.aspx");
         }
     }
 }

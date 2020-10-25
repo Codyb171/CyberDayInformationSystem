@@ -1,13 +1,9 @@
-﻿using Antlr.Runtime.Tree;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
@@ -16,43 +12,50 @@ namespace CyberDayInformationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["TYPE"] != null)
             {
-                if (Page.IsPostBack == false)
+                if (Session["TYPE"].ToString() == "Coordinator")
                 {
-                    SchoolList();
-                    TshirtTypeList.Items.Insert(0, new ListItem(String.Empty));
-                    TshirtSizeList.Items.Insert(0, new ListItem(String.Empty));
-                    TypeDropDown.Items.Insert(0, new ListItem(String.Empty));
-                    GradeDropDown.Items.Insert(0, new ListItem(String.Empty));
-                    TitleDropDown.Items.Insert(0, new ListItem(String.Empty));
-                    MajorDropDown.Items.Insert(0, new ListItem(String.Empty));
-                    MinorDropDown.Items.Insert(0, new ListItem(String.Empty));
-                    OrgDropDown.Items.Insert(0, new ListItem(String.Empty));
+                    if (Page.IsPostBack == false)
+                    {
+                        UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                    }
+                    this.MasterPageFile = "~/Admin.Master";
                 }
             }
-        }
-
-            protected void UserTypeSelection_SelectedIndexChanged(object sender, EventArgs e)
+            if (Page.IsPostBack == false)
             {
-                if (UserTypeSelection.SelectedValue == "1")
+                SchoolList();
+                TshirtTypeList.Items.Insert(0, new ListItem(String.Empty));
+                TshirtSizeList.Items.Insert(0, new ListItem(String.Empty));
+                GradeDropDown.Items.Insert(0, new ListItem(String.Empty));
+                TitleDropDown.Items.Insert(0, new ListItem(String.Empty));
+                MajorDropDown.Items.Insert(0, new ListItem(String.Empty));
+                MinorDropDown.Items.Insert(0, new ListItem(String.Empty));
+                OrgDropDown.Items.Insert(0, new ListItem(String.Empty));
+            }
+        }
+        protected void UserTypeSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (UserTypeSelection.SelectedValue == "1")
                 {
                     DefaultTable.Visible = true;
                     SelectedView.ActiveViewIndex = 0;
                 }
-                if (UserTypeSelection.SelectedValue == "2")
+            if (UserTypeSelection.SelectedValue == "2" || UserTypeSelection.SelectedValue == "4")
+                {
+                    DefaultTable.Visible = true;
+                    SelectedView.ActiveViewIndex = -1;
+                }
+            if (UserTypeSelection.SelectedValue == "3")
                 {
                     DefaultTable.Visible = true;
                     SelectedView.ActiveViewIndex = 1;
                 }
-                if (UserTypeSelection.SelectedValue == "3")
-                {
-                    DefaultTable.Visible = true;
-                    SelectedView.ActiveViewIndex = 2;
-                }
-            }
-
-            protected void CreateBtn_Click(object sender, EventArgs e)
-            {
+                
+        }
+        protected void CreateBtn_Click(object sender, EventArgs e)
+        {
                 if (UserTypeSelection.SelectedValue == "1")
                 {
                     CreateUser(1);
@@ -64,14 +67,13 @@ namespace CyberDayInformationSystem
                     EmailTxt.Text = "";
                     TshirtSizeList.ClearSelection();
                     TshirtTypeList.ClearSelection();
-                    TypeDropDown.ClearSelection();
                     SchoolDropDown.ClearSelection();
                     GradeDropDown.ClearSelection();
                 }
                 if (UserTypeSelection.SelectedValue == "2")
                 {
                     CreateUser(2);
-                    CreateStaff();
+                    CreateStaff(2);
                     TitleDropDown.ClearSelection();
                     FirstNameTxt.Text = "";
                     LastNameTxt.Text = "";
@@ -79,14 +81,27 @@ namespace CyberDayInformationSystem
                     EmailTxt.Text = "";
                     TshirtSizeList.ClearSelection();
                     TshirtTypeList.ClearSelection();
-                    TypeDropDown.ClearSelection();
+                    SchoolDropDown.ClearSelection();
+                    GradeDropDown.ClearSelection();
+                }
+                if (UserTypeSelection.SelectedValue == "3")
+                {
+                    CreateUser(3);
+                    CreateStaff(3);
+                    TitleDropDown.ClearSelection();
+                    FirstNameTxt.Text = "";
+                    LastNameTxt.Text = "";
+                    PhoneTxt.Text = "";
+                    EmailTxt.Text = "";
+                    TshirtSizeList.ClearSelection();
+                    TshirtTypeList.ClearSelection();
                     SchoolDropDown.ClearSelection();
                     GradeDropDown.ClearSelection();
                 }
             }
-            public void SchoolList()
+        public void SchoolList()
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 string command = "select S.SCHOOLID, S.NAME from School s";
                 connection.Open();
@@ -101,11 +116,11 @@ namespace CyberDayInformationSystem
                 SchoolDropDown.Items.Insert(0, new ListItem(String.Empty));
                 connection.Close();
             }
-            public void CreateUser(int type)
+        public void CreateUser(int type)
             {
                 if (CheckUser() == 0)
                 {
-                    string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string sql = "Insert into USERS values(@FIRST, @LAST, @USER, @TYPE)";
@@ -123,8 +138,15 @@ namespace CyberDayInformationSystem
                     }
                     if (type == 2)
                     {
-                        string staff = TypeDropDown.SelectedValue;
-                        command.Parameters.AddWithValue("@TYPE", staff);
+                        command.Parameters.AddWithValue("@TYPE", "Staff Volunteer");
+                    }
+                    if(type == 3)
+                    {
+                        command.Parameters.AddWithValue("@TYPE", "Student Volunteer");
+                    }
+                    if(type == 4)
+                    {
+                        command.Parameters.AddWithValue("@TYPE", "Coordinator");
                     }
                     command.ExecuteNonQuery();
                     SendPassword(user);
@@ -132,12 +154,12 @@ namespace CyberDayInformationSystem
                     UserInfoLbl.Text = "User <b>" + user + "</b> Has been created successfully";
                 }
             }
-            public void SendPassword(string userName)
-            {
+        public void SendPassword(string userName)
+        {
                 int id;
                 string password = HttpUtility.HtmlEncode(PasswordTxt1.Text);
                 string hashPass = PasswordHash.HashPassword(password);
-                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 string idsql = "SELECT USERID FROM USERS WHERE USERNAME = @USER";
@@ -153,13 +175,13 @@ namespace CyberDayInformationSystem
                 command.ExecuteNonQuery();
                 connection.Close();
             }
-            public void CreateTeacher()
-            {
+        public void CreateTeacher()
+        {
                 if (TeacherExists() == 0)
                 {
                     int id = GetID(1);
                     SendTshirt(id);
-                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string title = TitleDropDown.SelectedValue;
@@ -183,21 +205,20 @@ namespace CyberDayInformationSystem
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
-            }
-            public void CreateStaff()
+        }
+        public void CreateStaff(int type)
             {
-                if (StaffExists() == 0)
+                if (StaffExists(type) == 0)
                 {
                     int id = GetID(1);
                     SendTshirt(id);
-                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
                     string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
                     string email = HttpUtility.HtmlEncode(EmailTxt.Text);
                     SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(PhoneTxt.Text));
-                    string type = TypeDropDown.SelectedValue;
                     string sql = "Insert into STAFF VALUES( @FIRST, @LAST, @PHONE, @EMAIL, @TSHIRT, @TYPE)";
                     connection.Open();
                     command = new SqlCommand(sql, connection);
@@ -206,16 +227,27 @@ namespace CyberDayInformationSystem
                     command.Parameters.AddWithValue("@PHONE", phone);
                     command.Parameters.AddWithValue("@EMAIL", email);
                     command.Parameters.AddWithValue("@TSHIRT", id);
-                    command.Parameters.AddWithValue("@TYPE", type);
+                    if (type == 2)
+                    {
+                        command.Parameters.AddWithValue("@TYPE", "Staff Volunteer");
+                    }
+                    if (type == 3)
+                    {
+                        command.Parameters.AddWithValue("@TYPE", "Student Volunteer");
+                    }
+                    if (type == 4)
+                    {
+                       command.Parameters.AddWithValue("@TYPE", "Coordinator");
+                    }
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
 
             }
-            public int GetID(int type)
+        public int GetID(int type)
             {
                 int ID = 0;
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -245,9 +277,9 @@ namespace CyberDayInformationSystem
                 connection.Close();
                 return ID + 1;
             }
-            public void SendTshirt(int id)
+        public void SendTshirt(int id)
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 connection.Open();
@@ -259,10 +291,10 @@ namespace CyberDayInformationSystem
                 command.ExecuteNonQuery();
                 connection.Close();
             }
-            public int TeacherExists()
+        public int TeacherExists()
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -294,10 +326,10 @@ namespace CyberDayInformationSystem
                 connection.Close();
                 return add;
             }
-            public int StaffExists()
+        public int StaffExists(int type)
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -307,14 +339,20 @@ namespace CyberDayInformationSystem
                 string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
                 string email = HttpUtility.HtmlEncode(EmailTxt.Text);
                 SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(PhoneTxt.Text));
-                string type = TypeDropDown.SelectedValue;
                 string sql = "SELECT STAFFID FROM STAFF WHERE FIRSTNAME = @FIRST AND LASTNAME = @LAST and EMAILADD = @EMAIL AND PHONE = @PHONE AND TYPE = @TYPE";
                 command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@FIRST", first);
                 command.Parameters.AddWithValue("@LAST", last);
                 command.Parameters.AddWithValue("@EMAIL", email);
                 command.Parameters.AddWithValue("@PHONE", phone);
-                command.Parameters.AddWithValue("@TYPE", type);
+                if(type == 2)
+                {
+                    command.Parameters.AddWithValue("@TYPE", "Staff Volunteer");
+                }
+                if(type == 3)
+                {
+                    command.Parameters.AddWithValue("@TYPE", "Student Volunteer");
+                }
                 dataReader = command.ExecuteReader();
                 if (dataReader.Read())
                 {
@@ -324,10 +362,10 @@ namespace CyberDayInformationSystem
                 connection.Close();
                 return add;
             }
-            public int CheckUser()
+        public int CheckUser()
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -335,7 +373,7 @@ namespace CyberDayInformationSystem
                 connection.Open();
                 string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
                 string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
-                string user = last + first.Substring(0, 1);
+                string user = EmailTxt.Text;
                 string sql = "SELECT USERID from USERS where FIRSTNAME = @FIRST AND LASTNAME = @LAST AND USERNAME = @USER";
                 command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@FIRST", first);
@@ -351,5 +389,5 @@ namespace CyberDayInformationSystem
                 connection.Close();
                 return add;
             }
-        }
     }
+}

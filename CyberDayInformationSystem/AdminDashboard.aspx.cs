@@ -1,8 +1,10 @@
-﻿using System;
+﻿// Start Page
+
+using System;
 
 namespace CyberDayInformationSystem
 {
-    public partial class VolunteerAdministration : System.Web.UI.Page
+    public partial class AdminStartPage : System.Web.UI.Page
     {
         //void Page_PreInit(Object sender, EventArgs e)
         //{
