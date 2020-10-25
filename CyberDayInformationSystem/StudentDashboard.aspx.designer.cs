@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CyberDayInformationSystem
-{
-
-
-    public partial class StudentDashboard
-    {
+namespace CyberDayInformationSystem {
+    
+    
+    public partial class StudentDashboard {
     }
 }

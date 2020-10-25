@@ -43,9 +43,6 @@ namespace CyberDayInformationSystem
                     string type = loginResults["USERTYPE"].ToString();
                     Session.Add("TYPE", type);
 
-                    //Label1.Text = first;
-                    //Label2.Text = last;
-                    //Label3.Text = type;
                     if(type == "Teacher")
                     {
                         Session.Add("Master", "~/Teacher.Master");
@@ -95,7 +92,8 @@ namespace CyberDayInformationSystem
                 Session.Add("ID", dataReader[type + "ID"].ToString());
             }
 
-            Response.Redirect(type + "Dashboard.aspx");
+            //Response.Redirect(type + "Dashboard.aspx");
+            Response.Redirect("Sandbox.aspx");
         }
 
     }

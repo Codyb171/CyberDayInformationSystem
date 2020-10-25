@@ -249,11 +249,14 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="StudentAdministration.aspx" />
+    <Content Include="StudentDashboard.aspx" />
     <Content Include="Styling-Master.css" />
+    <Content Include="TeacherDashboard.aspx" />
     <Content Include="TeacherReports.aspx" />
     <Content Include="UserCreation.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="VolunteerAdministration.aspx" />
+    <Content Include="VolunteerDashboard.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -357,12 +360,26 @@
     <Compile Include="StudentAdministration.aspx.designer.cs">
       <DependentUpon>StudentAdministration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StudentDashboard.aspx.cs">
+      <DependentUpon>StudentDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentDashboard.aspx.designer.cs">
+      <DependentUpon>StudentDashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher.Master.cs">
       <DependentUpon>Teacher.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teacher.Master.designer.cs">
       <DependentUpon>Teacher.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherDashboard.aspx.cs">
+      <DependentUpon>TeacherDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeacherDashboard.aspx.designer.cs">
+      <DependentUpon>TeacherDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="TeacherReports.aspx.cs">
       <DependentUpon>TeacherReports.aspx</DependentUpon>
@@ -398,6 +415,13 @@
     </Compile>
     <Compile Include="VolunteerAdministration.aspx.designer.cs">
       <DependentUpon>VolunteerAdministration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VolunteerDashboard.aspx.cs">
+      <DependentUpon>VolunteerDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VolunteerDashboard.aspx.designer.cs">
+      <DependentUpon>VolunteerDashboard.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
