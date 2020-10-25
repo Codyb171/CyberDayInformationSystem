@@ -45,7 +45,22 @@ namespace CyberDayInformationSystem
                     //Label1.Text = first;
                     //Label2.Text = last;
                     //Label3.Text = type;
-
+                    if(type == "Teacher")
+                    {
+                        Session.Add("Master", "~/Teacher.Master");
+                    }
+                    else if(type == "Coordinator")
+                    {
+                        Session.Add("Master", "~/Admin.Master");
+                    }
+                    else if(type == "Student Volunteer" || type == "Staff Volunteer")
+                    {
+                        Session.Add("Master", "~/Volunteer.Master");
+                    }
+                    else
+                    {
+                        Session.Add("Master", "~/Site.Master");
+                    }
                     getInfo(type);
 
                 }
