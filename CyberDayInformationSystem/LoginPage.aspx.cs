@@ -83,8 +83,7 @@ namespace CyberDayInformationSystem
             var dataReader = command.ExecuteReader();
             if (dataReader.Read()) Session.Add("ID", dataReader[type + "ID"].ToString());
 
-            //Response.Redirect(type + "Dashboard.aspx");
-            Response.Redirect("Sandbox.aspx");
+            Response.Redirect(type + "Dashboard.aspx");
         }
     }
 }
