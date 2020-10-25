@@ -37,14 +37,13 @@ namespace CyberDayInformationSystem
 			string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
 			SqlConnection connection = new SqlConnection(cs);
 			SqlCommand command;
-			string sql = "Select TEACHERID, SCHOOL from TEACHER where EMAILADD = " + email;
+			string sql = "Select SCHOOL from TEACHER where EMAILADD = " + email;
 			command = new SqlCommand(sql, connection);
 
 			connection.Open();
 			SqlDataReader dataReader = command.ExecuteReader();
 			if (dataReader.Read())
 			{
-				Session.Add("TEACHERID", dataReader["TEACHERID"].ToString());
 				Session.Add("SCHOOL", dataReader["SCHOOL"].ToString());
 			}
 		}

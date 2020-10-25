@@ -40,7 +40,7 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Teacher")
                 {
-                    TeacherID = int.Parse((string)Session["TEACHERID"]);
+                    TeacherID = int.Parse((string)Session["ID"]);
                     School = int.Parse((string)Session["SCHOOL"]);
                 }
                 else

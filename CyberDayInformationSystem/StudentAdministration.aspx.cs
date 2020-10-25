@@ -97,6 +97,9 @@ namespace CyberDayInformationSystem
             LastNameTxt.Text = "";
             AgeTxt.Text = "";
             TshirtSizeList.ClearSelection();
+            GenderDropDown.ClearSelection();
+            TeacherDropDown.ClearSelection();
+            SchoolList(0,1);
         }
 
         public void sendShirt(int id)
@@ -114,7 +117,7 @@ namespace CyberDayInformationSystem
                 command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@ID", id);
                 command.Parameters.AddWithValue("@size", size);
-                command.Parameters.AddWithValue("@color", "Student Shirt");
+                command.Parameters.AddWithValue("@type", "Student Shirt");
                 command.ExecuteNonQuery();
                 connection.Close();
             }
@@ -146,8 +149,8 @@ namespace CyberDayInformationSystem
                 }
                 else
                 {
-                    command.Parameters.AddWithValue("@TEACHER", null);
-                    command.Parameters.AddWithValue("@SCHOOL", null);
+                    command.Parameters.AddWithValue("@TEACHER", int.Parse(TeacherDropDown.SelectedValue));
+                    command.Parameters.AddWithValue("@SCHOOL", int.Parse(SchoolDropDown.SelectedValue));
                 }
 
                 command.ExecuteNonQuery();
@@ -203,8 +206,8 @@ namespace CyberDayInformationSystem
             }
             else
             {
-                command.Parameters.AddWithValue("@TEACHER", null);
-                command.Parameters.AddWithValue("@SCHOOL", null);
+                command.Parameters.AddWithValue("@TEACHER", int.Parse(TeacherDropDown.SelectedValue));
+                command.Parameters.AddWithValue("@SCHOOL", int.Parse(SchoolDropDown.SelectedValue));
             }
 
             dataReader = command.ExecuteReader();
@@ -250,18 +253,16 @@ namespace CyberDayInformationSystem
             if (FunctionSelection.SelectedValue == "1")
             {
                 SelectedFunction.ActiveViewIndex = 0;
+                if (TeacherID == 0)
+                {
+                    CoordinatorView.ActiveViewIndex = 0;
+                }
                 clearEditForms();
             }
             else if (FunctionSelection.SelectedValue == "2")
             {
                 clearEditForms();
                 SelectedFunction.ActiveViewIndex = 1;
-            }
-            else if (FunctionSelection.SelectedValue == "3")
-            {
-                clearEditForms();
-                SelectedFunction.ActiveViewIndex = 3;
-                StudentListFill();
             }
         }
 
@@ -350,7 +351,7 @@ namespace CyberDayInformationSystem
             command.Parameters.AddWithValue("@ID", IDToEdit);
             connection.Open();
             SqlDataReader dataReader = command.ExecuteReader();
-            TeacherList();
+            TeacherList(2);
             if (dataReader.Read())
             {
                 TeacherDropDown.SelectedValue = dataReader["TEACHER"].ToString();
@@ -358,13 +359,13 @@ namespace CyberDayInformationSystem
                 EditLastNameTxt.Text = dataReader["LASTNAME"].ToString();
                 EditAgeTxt.Text = dataReader["AGE"].ToString();
                 EditSizeList.SelectedValue = dataReader["TSHIRTSIZE"].ToString();
-                SchoolList(int.Parse(TeacherDropDown.SelectedValue));
+                SchoolList(int.Parse(EditTeacherDropDown.SelectedValue),2);
             }
 
             SelectedFunction.ActiveViewIndex = 2;
         }
 
-        public void TeacherList()
+        public void TeacherList(int caller)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
@@ -373,14 +374,26 @@ namespace CyberDayInformationSystem
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
-            TeacherDropDown.DataSource = dt;
-            TeacherDropDown.DataTextField = "NAME";
-            TeacherDropDown.DataValueField = "TEACHERID";
-            TeacherDropDown.DataBind();
-            TeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
+            if (caller == 1)
+            {
+                TeacherDropDown.DataSource = dt;
+                TeacherDropDown.DataTextField = "NAME";
+                TeacherDropDown.DataValueField = "TEACHERID";
+                TeacherDropDown.DataBind();
+                TeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
+            }
+            if (caller == 2)
+            {
+                EditTeacherDropDown.DataSource = dt;
+                EditTeacherDropDown.DataTextField = "NAME";
+                EditTeacherDropDown.DataValueField = "TEACHERID";
+                EditTeacherDropDown.DataBind();
+                EditTeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
+            }
+            
         }
 
-        public void SchoolList(int teacherID)
+        public void SchoolList(int teacherID,int caller)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
@@ -391,12 +404,25 @@ namespace CyberDayInformationSystem
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
-            SchoolDropDown.DataSource = dt;
-            SchoolDropDown.DataBind();
-            SchoolDropDown.DataTextField = "Name";
-            SchoolDropDown.DataValueField = "SCHOOLID";
-            SchoolDropDown.DataBind();
-            SchoolDropDown.SelectedIndex = 0;
+            if (caller == 1)
+            {
+                SchoolDropDown.DataSource = dt;
+                SchoolDropDown.DataBind();
+                SchoolDropDown.DataTextField = "Name";
+                SchoolDropDown.DataValueField = "SCHOOLID";
+                SchoolDropDown.DataBind();
+                SchoolDropDown.SelectedIndex = 0;
+            }
+
+            if (caller == 2)
+            {
+                EditSchoolDropDown.DataSource = dt;
+                EditSchoolDropDown.DataBind();
+                EditSchoolDropDown.DataTextField = "Name";
+                EditSchoolDropDown.DataValueField = "SCHOOLID";
+                EditSchoolDropDown.DataBind();
+                EditSchoolDropDown.SelectedIndex = 0;
+            }
         }
 
         protected void TeacherDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -405,10 +431,15 @@ namespace CyberDayInformationSystem
             {
                 SchoolDropDown.Items.Clear();
             }
-            else
+            if(FunctionSelection.SelectedValue == "1")
             {
                 int teacherID = int.Parse(TeacherDropDown.SelectedValue);
-                SchoolList(teacherID);
+                SchoolList(teacherID,1);
+            }
+            else
+            {
+                int teacherID = int.Parse(EditTeacherDropDown.SelectedValue);
+                SchoolList(teacherID,2);
             }
         }
 
@@ -427,8 +458,8 @@ namespace CyberDayInformationSystem
             string firstname = HttpUtility.HtmlEncode(EditFirstNameTxt.Text);
             string lastname = HttpUtility.HtmlEncode(EditLastNameTxt.Text);
             int age = int.Parse(HttpUtility.HtmlEncode(EditAgeTxt.Text));
-            int teacher = int.Parse(TeacherDropDown.SelectedValue);
-            int school = int.Parse(SchoolDropDown.SelectedValue);
+            int teacher = int.Parse(EditTeacherDropDown.SelectedValue);
+            int school = int.Parse(EditSchoolDropDown.SelectedValue);
             string size = EditSizeList.SelectedValue;
 
 
@@ -469,82 +500,6 @@ namespace CyberDayInformationSystem
             TeacherDropDown.ClearSelection();
             SchoolDropDown.Items.Clear();
             EditStudentBtn.Visible = false;
-        }
-
-        public void StudentListFill()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command =
-                "select STUDENTID, (firstname + ' '+ lastname) as NAME from STUDENT where Teacher is null or SCHOOL is null";
-            connection.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            StudentList.DataSource = dt;
-            StudentList.DataTextField = "NAME";
-            StudentList.DataValueField = "STUDENTID";
-            StudentList.DataBind();
-            StudentList.Items.Insert(0, new ListItem(String.Empty));
-        }
-
-        protected void ClaimBtn_Click(object sender, EventArgs e)
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection;
-            connection = new SqlConnection(cs);
-            int ID = int.Parse(StudentList.SelectedValue);
-            connection.Open();
-            SqlCommand updateStudent =
-                new SqlCommand("UPDATE Student set teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID",
-                    connection);
-            try
-            {
-                updateStudent.Parameters.AddWithValue("@TEACHER", TeacherID);
-                updateStudent.Parameters.AddWithValue("@SCHOOL", School);
-                updateStudent.Parameters.AddWithValue("@SID", ID);
-                updateStudent.ExecuteNonQuery();
-                ClaimStatusLbl.Text = "Student Claimed Successfully!!";
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        public void StudentGrid()
-        {
-            if (StudentList.SelectedIndex == 0)
-            {
-                StudentGridView.DataSource = null;
-                StudentGridView.DataBind();
-            }
-            else
-            {
-                int ID = int.Parse(StudentList.SelectedValue);
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-                string sql = "Select FIRSTNAME, LASTNAME, Age from STUDENT where STUDENTID = " + ID;
-                DataTable dt = new DataTable();
-                SqlConnection conn = new SqlConnection(cs);
-                SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
-                conn.Open();
-                adapt.Fill(dt);
-                conn.Close();
-                if (dt.Rows.Count > 0)
-                {
-                    StudentGridView.DataSource = dt;
-                    StudentGridView.DataBind();
-                }
-            }
-        }
-
-        protected void StudentList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            StudentGrid();
         }
 
         protected void studentModifyDtl_PageIndexChanging(object sender, DetailsViewPageEventArgs e)

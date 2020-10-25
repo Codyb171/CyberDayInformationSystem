@@ -59,6 +59,7 @@
                     <li><a href="EventAdministration.aspx">Events</a></li>
                     <li><a href="VolunteerAdministration.aspx">Volunteers</a></li>
                     <li><a href="AdminReports.aspx">Reports</a></li>
+                    <li><a href="UserCreation.aspx">Create Users</a></li>
                 </ul>
 
                 <div>
