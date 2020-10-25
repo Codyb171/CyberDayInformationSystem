@@ -5,6 +5,12 @@
     text-align: center;
 }
 
+h2 {
+    text-align: center;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #all {
     background-color: #DACCE6;
     color: #333333;

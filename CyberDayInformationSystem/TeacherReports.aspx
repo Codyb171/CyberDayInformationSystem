@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Teacher Reports" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="TeacherReports.aspx.cs" Inherits="CyberDayInformationSystem.TeacherReports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1 class="text-center">Report Access</h1>
+    <h1>Report Access</h1>
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
