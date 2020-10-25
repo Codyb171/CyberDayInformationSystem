@@ -252,6 +252,7 @@
     <Content Include="StudentDashboard.aspx" />
     <Content Include="Styling-Master.css" />
     <Content Include="TeacherDashboard.aspx" />
+    <Content Include="TeacherReports-Styling.css" />
     <Content Include="TeacherReports.aspx" />
     <Content Include="UserCreation.aspx" />
     <Content Include="ViewSwitcher.ascx" />
