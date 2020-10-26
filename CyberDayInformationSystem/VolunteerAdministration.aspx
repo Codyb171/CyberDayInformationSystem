@@ -2,22 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Assign Volunteers</h1>
     <asp:Table runat="server" HorizontalAlign="Center">
-        <asp:TableRow runat="server" HorizontalAlign="Center">
+        <asp:TableRow ID="rowSelDate" runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="1">
                 <asp:Label ID="lblSelDate" runat="server" Text="Select Event Date: " Width="200"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="1">
-                <asp:DropDownList ID="ddlEventDates" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlEventDates" runat="server" AutoPostBack="true"></asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="dateNextBtn" runat="server" HorizontalAlign="Center">
+        <asp:TableRow ID="rowDateNextBtn" runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="btnSelDateNext" runat="server" Text="Next >" OnClick="btnSelDateNext_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="selectedDate" runat="server" HorizontalAlign="Center" Visible="false">
+        <asp:TableRow ID="rowSelectedDate" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell>
                 <asp:Label ID="lblSelectedDate" runat="server" Text=""></asp:Label>
             </asp:TableCell>
@@ -30,17 +30,17 @@
             </asp:TableCell>
 
             <asp:TableCell>
-                <asp:DropDownList ID="ddlEventTasks" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlEventTasks" runat="server" AutoPostBack="true"></asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="eventNextBtn" runat="server" HorizontalAlign="Center" Visible="false">
+        <asp:TableRow ID="rowEventNextBtn" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="btnSelEventNext" runat="server" Text="Next >" OnClick="btnSelEventNext_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="selectedEvent" runat="server" HorizontalAlign="Center" Visible="false">
+        <asp:TableRow ID="rowSelectedEvent" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell>
                 <asp:Label ID="lblSelectedEvent" runat="server" Text=""></asp:Label>
             </asp:TableCell>
@@ -52,11 +52,11 @@
             </asp:TableCell>
 
             <asp:TableCell>
-                <asp:DropDownList ID="ddlVols" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlVols" runat="server" AutoPostBack="true"></asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="submitBtn" runat="server" HorizontalAlign="Center" Visible="false">
+        <asp:TableRow ID="rowSubmitBtn" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="btnSubmit" runat="server" Text="Sbumit >" OnClick="btnSubmit_Click" />
             </asp:TableCell>
