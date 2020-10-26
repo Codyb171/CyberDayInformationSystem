@@ -41,7 +41,7 @@
 
             <nav class="navbar">
 
-                <a class="to-home" >CyberDay</a>
+                <a class="to-home">CyberDay</a>
 
 <%--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -54,13 +54,8 @@
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
 
-                <div>
-                    <asp:Label ID="UserLoggedIn" runat="server" Text=""></asp:Label>
-                </div>
-            
-                <div>
-                    <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
-                </div>
+                <asp:Label ID="UserLoggedIn" runat="server" Text=""></asp:Label>
+                <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
             </nav>
 
             <br />
