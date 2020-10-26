@@ -99,7 +99,6 @@ namespace CyberDayInformationSystem
             TshirtSizeList.ClearSelection();
             GenderDropDown.ClearSelection();
             TeacherDropDown.ClearSelection();
-            SchoolList(0,1);
         }
 
         public void sendShirt(int id)
@@ -255,6 +254,7 @@ namespace CyberDayInformationSystem
                 SelectedFunction.ActiveViewIndex = 0;
                 if (TeacherID == 0)
                 {
+                    TeacherList(1);
                     CoordinatorView.ActiveViewIndex = 0;
                 }
                 clearEditForms();
@@ -404,25 +404,29 @@ namespace CyberDayInformationSystem
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
-            if (caller == 1)
+            if (dt.Rows.Count > 0)
             {
-                SchoolDropDown.DataSource = dt;
-                SchoolDropDown.DataBind();
-                SchoolDropDown.DataTextField = "Name";
-                SchoolDropDown.DataValueField = "SCHOOLID";
-                SchoolDropDown.DataBind();
-                SchoolDropDown.SelectedIndex = 0;
-            }
+                if (caller == 1)
+                {
+                    SchoolDropDown.DataSource = dt;
+                    SchoolDropDown.DataBind();
+                    SchoolDropDown.DataTextField = "Name";
+                    SchoolDropDown.DataValueField = "SCHOOLID";
+                    SchoolDropDown.DataBind();
+                    SchoolDropDown.SelectedIndex = 0;
+                }
 
-            if (caller == 2)
-            {
-                EditSchoolDropDown.DataSource = dt;
-                EditSchoolDropDown.DataBind();
-                EditSchoolDropDown.DataTextField = "Name";
-                EditSchoolDropDown.DataValueField = "SCHOOLID";
-                EditSchoolDropDown.DataBind();
-                EditSchoolDropDown.SelectedIndex = 0;
+                if (caller == 2)
+                {
+                    EditSchoolDropDown.DataSource = dt;
+                    EditSchoolDropDown.DataBind();
+                    EditSchoolDropDown.DataTextField = "Name";
+                    EditSchoolDropDown.DataValueField = "SCHOOLID";
+                    EditSchoolDropDown.DataBind();
+                    EditSchoolDropDown.SelectedIndex = 0;
+                }
             }
+            
         }
 
         protected void TeacherDropDown_SelectedIndexChanged(object sender, EventArgs e)
