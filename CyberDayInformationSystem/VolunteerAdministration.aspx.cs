@@ -26,7 +26,23 @@ namespace CyberDayInformationSystem
         {
             if(!Page.IsPostBack)
             {
+
             }
+        }
+
+        protected void btnSelEventNext_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSelDateNext_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
