@@ -101,7 +101,7 @@ namespace CyberDayInformationSystem
             }
             else
             {
-                string addRoster = "INSERT INTO EVENTROSTER VALUES(" + eventID + ", " + selVolID + ")";
+                string addRoster = "INSERT INTO EVENTSTAFF VALUES(" + eventID + ", " + selVolID + ")";
                 SqlCommand toRoster = new SqlCommand(addRoster);
 
                 int result = toRoster.ExecuteNonQuery();
