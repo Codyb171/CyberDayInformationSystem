@@ -89,7 +89,7 @@
                                         </asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
-                                <asp:TableRow runat="server"HorizontalAlign="Center">
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell runat="server" ColumnSpan="4">
                                         <asp:MultiView ID="CoordinatorView" runat="server">
                                             <asp:View runat="server">

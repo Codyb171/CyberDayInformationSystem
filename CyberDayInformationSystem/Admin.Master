@@ -60,6 +60,7 @@
                     <li><a href="VolunteerAdministration.aspx">Volunteers</a></li>
                     <li><a href="AdminReports.aspx">Reports</a></li>
                     <li><a href="UserCreation.aspx">Create Users</a></li>
+                    <li><a href="MealTicketMgmt.aspx">Meal Management</a></li>
                 </ul>
 
                 <div>
