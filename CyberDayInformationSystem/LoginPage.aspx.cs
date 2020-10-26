@@ -73,15 +73,27 @@ namespace CyberDayInformationSystem
 
         public void getInfo(string type)
         {
+            String school = "";
             var cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             var connection = new SqlConnection(cs);
             SqlCommand command;
-            var sql = "Select " + type + "ID from " + type + " where EMAILADD Like @email";
+            
+            if (type == "Teacher")
+            {
+                school = ", SCHOOL";
+            }
+
+            var sql = "Select " + type + "ID" + school + " from " + type + " where EMAILADD Like @email";
             command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@EMAIL", Session["USER"].ToString());
             connection.Open();
             var dataReader = command.ExecuteReader();
             if (dataReader.Read()) Session.Add("ID", dataReader[type + "ID"].ToString());
+
+            if(type == "Teacher")
+            {
+                Session.Add("SCHOOL", dataReader["SCHOOL"]);
+            }
 
             Response.Redirect(type + "Dashboard.aspx");
         }
