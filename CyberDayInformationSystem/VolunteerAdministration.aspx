@@ -23,29 +23,6 @@
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="rowSelEvent" runat="server" HorizontalAlign="Center" Visible="false">
-
-            <asp:TableCell>
-                <asp:Label ID="lblSelEvent" runat="server" Text="Select Event: " Width="200"></asp:Label>
-            </asp:TableCell>
-
-            <asp:TableCell>
-                <asp:DropDownList ID="ddlEventTasks" runat="server" AutoPostBack="true"></asp:DropDownList>
-            </asp:TableCell>
-        </asp:TableRow>
-
-        <asp:TableRow ID="rowEventNextBtn" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell ColumnSpan="2">
-                <asp:Button ID="btnSelEventNext" runat="server" Text="Next >" OnClick="btnSelEventNext_Click" />
-            </asp:TableCell>
-        </asp:TableRow>
-
-        <asp:TableRow ID="rowSelectedEvent" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell>
-                <asp:Label ID="lblSelectedEvent" runat="server" Text=""></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
-
         <asp:TableRow ID="rowSelVol" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell>
                 <asp:Label ID="lblSelVol" runat="server" Text="Select Volunteer: " Width="200"></asp:Label>
@@ -58,7 +35,10 @@
 
         <asp:TableRow ID="rowSubmitBtn" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell ColumnSpan="2">
-                <asp:Button ID="btnSubmit" runat="server" Text="Sbumit >" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit >" OnClick="btnSubmit_Click" />
+            </asp:TableCell>
+            <asp:TableCell ColumnSpan="2">
+                <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

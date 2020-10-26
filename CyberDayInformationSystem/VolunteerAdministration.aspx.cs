@@ -47,6 +47,7 @@ namespace CyberDayInformationSystem
             }
         }
 
+        private static int eventID;
 
         protected void btnSelDateNext_Click(object sender, EventArgs e)
         {
@@ -57,18 +58,23 @@ namespace CyberDayInformationSystem
             rowSelectedDate.Visible = true;
             lblSelectedDate.Text = "Selected Date: " + Convert.ToString(ddlEventDates.SelectedItem.Text);
 
-            rowSelEvent.Visible = true;
-            rowEventNextBtn.Visible = true;
-        }
+            eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
 
-        protected void btnSelEventNext_Click(object sender, EventArgs e)
-        {
-            // Change visiblity to move to next step. Display selected value.
-            rowSelEvent.Visible = false;
-            rowEventNextBtn.Visible = false;
-
-            rowSelectedEvent.Visible = true;
-            lblSelectedEvent.Text = "Selected Event: " + ddlEventTasks.SelectedValue;
+            // Get volunteers
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connect = new SqlConnection(cs);
+            string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER";
+            connect.Open();
+            SqlDataAdapter adapt = new SqlDataAdapter(sqlCommand, connect);
+            DataTable dataTable = new DataTable();
+            adapt.Fill(dataTable);
+            ddlVols.DataSource = dataTable;
+            ddlVols.DataBind();
+            ddlVols.DataTextField = "NAME";
+            ddlVols.DataValueField = "STAFFID";
+            ddlVols.DataBind();
+            ddlVols.Items.Insert(0, new ListItem(String.Empty));
+            connect.Close();
 
             rowSelVol.Visible = true;
             rowSubmitBtn.Visible = true;
@@ -77,7 +83,40 @@ namespace CyberDayInformationSystem
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             // Write to DB. Display confirmation once complete.
+            int selVolID = Convert.ToInt32(ddlVols.SelectedItem.Value);
 
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connect = new SqlConnection(cs);
+
+            // Checks if already on roster
+            string dupeCheck = "SELECT COUNT(*) FROM EVENTSTAFF WHERE STAFF = " + selVolID;
+            SqlCommand chkDupe = new SqlCommand(dupeCheck);
+            connect.Open();
+
+            int dupeCount = (int)chkDupe.ExecuteNonQuery();
+
+            if (dupeCount > 0)
+            {
+                lblStatus.Text = "Volunteer is already registered for this day!";
+            }
+            else
+            {
+                string addRoster = "INSERT INTO EVENTROSTER VALUES(" + eventID + ", " + selVolID + ")";
+                SqlCommand toRoster = new SqlCommand(addRoster);
+
+                int result = toRoster.ExecuteNonQuery();
+
+                if (result < 0)
+                {
+                    lblStatus.Text = "There was an unexpected error.";
+                }
+                if (result > 0)
+                {
+                    lblStatus.Text = "Volunteer added successfully!";
+                }
+            }
+
+            connect.Close();
         }
     }
 }
