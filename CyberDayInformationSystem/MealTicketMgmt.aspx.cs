@@ -54,5 +54,10 @@ namespace CyberDayInformationSystem
                 TertiaryGridView.DataBind();
             }
         }
+
+        protected void TertiaryGridView_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
     }
 }

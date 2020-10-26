@@ -11,7 +11,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Left">
             <asp:TableCell ColumnSpan="4">
-                <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900" HorizontalAlign="Left">
+                <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900" HorizontalAlign="Left" AutoGenerateEditButton="true" OnRowEditing="TertiaryGridView_RowEditing">
                     <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
                     <RowStyle BackColor="#bfdfff" ForeColor="Black" />
                 </asp:GridView>
