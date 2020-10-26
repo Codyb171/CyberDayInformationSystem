@@ -2,16 +2,17 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.</h2>
-    <h3>Your contact page.</h3>
+    <h3>If interested in participating or donating contact us here</h3>
     <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
+        College Of Business<br />
+        421 Bluestone Dr. <br />
+        Harrisonburg, VA 22801<br />
         <abbr title="Phone">P:</abbr>
-        425.555.0100
+        540.568.2785
     </address>
 
     <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+        <strong>Tom Dillon:</strong>   <a href="mailto:Dillontw@jmu.edu">Dillontw@jmu.edu</a><br />
+        <strong>Shawn Lough:</strong> <a href="mailto:Loughsr@jmu.edu">Loughsr@jmu.edu</a>
     </address>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Teacher.Master" AutoEventWireup="true" CodeBehind="StudentAdministration.aspx.cs" Inherits="CyberDayInformationSystem.StudentAdministration" %>
+﻿<%@ Page Title="Student Administration" Language="C#" MasterPageFile="~/Teacher.Master" AutoEventWireup="true" CodeBehind="StudentAdministration.aspx.cs" Inherits="CyberDayInformationSystem.StudentAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="text-center">
         <h1>Student Creation</h1>
@@ -9,7 +9,6 @@
                         <asp:RadioButtonList ID="FunctionSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionSelection_SelectedIndexChanged">
                             <asp:ListItem Value="1">Create a Student</asp:ListItem>
                             <asp:ListItem Value="2">Modify a Student</asp:ListItem>
-                            <asp:ListItem Value="3">Claim Unassigned Students</asp:ListItem>
                         </asp:RadioButtonList>
                     </asp:TableCell>
                 </asp:TableRow>
@@ -57,10 +56,10 @@
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1">
                                         <asp:Label ID="GenderLbl" runat="server" Text="Gender: "></asp:Label>
                                     </asp:TableCell>
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="2">
                                         <asp:DropDownList ID="GenderDropDown" runat="server">
                                             <asp:ListItem>Male</asp:ListItem>
                                             <asp:ListItem>Female</asp:ListItem>
@@ -68,15 +67,15 @@
                                             <asp:ListItem>Prefer Not To Identify</asp:ListItem>
                                         </asp:DropDownList>
                                     </asp:TableCell>
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1">
                                         <asp:RequiredFieldValidator ID="Gender" runat="server" ErrorMessage="Gender Required" ForeColor="Red" ControlToValidate="GenderDropDown"></asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1">
                                         <asp:Label ID="tshirtSizeLbl" runat="server" Text="T-Shirt Size: " Width="200"></asp:Label>
                                     </asp:TableCell>
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="2">
                                         <asp:DropDownList ID="TshirtSizeList" runat="server">
                                             <asp:ListItem>Extra-Small</asp:ListItem>
                                             <asp:ListItem>Small</asp:ListItem>
@@ -85,9 +84,42 @@
                                             <asp:ListItem>Extra-Large</asp:ListItem>
                                         </asp:DropDownList>
                                     </asp:TableCell>
-                                    <asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1">
                                         <asp:RequiredFieldValidator ID="ShirtSize" runat="server" ErrorMessage="Pick a T-Shirt Size" ControlToValidate="TshirtSizeList" ForeColor="Red">
                                         </asp:RequiredFieldValidator>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <asp:TableCell runat="server" ColumnSpan="4">
+                                        <asp:MultiView ID="CoordinatorView" runat="server">
+                                            <asp:View runat="server">
+                                                <asp:TableRow runat="server">
+                                                    <asp:TableCell>
+                                                        <asp:Label ID="TeacherLbl" runat="server" Text="Teacher: " Width="200"></asp:Label>
+                                                    </asp:TableCell>
+                                                    <asp:TableCell>
+                                                        <asp:DropDownList ID="TeacherDropDown" runat="server" AutoPostBack="true" OnSelectedIndexChanged="TeacherDropDown_SelectedIndexChanged"></asp:DropDownList>
+                                                    </asp:TableCell>
+                                                    <asp:TableCell>
+                                                        <asp:RequiredFieldValidator ID="TeacherListValid" runat="server" ErrorMessage="Please Assign a Teacher" ControlToValidate="TeacherDropDown" ForeColor="Red">
+                                                        </asp:RequiredFieldValidator>
+                                                    </asp:TableCell>
+                                                </asp:TableRow>
+                                                <asp:TableRow runat="server">
+                                                    <asp:TableCell>
+                                                        <asp:Label ID="SchoolLbl" runat="server" Text="School: " Width="200"></asp:Label>
+                                                    </asp:TableCell>
+                                                    <asp:TableCell>
+                                                        <asp:DropDownList ID="SchoolDropDown" runat="server" Enabled="false">
+                                                        </asp:DropDownList>
+                                                    </asp:TableCell>
+                                                    <asp:TableCell>
+                                                        <asp:RequiredFieldValidator ID="SchoolValid" runat="server" ErrorMessage="Please Pick a School" ControlToValidate="SchoolDropDown" ForeColor="Red">
+                                                        </asp:RequiredFieldValidator>
+                                                    </asp:TableCell>
+                                                </asp:TableRow>
+                                            </asp:View>
+                                        </asp:MultiView>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -206,7 +238,7 @@
                                         <asp:Label ID="EditTeacher" runat="server" Text="Teacher: " Width="100px"></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:DropDownList ID="TeacherDropDown" runat="server" AutoPostBack="true" Width="200px" OnSelectedIndexChanged="TeacherDropDown_SelectedIndexChanged">
+                                        <asp:DropDownList ID="EditTeacherDropDown" runat="server" AutoPostBack="true" Width="200px" OnSelectedIndexChanged="TeacherDropDown_SelectedIndexChanged">
                                         </asp:DropDownList>
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -215,7 +247,7 @@
                                         <asp:Label ID="EditSchool" runat="server" Text="School: " Width="100px"></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:DropDownList ID="SchoolDropDown" runat="server" Enabled="false" Width="200px"></asp:DropDownList>
+                                        <asp:DropDownList ID="EditSchoolDropDown" runat="server" Enabled="false" Width="200px"></asp:DropDownList>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -226,39 +258,6 @@
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="4">
                                         <asp:Label ID="EditLabelStatus" runat="server" Text=""></asp:Label>
-                                    </asp:TableCell>
-                                </asp:TableRow>
-                            </asp:View>
-                            <asp:View runat="server">
-                                <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell ColumnSpan="4">
-                                        <asp:Label ID="UnclaimedLbl" runat="server" Text="Claim Students" Font-Size="Large"></asp:Label>
-                                    </asp:TableCell>
-                                </asp:TableRow>
-                                <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell ColumnSpan="2">
-                                        <asp:Label ID="Student" runat="server" Text="Students: "></asp:Label>
-                                    </asp:TableCell>
-                                    <asp:TableCell ColumnSpan="2">
-                                        <asp:DropDownList ID="StudentList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="StudentList_SelectedIndexChanged"></asp:DropDownList>
-                                    </asp:TableCell>
-                                </asp:TableRow>
-                                <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell ColumnSpan="4">
-                                        <asp:GridView ID="StudentGridView" runat="server" AutoGenerateColumns="True" CellPadding="5" Width="450">
-                                            <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                                            <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                                        </asp:GridView>
-                                    </asp:TableCell>
-                                </asp:TableRow>
-                                <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell ColumnSpan="4">
-                                        <asp:Button ID="ClaimBtn" runat="server" Text="Claim Student?" OnClick="ClaimBtn_Click" />
-                                    </asp:TableCell>
-                                </asp:TableRow>
-                                <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <asp:TableCell ColumnSpan="4">
-                                        <asp:Label ID="ClaimStatusLbl" runat="server" Text=""></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>

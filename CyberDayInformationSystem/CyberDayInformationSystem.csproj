@@ -64,6 +64,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -105,9 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AdminReports-Styling.css" />
     <Content Include="AdminReports.aspx" />
-    <Content Include="AdminStartPage.aspx" />
-    <Content Include="AttendeeReport.aspx" />
+    <Content Include="AdminDashboard.aspx" />
     <Content Include="BadSession.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -123,6 +124,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="LoginPage.aspx" />
+    <Content Include="MealTicketMgmt.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -163,6 +165,7 @@
     <Content Include="Scripts\src\methods\disableEventListeners.js" />
     <Content Include="Scripts\src\methods\enableEventListeners.js" />
     <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\PrintReport.js" />
     <Content Include="Scripts\src\methods\update.js" />
     <Content Include="Scripts\src\modifiers\applyStyle.js" />
     <Content Include="Scripts\src\modifiers\arrow.js" />
@@ -247,11 +250,15 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="StudentAdministration.aspx" />
-    <Content Include="Styling.css" />
+    <Content Include="StudentDashboard.aspx" />
+    <Content Include="Styling-Master.css" />
+    <Content Include="TeacherDashboard.aspx" />
+    <Content Include="TeacherReports-Styling.css" />
+    <Content Include="TeacherReports.aspx" />
     <Content Include="UserCreation.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="VolunteerAdministration.aspx" />
-    <Content Include="VolunteerReport.aspx" />
+    <Content Include="VolunteerDashboard.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -271,12 +278,12 @@
     <Compile Include="AdminReports.aspx.designer.cs">
       <DependentUpon>AdminReports.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminStartPage.aspx.cs">
-      <DependentUpon>AdminStartPage.aspx</DependentUpon>
+    <Compile Include="AdminDashboard.aspx.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminStartPage.aspx.designer.cs">
-      <DependentUpon>AdminStartPage.aspx</DependentUpon>
+    <Compile Include="AdminDashboard.aspx.designer.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -287,13 +294,6 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="AttendeeReport.aspx.cs">
-      <DependentUpon>AttendeeReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AttendeeReport.aspx.designer.cs">
-      <DependentUpon>AttendeeReport.aspx</DependentUpon>
-    </Compile>
     <Compile Include="BadSession.aspx.cs">
       <DependentUpon>BadSession.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -333,6 +333,13 @@
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\PasswordHash.cs" />
+    <Compile Include="MealTicketMgmt.aspx.cs">
+      <DependentUpon>MealTicketMgmt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MealTicketMgmt.aspx.designer.cs">
+      <DependentUpon>MealTicketMgmt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -362,12 +369,33 @@
     <Compile Include="StudentAdministration.aspx.designer.cs">
       <DependentUpon>StudentAdministration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="StudentDashboard.aspx.cs">
+      <DependentUpon>StudentDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentDashboard.aspx.designer.cs">
+      <DependentUpon>StudentDashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Teacher.Master.cs">
       <DependentUpon>Teacher.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Teacher.Master.designer.cs">
       <DependentUpon>Teacher.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherDashboard.aspx.cs">
+      <DependentUpon>TeacherDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeacherDashboard.aspx.designer.cs">
+      <DependentUpon>TeacherDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TeacherReports.aspx.cs">
+      <DependentUpon>TeacherReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeacherReports.aspx.designer.cs">
+      <DependentUpon>TeacherReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserCreation.aspx.cs">
       <DependentUpon>UserCreation.aspx</DependentUpon>
@@ -397,12 +425,12 @@
     <Compile Include="VolunteerAdministration.aspx.designer.cs">
       <DependentUpon>VolunteerAdministration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VolunteerReport.aspx.cs">
-      <DependentUpon>VolunteerReport.aspx</DependentUpon>
+    <Compile Include="VolunteerDashboard.aspx.cs">
+      <DependentUpon>VolunteerDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VolunteerReport.aspx.designer.cs">
-      <DependentUpon>VolunteerReport.aspx</DependentUpon>
+    <Compile Include="VolunteerDashboard.aspx.designer.cs">
+      <DependentUpon>VolunteerDashboard.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

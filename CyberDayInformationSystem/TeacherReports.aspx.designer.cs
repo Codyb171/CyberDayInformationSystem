@@ -11,124 +11,151 @@ namespace CyberDayInformationSystem
 {
 
 
-    public partial class VolunteerAdministration
+    public partial class TeacherReports
     {
 
         /// <summary>
-        /// rowSelDate control.
+        /// FunctionList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSelDate;
+        protected global::System.Web.UI.WebControls.RadioButtonList FunctionList;
 
         /// <summary>
-        /// lblSelDate control.
+        /// SelectionLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelDate;
+        protected global::System.Web.UI.WebControls.Label SelectionLbl;
 
         /// <summary>
-        /// ddlEventDates control.
+        /// SelectionDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEventDates;
+        protected global::System.Web.UI.WebControls.DropDownList SelectionDropDown;
 
         /// <summary>
-        /// rowDateNextBtn control.
+        /// SelectionChoice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowDateNextBtn;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SelectionChoice;
 
         /// <summary>
-        /// btnSelDateNext control.
+        /// RunBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSelDateNext;
+        protected global::System.Web.UI.WebControls.Button RunBtn;
 
         /// <summary>
-        /// rowSelectedDate control.
+        /// printPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSelectedDate;
+        protected global::System.Web.UI.WebControls.Panel printPanel;
 
         /// <summary>
-        /// lblSelectedDate control.
+        /// ReportTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectedDate;
+        protected global::System.Web.UI.WebControls.Table ReportTable;
 
         /// <summary>
-        /// rowSelVol control.
+        /// SelectedGridLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSelVol;
+        protected global::System.Web.UI.WebControls.Label SelectedGridLbl;
 
         /// <summary>
-        /// lblSelVol control.
+        /// SelectedGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelVol;
+        protected global::System.Web.UI.WebControls.GridView SelectedGridView;
 
         /// <summary>
-        /// ddlVols control.
+        /// SecondaryGrid1Lbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVols;
+        protected global::System.Web.UI.WebControls.Label SecondaryGrid1Lbl;
 
         /// <summary>
-        /// rowSubmitBtn control.
+        /// SecondaryGrid2Lbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSubmitBtn;
+        protected global::System.Web.UI.WebControls.Label SecondaryGrid2Lbl;
 
         /// <summary>
-        /// btnSubmit control.
+        /// SecondaryGridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.GridView SecondaryGridView1;
 
         /// <summary>
-        /// lblStatus control.
+        /// SecondaryGridView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected global::System.Web.UI.WebControls.GridView SecondaryGridView2;
+
+        /// <summary>
+        /// TertiaryGridLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TertiaryGridLbl;
+
+        /// <summary>
+        /// TertiaryGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView TertiaryGridView;
+
+        /// <summary>
+        /// PrintBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PrintBtn;
     }
 }

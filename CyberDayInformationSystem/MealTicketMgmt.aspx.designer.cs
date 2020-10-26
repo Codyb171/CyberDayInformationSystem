@@ -11,25 +11,34 @@ namespace CyberDayInformationSystem
 {
 
 
-    public partial class AttendeeReport
+    public partial class MealTicketMgmt
     {
 
         /// <summary>
-        /// RunBtn control.
+        /// TertiaryGridLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RunBtn;
+        protected global::System.Web.UI.WebControls.Label TertiaryGridLbl;
 
         /// <summary>
-        /// RosterGridView control.
+        /// TertiaryGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView RosterGridView;
+        protected global::System.Web.UI.WebControls.GridView TertiaryGridView;
+
+        /// <summary>
+        /// PrintBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button PrintBtn;
     }
 }

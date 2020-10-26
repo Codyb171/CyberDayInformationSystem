@@ -1,13 +1,9 @@
-﻿using Antlr.Runtime.Tree;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
@@ -105,7 +101,7 @@ namespace CyberDayInformationSystem
             }
         public void SchoolList()
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 string command = "select S.SCHOOLID, S.NAME from School s";
                 connection.Open();
@@ -124,7 +120,7 @@ namespace CyberDayInformationSystem
             {
                 if (CheckUser() == 0)
                 {
-                    string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string sql = "Insert into USERS values(@FIRST, @LAST, @USER, @TYPE)";
@@ -163,7 +159,7 @@ namespace CyberDayInformationSystem
                 int id;
                 string password = HttpUtility.HtmlEncode(PasswordTxt1.Text);
                 string hashPass = PasswordHash.HashPassword(password);
-                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 string idsql = "SELECT USERID FROM USERS WHERE USERNAME = @USER";
@@ -185,7 +181,7 @@ namespace CyberDayInformationSystem
                 {
                     int id = GetID(1);
                     SendTshirt(id);
-                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string title = TitleDropDown.SelectedValue;
@@ -216,7 +212,7 @@ namespace CyberDayInformationSystem
                 {
                     int id = GetID(1);
                     SendTshirt(id);
-                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand command;
                     string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
@@ -251,7 +247,7 @@ namespace CyberDayInformationSystem
         public int GetID(int type)
             {
                 int ID = 0;
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -283,7 +279,7 @@ namespace CyberDayInformationSystem
             }
         public void SendTshirt(int id)
             {
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand command;
                 connection.Open();
@@ -298,7 +294,7 @@ namespace CyberDayInformationSystem
         public int TeacherExists()
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -333,7 +329,7 @@ namespace CyberDayInformationSystem
         public int StaffExists(int type)
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;
@@ -369,7 +365,7 @@ namespace CyberDayInformationSystem
         public int CheckUser()
             {
                 int add = 0;
-                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString.ToString();
+                string cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
                 SqlConnection connection;
                 SqlCommand command;
                 SqlDataReader dataReader;

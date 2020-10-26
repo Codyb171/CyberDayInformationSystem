@@ -186,6 +186,69 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ShirtSize;
 
         /// <summary>
+        /// CoordinatorView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView CoordinatorView;
+
+        /// <summary>
+        /// TeacherLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TeacherLbl;
+
+        /// <summary>
+        /// TeacherDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TeacherDropDown;
+
+        /// <summary>
+        /// TeacherListValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TeacherListValid;
+
+        /// <summary>
+        /// SchoolLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SchoolLbl;
+
+        /// <summary>
+        /// SchoolDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SchoolDropDown;
+
+        /// <summary>
+        /// SchoolValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SchoolValid;
+
+        /// <summary>
         /// ClearBtn control.
         /// </summary>
         /// <remarks>
@@ -420,13 +483,13 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Label EditTeacher;
 
         /// <summary>
-        /// TeacherDropDown control.
+        /// EditTeacherDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TeacherDropDown;
+        protected global::System.Web.UI.WebControls.DropDownList EditTeacherDropDown;
 
         /// <summary>
         /// EditSchool control.
@@ -438,13 +501,13 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Label EditSchool;
 
         /// <summary>
-        /// SchoolDropDown control.
+        /// EditSchoolDropDown control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SchoolDropDown;
+        protected global::System.Web.UI.WebControls.DropDownList EditSchoolDropDown;
 
         /// <summary>
         /// UpdateBtn control.
@@ -463,59 +526,5 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label EditLabelStatus;
-
-        /// <summary>
-        /// UnclaimedLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UnclaimedLbl;
-
-        /// <summary>
-        /// Student control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Student;
-
-        /// <summary>
-        /// StudentList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList StudentList;
-
-        /// <summary>
-        /// StudentGridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView StudentGridView;
-
-        /// <summary>
-        /// ClaimBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ClaimBtn;
-
-        /// <summary>
-        /// ClaimStatusLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ClaimStatusLbl;
     }
 }

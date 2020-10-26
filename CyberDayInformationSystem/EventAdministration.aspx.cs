@@ -1,21 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
     public partial class EventAdministration : System.Web.UI.Page
     {
+        //void Page_PreInit(Object sender, EventArgs e)
+        //{
+        //    if (Session["TYPE"] != null)
+        //    {
+        //        this.MasterPageFile = (Session["Master"].ToString());
+        //        if (Session["TYPE"].ToString() != "Coordinator")
+        //        {
+        //            Session.Add("Redirected", 1);
+        //            Response.Redirect("BadSession.aspx");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Session.Add("Redirected", 0);
+        //        Response.Redirect("BadSession.aspx");
+        //    }
+        //}
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void FunctionSelection_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,7 +55,7 @@ namespace CyberDayInformationSystem
 
         public void EventDateList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "SELECT EVENTDATE, EVENTID FROM EVENT";
             connection.Open();
@@ -61,7 +73,7 @@ namespace CyberDayInformationSystem
 
         public void EventRoomList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "SELECT (BUILDING + ' ' + ROOMNUMBER) AS Room, ROOMID FROM ROOMRESERVATIONS";
             connection.Open();
@@ -79,7 +91,7 @@ namespace CyberDayInformationSystem
 
         public void EventList()
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "SELECT TITLE, TASKID FROM EVENTTASKS";
             connection.Open();
@@ -159,7 +171,7 @@ namespace CyberDayInformationSystem
 
         protected void CreateBut_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS VALUES(@TITLE, @STARTTIME, @ENDTIME)");
 
