@@ -312,12 +312,12 @@ namespace CyberDayInformationSystem
             TertiaryGridLbl.Visible = true;
             int EventID = int.Parse(SelectionDropDown.SelectedValue);
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            string sql = "select(S.FIRSTNAME + ' ' + S.LASTNAME) AS NAME, MT.USED AS RECIEVED FROM MEALTICKET MT JOIN STUDENT S " +
+            string sql = "select(S.FIRSTNAME + ' ' + S.LASTNAME) AS NAME, MT.USED AS RECEIVED FROM MEALTICKET MT JOIN STUDENT S " +
                 "ON MT.MEALTICKETID = S.MEALTICKET JOIN EVENT EV ON MT.EVENT = EV.EVENTID WHERE EV.EVENTID = " + EventID + " UNION" +
-                " select (T.FIRSTNAME + ' ' + T.LASTNAME) AS NAME, MT.USED AS RECIEVED FROM MEALTICKET MT JOIN TEACHER T ON MT.MEALTICKETID = T.MEALTICKET" +
+                " select (T.FIRSTNAME + ' ' + T.LASTNAME) AS NAME, MT.USED AS RECEIVED FROM MEALTICKET MT JOIN TEACHER T ON MT.MEALTICKETID = T.MEALTICKET" +
                 " JOIN EVENT EV ON MT.EVENT = EV.EVENTID WHERE EV.EVENTID = " + EventID + " UNION select (G.FIRSTNAME + ' ' + G.LASTNAME) AS NAME," +
                 " MT.USED AS RECIEVED FROM MEALTICKET MT JOIN GUARDIAN G ON MT.MEALTICKETID = G.MEALTICKET JOIN EVENT EV ON MT.EVENT = EV.EVENTID" +
-                " WHERE EV.EVENTID = " + EventID + " UNION select (V.FIRSTNAME + ' ' + V.LASTNAME) AS NAME, MT.USED AS RECIEVED FROM MEALTICKET MT" +
+                " WHERE EV.EVENTID = " + EventID + " UNION select (V.FIRSTNAME + ' ' + V.LASTNAME) AS NAME, MT.USED AS RECEIVED FROM MEALTICKET MT" +
                 " JOIN VOLUNTEER V ON MT.MEALTICKETID = V.MEALTICKET JOIN EVENT EV ON MT.EVENT = EV.EVENTID WHERE EV.EVENTID = " + EventID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
