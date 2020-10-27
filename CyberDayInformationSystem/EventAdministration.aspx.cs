@@ -113,11 +113,11 @@ namespace CyberDayInformationSystem
             connection.Close();
         }
 
-        public void OldStartTimeDisplay()
+        public void OldTimeDisplay()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand select = new SqlCommand("SELECT STARTTIME FROM EVENTTASKS WHERE TASKID = @VALUE", connection);            
+            SqlCommand select = new SqlCommand("SELECT STARTTIME, ENDTIME FROM EVENTTASKS WHERE TASKID = @VALUE", connection);            
             connection.Open();
 
             int value = int.Parse(EventDDL.SelectedValue);
@@ -127,23 +127,6 @@ namespace CyberDayInformationSystem
             while (reader.Read())
             {
                 OldStartTxt.Text = (reader["STARTTIME"].ToString());
-            }
-            connection.Close();
-        }
-
-        public void OldEndTimeDisplay()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand select = new SqlCommand("SELECT ENDTIME FROM EVENTTASKS WHERE TASKID = @VALUE", connection);
-            connection.Open();
-
-            int value = int.Parse(EventDDL.SelectedValue);
-            select.Parameters.AddWithValue("@VALUE", value);
-            SqlDataReader reader = select.ExecuteReader();
-
-            while (reader.Read())
-            {
                 OldEndTxt.Text = (reader["ENDTIME"].ToString());
             }
             connection.Close();
@@ -173,7 +156,7 @@ namespace CyberDayInformationSystem
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS VALUES(@TITLE, @STARTTIME, @ENDTIME)");
+            SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS(TITLE, STARTTIME, ENDTIME) VALUES(@TITLE, @STARTTIME, @ENDTIME)", connection);
 
             string title = HttpUtility.HtmlEncode(EventNameTxt.Text);
             string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
@@ -198,8 +181,7 @@ namespace CyberDayInformationSystem
                 ModifyTbl.Visible = true;
                 ModifyBut.Visible = true;
                 OldTitleTxt.Text = EventDDL.SelectedItem.ToString();
-                OldStartTimeDisplay();
-                OldEndTimeDisplay();
+                OldTimeDisplay();
             }
         }
 
@@ -207,7 +189,7 @@ namespace CyberDayInformationSystem
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand update = new SqlCommand("UPDATE FROM EVENTTASKS SET TITLE = @TITLE, STARTTIME = @STARTTIME, ENDTIME = @ENDTIME WHERE TASKID = @VALUE");
+            SqlCommand update = new SqlCommand("UPDATE FROM EVENTTASKS SET TITLE = @TITLE, STARTTIME = @STARTTIME, ENDTIME = @ENDTIME WHERE TASKID = @VALUE", connection);
 
             int value = int.Parse(EventDelDDL.SelectedValue);
             string title = HttpUtility.HtmlEncode(NewTitleTxt.Text);
@@ -231,7 +213,7 @@ namespace CyberDayInformationSystem
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand delete = new SqlCommand("DELETE FROM EVENTTASKS WHERE TASKID = @VALUE");
+            SqlCommand delete = new SqlCommand("DELETE FROM EVENTTASKS WHERE TASKID = @VALUE", connection);
 
             int value = int.Parse(EventDelDDL.SelectedValue);
 
@@ -296,7 +278,7 @@ namespace CyberDayInformationSystem
                 string updated = HttpUtility.HtmlEncode(NewEndTxt.Text);
                 args.IsValid = updated != old;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 args.IsValid = false;
             }
