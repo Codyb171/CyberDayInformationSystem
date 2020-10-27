@@ -4,32 +4,32 @@
     <fieldset class="enclosed">
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow ID="rowSelDate" runat="server" HorizontalAlign="Center">
-            <asp:TableCell ColumnSpan="1">
+            <asp:TableCell ColumnSpan="2">
                 <asp:Label ID="lblSelDate" runat="server" Text="Select Event Date: " Width="200"></asp:Label>
             </asp:TableCell>
-            <asp:TableCell ColumnSpan="1">
+            <asp:TableCell ColumnSpan="2">
                 <asp:DropDownList ID="ddlEventDates" runat="server" AutoPostBack="true"></asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow ID="rowDateNextBtn" runat="server" HorizontalAlign="Center">
-            <asp:TableCell ColumnSpan="2">
+            <asp:TableCell ColumnSpan="4">
                 <asp:Button ID="btnSelDateNext" runat="server" Text="Next >" OnClick="btnSelDateNext_Click" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow ID="rowSelectedDate" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="4">
                 <asp:Label ID="lblSelectedDate" runat="server" Text=""></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow ID="rowSelVol" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="2">
                 <asp:Label ID="lblSelVol" runat="server" Text="Select Volunteer: " Width="200"></asp:Label>
             </asp:TableCell>
 
-            <asp:TableCell>
+            <asp:TableCell ColumnSpan="2">
                 <asp:DropDownList ID="ddlVols" runat="server" AutoPostBack="true"></asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
