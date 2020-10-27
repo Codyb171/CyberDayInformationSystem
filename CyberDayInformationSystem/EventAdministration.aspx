@@ -108,9 +108,6 @@
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:DropDownList ID="EventDDL" runat="server" OnSelectedIndexChanged="EventDDL_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                     </asp:TableCell>
-                                    <asp:TableCell ColumnSpan="2">
-                                        <asp:RequiredFieldValidator ID="EventDDLReq" runat="server" ErrorMessage="An event must be selected" ForeColor="Red" ControlToValidate="EventDDL"></asp:RequiredFieldValidator>
-                                    </asp:TableCell>
                                 </asp:TableRow>
 
                                 <asp:Table ID="ModifyTbl" runat="server" HorizontalAlign="Center" Visible="false">
