@@ -26,33 +26,48 @@ namespace CyberDayInformationSystem
                 Response.Redirect("BadSession.aspx");
             }
         }
+        private int EventToModify;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["EDITEVENTID"] != null)
+            {
+                EventToModify = int.Parse(Session["EDITEVENTID"].ToString());
+            }
         }
 
         protected void FunctionSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FunctionSelection.SelectedValue == "1")
+            if (EventFunctionSelection.SelectedValue == "1")
             {
                 NotifLBL.Text = String.Empty;
                 SelectedFunction.ActiveViewIndex = 0;
-                EventDateList();
                 EventRoomList();
             }
-            if (FunctionSelection.SelectedValue == "2")
+            if (EventFunctionSelection.SelectedValue == "2")
             {
                 NotifLBL.Text = String.Empty;              
                 SelectedFunction.ActiveViewIndex = 1;
-                EventList();
+                EventDateList();
             }
-            if (FunctionSelection.SelectedValue == "3")
+            if (EventFunctionSelection.SelectedValue == "3")
             {
                 NotifLBL.Text = String.Empty;
                 SelectedFunction.ActiveViewIndex = 2;
-                EventList();
+                EventDateList();
+            }
+            if (TaskFunctionSelection.SelectedValue == "1")
+            {
+
+            }
+            if (TaskFunctionSelection.SelectedValue == "1")
+            {
+
+            }
+            if (TaskFunctionSelection.SelectedValue == "1")
+            {
+
             }
         }
-
         public void EventDateList()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
@@ -89,64 +104,63 @@ namespace CyberDayInformationSystem
             connection.Close();
         }
 
-        public void EventList()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command = "SELECT TITLE, TASKID FROM EVENTTASKS";
-            connection.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            EventDDL.DataSource = dt;
-            EventDDL.DataBind();
-            EventDDL.DataTextField = "TITLE";
-            EventDDL.DataValueField = "TASKID";
-            EventDDL.DataBind();
-            EventDDL.Items.Insert(0, new ListItem(String.Empty));
-            EventDelDDL.DataSource = dt;
-            EventDelDDL.DataBind();
-            EventDelDDL.DataTextField = "TITLE";
-            EventDelDDL.DataValueField = "TASKID";
-            EventDelDDL.DataBind();
-            EventDelDDL.Items.Insert(0, new ListItem(String.Empty));
-            connection.Close();
-        }
+        //public void TaskList()
+        //{
+        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+        //    SqlConnection connection = new SqlConnection(cs);
+        //    string command = "SELECT TITLE, TASKID FROM EVENTTASKS";
+        //    connection.Open();
+        //    SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+        //    DataTable dt = new DataTable();
+        //    adpt.Fill(dt);
+        //    EventDDL.DataSource = dt;
+        //    EventDDL.DataBind();
+        //    EventDDL.DataTextField = "TITLE";
+        //    EventDDL.DataValueField = "TASKID";
+        //    EventDDL.DataBind();
+        //    EventDDL.Items.Insert(0, new ListItem(String.Empty));
+        //    EventDelDDL.DataSource = dt;
+        //    EventDelDDL.DataBind();
+        //    EventDelDDL.DataTextField = "TITLE";
+        //    EventDelDDL.DataValueField = "TASKID";
+        //    EventDelDDL.DataBind();
+        //    EventDelDDL.Items.Insert(0, new ListItem(String.Empty));
+        //    connection.Close();
+        //}
 
-        public void OldTimeDisplay()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand select = new SqlCommand("SELECT STARTTIME, ENDTIME FROM EVENTTASKS WHERE TASKID = @VALUE", connection);            
-            connection.Open();
+        //public void OldTimeDisplay()
+        //{
+        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+        //    SqlConnection connection = new SqlConnection(cs);
+        //    SqlCommand select = new SqlCommand("SELECT STARTTIME, ENDTIME FROM EVENTTASKS WHERE TASKID = @VALUE", connection);            
+        //    connection.Open();
 
-            int value = int.Parse(EventDDL.SelectedValue);
-            select.Parameters.AddWithValue("@VALUE", value);
-            SqlDataReader reader = select.ExecuteReader();
+        //    int value = int.Parse(EventDDL.SelectedValue);
+        //    select.Parameters.AddWithValue("@VALUE", value);
+        //    SqlDataReader reader = select.ExecuteReader();
 
-            while (reader.Read())
-            {
-                OldStartTxt.Text = (reader["STARTTIME"].ToString());
-                OldEndTxt.Text = (reader["ENDTIME"].ToString());
-            }
-            connection.Close();
-        }
+        //    while (reader.Read())
+        //    {
+        //        OldStartTxt.Text = (reader["STARTTIME"].ToString());
+        //        OldEndTxt.Text = (reader["ENDTIME"].ToString());
+        //    }
+        //    connection.Close();
+        //}
 
         public void ClearInfo()
         {
-            if (FunctionSelection.SelectedValue == "1")
+            if (EventFunctionSelection.SelectedValue == "1")
             {
-                EventNameTxt.Text = String.Empty;
                 EventDateDDL.ClearSelection();
                 EventTimeTxt.Text = String.Empty;
                 EndTimeTxt.Text = String.Empty;
                 EventLocationDDL.ClearSelection();
             }           
-            if (FunctionSelection.SelectedValue == "2")
+            if (EventFunctionSelection.SelectedValue == "2")
             {
-                EventDDL.ClearSelection();
+                EventDateDDL.ClearSelection();
             }
-            if (FunctionSelection.SelectedValue == "3")
+            if (EventFunctionSelection.SelectedValue == "3")
             {
                 EventDelDDL.ClearSelection();
             }            
@@ -154,34 +168,67 @@ namespace CyberDayInformationSystem
 
         protected void CreateBut_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS(TITLE, STARTTIME, ENDTIME) VALUES(@TITLE, @STARTTIME, @ENDTIME)", connection);
+            if (Page.IsValid)
+            {
+                if (CheckEvent() == 0)
+                {
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                    SqlConnection connection = new SqlConnection(cs);
+                    SqlCommand insert = new SqlCommand("INSERT INTO EVENT(EVENTDATE, STARTTIME, ENDTIME, LOCATION) VALUES(@DATE, @STARTTIME, @ENDTIME, @ROOM)", connection);
 
-            string title = HttpUtility.HtmlEncode(EventNameTxt.Text);
-            string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
-            string end = HttpUtility.HtmlEncode(EndTimeTxt.Text);
+                    string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
+                    string end = HttpUtility.HtmlEncode(EndTimeTxt.Text);
+                    string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
+                    int room = int.Parse(EventLocationDDL.SelectedValue);
+                    connection.Open();
+                    insert.Parameters.AddWithValue("@DATE", date);
+                    insert.Parameters.AddWithValue("@STARTTIME", start);
+                    insert.Parameters.AddWithValue("@ENDTIME", end);
+                    insert.Parameters.AddWithValue("@ROOM", room);
+                    insert.ExecuteNonQuery();
+                    connection.Close();
 
-            connection.Open();
-            insert.Parameters.AddWithValue("@TITLE", title);
-            insert.Parameters.AddWithValue("@STARTTIME", start);
-            insert.Parameters.AddWithValue("@ENDTIME", end);
-            insert.ExecuteNonQuery();
-            connection.Close();
-
-            NotifLBL.Text = "Your event has successfully been created!";
-            NotifLBL.Visible = true;            
-            ClearInfo();
+                    NotifLBL.Text = "Your event has successfully been created!";
+                    NotifLBL.Visible = true;
+                    ClearInfo();
+                }
+            }
         }
 
-        protected void EventDDL_SelectedIndexChanged(object sender, EventArgs e)
+        public int CheckEvent()
         {
-            if (EventDDL.SelectedIndex != 0)
+            int add = 0;
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            SqlCommand check = new SqlCommand("Select count(*) from EVENT where EVENTDATE = @DATE AND STARTTIME = @STARTTIME AND ENDTIME = @ENDTIME" +
+                                              " AND LOCATION = @ROOM)", connection);
+
+            string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
+            string end = HttpUtility.HtmlEncode(EndTimeTxt.Text);
+            string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
+            int room = int.Parse(EventLocationDDL.SelectedValue);
+            connection.Open();
+            check.Parameters.AddWithValue("@DATE", date);
+            check.Parameters.AddWithValue("@STARTTIME", start);
+            check.Parameters.AddWithValue("@ENDTIME", end);
+            check.Parameters.AddWithValue("@ROOM", room);
+            add = (int) check.ExecuteScalar();
+            connection.Close();
+            if (add > 0)
+            {
+                NotifLBL.Text = "Event Already Exists with this data";
+                NotifLBL.Visible = true;
+            }
+            return add;
+        }
+        protected void EventDateDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (EventDateDDL.SelectedIndex != 0)
             {
                 ModifyTbl.Visible = true;
                 ModifyBut.Visible = true;
-                OldTitleTxt.Text = EventDDL.SelectedItem.ToString();
-                OldTimeDisplay();
+                OldTitleTxt.Text = EventDateDDL.SelectedItem.ToString();
+                //OldTimeDisplay();
             }
         }
 
@@ -281,6 +328,19 @@ namespace CyberDayInformationSystem
             catch(Exception)
             {
                 args.IsValid = false;
+            }
+        }
+
+        protected void EventorTask_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (EventorTask.SelectedValue == "1")
+            {
+                SelectedViewMode.ActiveViewIndex = 0;
+            }
+
+            if (EventorTask.SelectedValue == "2")
+            {
+                SelectedViewMode.ActiveViewIndex = 1;
             }
         }
     }

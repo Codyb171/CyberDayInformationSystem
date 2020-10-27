@@ -24,13 +24,58 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Table Table1;
 
         /// <summary>
-        /// FunctionSelection control.
+        /// EventorTask control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList FunctionSelection;
+        protected global::System.Web.UI.WebControls.RadioButtonList EventorTask;
+
+        /// <summary>
+        /// SelectedViewMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView SelectedViewMode;
+
+        /// <summary>
+        /// EventView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View EventView;
+
+        /// <summary>
+        /// EventFunctionSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList EventFunctionSelection;
+
+        /// <summary>
+        /// TaskView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View TaskView;
+
+        /// <summary>
+        /// TaskFunctionSelection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList TaskFunctionSelection;
 
         /// <summary>
         /// SelectedFunction control.
@@ -42,40 +87,13 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.MultiView SelectedFunction;
 
         /// <summary>
-        /// CreateView control.
+        /// CreateEventView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View CreateView;
-
-        /// <summary>
-        /// EventNameLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EventNameLbl;
-
-        /// <summary>
-        /// EventNameTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EventNameTxt;
-
-        /// <summary>
-        /// EventNameValid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EventNameValid;
+        protected global::System.Web.UI.WebControls.View CreateEventView;
 
         /// <summary>
         /// EventDateLbl control.
@@ -87,13 +105,13 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Label EventDateLbl;
 
         /// <summary>
-        /// EventDateDDL control.
+        /// EventDateTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EventDateDDL;
+        protected global::System.Web.UI.WebControls.TextBox EventDateTxt;
 
         /// <summary>
         /// EventDateValid control.
@@ -177,6 +195,15 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RegularExpressionValidator EndTimeValid;
 
         /// <summary>
+        /// CheckTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CheckTime;
+
+        /// <summary>
         /// EventLocationLbl control.
         /// </summary>
         /// <remarks>
@@ -213,6 +240,15 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Button CreateBut;
 
         /// <summary>
+        /// EventCreateValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary EventCreateValid;
+
+        /// <summary>
         /// ModifyView control.
         /// </summary>
         /// <remarks>
@@ -231,13 +267,13 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Label SelectEventLbl;
 
         /// <summary>
-        /// EventDDL control.
+        /// EventDateDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EventDDL;
+        protected global::System.Web.UI.WebControls.DropDownList EventDateDDL;
 
         /// <summary>
         /// ModifyTbl control.
@@ -393,13 +429,13 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.View DeleteView;
 
         /// <summary>
-        /// Label1 control.
+        /// EventDelLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label EventDelLbl;
 
         /// <summary>
         /// EventDelDDL control.
