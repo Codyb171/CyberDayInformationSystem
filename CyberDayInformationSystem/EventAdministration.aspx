@@ -4,7 +4,7 @@
     <div class="text-center">
         <h1>Event Administration</h1>
         <div class="text-center">
-            <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
+            <asp:Table ID="Table1" runat="server" HorizontalAlign="Center" >
 
                 <asp:TableRow runat="server" HorizontalAlign="Center">
                     <asp:TableCell ColumnSpan="4">
@@ -17,7 +17,7 @@
                 </asp:TableRow>
 
                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell HorizontalAlign="Center">
+                    <asp:TableCell ColumnSpan="5">
                         <asp:MultiView ID="SelectedFunction" runat="server">
                             
                             <asp:View ID="CreateView" runat="server">
@@ -115,12 +115,13 @@
 
                                 <asp:Table ID="ModifyTbl" runat="server" HorizontalAlign="Center" Visible="false">
                                     <asp:TableRow runat="server" HorizontalAlign="Center">
-                                        <asp:TableCell ColumnSpan="2">
+                                        <asp:TableCell ColumnSpan="1">
                                             <asp:Label runat="server" Text="Original Title: "></asp:Label>
                                         </asp:TableCell>                                       
-                                        <asp:TableCell ColumnSpan="2">
+                                        <asp:TableCell ColumnSpan="1">
                                             <asp:TextBox ID="OldTitleTxt" runat="server" ReadOnly="true"></asp:TextBox>
                                         </asp:TableCell>
+                                        <asp:TableCell ColumnSpan="2"></asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow runat="server" HorizontalAlign="Center">
                                         <asp:TableCell ColumnSpan="1">
@@ -135,11 +136,14 @@
                                         </asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow runat="server" HorizontalAlign="Center">
-                                        <asp:TableCell ColumnSpan="2">
+                                        <asp:TableCell ColumnSpan="1">
                                             <asp:Label runat="server" Text="Original Start Time: "></asp:Label>
                                         </asp:TableCell>                                       
-                                        <asp:TableCell ColumnSpan="2">
+                                        <asp:TableCell ColumnSpan="1">
                                             <asp:TextBox ID="OldStartTxt" runat="server" ReadOnly="true"></asp:TextBox>
+                                        </asp:TableCell>
+                                        <asp:TableCell ColumnSpan="2">
+
                                         </asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -157,11 +161,13 @@
                                         </asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow runat="server" HorizontalAlign="Center">
-                                        <asp:TableCell ColumnSpan="2">
+                                        <asp:TableCell ColumnSpan="1">
                                             <asp:Label runat="server" Text="Original End Time: "></asp:Label>
                                         </asp:TableCell>                                       
-                                        <asp:TableCell ColumnSpan="2">
+                                        <asp:TableCell ColumnSpan="1">
                                             <asp:TextBox ID="OldEndTxt" runat="server" ReadOnly="true"></asp:TextBox>
+                                        </asp:TableCell>
+                                        <asp:TableCell ColumnSpan="2">
                                         </asp:TableCell>
                                     </asp:TableRow>
                                     <asp:TableRow runat="server" HorizontalAlign="Center">

@@ -39,7 +39,7 @@
                     <asp:Table runat="server" ID="ReportTable" HorizontalAlign="Center">
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell ColumnSpan="4">
-                                <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                                <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
 
@@ -54,10 +54,10 @@
 
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell ColumnSpan="2">
-                                <asp:Label ID="SecondaryGrid1Lbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                                <asp:Label ID="SecondaryGrid1Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell ColumnSpan="2">
-                                <asp:Label ID="SecondaryGrid2Lbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                                <asp:Label ID="SecondaryGrid2Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
 
@@ -78,7 +78,7 @@
 
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell ColumnSpan="4">
-                                <asp:Label ID="TertiaryGridLbl" runat="server" Text="" Visible="false" Font-Size="Large"></asp:Label>
+                                <asp:Label ID="TertiaryGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
 

@@ -193,11 +193,14 @@ namespace CyberDayInformationSystem
 
         protected void EventDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ModifyTbl.Visible = true;
-            ModifyBut.Visible = true;
-            OldTitleTxt.Text = EventDDL.SelectedItem.ToString();
-            OldStartTimeDisplay();
-            OldEndTimeDisplay();
+            if (EventDDL.SelectedIndex != 0)
+            {
+                ModifyTbl.Visible = true;
+                ModifyBut.Visible = true;
+                OldTitleTxt.Text = EventDDL.SelectedItem.ToString();
+                OldStartTimeDisplay();
+                OldEndTimeDisplay();
+            }
         }
 
         protected void ModifyBut_Click(object sender, EventArgs e)
