@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Volunteer.Master" AutoEventWireup="true" CodeBehind="VolunteerAdministration.aspx.cs" Inherits="CyberDayInformationSystem.VolunteerAdministration" %>
+﻿<%@ Page Title="Volunteer Administration" Language="C#" MasterPageFile="~/Volunteer.Master" AutoEventWireup="true" CodeBehind="VolunteerAdministration.aspx.cs" Inherits="CyberDayInformationSystem.VolunteerAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Assign Volunteers</h1>
     <fieldset class="enclosed">
@@ -18,11 +18,6 @@
             </asp:TableCell>
         </asp:TableRow>
 
-        <asp:TableRow ID="rowSelectedDate" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell ColumnSpan="4">
-                <asp:Label ID="lblSelectedDate" runat="server" Text=""></asp:Label>
-            </asp:TableCell>
-        </asp:TableRow>
 
         <asp:TableRow ID="rowSelVol" runat="server" HorizontalAlign="Center" Visible="false">
             <asp:TableCell ColumnSpan="2">
@@ -35,10 +30,12 @@
         </asp:TableRow>
 
         <asp:TableRow ID="rowSubmitBtn" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell ColumnSpan="2">
+            <asp:TableCell ColumnSpan="4">
                 <asp:Button ID="btnSubmit" runat="server" Text="Submit >" OnClick="btnSubmit_Click" />
             </asp:TableCell>
-            <asp:TableCell ColumnSpan="2">
+        </asp:TableRow>
+        <asp:TableRow runat="server" HorizontalAlign="Center">
+            <asp:TableCell ColumnSpan="4">
                 <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
             </asp:TableCell>
         </asp:TableRow>

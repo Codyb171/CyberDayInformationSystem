@@ -60,24 +60,6 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Button btnSelDateNext;
 
         /// <summary>
-        /// rowSelectedDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSelectedDate;
-
-        /// <summary>
-        /// lblSelectedDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectedDate;
-
-        /// <summary>
         /// rowSelVol control.
         /// </summary>
         /// <remarks>
