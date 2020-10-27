@@ -90,10 +90,11 @@ namespace CyberDayInformationSystem
 
             // Checks if already on roster
             string dupeCheck = "SELECT COUNT(*) FROM EVENTSTAFF WHERE STAFF = " + selVolID;
-            SqlCommand chkDupe = new SqlCommand(dupeCheck);
+            SqlCommand chkDupe = new SqlCommand(dupeCheck, connect);
             connect.Open();
 
-            int dupeCount = (int)chkDupe.ExecuteNonQuery();
+
+            int dupeCount = (int)chkDupe.ExecuteScalar();
 
             if (dupeCount > 0)
             {
@@ -102,7 +103,7 @@ namespace CyberDayInformationSystem
             else
             {
                 string addRoster = "INSERT INTO EVENTSTAFF VALUES(" + eventID + ", " + selVolID + ")";
-                SqlCommand toRoster = new SqlCommand(addRoster);
+                SqlCommand toRoster = new SqlCommand(addRoster, connect);
 
                 int result = toRoster.ExecuteNonQuery();
 
