@@ -35,7 +35,7 @@
                 Fellow JMU staff and students who are interested in volunteering for CyberDay should also create an account.
             </p>
             <p>
-                <a class="btn btn-default" href="About.aspx">Learn more &raquo;</a>
+                <a class="btn btn-default" href="Contact.aspx">Learn more &raquo;</a>
             </p>
         </div>
     </div>

@@ -16,10 +16,7 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Coordinator")
                 {
-                    if (Page.IsPostBack == false)
-                    {
-                        UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
-                    }
+
 
                     this.MasterPageFile = "~/Admin.Master";
                 }
@@ -27,7 +24,18 @@ namespace CyberDayInformationSystem
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["TYPE"] != null)
+            {
+                if (Session["TYPE"].ToString() == "Coordinator")
+                {
+                    if (Page.IsPostBack == false)
+                    {
+                        UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                    }
+                }
+            }
+            
+            
             if (Page.IsPostBack == false)
             {
                 SchoolList();
