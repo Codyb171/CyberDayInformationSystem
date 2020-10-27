@@ -10,6 +10,18 @@ namespace CyberDayInformationSystem
 {
     public partial class UserCreation : System.Web.UI.Page
     {
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                if (Session["TYPE"].ToString() == "Coordinator")
+                {
+
+
+                    this.MasterPageFile = "~/Admin.Master";
+                }
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
@@ -20,9 +32,10 @@ namespace CyberDayInformationSystem
                     {
                         UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
                     }
-                    this.MasterPageFile = "~/Admin.Master";
                 }
             }
+            
+            
             if (Page.IsPostBack == false)
             {
                 SchoolList();

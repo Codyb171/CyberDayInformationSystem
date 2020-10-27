@@ -8,23 +8,23 @@ namespace CyberDayInformationSystem
 {
     public partial class VolunteerAdministration : System.Web.UI.Page
     {
-        //void Page_PreInit(Object sender, EventArgs e)
-        //{
-        //    if (Session["TYPE"] != null)
-        //    {
-        //        this.MasterPageFile = (Session["Master"].ToString());
-        //        if (Session["TYPE"].ToString() != "Coordinator")
-        //        {
-        //            Session.Add("Redirected", 1);
-        //            Response.Redirect("BadSession.aspx");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session.Add("Redirected", 0);
-        //        Response.Redirect("BadSession.aspx");
-        //    }
-        //}
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                this.MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             // Fill currently available CyberDay Dates
@@ -52,11 +52,9 @@ namespace CyberDayInformationSystem
         protected void btnSelDateNext_Click(object sender, EventArgs e)
         {
             // Change visiblity to move to next step. Display selected value.
-            rowSelDate.Visible = false;
+            ddlEventDates.Enabled = false;
             rowDateNextBtn.Visible = false;
 
-            rowSelectedDate.Visible = true;
-            lblSelectedDate.Text = "Selected Date: " + Convert.ToString(ddlEventDates.SelectedItem.Text);
 
             eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
 

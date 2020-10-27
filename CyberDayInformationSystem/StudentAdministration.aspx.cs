@@ -9,23 +9,23 @@ namespace CyberDayInformationSystem
 {
     public partial class StudentAdministration : System.Web.UI.Page
     {
-        //void Page_PreInit(Object sender, EventArgs e)
-        //{
-        //    if (Session["TYPE"] != null)
-        //    {
-        //        this.MasterPageFile = (Session["Master"].ToString());
-        //        if (Session["TYPE"].ToString() != "Coordinator" && Session["TYPE"].ToString() != "Teacher")
-        //        {
-        //            Session.Add("Redirected", 1);
-        //            Response.Redirect("BadSession.aspx");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session.Add("Redirected", 0);
-        //        Response.Redirect("BadSession.aspx");
-        //    }
-        //}
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                this.MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator" && Session["TYPE"].ToString() != "Teacher")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
+        }
         private int CurrentStudentID;
         private int TeacherID;
         private int School;
@@ -52,8 +52,8 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Teacher")
                 {
-                    TeacherID = int.Parse((string) Session["ID"]);
-                    School = int.Parse((string) Session["SCHOOL"]);
+                    TeacherID = int.Parse(Session["ID"].ToString());
+                    School = int.Parse(Session["SCHOOL"].ToString());
                 }
                 else
                 {

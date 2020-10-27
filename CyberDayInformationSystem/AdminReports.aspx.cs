@@ -9,23 +9,23 @@ namespace CyberDayInformationSystem
 {
     public partial class AdminReports : System.Web.UI.Page
     {
-        //void Page_PreInit(Object sender, EventArgs e)
-        //{
-        //    if (Session["TYPE"] != null)
-        //    {
-        //        this.MasterPageFile = (Session["Master"].ToString());
-        //        if (Session["TYPE"].ToString() != "Coordinator")
-        //        {
-        //            Session.Add("Redirected", 1);
-        //            Response.Redirect("BadSession.aspx");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session.Add("Redirected", 0);
-        //        Response.Redirect("BadSession.aspx");
-        //    }
-        //}
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                this.MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptInclude(this.Page, this.GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");

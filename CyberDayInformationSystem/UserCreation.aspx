@@ -101,10 +101,8 @@
             </asp:TableCell>
             <asp:TableCell>
                 <asp:DropDownList ID="TshirtTypeList" runat="server">
-                    <asp:ListItem>Blue</asp:ListItem>
-                    <asp:ListItem>Orange</asp:ListItem>
-                    <asp:ListItem>Green</asp:ListItem>
-                    <asp:ListItem>Red</asp:ListItem>
+                    <asp:ListItem>Teacher</asp:ListItem>
+                    <asp:ListItem>Staff</asp:ListItem>
                 </asp:DropDownList>
             </asp:TableCell>
             <asp:TableCell>
