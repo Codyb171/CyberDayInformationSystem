@@ -59,7 +59,7 @@
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:Label ID="GenderLbl" runat="server" Text="Gender: "></asp:Label>
                                     </asp:TableCell>
-                                    <asp:TableCell ColumnSpan="2">
+                                    <asp:TableCell ColumnSpan="1">
                                         <asp:DropDownList ID="GenderDropDown" runat="server">
                                             <asp:ListItem>Male</asp:ListItem>
                                             <asp:ListItem>Female</asp:ListItem>
@@ -67,7 +67,7 @@
                                             <asp:ListItem>Prefer Not To Identify</asp:ListItem>
                                         </asp:DropDownList>
                                     </asp:TableCell>
-                                    <asp:TableCell ColumnSpan="1">
+                                    <asp:TableCell ColumnSpan="2">
                                         <asp:RequiredFieldValidator ID="Gender" runat="server" ErrorMessage="Gender Required" ForeColor="Red" ControlToValidate="GenderDropDown"></asp:RequiredFieldValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -75,7 +75,7 @@
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:Label ID="tshirtSizeLbl" runat="server" Text="T-Shirt Size: " Width="200"></asp:Label>
                                     </asp:TableCell>
-                                    <asp:TableCell ColumnSpan="2">
+                                    <asp:TableCell ColumnSpan="1">
                                         <asp:DropDownList ID="TshirtSizeList" runat="server">
                                             <asp:ListItem>Extra-Small</asp:ListItem>
                                             <asp:ListItem>Small</asp:ListItem>
@@ -84,7 +84,7 @@
                                             <asp:ListItem>Extra-Large</asp:ListItem>
                                         </asp:DropDownList>
                                     </asp:TableCell>
-                                    <asp:TableCell ColumnSpan="1">
+                                    <asp:TableCell ColumnSpan="2">
                                         <asp:RequiredFieldValidator ID="ShirtSize" runat="server" ErrorMessage="Pick a T-Shirt Size" ControlToValidate="TshirtSizeList" ForeColor="Red">
                                         </asp:RequiredFieldValidator>
                                     </asp:TableCell>
