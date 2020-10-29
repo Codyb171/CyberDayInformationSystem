@@ -437,13 +437,29 @@ namespace CyberDayInformationSystem
             }
             if(FunctionSelection.SelectedValue == "1")
             {
-                int teacherID = int.Parse(TeacherDropDown.SelectedValue);
-                SchoolList(teacherID,1);
+                if (TeacherDropDown.SelectedIndex == 0)
+                {
+                    SchoolList(0, 1);
+                }
+                else
+                {
+                    int teacherID = int.Parse(TeacherDropDown.SelectedValue);
+                    SchoolList(teacherID, 1);
+                }
+
             }
             else
             {
-                int teacherID = int.Parse(EditTeacherDropDown.SelectedValue);
-                SchoolList(teacherID,2);
+                if (TeacherDropDown.SelectedIndex == 0)
+                {
+                    SchoolList(0, 2);
+                }
+                else
+                {
+                    int teacherID = int.Parse(EditTeacherDropDown.SelectedValue);
+                    SchoolList(teacherID, 2);
+                }
+
             }
         }
 
