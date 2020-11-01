@@ -41,7 +41,7 @@
 
             <nav class="navbar">
 
-                <a class="to-home" href="Default.aspx">CyberDay</a>
+                <a class="to-home" href="Default.aspx"><img src="CDLogo.jpg" alt-"CyberDay" /></a>
 
 <%--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -60,9 +60,9 @@
                 </div>
             </nav>
 
-            <br />
-            <br />
-
+            <div class="PgTitle">
+                <h1><%: Page.Title %></h1>
+            </div>
             <div>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>

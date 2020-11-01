@@ -16,7 +16,7 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
-<body id="all">
+    <body>
         <form runat="server">
             <asp:ScriptManager runat="server" EnablePageMethods="true">
                 <Scripts>
