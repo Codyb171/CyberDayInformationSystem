@@ -13,7 +13,6 @@
                     <asp:ListItem Value="1">Event Data</asp:ListItem>
                     <asp:ListItem Value="2">Staff Data</asp:ListItem>
                     <asp:ListItem Value="3">Attendee Data</asp:ListItem>
-                    <asp:ListItem Value="4">Meal Ticket Data</asp:ListItem>
                 </asp:RadioButtonList>
             </asp:TableCell>
         </asp:TableRow>

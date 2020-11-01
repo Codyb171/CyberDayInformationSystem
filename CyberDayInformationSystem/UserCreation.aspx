@@ -77,40 +77,8 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow runat="server" HorizontalAlign="Center">
-            <asp:TableCell>
-                <asp:Label ID="tshirtSizeLbl" runat="server" Text="T-Shirt Size: " Width="200"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:DropDownList ID="TshirtSizeList" runat="server">
-                    <asp:ListItem>Extra-Small</asp:ListItem>
-                    <asp:ListItem>Small</asp:ListItem>
-                    <asp:ListItem>Medium</asp:ListItem>
-                    <asp:ListItem>Large</asp:ListItem>
-                    <asp:ListItem>Extra-Large</asp:ListItem>
-                </asp:DropDownList>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:RequiredFieldValidator ID="ShirtSize" runat="server" ErrorMessage="Pick a T-Shirt Size" ControlToValidate="TshirtSizeList" ForeColor="Red">
-                </asp:RequiredFieldValidator>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow runat="server" HorizontalAlign="Center">
-            <asp:TableCell>
-                <asp:Label ID="tshirtTypeLabel" runat="server" Text="T-Shirt Type: " Width="200"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:DropDownList ID="TshirtTypeList" runat="server">
-                    <asp:ListItem>Teacher</asp:ListItem>
-                    <asp:ListItem>Staff</asp:ListItem>
-                </asp:DropDownList>
-            </asp:TableCell>
-            <asp:TableCell>
-                <asp:RequiredFieldValidator ID="TypeValid" runat="server" ErrorMessage="Please Pick a Type" ControlToValidate="TshirtTypeList" ForeColor="Red">
-                </asp:RequiredFieldValidator>
-            </asp:TableCell>
-        </asp:TableRow>
-        <asp:TableRow runat="server" HorizontalAlign="Center">
+
+    <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:MultiView ID="SelectedView" runat="server">
                     <asp:View ID="TeacherView" runat="server">
@@ -145,6 +113,24 @@
                         </asp:TableRow>
                     </asp:View>
                     <asp:View ID="StudentView" runat="server">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                            <asp:TableCell>
+                                <asp:Label ID="tshirtSizeLbl" runat="server" Text="T-Shirt Size: " Width="200"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:DropDownList ID="TshirtSizeList" runat="server">
+                                    <asp:ListItem>Extra-Small</asp:ListItem>
+                                    <asp:ListItem>Small</asp:ListItem>
+                                    <asp:ListItem>Medium</asp:ListItem>
+                                    <asp:ListItem>Large</asp:ListItem>
+                                    <asp:ListItem>Extra-Large</asp:ListItem>
+                                </asp:DropDownList>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:RequiredFieldValidator ID="ShirtSize" runat="server" ErrorMessage="Pick a T-Shirt Size" ControlToValidate="TshirtSizeList" ForeColor="Red">
+                                </asp:RequiredFieldValidator>
+                            </asp:TableCell>
+                        </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell>
                                 <asp:Label ID="MajorLbl" runat="server" Text="Major: "></asp:Label>

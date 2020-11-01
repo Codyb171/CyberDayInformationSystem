@@ -124,7 +124,6 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="LoginPage.aspx" />
-    <Content Include="MealTicketMgmt.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -333,13 +332,6 @@
       <DependentUpon>LoginPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\PasswordHash.cs" />
-    <Compile Include="MealTicketMgmt.aspx.cs">
-      <DependentUpon>MealTicketMgmt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MealTicketMgmt.aspx.designer.cs">
-      <DependentUpon>MealTicketMgmt.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

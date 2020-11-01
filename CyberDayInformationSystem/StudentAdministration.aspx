@@ -168,7 +168,7 @@
                                     <asp:TableCell ColumnSpan="4">
                                         <asp:DetailsView ID="studentModifyDtl" runat="server" HorizontalAlign="Center"
                                             AutoGenerateRows="True" DataKeyNames="STUDENTID" DefaultMode="ReadOnly"
-                                            Height="50px" Width="301px" Visible="true" AllowPaging="True" OnPageIndexChanging="studentModifyDtl_PageIndexChanging">
+                                            Height="50px" Width="301px" Visible="true" AllowPaging="True" OnPageIndexChanging="StudentModifyDtl_PageIndexChanging">
                                             <PagerSettings Mode="Numeric" Position="Bottom" Visible="True"/>
                                         </asp:DetailsView>
                                     </asp:TableCell>

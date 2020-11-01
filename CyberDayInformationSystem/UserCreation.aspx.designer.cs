@@ -159,60 +159,6 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailValid;
 
         /// <summary>
-        /// tshirtSizeLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tshirtSizeLbl;
-
-        /// <summary>
-        /// TshirtSizeList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TshirtSizeList;
-
-        /// <summary>
-        /// ShirtSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ShirtSize;
-
-        /// <summary>
-        /// tshirtTypeLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tshirtTypeLabel;
-
-        /// <summary>
-        /// TshirtTypeList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TshirtTypeList;
-
-        /// <summary>
-        /// TypeValid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator TypeValid;
-
-        /// <summary>
         /// SelectedView control.
         /// </summary>
         /// <remarks>
@@ -292,6 +238,33 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View StudentView;
+
+        /// <summary>
+        /// tshirtSizeLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label tshirtSizeLbl;
+
+        /// <summary>
+        /// TshirtSizeList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TshirtSizeList;
+
+        /// <summary>
+        /// ShirtSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ShirtSize;
 
         /// <summary>
         /// MajorLbl control.
