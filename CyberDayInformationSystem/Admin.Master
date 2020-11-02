@@ -3,19 +3,20 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - CyberDay</title>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+    <head runat="server">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%: Page.Title %> - CyberDay</title>
+        <asp:PlaceHolder runat="server">
+            <%: Scripts.Render("~/bundles/modernizr") %>
+        </asp:PlaceHolder>
 
-    <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
+        <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
 
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-</head>
+        <webopt:BundleReference runat="server" Path="~/Content/css" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    </head>
+
     <body>
         <form runat="server">
             <asp:ScriptManager runat="server" EnablePageMethods="true">
@@ -38,13 +39,17 @@
                 </Scripts>
             </asp:ScriptManager>
 
-            <nav class="navbar">
+            <div class ="TopBar">
+                <a href="Default.aspx"><img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
+                <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6"></asp:Label>
+            </div>
 
-                <a class="to-home" >CyberDay</a>
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            <div class="Nav">
+                <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button>--%>
+
                 <ul>
                     <li><a href="AdminDashboard.aspx">Dashboard</a></li>
                     <li class="nav-item dropdown">
@@ -63,19 +68,15 @@
                     <li><a href="MealTicketMgmt.aspx">Meal Management</a></li>
                 </ul>
 
-                <div>
-                    <asp:Label ID="UserLoggedIn" runat="server" Text=""></asp:Label>
-                </div>
+                <%--<button type="button" class="btn-main green" runat="server" causesvalidation="false" onserverclick="LogBtn_Click">Login</button>--%>
+                <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+            </div>
 
-                <div>
-                    <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
-                </div>
-            </nav>
+            <div class="PgTitle">
+                <h1><%: Page.Title %></h1>
+            </div>
 
-            <br />
-            <br />
-
-            <div>
+            <div class="Main">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />
