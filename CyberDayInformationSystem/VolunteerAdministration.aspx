@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Volunteer Administration" Language="C#" MasterPageFile="~/Volunteer.Master" AutoEventWireup="true" CodeBehind="VolunteerAdministration.aspx.cs" Inherits="CyberDayInformationSystem.VolunteerAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Assign Volunteers</h1>
-    <fieldset class="enclosed">
+    <h3>Assign Volunteers</h3>
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow ID="rowSelDate" runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="2">
@@ -14,7 +13,7 @@
 
         <asp:TableRow ID="rowDateNextBtn" runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="btnSelDateNext" runat="server" Text="Next >" OnClick="btnSelDateNext_Click" />
+                <button type="button" class="btn-main blue" runat="server" onserverclick="btnSelDateNext_Click">Next ></button>
             </asp:TableCell>
         </asp:TableRow>
 
@@ -30,15 +29,19 @@
         </asp:TableRow>
 
         <asp:TableRow ID="rowSubmitBtn" runat="server" HorizontalAlign="Center" Visible="false">
-            <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit >" OnClick="btnSubmit_Click" />
+            <asp:TableCell ColumnSpan="2">
+                <button type="button" class="btn-main blue" runat="server" onserverclick="btnBack_Click">< Back</button>
+            </asp:TableCell>
+            
+            <asp:TableCell ColumnSpan="2">
+                <button type="button" class="btn-main blue" runat="server" onserverclick="btnSubmit_Click">Submit ></button>
             </asp:TableCell>
         </asp:TableRow>
+
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
                 <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    </fieldset>
 </asp:Content>

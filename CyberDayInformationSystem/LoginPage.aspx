@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="CyberDayInformationSystem.LoginPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="text-center">
-        <h1><%:Title%></h1>
-    </div>
+
+    <h3>Please input your credentials</h3>
+
     <asp:Panel runat="server" DefaultButton="LoginBtn">
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">

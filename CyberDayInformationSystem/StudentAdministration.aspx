@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="Student Administration" Language="C#" MasterPageFile="~/Teacher.Master" AutoEventWireup="true" CodeBehind="StudentAdministration.aspx.cs" Inherits="CyberDayInformationSystem.StudentAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    
+    <h3>Please Select a Task</h3>
+
     <div class="text-center">
-        <h1>Student Creation</h1>
         <div class="text-center">
             <asp:Table runat="server" HorizontalAlign="Center">
                 <asp:TableRow runat="server" HorizontalAlign="Center">

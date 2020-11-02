@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="Teacher Reports" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="TeacherReports.aspx.cs" Inherits="CyberDayInformationSystem.TeacherReports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Report Access</h1>
+
+    <h3>Please Select a Report Type</h3>
+
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <h2>Select a report type:</h2>
                 <asp:RadioButtonList ID="FunctionList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionList_SelectedIndexChanged">
                     <asp:ListItem Value="1">Event Data</asp:ListItem>
                     <asp:ListItem Value="2">Student Data</asp:ListItem>

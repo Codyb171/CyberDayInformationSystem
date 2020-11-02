@@ -55,7 +55,6 @@ namespace CyberDayInformationSystem
             ddlEventDates.Enabled = false;
             rowDateNextBtn.Visible = false;
 
-
             eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
 
             // Get volunteers
@@ -116,6 +115,15 @@ namespace CyberDayInformationSystem
             }
 
             connect.Close();
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            rowSelVol.Visible = false;
+            rowSubmitBtn.Visible = false;
+
+            ddlEventDates.Enabled = true;
+            rowDateNextBtn.Visible = true;
         }
     }
 }

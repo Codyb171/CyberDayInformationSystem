@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EventAdministration.aspx.cs" Inherits="CyberDayInformationSystem.EventAdministration" %>
+﻿<%@ Page Title="Event Administration" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EventAdministration.aspx.cs" Inherits="CyberDayInformationSystem.EventAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <h3>Please Select a Task</h3>
+
     <div class="text-center">
-        <h1>Event Administration</h1>
         <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
             <asp:TableRow runat="server" HorizontalAlign="Center">
                 <asp:TableCell ColumnSpan="4">

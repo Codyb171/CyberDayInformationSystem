@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BadSession.aspx.cs" Inherits="CyberDayInformationSystem.BadSession" %>
+﻿<%@ Page Title="User Status" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="BadSession.aspx.cs" Inherits="CyberDayInformationSystem.BadSession" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
