@@ -17,7 +17,7 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     </head>
 
-    <body id="all">
+    <body>
         <form runat="server">
             <asp:ScriptManager runat="server">
                 <Scripts>
@@ -39,11 +39,12 @@
                 </Scripts>
             </asp:ScriptManager>
 
-            <nav class="navbar">
+            <div class ="TopBar">
+                <a href="Default.aspx"><img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
+            </div>
 
-                <a class="to-home" href="Default.aspx"><img src="CDLogo.jpg" alt-"CyberDay" /></a>
-
-<%--                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            <div class="Nav">
+                <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>--%>
@@ -53,17 +54,19 @@
                     <li><a href="About.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
-            
-                <div>
-                    <asp:Button ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
-                    <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
-                </div>
-            </nav>
+
+                <button type="button" class="btn-main yellow" runat="server" causesvalidation="false" onserverclick="SignUpBtn_Click" visible="true">Sign Up</button>
+                <button type="button" class="btn-main green" runat="server" causesvalidation="false" onserverclick="LogBtn_Click" visible="true">Login</button>
+
+                <%--<asp:Button ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>--%>
+                <%--<asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>--%>
+            </div>
 
             <div class="PgTitle">
                 <h1><%: Page.Title %></h1>
             </div>
-            <div>
+
+            <div class="Main">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />
