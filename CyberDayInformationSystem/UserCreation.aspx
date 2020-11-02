@@ -2,12 +2,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h3>Please Select A User Type</h3>
 
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
-                <asp:RadioButtonList ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
+                <p class="h5">Please Select A User Type</p>
+                <asp:RadioButtonList class="custom-radio" ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
                     <asp:ListItem Value="1">Teacher</asp:ListItem>
                     <asp:ListItem Value="2">Staff Volunteer</asp:ListItem>
                     <asp:ListItem Value="3">Student Volunteer</asp:ListItem>
@@ -15,7 +15,7 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
-    <asp:Table ID="DefaultTable" runat="server" HorizontalAlign="Center" Visible="false">
+    <asp:Table ID="DefaultTable" runat="server" HorizontalAlign="Center" Visible="false" class="table-sm">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:Label ID="TitleLbl" runat="server" Text="Title:"></asp:Label>
@@ -231,7 +231,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="3">
-                <asp:Button ID="CreateBtn" runat="server" Text="Create User" OnClick="CreateBtn_Click" />
+                <asp:Button  class="btn btn-primary" ID="CreateBtn" runat="server" Text="Create User" OnClick="CreateBtn_Click" />
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">

@@ -13,7 +13,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
-                <asp:Button ID="RedirectBtn" runat="server" Text="Return to Login?" OnClick="RedirectBtn_Click" />
+                <asp:Button class="btn btn-primary" ID="RedirectBtn" runat="server" Text="Return to Login?" OnClick="RedirectBtn_Click" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
