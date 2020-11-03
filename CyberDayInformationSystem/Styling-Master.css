@@ -83,14 +83,13 @@ img {
     font-size: 14px;
     padding: 10px;
     border-color: white;
+    color: #FFFFFF;
 }
 
 .blue {
-    background-color: #3C738B;
-    color: #FFFFFF;
+    background-color: #3C738B;  
 }
 
 .reg {
     background-color: #595959;
-    color: #FFFFFF;
 }
