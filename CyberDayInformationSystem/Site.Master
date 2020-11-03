@@ -39,8 +39,12 @@
                 </Scripts>
             </asp:ScriptManager>
 
-            <div class ="TopBar">
+            <div class ="TopBar fixed-top">
                 <a href="Default.aspx"><img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
+                <div class="float-right">
+                    <asp:Button class="btn-main reg" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
+                    <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
+                </div>
             </div>
 
             <div class="Nav">
@@ -54,9 +58,6 @@
                     <li><a href="About.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
-
-                <asp:Button class="btn-main reg" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
-                <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
             </div>
 
             <div class="PgTitle">
