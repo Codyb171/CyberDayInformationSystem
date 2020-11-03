@@ -55,11 +55,8 @@
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
 
-                <%--<button type="button" class="btn-main yellow" runat="server" causesvalidation="false" onserverclick="SignUpBtn_Click" visible="true">Sign Up</button>
-                <button type="button" class="btn-main green" runat="server" causesvalidation="false" onserverclick="LogBtn_Click" visible="true">Login</button>--%>
-
-                <asp:Button class="btn btn-secondary" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
-                <asp:Button class="btn btn-light" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
+                <asp:Button class="btn-main gray" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
+                <asp:Button class="btn-main gray" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
             </div>
 
             <div class="PgTitle">
