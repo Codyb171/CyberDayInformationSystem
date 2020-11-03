@@ -33,8 +33,7 @@ namespace CyberDayInformationSystem
                 if (PasswordHash.ValidatePassword(pass, PassHash))
                 {
                     Session.Add("USER", loginResults["USERNAME"].ToString());
-                    Session.Add("FIRSTNAME", loginResults["FIRSTNAME"].ToString());
-                    Session.Add("LASTNAME", loginResults["LASTNAME"].ToString());
+                    Session.Add("NAME", (loginResults["FIRSTNAME"].ToString() + " " + loginResults["LASTNAME"].ToString()));
                     var type = loginResults["USERTYPE"].ToString();
                     Session.Add("TYPE", type);
 
