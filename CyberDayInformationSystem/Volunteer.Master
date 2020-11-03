@@ -56,8 +56,7 @@
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
 
-                <%--<button type="button" class="btn-main green" runat="server" causesvalidation="false" onserverclick="LogBtn_Click">Login</button>--%>
-                <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
+                <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
             </div>
 
            <div class="PgTitle">

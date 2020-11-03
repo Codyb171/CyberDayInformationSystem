@@ -67,7 +67,7 @@
                     <li><a href="UserCreation.aspx">Create Users</a></li>
                 </ul>
 
-                <asp:Button class="btn-main gray" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
             </div>
 
             <div class="PgTitle">
