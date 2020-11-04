@@ -2,17 +2,18 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
-    public partial class VolunteerAdministration : System.Web.UI.Page
+    public partial class VolunteerAdministration : Page
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
             {
-                this.MasterPageFile = (Session["Master"].ToString());
+                MasterPageFile = (Session["Master"].ToString());
                 if (Session["TYPE"].ToString() != "Coordinator")
                 {
                     Session.Add("Redirected", 1);
@@ -47,7 +48,7 @@ namespace CyberDayInformationSystem
             }
         }
 
-        private static int eventID;
+        private static int _eventID;
 
         protected void btnSelDateNext_Click(object sender, EventArgs e)
         {
@@ -55,7 +56,7 @@ namespace CyberDayInformationSystem
             ddlEventDates.Enabled = false;
             rowDateNextBtn.Visible = false;
 
-            eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
+            _eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
 
             // Get volunteers
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
@@ -99,7 +100,7 @@ namespace CyberDayInformationSystem
             }
             else
             {
-                string addRoster = "INSERT INTO EVENTSTAFF VALUES(" + eventID + ", " + selVolID + ")";
+                string addRoster = "INSERT INTO EVENTSTAFF VALUES(" + _eventID + ", " + selVolID + ")";
                 SqlCommand toRoster = new SqlCommand(addRoster, connect);
 
                 int result = toRoster.ExecuteNonQuery();

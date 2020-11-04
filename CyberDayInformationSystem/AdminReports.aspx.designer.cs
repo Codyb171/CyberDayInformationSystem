@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI.WebControls;
+
 namespace CyberDayInformationSystem
 {
 
@@ -21,7 +23,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList FunctionList;
+        protected RadioButtonList FunctionList;
 
         /// <summary>
         /// SelectionLbl control.
@@ -30,7 +32,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SelectionLbl;
+        protected Label SelectionLbl;
 
         /// <summary>
         /// SelectionDropDown control.
@@ -39,7 +41,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SelectionDropDown;
+        protected DropDownList SelectionDropDown;
 
         /// <summary>
         /// SelectionChoice control.
@@ -48,7 +50,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator SelectionChoice;
+        protected RequiredFieldValidator SelectionChoice;
 
         /// <summary>
         /// RunBtn control.
@@ -57,7 +59,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RunBtn;
+        protected Button RunBtn;
 
         /// <summary>
         /// printPanel control.
@@ -66,7 +68,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel printPanel;
+        protected Panel printPanel;
 
         /// <summary>
         /// ReportTable control.
@@ -75,7 +77,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table ReportTable;
+        protected Table ReportTable;
 
         /// <summary>
         /// SelectedGridLbl control.
@@ -84,7 +86,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SelectedGridLbl;
+        protected Label SelectedGridLbl;
 
         /// <summary>
         /// SelectedGridView control.
@@ -93,7 +95,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView SelectedGridView;
+        protected GridView SelectedGridView;
 
         /// <summary>
         /// SecondaryGrid1Lbl control.
@@ -102,7 +104,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SecondaryGrid1Lbl;
+        protected Label SecondaryGrid1Lbl;
 
         /// <summary>
         /// SecondaryGrid2Lbl control.
@@ -111,7 +113,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SecondaryGrid2Lbl;
+        protected Label SecondaryGrid2Lbl;
 
         /// <summary>
         /// SecondaryGridView1 control.
@@ -120,7 +122,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView SecondaryGridView1;
+        protected GridView SecondaryGridView1;
 
         /// <summary>
         /// SecondaryGridView2 control.
@@ -129,7 +131,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView SecondaryGridView2;
+        protected GridView SecondaryGridView2;
 
         /// <summary>
         /// TertiaryGridLbl control.
@@ -138,7 +140,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TertiaryGridLbl;
+        protected Label TertiaryGridLbl;
 
         /// <summary>
         /// TertiaryGridView control.
@@ -147,7 +149,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView TertiaryGridView;
+        protected GridView TertiaryGridView;
 
         /// <summary>
         /// PrintBtn control.
@@ -156,6 +158,6 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PrintBtn;
+        protected Button PrintBtn;
     }
 }

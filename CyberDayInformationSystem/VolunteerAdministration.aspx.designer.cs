@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI.WebControls;
+
 namespace CyberDayInformationSystem
 {
 
@@ -21,7 +23,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSelDate;
+        protected TableRow rowSelDate;
 
         /// <summary>
         /// lblSelDate control.
@@ -30,7 +32,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelDate;
+        protected Label lblSelDate;
 
         /// <summary>
         /// ddlEventDates control.
@@ -39,7 +41,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEventDates;
+        protected DropDownList ddlEventDates;
 
         /// <summary>
         /// rowDateNextBtn control.
@@ -48,7 +50,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowDateNextBtn;
+        protected TableRow rowDateNextBtn;
 
         /// <summary>
         /// rowSelVol control.
@@ -57,7 +59,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSelVol;
+        protected TableRow rowSelVol;
 
         /// <summary>
         /// lblSelVol control.
@@ -66,7 +68,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelVol;
+        protected Label lblSelVol;
 
         /// <summary>
         /// ddlVols control.
@@ -75,7 +77,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVols;
+        protected DropDownList ddlVols;
 
         /// <summary>
         /// rowSubmitBtn control.
@@ -84,7 +86,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowSubmitBtn;
+        protected TableRow rowSubmitBtn;
 
         /// <summary>
         /// lblStatus control.
@@ -93,6 +95,6 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected Label lblStatus;
     }
 }

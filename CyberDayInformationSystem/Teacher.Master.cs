@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Web.UI;
 
 namespace CyberDayInformationSystem
 {
-    public partial class Teacher : System.Web.UI.MasterPage
+    public partial class Teacher : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

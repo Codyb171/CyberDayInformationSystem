@@ -29,11 +29,11 @@ namespace CyberDayInformationSystem
             loginResults = loginCommand.ExecuteReader();
             if (loginResults.Read())
             {
-                var PassHash = loginResults["PASSWORDHASH"].ToString();
-                if (PasswordHash.ValidatePassword(pass, PassHash))
+                var passHash = loginResults["PASSWORDHASH"].ToString();
+                if (PasswordHash.ValidatePassword(pass, passHash))
                 {
                     Session.Add("USER", loginResults["USERNAME"].ToString());
-                    Session.Add("NAME", (loginResults["FIRSTNAME"].ToString() + " " + loginResults["LASTNAME"].ToString()));
+                    Session.Add("NAME", (loginResults["FIRSTNAME"] + " " + loginResults["LASTNAME"]));
                     var type = loginResults["USERTYPE"].ToString();
                     Session.Add("TYPE", type);
 
@@ -54,7 +54,7 @@ namespace CyberDayInformationSystem
                         Session.Add("Master", "~/Site.Master");
                     }
                     
-                    getInfo(type);
+                    GetInfo(type);
                 }
                 else
                 { 
@@ -70,7 +70,7 @@ namespace CyberDayInformationSystem
         }
 
 
-        public void getInfo(string type)
+        public void GetInfo(string type)
         {
             var sql = "Select ";
             var cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
