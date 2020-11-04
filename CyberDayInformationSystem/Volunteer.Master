@@ -64,7 +64,7 @@
                 <h1><%: Page.Title %></h1>
             </div>
 
-            <div class="Main">
+            <div class="">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />

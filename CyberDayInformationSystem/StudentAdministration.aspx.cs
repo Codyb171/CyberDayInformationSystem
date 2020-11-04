@@ -472,8 +472,8 @@ namespace CyberDayInformationSystem
 
         protected void DeleteStudentBtn_OnClick(object sender, EventArgs e)
         {
-            int idToDelete= int.Parse(studentModifyDtl.DataKey[0].ToString());
             
+            int idToDelete= int.Parse(studentModifyDtl.DataKey[0].ToString());
             var cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
             var connection = new SqlConnection(cs);
             var loginCommand = new SqlCommand();

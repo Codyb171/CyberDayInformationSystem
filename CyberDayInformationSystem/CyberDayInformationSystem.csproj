@@ -168,6 +168,7 @@
     <Content Include="Scripts\src\methods\enableEventListeners.js" />
     <Content Include="Scripts\src\methods\placements.js" />
     <Content Include="Scripts\src\methods\PrintReport.js" />
+    <Content Include="Scripts\src\methods\PromptPass.js" />
     <Content Include="Scripts\src\methods\update.js" />
     <Content Include="Scripts\src\modifiers\applyStyle.js" />
     <Content Include="Scripts\src\modifiers\arrow.js" />
