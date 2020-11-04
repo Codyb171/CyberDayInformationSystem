@@ -4,7 +4,7 @@
 
     <link href="AdminReports-Styling.css" rel="stylesheet" type="text/css" />
 
-    <h3>Report Access</h3>
+    <h3 class="text-center">Report Access</h3>
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
