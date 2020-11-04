@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -27,6 +28,7 @@ namespace CyberDayInformationSystem
             }
         }
         private int _teacherID;
+        private int _studentID;
         
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,6 +36,10 @@ namespace CyberDayInformationSystem
             if (Page.IsPostBack)
             {
                 FillPanel();
+                if (Session["TEACHERREPORTID"] != null)
+                {
+                    _studentID = int.Parse(Session["TEACHERREPORTID"].ToString());
+                }
             }
 
             if (Session["TYPE"] != null)
@@ -66,25 +72,88 @@ namespace CyberDayInformationSystem
             SelectionDropDown.Items.Insert(0, new ListItem(String.Empty));
         }
 
-        private void StudentList()
+        protected void SearchByTagButton_Click(object sender, EventArgs e)
         {
-            SelectionDropDown.Items.Clear();
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT";
+            var connection = new SqlConnection(cs);
+            DataTable dt = new DataTable();
+            connection.Open();
+            string sql =
+                "Select S.STUDENTID, S.FIRSTNAME, S.LASTNAME, S.AGE, S.GENDER, S.PREVIOUSATTENDEE, S.MEALTICKET," +
+                " (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"TEACHER\", SC.NAME FROM STUDENT S LEFT JOIN TEACHER T on S.TEACHER = T.TEACHERID" +
+                " join SCHOOL SC ON SC.SCHOOLID = S.SCHOOL WHERE";
             if (_teacherID != 0)
             {
-                command += " where Teacher = " + _teacherID;
+                sql += " TEACHER = @TEACHER AND";
             }
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
-            connection.Open();
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            SelectionDropDown.DataSource = dt;
-            SelectionDropDown.DataTextField = "NAME";
-            SelectionDropDown.DataValueField = "ID";
-            SelectionDropDown.DataBind();
-            SelectionDropDown.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            try
+            {
+                if (SearchByTagFN.Text != String.Empty && SearchByTagLN.Text != String.Empty)
+                {
+                    sql += " S.FIRSTNAME LIKE @FIRST AND S.LASTNAME LIKE @LAST";
+                    SqlDataAdapter select = new SqlDataAdapter(sql, connection);
+                    if (_teacherID != 0)
+                    {
+                        select.SelectCommand.Parameters.AddWithValue("@TEACHER", _teacherID);
+                    }
+                    select.SelectCommand.Parameters.AddWithValue("@FIRST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@LAST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
+                    
+                    select.Fill(dt);
+                }
+                else if (SearchByTagFN.Text != String.Empty)
+                {
+                    sql += " S.FIRSTNAME LIKE @FIRST";
+                    SqlDataAdapter select = new SqlDataAdapter(sql, connection);
+                    if (_teacherID != 0)
+                    {
+                        select.SelectCommand.Parameters.AddWithValue("@TEACHER", _teacherID);
+                    }
+                    select.SelectCommand.Parameters.AddWithValue("@FIRST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
+                    select.Fill(dt);
+                }
+                else
+                {
+                    sql += " S.LASTNAME LIKE @LAST";
+                    SqlDataAdapter select = new SqlDataAdapter(sql, connection);
+                    if (_teacherID != 0)
+                    {
+                        select.SelectCommand.Parameters.AddWithValue("@TEACHER", _teacherID);
+                    }
+                    select.SelectCommand.Parameters.AddWithValue("@LAST",
+                        "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
+                    select.Fill(dt);
+                }
+
+                if (dt.Rows.Count > 0)
+                {
+                    studentModifyDtl.DataSource = dt;
+                    studentModifyDtl.DataBind();
+                }
+                else
+                {
+                    dt = new DataTable();
+                    DataColumn dc1 = new DataColumn("No Data");
+                    dt.Columns.Add(dc1);
+                    DataRow dr1 = dt.NewRow();
+                    dr1[0] = "No Students found with that data";
+                    dt.Rows.Add(dr1);
+                    studentModifyDtl.DataSource = dt;
+                    studentModifyDtl.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
         }
 
         private void StudentGridFill(int studentID)
@@ -241,6 +310,7 @@ namespace CyberDayInformationSystem
             if (FunctionList.SelectedValue == "1")
             {
                 EventList();
+                SearchByView.ActiveViewIndex = 0;
                 SelectionLbl.Text = "Event: ";
                 SelectionLbl.Visible = true;
                 SelectionDropDown.Visible = true;
@@ -248,7 +318,7 @@ namespace CyberDayInformationSystem
 
             if (FunctionList.SelectedValue == "2")
             {
-                StudentList();
+                SearchByView.ActiveViewIndex = 1;
                 SelectionLbl.Text = "Student: ";
                 SelectionLbl.Visible = true;
                 SelectionDropDown.Visible = true;
@@ -257,6 +327,8 @@ namespace CyberDayInformationSystem
 
         protected void RunBtn_Click(object sender, EventArgs e)
         {
+            _studentID = int.Parse(studentModifyDtl.DataKey[0].ToString());
+            Session.Add("@TEACHERREPORTID", _studentID);
             EmptyGridView();
             if (FunctionList.SelectedValue == "1")
             {
@@ -266,10 +338,10 @@ namespace CyberDayInformationSystem
             }
             if (FunctionList.SelectedValue == "2")
             {
-                var studentId = int.Parse(SelectionDropDown.SelectedValue);
-                StudentGridFill(studentId);
-                StudentNotesInfo(studentId);
-                StudentTeacherInfo(studentId);
+                EmptyGridView();
+                StudentGridFill(_studentID);
+                StudentNotesInfo(_studentID);
+                StudentTeacherInfo(_studentID);
                 FillPanel();
             }
 
@@ -296,7 +368,12 @@ namespace CyberDayInformationSystem
             TertiaryGridLbl.Visible = false;
             PrintBtn.Visible = false;
         }
-
+        protected void StudentModifyDtl_PageIndexChanging(object sender, DetailsViewPageEventArgs e)
+        {
+            studentModifyDtl.PageIndex = e.NewPageIndex;
+            studentModifyDtl.DataBind();
+            SearchByTagButton_Click(sender, e);
+        }
         private void FillPanel()
         {
             printPanel.Controls.Add(ReportTable);
