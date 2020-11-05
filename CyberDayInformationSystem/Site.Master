@@ -65,7 +65,7 @@
                     <h1><%: Page.Title %></h1>
                 </div>
             </div>
-            <div class="body" style="padding-top: 200px">
+            <div style="padding-top: 200px">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />
