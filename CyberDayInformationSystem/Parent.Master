@@ -1,25 +1,25 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Volunteer.master.cs" Inherits="CyberDayInformationSystem.Volunteer" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Parent.master.cs" Inherits="CyberDayInformationSystem.Parent" %>
 
 <!DOCTYPE html>
 
-<html lang="en">
-<head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - CyberDay</title>
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
+<html>
+    <head runat="server">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%: Page.Title %> - CyberDay</title>
+        <asp:PlaceHolder runat="server">
+            <%: Scripts.Render("~/bundles/modernizr") %>
+        </asp:PlaceHolder>
 
-    <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
+        <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
 
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <webopt:BundleReference runat="server" Path="~/Content/css" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    </head>
 
-</head>
-<body id="all">
+    <body>
         <form runat="server">
-            <asp:ScriptManager runat="server">
+            <asp:ScriptManager runat="server" EnablePageMethods="true">
                 <Scripts>
                     <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                     <%--Framework Scripts--%>
@@ -54,13 +54,14 @@
                 </button>--%>
 
                 <ul>
-                    <li><a href="Default.aspx">Home</a></li>
+                    <li><a href="ParentDashboard.aspx">Parent Dashboard</a></li>
+                    <li><a href="Default.aspx">CyberDay Home</a></li>
                     <li><a href="About.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
             </div>
 
-           <div class="PgTitle">
+            <div class="PgTitle">
                 <h1><%: Page.Title %></h1>
             </div>
 

@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI.WebControls;
+
 namespace CyberDayInformationSystem
 {
 
@@ -21,7 +23,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList FunctionSelection;
+        protected RadioButtonList FunctionSelection;
 
         /// <summary>
         /// SelectedFunction control.
@@ -30,7 +32,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView SelectedFunction;
+        protected MultiView SelectedFunction;
 
         /// <summary>
         /// CreateView control.
@@ -39,7 +41,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View CreateView;
+        protected View CreateView;
 
         /// <summary>
         /// FirstNameLbl control.
@@ -48,7 +50,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FirstNameLbl;
+        protected Label FirstNameLbl;
 
         /// <summary>
         /// FirstNameTxt control.
@@ -57,7 +59,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
+        protected TextBox FirstNameTxt;
 
         /// <summary>
         /// FirstNameValid control.
@@ -66,7 +68,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator FirstNameValid;
+        protected RequiredFieldValidator FirstNameValid;
 
         /// <summary>
         /// LastNameLbl control.
@@ -75,7 +77,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LastNameLbl;
+        protected Label LastNameLbl;
 
         /// <summary>
         /// LastNameTxt control.
@@ -84,7 +86,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
+        protected TextBox LastNameTxt;
 
         /// <summary>
         /// LastNameValid control.
@@ -93,7 +95,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator LastNameValid;
+        protected RequiredFieldValidator LastNameValid;
 
         /// <summary>
         /// AgeLbl control.
@@ -102,7 +104,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label AgeLbl;
+        protected Label AgeLbl;
 
         /// <summary>
         /// AgeTxt control.
@@ -111,7 +113,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AgeTxt;
+        protected TextBox AgeTxt;
 
         /// <summary>
         /// RequiredAge control.
@@ -120,7 +122,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredAge;
+        protected RequiredFieldValidator RequiredAge;
 
         /// <summary>
         /// AgeRange control.
@@ -129,7 +131,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator AgeRange;
+        protected RangeValidator AgeRange;
 
         /// <summary>
         /// GenderLbl control.
@@ -138,7 +140,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label GenderLbl;
+        protected Label GenderLbl;
 
         /// <summary>
         /// GenderDropDown control.
@@ -147,7 +149,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList GenderDropDown;
+        protected DropDownList GenderDropDown;
 
         /// <summary>
         /// Gender control.
@@ -156,7 +158,16 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Gender;
+        protected RequiredFieldValidator Gender;
+
+        /// <summary>
+        /// createTshirt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected MultiView createTshirt;
 
         /// <summary>
         /// tshirtSizeLbl control.
@@ -165,7 +176,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tshirtSizeLbl;
+        protected Label tshirtSizeLbl;
 
         /// <summary>
         /// TshirtSizeList control.
@@ -174,7 +185,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TshirtSizeList;
+        protected DropDownList TshirtSizeList;
 
         /// <summary>
         /// ShirtSize control.
@@ -183,7 +194,61 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ShirtSize;
+        protected RequiredFieldValidator ShirtSize;
+
+        /// <summary>
+        /// PreviousLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Label PreviousLbl;
+
+        /// <summary>
+        /// PreAttendBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RadioButtonList PreAttendBtn;
+
+        /// <summary>
+        /// PreAttendValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RequiredFieldValidator PreAttendValid;
+
+        /// <summary>
+        /// MealLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Label MealLbl;
+
+        /// <summary>
+        /// MealBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RadioButtonList MealBtn;
+
+        /// <summary>
+        /// MealValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RequiredFieldValidator MealValid;
 
         /// <summary>
         /// CoordinatorView control.
@@ -192,7 +257,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView CoordinatorView;
+        protected MultiView CoordinatorView;
 
         /// <summary>
         /// TeacherLbl control.
@@ -201,7 +266,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TeacherLbl;
+        protected Label TeacherLbl;
 
         /// <summary>
         /// TeacherDropDown control.
@@ -210,7 +275,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TeacherDropDown;
+        protected DropDownList TeacherDropDown;
 
         /// <summary>
         /// TeacherListValid control.
@@ -219,7 +284,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator TeacherListValid;
+        protected RequiredFieldValidator TeacherListValid;
 
         /// <summary>
         /// SchoolLbl control.
@@ -228,7 +293,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SchoolLbl;
+        protected Label SchoolLbl;
 
         /// <summary>
         /// SchoolDropDown control.
@@ -237,7 +302,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SchoolDropDown;
+        protected DropDownList SchoolDropDown;
 
         /// <summary>
         /// SchoolValid control.
@@ -246,7 +311,25 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator SchoolValid;
+        protected RequiredFieldValidator SchoolValid;
+
+        /// <summary>
+        /// noteLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Label noteLbl;
+
+        /// <summary>
+        /// noteTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected TextBox noteTxt;
 
         /// <summary>
         /// ClearBtn control.
@@ -255,16 +338,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ClearBtn;
-
-        /// <summary>
-        /// PopulateBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PopulateBtn;
+        protected Button ClearBtn;
 
         /// <summary>
         /// SaveBtn control.
@@ -273,7 +347,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SaveBtn;
+        protected Button SaveBtn;
 
         /// <summary>
         /// UserInfoLbl control.
@@ -282,7 +356,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UserInfoLbl;
+        protected Label UserInfoLbl;
 
         /// <summary>
         /// ModifyView control.
@@ -291,7 +365,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ModifyView;
+        protected View ModifyView;
 
         /// <summary>
         /// FindStudentFirstName control.
@@ -300,7 +374,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FindStudentFirstName;
+        protected Label FindStudentFirstName;
 
         /// <summary>
         /// SearchByTagFN control.
@@ -309,7 +383,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchByTagFN;
+        protected TextBox SearchByTagFN;
 
         /// <summary>
         /// FindStudentLastName control.
@@ -318,7 +392,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FindStudentLastName;
+        protected Label FindStudentLastName;
 
         /// <summary>
         /// SearchByTagLN control.
@@ -327,7 +401,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox SearchByTagLN;
+        protected TextBox SearchByTagLN;
 
         /// <summary>
         /// SearchByTagButton control.
@@ -336,7 +410,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchByTagButton;
+        protected Button SearchByTagButton;
 
         /// <summary>
         /// studentModifyDtl control.
@@ -345,7 +419,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView studentModifyDtl;
+        protected DetailsView studentModifyDtl;
 
         /// <summary>
         /// EditStudentBtn control.
@@ -354,7 +428,16 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditStudentBtn;
+        protected Button EditStudentBtn;
+
+        /// <summary>
+        /// DeleteStudentBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Button DeleteStudentBtn;
 
         /// <summary>
         /// EditView control.
@@ -363,7 +446,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View EditView;
+        protected View EditView;
 
         /// <summary>
         /// EditFirstName control.
@@ -372,7 +455,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditFirstName;
+        protected Label EditFirstName;
 
         /// <summary>
         /// EditFirstNameTxt control.
@@ -381,7 +464,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EditFirstNameTxt;
+        protected TextBox EditFirstNameTxt;
 
         /// <summary>
         /// EditFirstNameRqd control.
@@ -390,7 +473,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EditFirstNameRqd;
+        protected RequiredFieldValidator EditFirstNameRqd;
 
         /// <summary>
         /// EditLastName control.
@@ -399,7 +482,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditLastName;
+        protected Label EditLastName;
 
         /// <summary>
         /// EditLastNameTxt control.
@@ -408,7 +491,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EditLastNameTxt;
+        protected TextBox EditLastNameTxt;
 
         /// <summary>
         /// EditLastNameRqd control.
@@ -417,7 +500,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EditLastNameRqd;
+        protected RequiredFieldValidator EditLastNameRqd;
 
         /// <summary>
         /// EditAge control.
@@ -426,7 +509,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditAge;
+        protected Label EditAge;
 
         /// <summary>
         /// EditAgeTxt control.
@@ -435,7 +518,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EditAgeTxt;
+        protected TextBox EditAgeTxt;
 
         /// <summary>
         /// EditAgeRqd control.
@@ -444,7 +527,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator EditAgeRqd;
+        protected RequiredFieldValidator EditAgeRqd;
 
         /// <summary>
         /// EditAgeRangeRqd control.
@@ -453,7 +536,43 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator EditAgeRangeRqd;
+        protected RangeValidator EditAgeRangeRqd;
+
+        /// <summary>
+        /// EditGenderLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Label EditGenderLbl;
+
+        /// <summary>
+        /// EditGenderList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected DropDownList EditGenderList;
+
+        /// <summary>
+        /// EditGenderValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RequiredFieldValidator EditGenderValid;
+
+        /// <summary>
+        /// editTshirtView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected MultiView editTshirtView;
 
         /// <summary>
         /// EditSizeLbl control.
@@ -462,7 +581,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditSizeLbl;
+        protected Label EditSizeLbl;
 
         /// <summary>
         /// EditSizeList control.
@@ -471,7 +590,61 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EditSizeList;
+        protected DropDownList EditSizeList;
+
+        /// <summary>
+        /// EditAttendeeLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Label EditAttendeeLbl;
+
+        /// <summary>
+        /// EditAttendeeBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RadioButtonList EditAttendeeBtn;
+
+        /// <summary>
+        /// EditAttendeeValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RequiredFieldValidator EditAttendeeValid;
+
+        /// <summary>
+        /// EditMeal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected Label EditMeal;
+
+        /// <summary>
+        /// EditMealBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RadioButtonList EditMealBtn;
+
+        /// <summary>
+        /// EditMealValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RequiredFieldValidator EditMealValid;
 
         /// <summary>
         /// EditTeacher control.
@@ -480,7 +653,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditTeacher;
+        protected Label EditTeacher;
 
         /// <summary>
         /// EditTeacherDropDown control.
@@ -489,7 +662,16 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EditTeacherDropDown;
+        protected DropDownList EditTeacherDropDown;
+
+        /// <summary>
+        /// EditTeacherValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected RequiredFieldValidator EditTeacherValid;
 
         /// <summary>
         /// EditSchool control.
@@ -498,7 +680,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditSchool;
+        protected Label EditSchool;
 
         /// <summary>
         /// EditSchoolDropDown control.
@@ -507,7 +689,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EditSchoolDropDown;
+        protected DropDownList EditSchoolDropDown;
 
         /// <summary>
         /// UpdateBtn control.
@@ -516,7 +698,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateBtn;
+        protected Button UpdateBtn;
 
         /// <summary>
         /// EditLabelStatus control.
@@ -525,6 +707,6 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditLabelStatus;
+        protected Label EditLabelStatus;
     }
 }

@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Web.UI.WebControls;
+
 namespace CyberDayInformationSystem
 {
 
@@ -21,7 +23,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UsernameLbl;
+        protected Label UsernameLbl;
 
         /// <summary>
         /// UsernameTxt control.
@@ -30,7 +32,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameTxt;
+        protected TextBox UsernameTxt;
 
         /// <summary>
         /// RequiredFieldValidatorUsername control.
@@ -39,7 +41,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorUsername;
+        protected RequiredFieldValidator RequiredFieldValidatorUsername;
 
         /// <summary>
         /// PasswordLbl control.
@@ -48,7 +50,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PasswordLbl;
+        protected Label PasswordLbl;
 
         /// <summary>
         /// PasswordTxt control.
@@ -57,7 +59,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTxt;
+        protected TextBox PasswordTxt;
 
         /// <summary>
         /// RequiredFieldValidatorPassword control.
@@ -66,7 +68,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPassword;
+        protected RequiredFieldValidator RequiredFieldValidatorPassword;
 
         /// <summary>
         /// NewUserBtn control.
@@ -75,7 +77,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NewUserBtn;
+        protected Button NewUserBtn;
 
         /// <summary>
         /// LoginBtn control.
@@ -84,7 +86,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginBtn;
+        protected Button LoginBtn;
 
         /// <summary>
         /// LoginStat control.
@@ -93,6 +95,6 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LoginStat;
+        protected Label LoginStat;
     }
 }

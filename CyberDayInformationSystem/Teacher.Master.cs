@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Web.UI;
 
 namespace CyberDayInformationSystem
 {
-    public partial class Teacher : System.Web.UI.MasterPage
+    public partial class Teacher : MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["User"] != null)
             {
-                string user = Session["User"].ToString();
+                string user = Session["NAME"].ToString();
                 UserLoggedIn.Text = "Welcome " + user + "\t";
                 LogBtn.Text = "Logout";
                 

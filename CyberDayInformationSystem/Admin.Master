@@ -39,9 +39,12 @@
                 </Scripts>
             </asp:ScriptManager>
 
-            <div class ="TopBar">
+            <div class ="TopBar fixed-top" >
                 <a href="Default.aspx"><img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
-                <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6"></asp:Label>
+                <div class="float-right">
+                    <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300px"></asp:Label>
+                    <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
+                </div>
             </div>
 
             <div class="Nav">
@@ -51,11 +54,11 @@
                 </button>--%>
 
                 <ul>
-                    <li><a href="AdminDashboard.aspx">Dashboard</a></li>
+                    <li><a href="AdminDashboard.aspx">Administrator Dashboard</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Teacher</a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink1">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                             <a class="dropdown-item" href="TeacherDashboard.aspx">Teacher Dashboard</a>
                             <a class="dropdown-item" href="StudentAdministration.aspx">Students</a>
                             <a class="dropdown-item" href="TeacherReports.aspx">Teacher Reports</a>
@@ -67,15 +70,14 @@
                     <li><a href="UserCreation.aspx">Create Users</a></li>
                 </ul>
 
-                <%--<button type="button" class="btn-main green" runat="server" causesvalidation="false" onserverclick="LogBtn_Click">Login</button>--%>
-                <asp:Button class="btn btn-light" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                
             </div>
 
             <div class="PgTitle">
                 <h1><%: Page.Title %></h1>
             </div>
 
-            <div class="Main">
+            <div class="">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />

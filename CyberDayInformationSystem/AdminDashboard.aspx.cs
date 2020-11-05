@@ -1,16 +1,17 @@
 ﻿// Start Page
 
 using System;
+using System.Web.UI;
 
 namespace CyberDayInformationSystem
 {
-    public partial class AdminStartPage : System.Web.UI.Page
+    public partial class AdminStartPage : Page
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
             {
-                this.MasterPageFile = (Session["Master"].ToString());
+                MasterPageFile = (Session["Master"].ToString());
                 if (Session["TYPE"].ToString() != "Coordinator")
                 {
                     Session.Add("Redirected", 1);

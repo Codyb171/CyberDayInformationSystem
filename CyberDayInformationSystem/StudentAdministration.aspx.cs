@@ -3,17 +3,18 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
-    public partial class StudentAdministration : System.Web.UI.Page
+    public partial class StudentAdministration : Page
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
             {
-                this.MasterPageFile = (Session["Master"].ToString());
+                MasterPageFile = (Session["Master"].ToString());
                 if (Session["TYPE"].ToString() != "Coordinator" && Session["TYPE"].ToString() != "Teacher")
                 {
                     Session.Add("Redirected", 1);
@@ -26,9 +27,9 @@ namespace CyberDayInformationSystem
                 Response.Redirect("BadSession.aspx");
             }
         }
-        private int TeacherID;
-        private int School;
-        private int IDToEdit;
+        private int _teacherID;
+        private int _school;
+        private int _idToEdit;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,7 +44,7 @@ namespace CyberDayInformationSystem
             {
                 if (Session["StudentID"] != null)
                 {
-                    IDToEdit = int.Parse(Session["StudentID"].ToString());
+                    _idToEdit = int.Parse(Session["StudentID"].ToString());
                 }
             }
 
@@ -51,16 +52,17 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Teacher")
                 {
-                    TeacherID = int.Parse(Session["ID"].ToString());
-                    School = int.Parse(Session["SCHOOL"].ToString());
+                    _teacherID = int.Parse(Session["ID"].ToString());
+                    _school = int.Parse(Session["SCHOOL"].ToString());
                 }
                 else
                 {
-                    TeacherID = 0;
-                    School = 0;
+                    _teacherID = 0;
+                    _school = 0;
                 }
 
             }
+
         }
 
         protected void SaveBtn_Click(object sender, EventArgs e)
@@ -73,22 +75,13 @@ namespace CyberDayInformationSystem
             ClearForm();
         }
 
-        protected void PopulateBtn_Click(object sender, EventArgs e)
-        {
-            FirstNameTxt.Text = "Dakota";
-            LastNameTxt.Text = "Lawyer";
-            AgeTxt.Text = "13";
-            TshirtSizeList.SelectedIndex = 3;
-            UserInfoLbl.Text = "Form Populated Successfully!";
-        }
-
         protected void ClearBtn_Click(object sender, EventArgs e)
         {
             ClearForm();
             UserInfoLbl.Text = "Form Cleared Successfully!";
         }
 
-        protected void ClearForm()
+        private void ClearForm()
         {
             FirstNameTxt.Text = "";
             LastNameTxt.Text = "";
@@ -98,27 +91,30 @@ namespace CyberDayInformationSystem
             TeacherDropDown.ClearSelection();
         }
 
-        public void SendStudent()
+        private void SendStudent()
         {
             if (StudentExists() == 0)
             {
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-                SqlConnection connection;
-                SqlCommand command;
-                string sql = "Insert into Student (FIRSTNAME, LASTNAME, AGE, TEACHER, SCHOOL) values( @FIRSTNAME, @LASTNAME, @AGE, @TSHIRT, @TEACHER, @SCHOOL)";
+                string sql = "Insert into Student (FIRSTNAME, LASTNAME, AGE, GENDER, PREVIOUSATTENDEE, MEALTICKET, TEACHER, SCHOOL)" +
+                             " values( @FIRSTNAME, @LASTNAME, @AGE, @GENDER, @PRE, @MEAL, @TEACHER, @SCHOOL)";
                 string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
                 string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
                 int age = int.Parse(HttpUtility.HtmlEncode(AgeTxt.Text));
-                connection = new SqlConnection(cs);
+                string gender = GenderDropDown.SelectedItem.Text;
+                var connection = new SqlConnection(cs);
                 connection.Open();
-                command = new SqlCommand(sql, connection);
+                var command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@FIRSTNAME", first);
                 command.Parameters.AddWithValue("@LASTNAME", last);
                 command.Parameters.AddWithValue("@AGE", age);
-                if (TeacherID != 0)
+                command.Parameters.AddWithValue("@GENDER", gender);
+                command.Parameters.AddWithValue("@PRE", PreAttendBtn.SelectedItem.Text);
+                command.Parameters.AddWithValue("@MEAL",MealBtn.SelectedItem.Text);
+                if (_teacherID != 0)
                 {
-                    command.Parameters.AddWithValue("@TEACHER", TeacherID);
-                    command.Parameters.AddWithValue("@SCHOOL", School);
+                    command.Parameters.AddWithValue("@TEACHER", _teacherID);
+                    command.Parameters.AddWithValue("@SCHOOL", _school);
                 }
                 else
                 {
@@ -131,50 +127,44 @@ namespace CyberDayInformationSystem
             }
         }
 
-        public int GetCurrentStudent()
-        {
-            int count = 1;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection;
-            SqlCommand command;
-            SqlDataReader dataReader;
-            string testSql = "Select count(*) from Student";
-            connection = new SqlConnection(cs);
-            connection.Open();
-            command = new SqlCommand(testSql, connection);
-            dataReader = command.ExecuteReader();
-            if (dataReader.Read())
-            {
-                count = dataReader.GetInt32(0);
-            }
+        //public int GetCurrentStudent()
+        //{
+        //    int count = 1;
+        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+        //    string testSql = "Select count(*) from Student";
+        //    var connection = new SqlConnection(cs);
+        //    connection.Open();
+        //    var command = new SqlCommand(testSql, connection);
+        //    var dataReader = command.ExecuteReader();
+        //    if (dataReader.Read())
+        //    {
+        //        count = dataReader.GetInt32(0);
+        //    }
 
-            dataReader.Close();
-            count++;
-            return count;
-        }
+        //    dataReader.Close();
+        //    count++;
+        //    return count;
+        //}
 
-        public int StudentExists()
+        private int StudentExists()
         {
             int add = 0;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection;
-            SqlCommand command;
-            SqlDataReader dataReader;
             string testSql =
                 "Select StudentID from Student where FirstName = @FIRST and LASTNAME = @LAST and Age = @AGE and TEACHER = @TEACHER and SCHOOL = @SCHOOL";
-            connection = new SqlConnection(cs);
+            var connection = new SqlConnection(cs);
             connection.Open();
             string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
             string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
             int age = int.Parse(HttpUtility.HtmlEncode(AgeTxt.Text));
-            command = new SqlCommand(testSql, connection);
+            var command = new SqlCommand(testSql, connection);
             command.Parameters.AddWithValue("@FIRST", first);
             command.Parameters.AddWithValue("@LAST", last);
             command.Parameters.AddWithValue("@AGE", age);
-            if (TeacherID != 0)
+            if (_teacherID != 0)
             {
-                command.Parameters.AddWithValue("@TEACHER", TeacherID);
-                command.Parameters.AddWithValue("@SCHOOL", School);
+                command.Parameters.AddWithValue("@TEACHER", _teacherID);
+                command.Parameters.AddWithValue("@SCHOOL", _school);
             }
             else
             {
@@ -182,7 +172,7 @@ namespace CyberDayInformationSystem
                 command.Parameters.AddWithValue("@SCHOOL", int.Parse(SchoolDropDown.SelectedValue));
             }
 
-            dataReader = command.ExecuteReader();
+            var dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
                 add = 1;
@@ -201,7 +191,7 @@ namespace CyberDayInformationSystem
             if (FunctionSelection.SelectedValue == "1")
             {
                 SelectedFunction.ActiveViewIndex = 0;
-                if (TeacherID == 0)
+                if (_teacherID == 0)
                 {
                     TeacherList(1);
                     CoordinatorView.ActiveViewIndex = 0;
@@ -213,20 +203,20 @@ namespace CyberDayInformationSystem
                 ClearEditForms();
                 SelectedFunction.ActiveViewIndex = 1;
             }
+
         }
 
         // Searches based on user input to the textbox
         protected void SearchByTagButton_Click(object sender, EventArgs e)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection;
-            connection = new SqlConnection(cs);
+            var connection = new SqlConnection(cs);
             DataTable dt = new DataTable();
             connection.Open();
             string sql =
-                "Select S.STUDENTID, S.FIRSTNAME, S.LASTNAME, S.AGE, (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"TEACHER\"," +
-                " SC.NAME FROM STUDENT S LEFT JOIN TEACHER T on S.TEACHER = T.TEACHERID join SCHOOL SC ON" +
-                " SC.SCHOOLID = S.SCHOOL WHERE";
+                "Select S.STUDENTID, S.FIRSTNAME, S.LASTNAME, S.AGE, S.GENDER, S.PREVIOUSATTENDEE, S.MEALTICKET," +
+                " (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"TEACHER\", SC.NAME FROM STUDENT S LEFT JOIN TEACHER T on S.TEACHER = T.TEACHERID" +
+                " join SCHOOL SC ON SC.SCHOOLID = S.SCHOOL WHERE";
 
             try
             {
@@ -283,21 +273,21 @@ namespace CyberDayInformationSystem
                 connection.Close();
             }
 
+            DeleteStudentBtn.Visible = true;
             EditStudentBtn.Visible = true;
         }
 
         protected void EditStudentBtn_Click(object sender, EventArgs e)
         {
-            IDToEdit = int.Parse(studentModifyDtl.DataKey[0].ToString());
-            Session.Add("StudentID", IDToEdit);
+            _idToEdit = int.Parse(studentModifyDtl.DataKey[0].ToString());
+            Session.Add("StudentID", _idToEdit);
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection;
-            connection = new SqlConnection(cs);
+            var connection = new SqlConnection(cs);
             string sql =
-                "Select S.FIRSTNAME, S.LASTNAME, S.AGE, S.TEACHER FROM STUDENT S" +
+                "Select S.FIRSTNAME, S.LASTNAME, S.AGE, S.GENDER, S.PREVIOUSATTENDEE, S.MEALTICKET, S.TEACHER FROM STUDENT S" +
                 " WHERE STUDENTID = @ID";
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@ID", IDToEdit);
+            command.Parameters.AddWithValue("@ID", _idToEdit);
             connection.Open();
             SqlDataReader dataReader = command.ExecuteReader();
             TeacherList(2);
@@ -307,13 +297,16 @@ namespace CyberDayInformationSystem
                 EditFirstNameTxt.Text = dataReader["FIRSTNAME"].ToString();
                 EditLastNameTxt.Text = dataReader["LASTNAME"].ToString();
                 EditAgeTxt.Text = dataReader["AGE"].ToString();
+                EditGenderList.SelectedValue = dataReader["GENDER"].ToString();
+                EditAttendeeBtn.SelectedValue = dataReader["PREVIOUSATTENDEE"].ToString();
+                EditMealBtn.SelectedValue = dataReader["MEALTICKET"].ToString();
                 SchoolList(int.Parse(EditTeacherDropDown.SelectedValue),2);
             }
 
             SelectedFunction.ActiveViewIndex = 2;
         }
 
-        public void TeacherList(int caller)
+        private void TeacherList(int caller)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
@@ -330,7 +323,7 @@ namespace CyberDayInformationSystem
                 TeacherDropDown.DataBind();
                 TeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
             }
-            if (caller == 2)
+            else
             {
                 EditTeacherDropDown.DataSource = dt;
                 EditTeacherDropDown.DataTextField = "NAME";
@@ -341,7 +334,7 @@ namespace CyberDayInformationSystem
             
         }
 
-        public void SchoolList(int teacherID,int caller)
+        private void SchoolList(int teacherID,int caller)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
@@ -364,7 +357,7 @@ namespace CyberDayInformationSystem
                     SchoolDropDown.SelectedIndex = 0;
                 }
 
-                if (caller == 2)
+                else
                 {
                     EditSchoolDropDown.DataSource = dt;
                     EditSchoolDropDown.DataBind();
@@ -396,11 +389,11 @@ namespace CyberDayInformationSystem
                 }
 
             }
-            else
+            if(FunctionSelection.SelectedValue == "2")
             {
-                if (TeacherDropDown.SelectedIndex == 0)
+                if (EditTeacherDropDown.SelectedIndex == 0)
                 {
-                    SchoolList(0, 2);
+                    EditSchoolDropDown.Items.Clear();
                 }
                 else
                 {
@@ -414,12 +407,11 @@ namespace CyberDayInformationSystem
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection;
-            connection = new SqlConnection(cs);
+            var connection = new SqlConnection(cs);
             connection.Open();
 
             SqlCommand updateStudent = new SqlCommand(
-                "UPDATE Student set firstname = @FIRSTNAME, lastname = @LASTNAME, age = @AGE, " +
+                "UPDATE Student set firstname = @FIRSTNAME, lastname = @LASTNAME, age = @AGE, GENDER = @GENDER, PREVIOUSATTENDEE = @PRE, MEALTICKET = @MEAL, " +
                 "teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID", connection);
             string firstname = HttpUtility.HtmlEncode(EditFirstNameTxt.Text);
             string lastname = HttpUtility.HtmlEncode(EditLastNameTxt.Text);
@@ -433,16 +425,19 @@ namespace CyberDayInformationSystem
                 updateStudent.Parameters.AddWithValue("@FIRSTNAME", firstname);
                 updateStudent.Parameters.AddWithValue("@LASTNAME", lastname);
                 updateStudent.Parameters.AddWithValue("@AGE", age);
+                updateStudent.Parameters.AddWithValue("@GENDER", EditGenderList.SelectedItem.Text);
+                updateStudent.Parameters.AddWithValue("@PRE", EditAttendeeBtn.SelectedItem.Text);
+                updateStudent.Parameters.AddWithValue("@MEAL", EditMealBtn.SelectedItem.Text);
                 updateStudent.Parameters.AddWithValue("@TEACHER", teacher);
                 updateStudent.Parameters.AddWithValue("@SCHOOL", school);
-                updateStudent.Parameters.AddWithValue("@SID", IDToEdit);
+                updateStudent.Parameters.AddWithValue("@SID", _idToEdit);
                 updateStudent.ExecuteNonQuery();
                 ClearEditForms();
                 EditLabelStatus.Text = "Student Updated Successfully!!";
             }
             catch (Exception ex)
             {
-                Response.Write(ex.Message);
+                Console.Out.Write(ex.Message);
             }
             finally
             {
@@ -450,7 +445,7 @@ namespace CyberDayInformationSystem
             }
         }
 
-        public void ClearEditForms()
+        private void ClearEditForms()
         {
             SearchByTagFN.Text = "";
             SearchByTagLN.Text = "";
@@ -459,6 +454,9 @@ namespace CyberDayInformationSystem
             EditAgeTxt.Text = "";
             EditFirstNameTxt.Text = "";
             EditLastNameTxt.Text = "";
+            EditGenderList.ClearSelection();
+            EditMealBtn.ClearSelection();
+            EditAttendeeBtn.ClearSelection();
             EditSizeList.ClearSelection();
             TeacherDropDown.ClearSelection();
             SchoolDropDown.Items.Clear();
@@ -470,6 +468,35 @@ namespace CyberDayInformationSystem
             studentModifyDtl.PageIndex = e.NewPageIndex;
             studentModifyDtl.DataBind();
             SearchByTagButton_Click(sender, e);
+        }
+
+        protected void DeleteStudentBtn_OnClick(object sender, EventArgs e)
+        {
+            
+            int idToDelete= int.Parse(studentModifyDtl.DataKey[0].ToString());
+            var cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            var connection = new SqlConnection(cs);
+            var loginCommand = new SqlCommand();
+            var deleteCommand = new SqlCommand();
+            string user = Session["USER"].ToString();
+            string pass = "FROM THE THING SARA DID";
+            //add function to require password
+            //need sara's help for this
+            connection.Open();
+            loginCommand.Connection = connection;
+            loginCommand.CommandType = CommandType.StoredProcedure;
+            loginCommand.CommandText = "UserLogin";
+            loginCommand.Parameters.AddWithValue("@username", user);
+            var loginResults = loginCommand.ExecuteReader();
+            var passHash = loginResults["PASSWORDHASH"].ToString();
+            if (PasswordHash.ValidatePassword(pass, passHash))
+            {
+                deleteCommand.Connection = connection;
+                deleteCommand.CommandType = CommandType.StoredProcedure;
+                deleteCommand.CommandText = "DeleteStudent";
+                deleteCommand.Parameters.AddWithValue("@STUDENTID", idToDelete);
+                deleteCommand.ExecuteNonQuery();
+            }
         }
     }
 }

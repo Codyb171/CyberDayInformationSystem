@@ -7,13 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
-    public partial class AdminReports : System.Web.UI.Page
+    public partial class AdminReports : Page
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
             {
-                this.MasterPageFile = (Session["Master"].ToString());
+                MasterPageFile = (Session["Master"].ToString());
                 if (Session["TYPE"].ToString() != "Coordinator")
                 {
                     Session.Add("Redirected", 1);
@@ -28,13 +28,14 @@ namespace CyberDayInformationSystem
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptInclude(this.Page, this.GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
+            ScriptManager.RegisterClientScriptInclude(Page, GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
             if (Page.IsPostBack)
             {
                 FillPanel();
             }
         }
-        public void EventList()
+
+        private void EventList()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
@@ -49,7 +50,8 @@ namespace CyberDayInformationSystem
             SelectionDropDown.DataBind();
             SelectionDropDown.Items.Insert(0, new ListItem(String.Empty));
         }
-        public void StaffList()
+
+        private void StaffList()
         {
             SelectionDropDown.Items.Clear();
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
@@ -64,7 +66,8 @@ namespace CyberDayInformationSystem
             SelectionDropDown.DataBind();
             SelectionDropDown.Items.Insert(0, new ListItem(String.Empty, String.Empty));
         }
-        public void StudentList()
+
+        private void StudentList()
         {
             SelectionDropDown.Items.Clear();
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
@@ -80,7 +83,8 @@ namespace CyberDayInformationSystem
             SelectionDropDown.DataBind();
             SelectionDropDown.Items.Insert(0, new ListItem(String.Empty, String.Empty));
         }
-        public void EventGrid()
+
+        private void EventGrid()
         {
             SelectedGridLbl.Text = "Event Data";
             SelectedGridLbl.Visible = true;
@@ -111,7 +115,8 @@ namespace CyberDayInformationSystem
                 }
             }
         }
-        public void StaffGrid()
+
+        private void StaffGrid()
         {
             SelectedGridLbl.Text = "Volunteer Data";
             SelectedGridLbl.Visible = true;
@@ -139,7 +144,8 @@ namespace CyberDayInformationSystem
                 }
             }
         }
-        public void StudentVolunteerData()
+
+        private void StudentVolunteerData()
         {
             TertiaryGridLbl.Text = "Student Volunteer Data";
             TertiaryGridLbl.Visible = true;
@@ -164,7 +170,8 @@ namespace CyberDayInformationSystem
                 TertiaryGridLbl.Visible = false;
             }
         }
-        public void EventStaffGrid()
+
+        private void EventStaffGrid()
         {
             SecondaryGrid1Lbl.Text = "Event Volunteers";
             SecondaryGrid1Lbl.Visible = true;
@@ -195,7 +202,8 @@ namespace CyberDayInformationSystem
                 SecondaryGridView1.DataBind();
             }
         }
-        public void EventRosterGrid()
+
+        private void EventRosterGrid()
         {
             SecondaryGrid2Lbl.Text = "Event Roster";
             SecondaryGrid2Lbl.Visible = true;
@@ -226,12 +234,13 @@ namespace CyberDayInformationSystem
                 SecondaryGridView2.DataBind();
             }
         }
-        public void StudentGridFill(int StudentID)
+
+        private void StudentGridFill(int studentID)
         {
             SelectedGridLbl.Text = "Student Data";
             SelectedGridLbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            string sql = "Select FIRSTNAME, LASTNAME, GENDER, AGE from STUDENT where STUDENTID = " + StudentID;
+            string sql = "Select FIRSTNAME, LASTNAME, GENDER, AGE from STUDENT where STUDENTID = " + studentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -244,12 +253,13 @@ namespace CyberDayInformationSystem
                 SelectedGridView.DataBind();
             }
         }
-        public void StudentNotesInfo(int StudentID)
+
+        private void StudentNotesInfo(int studentID)
         {
             SecondaryGrid1Lbl.Text = "Student Notes";
             SecondaryGrid1Lbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            string sql = "Select NOTES FROM STUDENTNOTES where STUDENT = " + StudentID;
+            string sql = "Select NOTES FROM STUDENTNOTES where STUDENT = " + studentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -273,16 +283,17 @@ namespace CyberDayInformationSystem
                 SecondaryGridView1.DataBind();
             }
         }
-        public void StudentTeacherInfo(int StudentID)
+
+        private void StudentTeacherInfo(int studentID)
         {
             SecondaryGrid2Lbl.Text = "Contact People";
             SecondaryGrid2Lbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             string sql = "Select (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"Name\", FORMAT(T.PHONE,'(###)-###-####') AS \"PHONE NUMBER\", 'Teacher' as Type from TEACHER T join " +
-                " STUDENT S ON T.TEACHERID = S.TEACHER where STUDENTID = " + StudentID +
+                " STUDENT S ON T.TEACHERID = S.TEACHER where STUDENTID = " + studentID +
                 " UNION " +
                 "Select (G.FIRSTNAME + ' ' + G.LASTNAME) AS \"Name\", FORMAT(G.PHONE,'(###)-###-####') AS \"PHONE NUMBER\", 'Guardian' as type from GUARDIAN G join " +
-                "STUDENT S ON G.GUARDIANID = S.GUARDIAN where STUDENTID = " + StudentID;
+                "STUDENT S ON G.GUARDIANID = S.GUARDIAN where STUDENTID = " + studentID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -306,7 +317,8 @@ namespace CyberDayInformationSystem
                 SecondaryGridView2.DataBind();
             }
         }
-        public void EventItinerary()
+
+        private void EventItinerary()
         {
 
             TertiaryGridLbl.Text = "Event Itinerary";
@@ -394,16 +406,17 @@ namespace CyberDayInformationSystem
             }
             if(FunctionList.SelectedValue == "3")
             {
-                int StudentID = int.Parse(SelectionDropDown.SelectedValue);
-                StudentGridFill(StudentID);
-                StudentNotesInfo(StudentID);
-                StudentTeacherInfo(StudentID);
+                int studentID = int.Parse(SelectionDropDown.SelectedValue);
+                StudentGridFill(studentID);
+                StudentNotesInfo(studentID);
+                StudentTeacherInfo(studentID);
                 FillPanel();
             }
 
             PrintBtn.Visible = true;
         }
-        public void EmptyGridView()
+
+        private void EmptyGridView()
         {
             SelectedGridView.DataSource = null;
             SelectedGridView.DataBind();
@@ -424,7 +437,7 @@ namespace CyberDayInformationSystem
             PrintBtn.Visible = false;
         }
 
-        public void FillPanel()
+        private void FillPanel()
         {
             printPanel.Controls.Add(ReportTable);
         }

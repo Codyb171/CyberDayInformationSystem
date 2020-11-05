@@ -11,7 +11,7 @@ namespace CyberDayInformationSystem
 {
 
 
-    public partial class Default
+    public partial class ParentDashboard
     {
     }
 }

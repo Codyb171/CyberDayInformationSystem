@@ -40,9 +40,12 @@
                 </Scripts>
             </asp:ScriptManager>
 
-            <div class ="TopBar">
+            <div class ="TopBar fixed-top">
                 <a href="Default.aspx"><img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
-                <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6"></asp:Label>
+                <div class="float-right">
+                    <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300"></asp:Label>
+                    <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                </div>
             </div>
 
             <div class="Nav">
@@ -50,22 +53,18 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>--%>
-
                 <ul>
                     <li><a href="Default.aspx">Home</a></li>
                     <li><a href="About.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
                 </ul>
-
-                <%--<button type="button" class="btn-main green" runat="server" causesvalidation="false" onserverclick="LogBtn_Click">Login</button>--%>
-                <asp:Button ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
             </div>
 
             <div class="PgTitle">
                 <h1><%: Page.Title %></h1>
             </div>
 
-            <div class="Main">
+            <div class="">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />

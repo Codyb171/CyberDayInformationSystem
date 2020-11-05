@@ -3,17 +3,18 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace CyberDayInformationSystem
 {
-    public partial class EventAdministration : System.Web.UI.Page
+    public partial class EventAdministration : Page
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
             {
-                this.MasterPageFile = (Session["Master"].ToString());
+                MasterPageFile = (Session["Master"].ToString());
                 if (Session["TYPE"].ToString() != "Coordinator")
                 {
                     Session.Add("Redirected", 1);
@@ -26,12 +27,12 @@ namespace CyberDayInformationSystem
                 Response.Redirect("BadSession.aspx");
             }
         }
-        private int EventToModify;
+        private int _eventToModify;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["EDITEVENTID"] != null)
             {
-                EventToModify = int.Parse(Session["EDITEVENTID"].ToString());
+                _eventToModify = int.Parse(Session["EDITEVENTID"].ToString());
             }
         }
 
@@ -197,7 +198,7 @@ namespace CyberDayInformationSystem
 
         public int CheckEvent()
         {
-            int add = 0;
+            int add;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand check = new SqlCommand("Select count(*) from EVENT where EVENTDATE = @DATE AND STARTTIME = @STARTTIME AND ENDTIME = @ENDTIME" +
@@ -234,7 +235,7 @@ namespace CyberDayInformationSystem
 
         protected void ModifyBut_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand update = new SqlCommand("UPDATE FROM EVENTTASKS SET TITLE = @TITLE, STARTTIME = @STARTTIME, ENDTIME = @ENDTIME WHERE TASKID = @VALUE", connection);
 
@@ -258,7 +259,7 @@ namespace CyberDayInformationSystem
 
         protected void DelBut_Click(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand delete = new SqlCommand("DELETE FROM EVENTTASKS WHERE TASKID = @VALUE", connection);
 
