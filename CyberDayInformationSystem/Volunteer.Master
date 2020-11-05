@@ -11,13 +11,13 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-<%--    <link href="Styling-Master.css" rel="stylesheet" type="text/css" />--%>
+    <%--    <link href="Styling-Master.css" rel="stylesheet" type="text/css" />--%>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body id="all">
+<body id="all" class="body">
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -44,14 +44,14 @@
                     <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
                 <div class="float-right">
                     <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300"></asp:Label>
-                    <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                    <asp:Button Cssclass="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
                 </div>
             </div>
             <div class="Nav">
-                <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>--%>
+                </button>
 
                 <ul>
                     <li><a href="Default.aspx">Home</a></li>
@@ -63,10 +63,9 @@
                 <h1><%: Page.Title %></h1>
             </div>
         </div>
-        <div >
-            <br/>
+        <div>
+            <br />
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
-                
             </asp:ContentPlaceHolder>
             <hr />
             <footer>

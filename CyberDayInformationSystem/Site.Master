@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     </head>
 
-    <body>
+    <body class="body">
         <form runat="server">
             <asp:ScriptManager runat="server">
                 <Scripts>
@@ -44,8 +44,8 @@
                     <a href="Default.aspx">
                         <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
                     <div class="float-right">
-                        <asp:Button class="btn-main reg" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true" />
-                        <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                        <asp:Button CssClass="btn-main reg" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true" />
+                        <asp:Button CssClass="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
                     </div>
                 </div>
                 <div class="Nav">
