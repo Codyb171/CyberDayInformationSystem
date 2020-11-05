@@ -36,8 +36,7 @@
                                         <input type="file">
                                     </span>
                                     <a class="publisher-btn" href="#" data-abc="true" data-emojiable="true"><i class="fa fa-smile"></i></a>
-                                    <i class="fa fa-paper-plane"></i>
-                                    <input class="btn btn-sm" type="button" id="sendmessage">
+                                    <a class="btn btn-sm" href='#' type="button" id="sendmessage"><i class="fa fa-paper-plane"></i></a>
                                 </div>
                             </div>
                         </div>
