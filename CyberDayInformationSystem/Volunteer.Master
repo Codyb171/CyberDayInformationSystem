@@ -11,7 +11,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
+<%--    <link href="Styling-Master.css" rel="stylesheet" type="text/css" />--%>
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -63,7 +63,7 @@
                 <h1><%: Page.Title %></h1>
             </div>
         </div>
-        <div style="padding-top: 225px">
+        <div >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
