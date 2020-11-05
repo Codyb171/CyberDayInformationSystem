@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ChatStart.aspx.cs" Inherits="CyberDayInformationSystem.ChatStart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <link href="/lib/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>

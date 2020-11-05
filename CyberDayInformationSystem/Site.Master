@@ -15,6 +15,7 @@
     
         <webopt:BundleReference runat="server" Path="~/Content/css" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href="/lib/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
