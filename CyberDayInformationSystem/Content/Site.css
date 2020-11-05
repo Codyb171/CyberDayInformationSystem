@@ -1,4 +1,7 @@
-﻿
+﻿.body{
+    padding-top: 75px;
+    padding-bottom: 25px;
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

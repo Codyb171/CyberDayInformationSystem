@@ -39,34 +39,33 @@
                     <%--Site Scripts--%>
                 </Scripts>
             </asp:ScriptManager>
-
-            <div class ="TopBar fixed-top">
-                <a href="Default.aspx"><img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
-                <div class="float-right">
-                    <asp:Button class="btn-main reg" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true"/>
-                    <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False"/>
+            <div class="fixed-top">
+                <div class="TopBar">
+                    <a href="Default.aspx">
+                        <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
+                    <div class="float-right">
+                        <asp:Button class="btn-main reg" ID="SignUpBtn" runat="server" Text="Sign Up" OnClick="SignUpBtn_Click" CausesValidation="false" Visible="true" />
+                        <asp:Button class="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                    </div>
                 </div>
-            </div>
-
-            <div class="Nav">
-                <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+                <div class="Nav">
+                    <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>--%>
 
-                <ul>
-                    <li><a href="Default.aspx">Home</a></li>
-                    <li><a href="About.aspx">About</a></li>
-                    <li><a href="Contact.aspx">Contact</a></li>
-                    <li><a href="ChatStart.aspx">Chat</a></li>
-                </ul>
+                    <ul>
+                        <li><a href="Default.aspx">Home</a></li>
+                        <li><a href="About.aspx">About</a></li>
+                        <li><a href="Contact.aspx">Contact</a></li>
+                        <li><a href="ChatStart.aspx">Chat</a></li>
+                    </ul>
+                </div>
+                <div class="PgTitle">
+                    <h1><%: Page.Title %></h1>
+                </div>
             </div>
-
-            <div class="PgTitle">
-                <h1><%: Page.Title %></h1>
-            </div>
-
-            <div class="">
+            <div class="body" style="padding-top: 200px">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
                 <hr />
