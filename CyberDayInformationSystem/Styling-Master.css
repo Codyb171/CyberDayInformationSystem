@@ -130,7 +130,7 @@ img {
 }
 
 .padding {
-    padding: 3rem !important
+    padding: 3rem;
 }
 
 body {
@@ -261,7 +261,7 @@ h4.card-title {
 }
 
 .media-chat .media-body p.meta {
-    background-color: transparent !important;
+    background-color: transparent;
     padding: 0;
     opacity: .8
 }
@@ -418,7 +418,7 @@ textarea {
 }
 
 .text-info {
-    color: #48b0f7 !important
+    color: #48b0f7;
 }
 
 .wrapper {
