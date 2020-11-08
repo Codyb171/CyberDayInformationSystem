@@ -13,6 +13,7 @@
                     <asp:ListItem Value="1">Event Data</asp:ListItem>
                     <asp:ListItem Value="2">Staff Data</asp:ListItem>
                     <asp:ListItem Value="3">Attendee Data</asp:ListItem>
+                    <asp:ListItem Value="5">Heat Map</asp:ListItem>
                 </asp:RadioButtonList>
             </asp:TableCell>
         </asp:TableRow>
