@@ -90,10 +90,8 @@ img {
     background-color: #3C738B;  
 }
 
-.blue {
-    background-color: #3C738B;
-    color: #FFFFFF;
-    border-color: white;
+.reg {
+    background-color: #595959;
 }
 
 .container-fluid {
@@ -440,7 +438,4 @@ i.fa-smile {
 
 .btn-sm {
     position: absolute;
-}
-.reg {
-    background-color: #595959;
 }
