@@ -41,6 +41,7 @@ p {
 .PgTitle {
     background-color: #F4EFE1;
     text-align: left;
+    margin-top: -20px;
 }
 
 .TopBar {

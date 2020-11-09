@@ -40,7 +40,7 @@
         </asp:ScriptManager>
         <div class="fixed-top">
             <div class="TopBar">
-                <a href="Default.aspx">
+                <a href="#">
                     <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
                 <div class="float-right">
                     <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300px"></asp:Label>
@@ -53,7 +53,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <ul>
-                    <li><a href="Default.aspx">Home</a></li>
+                    <li><a href="TeacherDashboard.aspx">Teacher Dashboard</a></li>
                     <li><a href="StudentAdministration.aspx">Student</a></li>
                     <li><a href="TeacherReports.aspx">Reports</a></li>
                 </ul>

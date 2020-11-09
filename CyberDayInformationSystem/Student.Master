@@ -41,7 +41,7 @@
         </asp:ScriptManager>
         <div class="fixed-top">
             <div class="TopBar">
-                <a href="Default.aspx">
+                <a href="#">
                     <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
                 <div class="float-right">
                     <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300"></asp:Label>
