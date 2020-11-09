@@ -70,9 +70,9 @@
                     <li><a href="UserCreation.aspx">Create Users</a></li>
                 </ul>
             </div>
-
-            <asp:Label ID="lblPgTitle" CssClass="newMargin" runat="server" ><h1><%: Page.Title %></h1></asp:Label>
-
+            <div class="PgTitle">
+                <asp:Label ID="lblPgTitle" runat="server" Text="" ><h1><%=Page.Title %></h1></asp:Label>
+            </div>
         </div>
         <div >
             <br/>

@@ -7,6 +7,7 @@ namespace CyberDayInformationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Session["User"] != null)
             {
                 string user = Session["NAME"].ToString();
