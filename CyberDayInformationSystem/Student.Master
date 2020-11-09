@@ -12,9 +12,9 @@
         </asp:PlaceHolder>
 
         <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
-
         <webopt:BundleReference runat="server" Path="~/Content/css" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
 
     </head>
 
