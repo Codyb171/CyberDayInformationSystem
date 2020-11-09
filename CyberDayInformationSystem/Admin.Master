@@ -68,6 +68,7 @@
                     <li><a href="VolunteerAdministration.aspx">Volunteers</a></li>
                     <li><a href="AdminReports.aspx">Reports</a></li>
                     <li><a href="UserCreation.aspx">Create Users</a></li>
+                    <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>
             </div>
             <div class="PgTitle">

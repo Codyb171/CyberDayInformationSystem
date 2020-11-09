@@ -4,7 +4,7 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <asp:HiddenField ID="hiddenName" runat="server" Value="Jimmy"/>
+        <asp:HiddenField ID="hiddenName" runat="server" Value=""/>
         <div class="page-content page-container" id="page-content">
             <div class="padding">
                 <div class="row container d-flex justify-content-center">
