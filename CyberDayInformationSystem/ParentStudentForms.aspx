@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="Permission Forms" Language="C#" MasterPageFile="~/Parent.Master" AutoEventWireup="true" CodeBehind="ParentStudentForms.aspx.cs" Inherits="CyberDayInformationSystem.ParentStudentForms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h3>Photo Release</h3>
+   <div class="PrintPanel"> 
+   <h3>Photo Release</h3>
     <p>I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included
         in whole or in part, or reproductions thereof in color or otherwise for any lawful purpose whatsoever, including but not limited to use in any CyberDay publication or on the
         CyberDay websites, without payment or any other consideration.</p>
-    <p>I hereby waive any right that I may have ot inspect and/or approve the finished product or the copy that may be used in connection therewith, wherein My Child's likeness
+    <p>I hereby waive any right that I may have to inspect and/or approve the finished product or the copy that may be used in connection therewith, wherein My Child's likeness
         appears, or the use to which it may be applied.</p>
     <p>I hereby	release, discharge,	and	agree to indemnify and hold	harmless CyberDay and their agents from	all	claims,	demands, and causes	of action that I or	My Child have or may
         have by reason	of	this authorization or use	of	My	Child’s	photographic portraits,	pictures, digital images or videotapes,	including any liability	by	virtue
@@ -21,7 +22,7 @@
     <p>CyberDay would like to follow our student participant's academic progress and be able to reach out to them to provide guidance and opportunities when we are able.</p>
     <asp:RadioButtonList ID="retainEmail" runat="server" Font-Size="16px" CausesValidation="false">
         <asp:ListItem Value="1">By checking this box, I authorize CyberDay to retain my student's email address for the purposes of tracking their
-        academic progress and informing them of potential opportunties.</asp:ListItem>
+        academic progress and informing them of potential opportunities.</asp:ListItem>
         <asp:ListItem Value="2">By checking this box, I DO NOT authorize CyberDay to retain my student's email address.</asp:ListItem>
     </asp:RadioButtonList>
     <br />
@@ -64,4 +65,5 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    </div>
 </asp:Content>
