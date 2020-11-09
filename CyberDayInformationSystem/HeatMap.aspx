@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Heat Map" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="HeatMap.aspx.cs" Inherits="CyberDayInformationSystem.HeatMap" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="heatMap" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="AdminReports-Styling.css" rel="stylesheet" type="text/css" />
     <h3 class="text-center">Historic Data</h3>

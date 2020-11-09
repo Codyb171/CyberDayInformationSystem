@@ -44,6 +44,20 @@ p {
     margin-top: -20px;
 }
 
+.NewMargin {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #F4EFE1;
+    text-align: left;
+}
+
+.NewMargin #heatMap {
+    display: none;
+}
+
 .TopBar {
     background-color: #450084;
 }

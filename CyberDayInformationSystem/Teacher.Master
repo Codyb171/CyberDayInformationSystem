@@ -48,10 +48,10 @@
                 </div>
             </div>
             <div class="Nav">
-                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+                <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button>--%>
                 <ul>
                     <li><a href="TeacherDashboard.aspx">Teacher Dashboard</a></li>
                     <li><a href="StudentAdministration.aspx">Student</a></li>

@@ -30,7 +30,9 @@ namespace CyberDayInformationSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var pgTitle = this.Master.FindControl("lblPgTitle") as Label;
 
+            pgTitle.Visible = false;
         }
     }
 }
