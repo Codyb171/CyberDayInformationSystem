@@ -4,6 +4,7 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
+        <asp:HiddenField ID="hiddenName" runat="server" Value="Jimmy"/>
         <div class="page-content page-container" id="page-content">
             <div class="padding">
                 <div class="row container d-flex justify-content-center">
@@ -15,10 +16,8 @@
                             <div class="ps-container ps-theme-default ps-active-y" id="chat-content" style="overflow-y: scroll !important; height: 400px !important;"></div>
                             <div class="media media-chat">
                                 <div class="media-body">
-                                    <input type="hidden" id="displayname" />
                                     <ul id="discussion">
                                     </ul>
-
                                     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                                         <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
                                     </div>
@@ -35,7 +34,7 @@
                                         <input type="file">
                                     </span>
                                     <a class="publisher-btn" href="#" data-abc="true" data-emojiable="true"><i class="fa fa-smile"></i></a>
-                                    <a class="btn btn-sm" href='#' type="button" id="sendmessage"><i class="fa fa-paper-plane"></i></a>
+                                    <a class="btn btn-sm" href="#" type="button" id="sendmessage"><i class="fa fa-paper-plane"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -53,15 +52,15 @@
             var text = document.querySelector('.publisher-input');
             var picker = new EmojiButton({
                 position: 'right-start'
-            })
+            });
 
             picker.on('emoji', function (emoji) {
                 text.value += emoji;
-            })
+            });
 
             input.addEventListener('click', function () {
                 picker.pickerVisible ? picker.hidePicker() : picker.showPicker(text);
-            })
+            });
 
             $(function () {
                 var chat = $.connection.chatHub;
@@ -72,11 +71,11 @@
                     $("div.ps-container").append('<li><strong>' + encodedName
                         + '</strong>:&nbsp;&nbsp;' + encodedMessage + '</li>');
                 };
-                $('#displayname').val(prompt('Enter your chat name:', ''));
+                //$('#displayname').val(prompt('Enter your chat name:', ''));
                 $('#message').focus();
                 $.connection.hub.start().done(function () {
                     $('#sendmessage').click(function () {
-                        chat.server.send($('#displayname').val(), $('#message').val());
+                        chat.server.send($('#MainContent_hiddenName').val(), $('#message').val());
                         $('#message').val('').focus();
                     });
                 });

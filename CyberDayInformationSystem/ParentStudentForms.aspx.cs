@@ -34,7 +34,7 @@ namespace CyberDayInformationSystem
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            string[] formStrings = new string[] {};
         }
     }
 }

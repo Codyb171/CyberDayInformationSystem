@@ -11,7 +11,10 @@ namespace CyberDayInformationSystem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["NAME"] != null)
+            {
+                hiddenName.Value = Session["NAME"].ToString();
+            }
         }
     }
 }
