@@ -40,7 +40,7 @@
         </asp:ScriptManager>
         <div class="fixed-top">
             <div class="TopBar">
-                <a href="Default.aspx">
+                <a href="#">
                     <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
                 <div class="float-right">
                     <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300px"></asp:Label>
@@ -70,9 +70,9 @@
                     <li><a href="UserCreation.aspx">Create Users</a></li>
                 </ul>
             </div>
-            <div class="PgTitle">
-                <h1><%: Page.Title %></h1>
-            </div>
+
+            <asp:Label ID="lblPgTitle" CssClass="newMargin" runat="server" ><h1><%: Page.Title %></h1></asp:Label>
+
         </div>
         <div >
             <br/>
