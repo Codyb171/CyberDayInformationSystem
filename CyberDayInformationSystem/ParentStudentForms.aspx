@@ -49,7 +49,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-        <asp:TableRow>
+<%--        <asp:TableRow>
             <asp:TableCell ColumnSpan="2" HorizontalAlign="Center">
                 <asp:Label ID="lblSignedDate" runat="server" Text="Today's Date: " Font-Size="16px"></asp:Label>
             </asp:TableCell>
@@ -58,12 +58,13 @@
                 <asp:RequiredFieldValidator ID="DateValid" runat="server" ErrorMessage="Date Required" ControlToValidate="txtSignedDate" ForeColor="Red" Font-Size="24px">
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
-        </asp:TableRow>
+        </asp:TableRow>--%>
         <asp:TableRow>
             <asp:TableCell ColumnSpan="4" HorizontalAlign="Center">
-                <asp:Button ID="btnSubmit" Cssclass="btn-main blue" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                <asp:Button ID="btnSubmit" CssClass="btn-main blue" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
     </div>
+    <asp:HiddenField ID="HiddenString" runat="server" Visible="True"  />  
 </asp:Content>
