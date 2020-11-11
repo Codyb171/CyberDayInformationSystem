@@ -393,7 +393,7 @@ namespace CyberDayInformationSystem
             string end = HttpUtility.HtmlEncode(NewEndTxt.Text);
 
             connection.Open();
-            update.Parameters.AddWithValue("@TITLE", date);
+            update.Parameters.AddWithValue("@DATE", date);
             update.Parameters.AddWithValue("@STARTTIME", start);
             update.Parameters.AddWithValue("@ENDTIME", end);
             update.Parameters.AddWithValue("@VALUE", value);
