@@ -466,7 +466,7 @@ namespace CyberDayInformationSystem
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE TASK = @VALUE", connection);
             SqlCommand delete2 = new SqlCommand("DELETE FROM EVENTTASKS WHERE TASKID = @TASKID", connection);
-            string select = "SELECT(EVENTTASKS.TITLE + ' - ' + EVENT.EVENTDATE) AS eventtask, (EVENTTASKS.TASKID) AS TaskID FROM EVENTTASKS, EVENT";           
+            string select = "SELECT (EVENTTASKS.TITLE + ' - ' + EVENT.EVENTDATE) AS eventtask, (EVENTTASKS.TASKID) AS TaskID FROM EVENTTASKS, EVENT";           
 
             int value = int.Parse(TaskDelDDL.SelectedValue);
             int taskID = int.Parse(TaskDelDDL.SelectedValue);
