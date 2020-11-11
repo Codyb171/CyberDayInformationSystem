@@ -476,27 +476,27 @@ namespace CyberDayInformationSystem
             int idToDelete= int.Parse(studentModifyDtl.DataKey[0].ToString());
             var cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
             var connection = new SqlConnection(cs);
-            var loginCommand = new SqlCommand();
+            //var loginCommand = new SqlCommand();
             var deleteCommand = new SqlCommand();
-            string user = Session["USER"].ToString();
-            string pass = "FROM THE THING SARA DID";
-            //add function to require password
-            //need sara's help for this
-            connection.Open();
-            loginCommand.Connection = connection;
-            loginCommand.CommandType = CommandType.StoredProcedure;
-            loginCommand.CommandText = "UserLogin";
-            loginCommand.Parameters.AddWithValue("@username", user);
-            var loginResults = loginCommand.ExecuteReader();
-            var passHash = loginResults["PASSWORDHASH"].ToString();
-            if (PasswordHash.ValidatePassword(pass, passHash))
-            {
+            //string user = Session["USER"].ToString();
+            //string pass = "FROM THE THING SARA DID";
+            ////add function to require password
+            ////need sara's help for this
+            //connection.Open();
+            //loginCommand.Connection = connection;
+            //loginCommand.CommandType = CommandType.StoredProcedure;
+            //loginCommand.CommandText = "UserLogin";
+            //loginCommand.Parameters.AddWithValue("@username", user);
+            //var loginResults = loginCommand.ExecuteReader();
+            //var passHash = loginResults["PASSWORDHASH"].ToString();
+            //if (PasswordHash.ValidatePassword(pass, passHash))
+            //{
                 deleteCommand.Connection = connection;
                 deleteCommand.CommandType = CommandType.StoredProcedure;
                 deleteCommand.CommandText = "DeleteStudent";
                 deleteCommand.Parameters.AddWithValue("@STUDENTID", idToDelete);
                 deleteCommand.ExecuteNonQuery();
-            }
+            //}
         }
     }
 }
