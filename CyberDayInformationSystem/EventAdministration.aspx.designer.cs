@@ -411,6 +411,15 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Button ModifyBut;
 
         /// <summary>
+        /// ModEventValSum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ModEventValSum;
+
+        /// <summary>
         /// DeleteView control.
         /// </summary>
         /// <remarks>
@@ -769,6 +778,15 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ModTaskBut;
+
+        /// <summary>
+        /// ModTaskValSum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ModTaskValSum;
 
         /// <summary>
         /// DelTaskView control.
