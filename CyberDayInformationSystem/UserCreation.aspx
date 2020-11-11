@@ -77,8 +77,21 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-
-    <asp:TableRow runat="server" HorizontalAlign="Center">
+        <asp:TableRow runat="server" HorizontalAlign="Center">
+            <asp:TableCell ColumnSpan="1">
+                <asp:Label ID="MealLbl" runat="server" Text="Meal Voucher?"></asp:Label>
+            </asp:TableCell>
+            <asp:TableCell ColumnSpan="2">
+                <asp:RadioButtonList ID="MealBtn" runat="server">
+                    <asp:ListItem>Yes</asp:ListItem>
+                    <asp:ListItem>No</asp:ListItem>
+                </asp:RadioButtonList>
+            </asp:TableCell>
+            <asp:TableCell ColumnSpan="1">
+                <asp:RequiredFieldValidator ID="MealValid" runat="server" ErrorMessage="Required Field" ForeColor="Red" ControlToValidate="MealBtn"></asp:RequiredFieldValidator>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <asp:MultiView ID="SelectedView" runat="server">
                     <asp:View ID="TeacherView" runat="server">

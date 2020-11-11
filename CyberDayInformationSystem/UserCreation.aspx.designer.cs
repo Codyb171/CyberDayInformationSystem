@@ -159,6 +159,33 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailValid;
 
         /// <summary>
+        /// MealLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MealLbl;
+
+        /// <summary>
+        /// MealBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList MealBtn;
+
+        /// <summary>
+        /// MealValid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator MealValid;
+
+        /// <summary>
         /// SelectedView control.
         /// </summary>
         /// <remarks>
