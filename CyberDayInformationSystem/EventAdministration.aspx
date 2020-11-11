@@ -108,7 +108,7 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:ValidationSummary ID="EventCreateValid" runat="server" DisplayMode="BulletList" Enabled="True" />
+                                    <asp:ValidationSummary ID="EventCreateValid" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red"/>
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>
@@ -141,8 +141,8 @@
                                         <asp:TextBox ID="NewTitleTxt" runat="server"></asp:TextBox>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:RequiredFieldValidator ID="NewTitleReq" runat="server" ErrorMessage="A date is required" ForeColor="Red" ControlToValidate="NewTitleTxt"></asp:RequiredFieldValidator>
-                                        <asp:CustomValidator ID="NewTitleValid" runat="server" ErrorMessage="New date must be different from old date" ForeColor="Red" ControlToValidate="NewTitleTxt" OnServerValidate="NewTitleValid_ServerValidate"></asp:CustomValidator>
+                                        <asp:RequiredFieldValidator ID="NewTitleReq" runat="server" ErrorMessage="A date is required" ForeColor="Red" ControlToValidate="NewTitleTxt" Display="None"></asp:RequiredFieldValidator>
+                                        <asp:CustomValidator ID="NewTitleValid" runat="server" ErrorMessage="New date must be different from old date" ForeColor="Red" ControlToValidate="NewTitleTxt" OnServerValidate="NewTitleValid_ServerValidate" Display="None"></asp:CustomValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -162,10 +162,10 @@
                                         <asp:TextBox ID="NewStartTxt" runat="server"></asp:TextBox>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:RequiredFieldValidator ID="NewStartReq" runat="server" ErrorMessage="A start time is required" ForeColor="Red" ControlToValidate="NewStartTxt"></asp:RequiredFieldValidator>
-                                        <asp:CustomValidator ID="NewStartValid" runat="server" ErrorMessage="New start time must be different from old start time" ForeColor="Red" ControlToValidate="NewStartTxt" OnServerValidate="NewStartValid_ServerValidate"></asp:CustomValidator>
+                                        <asp:RequiredFieldValidator ID="NewStartReq" runat="server" ErrorMessage="A start time is required" ForeColor="Red" ControlToValidate="NewStartTxt" Display="None"></asp:RequiredFieldValidator>
+                                        <asp:CustomValidator ID="NewStartValid" runat="server" ErrorMessage="New start time must be different from old start time" ForeColor="Red" ControlToValidate="NewStartTxt" OnServerValidate="NewStartValid_ServerValidate" Display="None"></asp:CustomValidator>
                                         <asp:RegularExpressionValidator ID="NewStartExp" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="NewStartTxt"
-                                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$"></asp:RegularExpressionValidator>
+                                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None"></asp:RegularExpressionValidator>
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -186,18 +186,23 @@
                                         <asp:TextBox ID="NewEndTxt" runat="server"></asp:TextBox>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
-                                        <asp:RequiredFieldValidator ID="NewEndReq" runat="server" ErrorMessage="An end time is required" ForeColor="Red" ControlToValidate="NewEndTxt"></asp:RequiredFieldValidator>
-                                        <asp:CustomValidator ID="NewEndValid" runat="server" ErrorMessage="New end time must be different from old end time" ForeColor="Red" ControlToValidate="NewEndTxt" OnServerValidate="NewEndValid_ServerValidate"></asp:CustomValidator>
+                                        <asp:RequiredFieldValidator ID="NewEndReq" runat="server" ErrorMessage="An end time is required" ForeColor="Red" ControlToValidate="NewEndTxt" Display="None"></asp:RequiredFieldValidator>
+                                        <asp:CustomValidator ID="NewEndValid" runat="server" ErrorMessage="New end time must be different from old end time" ForeColor="Red" ControlToValidate="NewEndTxt" OnServerValidate="NewEndValid_ServerValidate" Display="None"></asp:CustomValidator>
                                         <asp:RegularExpressionValidator ID="NewEndExp" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="NewEndTxt"
-                                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$"></asp:RegularExpressionValidator>
+                                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None"></asp:RegularExpressionValidator>
                                         <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="The end time must be greater than the start time." ForeColor="Red" ControlToValidate="NewEndTxt" OnServerValidate="TimeRangeValid_ServerValidate"></asp:CustomValidator>--%>
                                     </asp:TableCell>
-                                </asp:TableRow>
+                                </asp:TableRow>                                
                             </asp:Table>
 
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
                                     <asp:Button ID="ModifyBut" runat="server" Text="Modify" CausesValidation="true" OnClick="ModifyBut_Click" Visible="false" />
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow runat="server" HorizontalAlign="Center">
+                                <asp:TableCell ColumnSpan="4">
+                                    <asp:ValidationSummary ID="ModEventValSum" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red"/>
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>
@@ -387,7 +392,7 @@
                                         <asp:RequiredFieldValidator ID="TaskNewEndReq" runat="server" ErrorMessage="An end time is required" ForeColor="Red" ControlToValidate="TaskNewEnd" Display="None"></asp:RequiredFieldValidator>
                                         <asp:CustomValidator ID="CustomValidator3" runat="server" ErrorMessage="New end time must be different from old end time" ForeColor="Red" ControlToValidate="TaskNewEnd" OnServerValidate="NewEndValid_ServerValidate" Display="None"></asp:CustomValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="NewEndTxt"
-                                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$"></asp:RegularExpressionValidator>
+                                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None"></asp:RegularExpressionValidator>
                                         <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="The end time must be greater than the start time." ForeColor="Red" ControlToValidate="NewEndTxt" OnServerValidate="TimeRangeValid_ServerValidate"></asp:CustomValidator>--%>
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -396,6 +401,11 @@
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
                                     <asp:Button ID="ModTaskBut" runat="server" Text="Modify" CausesValidation="true" Visible="false" OnClick="ModtaskBut_Click"/>
+                                </asp:TableCell>
+                            </asp:TableRow>
+                            <asp:TableRow runat="server" HorizontalAlign="Center">
+                                <asp:TableCell ColumnSpan="4">
+                                    <asp:ValidationSummary ID="ModTaskValSum" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red"/>
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>

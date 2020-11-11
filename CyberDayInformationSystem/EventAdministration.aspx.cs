@@ -10,23 +10,24 @@ namespace CyberDayInformationSystem
 {
     public partial class EventAdministration : Page
     {
-        //void Page_PreInit(Object sender, EventArgs e)
-        //{
-        //    if (Session["TYPE"] != null)
-        //    {
-        //        MasterPageFile = (Session["Master"].ToString());
-        //        if (Session["TYPE"].ToString() != "Coordinator")
-        //        {
-        //            Session.Add("Redirected", 1);
-        //            Response.Redirect("BadSession.aspx");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session.Add("Redirected", 0);
-        //        Response.Redirect("BadSession.aspx");
-        //    }
-        //}
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
+        }
+
         private int _eventToModify;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -352,7 +353,7 @@ namespace CyberDayInformationSystem
             connection.Close();
             if (add > 0)
             {
-                NotifLBL.Text = " A task already exists with this data";
+                NotifLBL.Text = "A task already exists with this data";
                 NotifLBL.Visible = true;
             }
             return add;
@@ -433,7 +434,8 @@ namespace CyberDayInformationSystem
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE EVENT = @VALUE", connection);
-            SqlCommand delete2 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);           
+            SqlCommand delete2 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
+            string select = "SELECT EVENTDATE, EVENTID FROM EVENT";            
 
             int value = int.Parse(EventDelDDL.SelectedValue);
             int eventID = int.Parse(EventDelDDL.SelectedValue);
@@ -443,6 +445,14 @@ namespace CyberDayInformationSystem
             delete.ExecuteNonQuery();
             delete2.Parameters.AddWithValue("@EVENTID", eventID);
             delete2.ExecuteNonQuery();
+            SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            EventDelDDL.DataSource = dt;
+            EventDelDDL.DataBind();
+            EventDelDDL.DataTextField = "EVENTDATE";
+            EventDelDDL.DataValueField = "EVENTID";
+            EventDelDDL.DataBind();
             connection.Close();
 
             NotifLBL.Text = "Your event has successfully been deleted!";
@@ -456,6 +466,7 @@ namespace CyberDayInformationSystem
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE TASK = @VALUE", connection);
             SqlCommand delete2 = new SqlCommand("DELETE FROM EVENTTASKS WHERE TASKID = @TASKID", connection);
+            string select = "SELECT(EVENTTASKS.TITLE + ' - ' + EVENT.EVENTDATE) AS eventtask, (EVENTTASKS.TASKID) AS TaskID FROM EVENTTASKS, EVENT";           
 
             int value = int.Parse(TaskDelDDL.SelectedValue);
             int taskID = int.Parse(TaskDelDDL.SelectedValue);
@@ -465,6 +476,14 @@ namespace CyberDayInformationSystem
             delete.ExecuteNonQuery();
             delete2.Parameters.AddWithValue("@TASKID", taskID);
             delete2.ExecuteNonQuery();
+            SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            TaskDelDDL.DataSource = dt;
+            TaskDelDDL.DataBind();
+            TaskDelDDL.DataTextField = "eventtask";
+            TaskDelDDL.DataValueField = "TaskID";
+            TaskDelDDL.DataBind();
             connection.Close();
 
             NotifLBL.Text = "Your task has successfully been deleted!";
