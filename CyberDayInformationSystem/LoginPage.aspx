@@ -29,10 +29,10 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="2">
-                <asp:Button class="btn btn-primary" ID="NewUserBtn" runat="server" Text="New User?" OnClick="NewUserBtn_Click" CausesValidation="false"/>
+                <asp:Button class="btn-main reg" ID="NewUserBtn" runat="server" Text="New User?" OnClick="NewUserBtn_Click" CausesValidation="false"/>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="2">
-                <asp:Button class="btn btn-light" ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
+                <asp:Button class="btn-main reg" ID="LoginBtn" runat="server" Text="Login" OnClick="LoginBtn_Click"/>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">

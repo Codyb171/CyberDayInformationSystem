@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.Web.UI.WebControls;
-
 namespace CyberDayInformationSystem
 {
 
@@ -23,7 +21,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label StatusLbl;
+        protected global::System.Web.UI.WebControls.Label StatusLbl;
 
         /// <summary>
         /// AltLbl control.
@@ -32,7 +30,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Label AltLbl;
+        protected global::System.Web.UI.WebControls.Label AltLbl;
 
         /// <summary>
         /// RedirectBtn control.
@@ -41,6 +39,6 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected Button RedirectBtn;
+        protected global::System.Web.UI.WebControls.Button RedirectBtn;
     }
 }

@@ -412,6 +412,10 @@ namespace CyberDayInformationSystem
                 StudentTeacherInfo(studentID);
                 FillPanel();
             }
+            if(FunctionList.SelectedValue == "5")
+            {
+                Response.Redirect("HeatMap.aspx");
+            }
 
             PrintBtn.Visible = true;
         }
