@@ -48,7 +48,7 @@
                     <img src="/Content/Images/CDLogo.jpg" alt="CyberDay" /></a>
                 <div class="float-right">
                     <asp:Label ID="UserLoggedIn" runat="server" Text="" ForeColor="#D6D6D6" Width="300px"></asp:Label>
-                    <asp:Button Cssclass="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
+                    <asp:Button CssClass="btn-main reg" ID="LogBtn" runat="server" Text="Login" OnClick="LogBtn_Click" CausesValidation="False" />
                 </div>
             </div>
             <div class="Nav">

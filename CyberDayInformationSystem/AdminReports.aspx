@@ -9,12 +9,51 @@
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
                 <h2>Select a report type:</h2>
-                <asp:RadioButtonList ID="FunctionList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionList_SelectedIndexChanged">
+                <asp:DropDownList ID="FunctionList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionList_SelectedIndexChanged">
+                    <asp:ListItem Value=""></asp:ListItem>
                     <asp:ListItem Value="1">Event Data</asp:ListItem>
                     <asp:ListItem Value="2">Staff Data</asp:ListItem>
                     <asp:ListItem Value="3">Attendee Data</asp:ListItem>
                     <asp:ListItem Value="5">Heat Map</asp:ListItem>
-                </asp:RadioButtonList>
+                </asp:DropDownList>
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow runat="server" HorizontalAlign="Center">
+            <asp:TableCell runat="server">
+                <asp:MultiView runat="server" ID="ReportSearch">
+                    <asp:View runat="server" ID="DateSearch">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                            <asp:TableCell runat="server">
+                                <asp:Label runat="server" ID="DateLbl" Text="Event Date: " ></asp:Label>
+                                <asp:TextBox runat="server" ID="DateTxt" TextMode="Date"></asp:TextBox>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server" HorizontalAlign="Center" >
+                            <asp:TableCell runat="server">
+                                <asp:Button runat="server" ID="SearchDate" CssClass="btn-main reg" Text="Search" OnClick="SearchDate_OnClick" CausesValidation="False"/>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:View>
+                    <asp:View runat="server" ID="NameSearch">
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                            <asp:TableCell runat="server">
+                                <asp:Label runat="server" ID="FirstNameLbl" Text="First Name: "></asp:Label>
+                                <asp:TextBox runat="server" ID="FirstNameTxt"></asp:TextBox>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                            <asp:TableCell runat="server">
+                                <asp:Label runat="server" ID="LastNameLbl" Text="Last  Name: "></asp:Label>
+                                <asp:TextBox runat="server" ID="LastNameTxt"></asp:TextBox>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server" HorizontalAlign="Center" >
+                            <asp:TableCell runat="server">
+                                <asp:Button runat="server" ID="SearchNameBtn" Text="Search" CssClass="btn-main reg" OnClick="SearchNameBtn_OnClick" CausesValidation="False"/>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:View>
+                </asp:MultiView>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -31,7 +70,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button class="btn btn-primary" ID="RunBtn" runat="server" Text="Run Report?" OnClick="RunBtn_Click" />
+                <asp:Button CssClass="btn-main reg" ID="RunBtn" runat="server" Text="Run Report?" OnClick="RunBtn_Click" Visible="False"/>
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -92,7 +131,12 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button class="btn btn-primary" ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();" />
+                <asp:Button CssClass="btn-main reg" ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();" />
+            </asp:TableCell>
+        </asp:TableRow>
+        <asp:TableRow runat="server" HorizontalAlign="Center">
+            <asp:TableCell runat="server">
+                <asp:Button ID="clearBtn" CssClass="btn-main reg" runat="server" Text="Start Over?" OnClick="clearBtn_OnClick" Visible="False"/>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

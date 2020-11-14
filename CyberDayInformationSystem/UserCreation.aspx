@@ -34,7 +34,7 @@
                 <asp:Label ID="FirstNameLbl" runat="server" Text="First Name: " Width="200"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="FirstNameTxt" runat="server"></asp:TextBox>
+                <asp:TextBox ID="FirstNameTxt" runat="server" AutoCompleteType="FirstName"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:RequiredFieldValidator ID="FirstNameValid" runat="server" ErrorMessage="First Name Required" ControlToValidate="FirstNameTxt" ForeColor="Red">
@@ -46,7 +46,7 @@
                 <asp:Label ID="LastNameLbl" runat="server" Text="Last Name: " Width="200"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="LastNameTxt" runat="server"></asp:TextBox>
+                <asp:TextBox ID="LastNameTxt" runat="server" AutoCompleteType="LastName"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:RequiredFieldValidator ID="LastNameValid" runat="server" ErrorMessage="Last Name Required" ControlToValidate="LastNameTxt" ForeColor="Red">
@@ -58,7 +58,7 @@
                 <asp:Label ID="PhoneLbl" runat="server" Text="Phone Number:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="PhoneTxt" runat="server"></asp:TextBox>
+                <asp:TextBox ID="PhoneTxt" runat="server" TextMode="Phone" AutoCompleteType="HomePhone"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:RequiredFieldValidator ID="PhoneValid" runat="server" ErrorMessage="Please enter a phone number" ControlToValidate="PhoneTxt" ForeColor="Red">
@@ -70,7 +70,7 @@
                 <asp:Label ID="EmailLbl" runat="server" Text="Email Address:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="EmailTxt" runat="server"></asp:TextBox>
+                <asp:TextBox ID="EmailTxt" runat="server" TextMode="Email" AutoCompleteType="Email"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:RequiredFieldValidator ID="EmailValid" runat="server" ErrorMessage="Please enter an Email Address" ControlToValidate="EmailTxt" ForeColor="Red">
@@ -82,10 +82,10 @@
                 <asp:Label ID="MealLbl" runat="server" Text="Meal Voucher?"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="2">
-                <asp:RadioButtonList ID="MealBtn" runat="server">
+                <asp:DropDownList ID="MealBtn" runat="server">
                     <asp:ListItem>Yes</asp:ListItem>
                     <asp:ListItem>No</asp:ListItem>
-                </asp:RadioButtonList>
+                </asp:DropDownList>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="1">
                 <asp:RequiredFieldValidator ID="MealValid" runat="server" ErrorMessage="Required Field" ForeColor="Red" ControlToValidate="MealBtn"></asp:RequiredFieldValidator>

@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -39,16 +40,34 @@ namespace CyberDayInformationSystem
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            string command = "select EVENTID, EVENTDATE from EVENT";
+            string command = "select EVENTID, EVENTDATE from EVENT ";
+            if (DateTxt.Text != String.Empty)
+            {
+                command += "where EVENTDATE = \'" + HttpUtility.HtmlEncode(DateTxt.Text) + "\'";
+            }
             connection.Open();
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
-            SelectionDropDown.DataSource = dt;
-            SelectionDropDown.DataTextField = "EVENTDATE";
-            SelectionDropDown.DataValueField = "EVENTID";
-            SelectionDropDown.DataBind();
-            SelectionDropDown.Items.Insert(0, new ListItem(String.Empty));
+            if (dt.Rows.Count > 0)
+            {
+                SelectionDropDown.DataSource = dt;
+                SelectionDropDown.DataTextField = "EVENTDATE";
+                SelectionDropDown.DataValueField = "EVENTID";
+                SelectionDropDown.DataBind();
+            }
+            else
+            {
+                DataTable noData = new DataTable();
+                DataColumn dc1 = new DataColumn("EVENTDATE");
+                noData.Columns.Add(dc1);
+                DataRow dr1 = noData.NewRow();
+                dr1[0] = "No Event Found";
+                noData.Rows.Add(dr1);
+                SelectionDropDown.DataSource = noData;
+                SelectionDropDown.DataTextField = "EVENTDATE";
+                SelectionDropDown.DataBind();
+            }
         }
 
         private void StaffList()
@@ -56,15 +75,42 @@ namespace CyberDayInformationSystem
             SelectionDropDown.Items.Clear();
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            string command = "select STAFFID, (firstname + ' '+ lastname) as NAME from Volunteer";
+            string command = "select STAFFID, (firstname + ' ' + lastname) as NAME from Volunteer where ";
+            if (FirstNameTxt.Text != String.Empty && LastNameTxt.Text != String.Empty)
+            {
+                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
+                    + "%'";
+            }
+            else if (FirstNameTxt.Text != String.Empty)
+            {
+                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
+            }
+            else
+            {
+                command += "LASTNAME LIKE '% " + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
+            }
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
-            SelectionDropDown.DataSource = dt;
-            SelectionDropDown.DataTextField = "NAME";
-            SelectionDropDown.DataValueField = "STAFFID";
-            SelectionDropDown.DataBind();
-            SelectionDropDown.Items.Insert(0, new ListItem(String.Empty, String.Empty));
+            if (dt.Rows.Count > 0)
+            {
+                SelectionDropDown.DataSource = dt;
+                SelectionDropDown.DataTextField = "NAME";
+                SelectionDropDown.DataValueField = "STAFFID";
+                SelectionDropDown.DataBind();
+            }
+            else
+            {
+                DataTable noData = new DataTable();
+                DataColumn dc1 = new DataColumn("NAME");
+                noData.Columns.Add(dc1);
+                DataRow dr1 = noData.NewRow();
+                dr1[0] = "No Volunteers Found";
+                noData.Rows.Add(dr1);
+                SelectionDropDown.DataSource = noData;
+                SelectionDropDown.DataTextField = "NAME";
+                SelectionDropDown.DataBind();
+            }
         }
 
         private void StudentList()
@@ -73,6 +119,19 @@ namespace CyberDayInformationSystem
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT ";
+            if (FirstNameTxt.Text != String.Empty && LastNameTxt.Text != String.Empty)
+            {
+                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
+                           + "%'";
+            }
+            else if (FirstNameTxt.Text != String.Empty)
+            {
+                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
+            }
+            else
+            {
+                command += "LASTNAME LIKE '% " + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
+            }
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             connection.Open();
             DataTable dt = new DataTable();
@@ -88,20 +147,15 @@ namespace CyberDayInformationSystem
         {
             SelectedGridLbl.Text = "Event Data";
             SelectedGridLbl.Visible = true;
-            if (SelectionDropDown.SelectedIndex == 0)
-            {
-                SelectedGridView.DataSource = null;
-                SelectedGridView.DataBind();
-            }
-            else
+            if (SelectionDropDown.SelectedValue != String.Empty)
             {
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int eventID = int.Parse(SelectionDropDown.SelectedValue);
                 string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\", " +
-                    " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),EV.STARTTIME),4),3,0,':')as datetime),100),7) AS \"START\"," +
-                    " right(convert(varchar(20), cast(stuff(right('0000' + convert(varchar(4), EV.ENDTIME), 4), 3, 0, ':') as datetime), 100), 7) AS \"END\"," +
-                    " (RR.BUILDING + ' ' + RR.ROOMNUMBER) AS \"Room\" from EVENT EV LEFT OUTER JOIN ROOMRESERVATIONS RR " +
-                    " on EV.LOCATION = RR.ROOMID where EVENTID = " + eventID;
+                             " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),EV.STARTTIME),4),3,0,':')as datetime),100),7) AS \"START\"," +
+                             " right(convert(varchar(20), cast(stuff(right('0000' + convert(varchar(4), EV.ENDTIME), 4), 3, 0, ':') as datetime), 100), 7) AS \"END\"," +
+                             " (RR.BUILDING + ' ' + RR.ROOMNUMBER) AS \"Room\" from EVENT EV LEFT OUTER JOIN ROOMRESERVATIONS RR " +
+                             " on EV.LOCATION = RR.ROOMID where EVENTID = " + eventID;
                 DataTable dt = new DataTable();
                 SqlConnection conn = new SqlConnection(cs);
                 SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -114,6 +168,7 @@ namespace CyberDayInformationSystem
                     SelectedGridView.DataBind();
                 }
             }
+
         }
 
         private void StaffGrid()
@@ -173,7 +228,7 @@ namespace CyberDayInformationSystem
 
         private void EventStaffGrid()
         {
-            SecondaryGrid1Lbl.Text = "Event Volunteers";
+            SecondaryGrid1Lbl.Text = "Volunteers";
             SecondaryGrid1Lbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
@@ -205,12 +260,15 @@ namespace CyberDayInformationSystem
 
         private void EventRosterGrid()
         {
-            SecondaryGrid2Lbl.Text = "Event Roster";
+            SecondaryGrid2Lbl.Text = "Attendees";
             SecondaryGrid2Lbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
-            string sql = "SELECT (S.FIRSTNAME + ' ' + S.LASTNAME) AS NAME FROM STUDENT S RIGHT OUTER JOIN EVENTROSTER ER on " +
-                "ER.STUDENT = S.STUDENTID WHERE ER.EVENT = " + eventID;
+            string sql = "SELECT (S.FIRSTNAME + ' ' + S.LASTNAME) AS NAME, \'Student\' as Type FROM STUDENT S left OUTER JOIN EVENTROSTER ER on " +
+                "ER.STUDENT = S.STUDENTID WHERE ER.EVENT = " + eventID +
+                " Union " +
+                "Select (T.TITLE + \' \' + T.FIRSTNAME + \' \' + T.LASTNAME) AS \"Name\", \'Chaperone\' as Type from Teacher T left OUTER JOIN EVENTROSTER ER on" +
+                " ER.CHAPERONE = T.TEACHERID WHERE ER.EVENT = " + eventID;
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -357,33 +415,21 @@ namespace CyberDayInformationSystem
         protected void FunctionList_SelectedIndexChanged(object sender, EventArgs e)
         {
             EmptyGridView();
-            if (FunctionList.SelectedValue == "1")
+            SelectionDropDown.DataSource = null;
+            SelectionDropDown.DataBind();
+            SelectionDropDown.Visible = false;
+            SelectionLbl.Visible = false;
+            RunBtn.Visible = false;
+            switch (FunctionList.SelectedValue)
             {
-                SelectionLbl.Text = "Event: ";
-                EventList();
-                SelectionLbl.Visible = true;
-                SelectionDropDown.Visible = true;
-            }
-            if (FunctionList.SelectedValue == "2")
-            {
-                SelectionLbl.Text = "Staff: ";
-                StaffList();
-                SelectionLbl.Visible = true;
-                SelectionDropDown.Visible = true;
-            }
-            if (FunctionList.SelectedValue == "3")
-            {
-                SelectionLbl.Text = "Student: ";
-                StudentList();
-                SelectionLbl.Visible = true;
-                SelectionDropDown.Visible = true;
-            }
-            if(FunctionList.SelectedValue == "4")
-            {
-                SelectionLbl.Text = "Event Date: ";
-                EventList();
-                SelectionLbl.Visible = true;
-                SelectionDropDown.Visible = true;
+                case "1":
+                case "4":
+                    ReportSearch.ActiveViewIndex = 0;
+                    break;
+                case "2":
+                case "3":
+                    ReportSearch.ActiveViewIndex = 1;
+                    break;
             }
         }
 
@@ -392,25 +438,38 @@ namespace CyberDayInformationSystem
             EmptyGridView();
             if (FunctionList.SelectedValue == "1")
             {
-                EventGrid();
-                EventStaffGrid();
-                EventRosterGrid();
-                EventItinerary();
-                FillPanel();
+                if (SelectionDropDown.SelectedValue != String.Empty)
+                {
+                    ReportSearch.ActiveViewIndex = -1;
+                    EventGrid();
+                    EventStaffGrid();
+                    EventRosterGrid();
+                    EventItinerary();
+                    FillPanel();
+                }
             }
             if (FunctionList.SelectedValue == "2")
             {
-                StaffGrid();
-                StudentVolunteerData();
-                FillPanel();
+                if (SelectionDropDown.SelectedValue != String.Empty)
+                {
+                    ReportSearch.ActiveViewIndex = -1;
+                    StaffGrid();
+                    StudentVolunteerData();
+                    FillPanel();
+                }
             }
             if(FunctionList.SelectedValue == "3")
             {
-                int studentID = int.Parse(SelectionDropDown.SelectedValue);
-                StudentGridFill(studentID);
-                StudentNotesInfo(studentID);
-                StudentTeacherInfo(studentID);
-                FillPanel();
+                if (SelectionDropDown.SelectedValue != String.Empty)
+                {
+                    ReportSearch.ActiveViewIndex = -1;
+                    int studentID = int.Parse(SelectionDropDown.SelectedValue);
+                    StudentGridFill(studentID);
+                    StudentNotesInfo(studentID);
+                    StudentTeacherInfo(studentID);
+                    FillPanel();
+                }
+
             }
             if(FunctionList.SelectedValue == "5")
             {
@@ -418,6 +477,7 @@ namespace CyberDayInformationSystem
             }
 
             PrintBtn.Visible = true;
+            clearBtn.Visible = true;
         }
 
         private void EmptyGridView()
@@ -444,6 +504,57 @@ namespace CyberDayInformationSystem
         private void FillPanel()
         {
             printPanel.Controls.Add(ReportTable);
+        }
+
+        protected void SearchDate_OnClick(object sender, EventArgs e)
+        {
+            EmptyGridView();
+            if (FunctionList.SelectedValue == "1")
+            {
+                ReportSearch.ActiveViewIndex = 0;
+                SelectionLbl.Text = "Event Date: ";
+                EventList();
+                SelectionLbl.Visible = true;
+                SelectionDropDown.Visible = true;
+                RunBtn.Visible = true;
+            }
+            if (FunctionList.SelectedValue == "4")
+            {
+                ReportSearch.ActiveViewIndex = 0;
+                SelectionLbl.Text = "Event Date: ";
+                EventList();
+                SelectionLbl.Visible = true;
+                SelectionDropDown.Visible = true;
+                RunBtn.Visible = true;
+            }
+        }
+
+        protected void SearchNameBtn_OnClick(object sender, EventArgs e)
+        {
+            EmptyGridView();
+            if (FunctionList.SelectedValue == "2")
+            {
+                ReportSearch.ActiveViewIndex = 1;
+                SelectionLbl.Text = "Staff: ";
+                StaffList();
+                SelectionLbl.Visible = true;
+                SelectionDropDown.Visible = true;
+                RunBtn.Visible = true;
+            }
+            if (FunctionList.SelectedValue == "3")
+            {
+                ReportSearch.ActiveViewIndex = 1;
+                SelectionLbl.Text = "Student: ";
+                StudentList();
+                SelectionLbl.Visible = true;
+                SelectionDropDown.Visible = true;
+                RunBtn.Visible = true;
+            }
+        }
+
+        protected void clearBtn_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminReports.aspx");
         }
     }
 }

@@ -104,10 +104,10 @@
                                         <asp:Label ID="PreviousLbl" runat="server" Text="Previous Attendee?"></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:RadioButtonList ID="PreAttendBtn" runat="server">
+                                        <asp:DropDownList ID="PreAttendBtn" runat="server">
                                             <asp:ListItem>Yes</asp:ListItem>
                                             <asp:ListItem>No</asp:ListItem>
-                                        </asp:RadioButtonList>
+                                        </asp:DropDownList>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:RequiredFieldValidator ID="PreAttendValid" runat="server" ErrorMessage="Required Field" ControlToValidate="PreAttendBtn" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -118,10 +118,10 @@
                                         <asp:Label ID="MealLbl" runat="server" Text="Meal Voucher?"></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:RadioButtonList ID="MealBtn" runat="server">
+                                        <asp:DropDownList ID="MealBtn" runat="server">
                                             <asp:ListItem>Yes</asp:ListItem>
                                             <asp:ListItem>No</asp:ListItem>
-                                        </asp:RadioButtonList>
+                                        </asp:DropDownList>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:RequiredFieldValidator ID="MealValid" runat="server" ErrorMessage="Required Field" ForeColor="Red" ControlToValidate="MealBtn"></asp:RequiredFieldValidator>
