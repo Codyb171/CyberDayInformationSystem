@@ -170,10 +170,10 @@
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:Button ID="ClearBtn" runat="server" Text="Clear Form" OnClick="ClearBtn_Click" CausesValidation="false" />
+                                        <asp:Button ID="ClearBtn" CssClass="btn-main reg" runat="server" Text="Clear Form" OnClick="ClearBtn_Click" CausesValidation="false" />
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:Button ID="SaveBtn" runat="server" Text="Save Student" OnClick="SaveBtn_Click" CausesValidation="true" />
+                                        <asp:Button ID="SaveBtn" CssClass="btn-main reg" runat="server" Text="Save Student" OnClick="SaveBtn_Click" CausesValidation="true" />
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -203,7 +203,7 @@
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="4">
-                                        <asp:Button ID="SearchByTagButton" runat="server" Text="Search"
+                                        <asp:Button ID="SearchByTagButton" CssClass="btn-main reg" runat="server" Text="Search"
                                             OnClick="SearchByTagButton_Click" />
                                     </asp:TableCell>
                                 </asp:TableRow>
@@ -218,10 +218,10 @@
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:Button ID="EditStudentBtn" runat="server" Text="Edit Student" Visible="False" OnClick="EditStudentBtn_Click" />
+                                        <asp:Button ID="EditStudentBtn" CssClass="btn-main reg" runat="server" Text="Edit Student" Visible="False" OnClick="EditStudentBtn_Click" />
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:Button ID="DeleteStudentBtn" runat="server" Text="Delete Student?" Visible="False" OnClick="DeleteStudentBtn_OnClick" />
+                                        <asp:Button ID="DeleteStudentBtn" CssClass="btn-main reg" runat="server" Text="Delete Student?" Visible="False" OnClick="DeleteStudentBtn_OnClick" />
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
@@ -355,7 +355,7 @@
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="4">
-                                        <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" />
+                                        <asp:Button ID="UpdateBtn" CssClass="btn-main reg" runat="server" Text="Update" OnClick="UpdateBtn_Click" />
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">

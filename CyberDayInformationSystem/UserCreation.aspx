@@ -244,7 +244,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="3">
-                <asp:Button  class="btn-main blue" ID="CreateBtn" runat="server" Text="Create User" OnClick="CreateBtn_Click" />
+                <asp:Button  CssClass="btn-main reg" ID="CreateBtn" runat="server" Text="Create User" OnClick="CreateBtn_Click" />
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">

@@ -199,9 +199,9 @@ h4.card-title {
     line-height: 18px
 }
 
-    .btn-xs:hover {
-        color: #fff !important
-    }
+.btn-xs:hover {
+    color: #fff !important
+}
 
 .card-title {
     font-family: Roboto, sans-serif;
@@ -234,9 +234,9 @@ h4.card-title {
     transition: background-color .2s linear
 }
 
-    .media .avatar {
-        flex-shrink: 0
-    }
+.media .avatar {
+    flex-shrink: 0
+}
 
 .avatar {
     position: relative;
@@ -373,13 +373,13 @@ h4.card-title {
     background-color: #f9fafb
 }
 
-    .publisher > *:first-child {
-        margin-left: 0
-    }
+.publisher > *:first-child {
+    margin-left: 0
+}
 
-    .publisher > * {
-        margin: 0 8px
-    }
+.publisher > * {
+    margin: 0 8px
+}
 
 .publisher-input {
     -webkit-box-flex: 1;
@@ -455,4 +455,33 @@ i.fa-smile {
 
 .btn-sm {
     position: absolute;
+}
+
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul.breadcrumb li + li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
 }

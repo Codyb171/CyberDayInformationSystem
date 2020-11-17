@@ -58,7 +58,7 @@
                 </button>--%>
 
                 <ul>
-                    <li><a href="AdminDashboard.aspx">Administrator Dashboard</a></li>
+                    <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">Teacher</a>

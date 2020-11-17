@@ -61,6 +61,7 @@
                         <li><a href="About.aspx">About</a></li>
                         <li><a href="Contact.aspx">Contact</a></li>
                     </ul>
+
                 </div>
                 <div class="PgTitle">
                     <h1><%: Page.Title %></h1>

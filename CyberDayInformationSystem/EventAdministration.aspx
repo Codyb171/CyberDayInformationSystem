@@ -103,7 +103,7 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:Button ID="CreateBut" runat="server" Text="Create Event" CausesValidation="true" OnClick="CreateBut_Click" />
+                                    <asp:Button ID="CreateBut" CssClass="btn-main reg" runat="server" Text="Create Event" CausesValidation="true" OnClick="CreateBut_Click" />
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -197,7 +197,7 @@
 
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:Button ID="ModifyBut" runat="server" Text="Modify" CausesValidation="true" OnClick="ModifyBut_Click" Visible="false" />
+                                    <asp:Button ID="ModifyBut" runat="server" CssClass="btn-main reg" Text="Modify" CausesValidation="true" OnClick="ModifyBut_Click" Visible="false" />
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -222,7 +222,7 @@
 
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:Button ID="DelBut" runat="server" Text="Delete" CausesValidation="true" OnClick="DelBut_Click" />
+                                    <asp:Button ID="DelBut" CssClass="btn-main reg" runat="server" Text="Delete" CausesValidation="true" OnClick="DelBut_Click" />
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>
@@ -297,7 +297,7 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:Button ID="CreateTaskBut" runat="server" Text="Create Task" CausesValidation="true" OnClick="CreateTaskBut_Click"/>
+                                    <asp:Button ID="CreateTaskBut" CssClass="btn-main reg" runat="server" Text="Create Task" CausesValidation="true" OnClick="CreateTaskBut_Click"/>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -400,7 +400,7 @@
 
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:Button ID="ModTaskBut" runat="server" Text="Modify" CausesValidation="true" Visible="false" OnClick="ModtaskBut_Click"/>
+                                    <asp:Button ID="ModTaskBut" CssClass="btn-main reg" runat="server" Text="Modify" CausesValidation="true" Visible="false" OnClick="ModtaskBut_Click"/>
                                 </asp:TableCell>
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -425,7 +425,7 @@
 
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:Button ID="TaskDelBut" runat="server" Text="Delete Task" CausesValidation="true" OnClick="TaskDelBut_Click"/>
+                                    <asp:Button ID="TaskDelBut" CssClass="btn-main reg" runat="server" Text="Delete Task" CausesValidation="true" OnClick="TaskDelBut_Click"/>
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>
