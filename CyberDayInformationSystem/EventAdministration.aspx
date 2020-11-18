@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="Event Administration" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EventAdministration.aspx.cs" Inherits="CyberDayInformationSystem.EventAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <ul class="breadcrumb">
+        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li>Event Administration</li>
+    </ul>
+
     <h3>Please Select an Action</h3>
 
     <div class="text-center">

@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="Permission Forms" Language="C#" MasterPageFile="~/Parent.Master" AutoEventWireup="true" CodeBehind="ParentStudentForms.aspx.cs" Inherits="CyberDayInformationSystem.ParentStudentForms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="ParentDashboard.aspx">Parent Home</a></li>
+        <li>Permission Forms</li>
+    </ul>
+
    <div class="PrintPanel" id="PermissionForm"> 
    <h3>Photo Release</h3>
     <p>I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included

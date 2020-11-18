@@ -56,8 +56,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>--%>
                 <ul>
-                    <li><a href="TeacherDashboard.aspx">Teacher Dashboard</a></li>
-                    <li><a href="StudentAdministration.aspx">Student</a></li>
+                    <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
+                    <li><a href="StudentAdministration.aspx">Student Administration</a></li>
                     <li><a href="TeacherReports.aspx">Reports</a></li>
                     <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>

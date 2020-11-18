@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <ul class="breadcrumb">
+        <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
+        <li>Teacher Reports</li>
+    </ul>
+
     <h3 class="text-center">Please Select a Report Type</h3>
 
     <asp:Table runat="server" HorizontalAlign="Center">

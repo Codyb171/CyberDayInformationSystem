@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Student Administration" Language="C#" MasterPageFile="~/Teacher.Master" AutoEventWireup="true" CodeBehind="StudentAdministration.aspx.cs" Inherits="CyberDayInformationSystem.StudentAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li>Student Administration</li>
+    </ul>
     
     <h3>Please Select a Task</h3>
 

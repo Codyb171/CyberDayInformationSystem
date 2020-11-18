@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="About" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="CyberDayInformationSystem.About" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="Default.aspx">Home</a></li>
+        <li>About</li>
+    </ul>
+
     <h3>What is CyberDay?</h3>
 
     <p>By teaching others about Computer Information Systems, you will learn to develop advanced competencies and diagnostic skills to correct software problems. 
