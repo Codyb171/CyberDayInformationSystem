@@ -15,6 +15,7 @@
 
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <script src="Scripts/popper.js"></script>
     <script src="Scripts/jquery.signalR-2.2.2.js"></script>
 </head>
@@ -55,9 +56,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>--%>
                 <ul>
-                    <li><a href="TeacherDashboard.aspx">Teacher Dashboard</a></li>
-                    <li><a href="StudentAdministration.aspx">Student</a></li>
+                    <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
+                    <li><a href="StudentAdministration.aspx">Student Administration</a></li>
                     <li><a href="TeacherReports.aspx">Reports</a></li>
+                    <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>
             </div>
             <div class="PgTitle">

@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <ul class="breadcrumb">
+        <li><a href="Default.aspx">Home</a></li>
+        <li>User Creation</li>
+    </ul>
+
 
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -244,7 +249,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="3">
-                <asp:Button  class="btn-main blue" ID="CreateBtn" runat="server" Text="Create User" OnClick="CreateBtn_Click" />
+                <asp:Button  CssClass="btn-main reg" ID="CreateBtn" runat="server" Text="Create User" OnClick="CreateBtn_Click" />
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">

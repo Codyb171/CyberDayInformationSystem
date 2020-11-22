@@ -1,5 +1,10 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="CyberDayInformationSystem.LoginPage" %>
+﻿<%@ Page Title="User Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="CyberDayInformationSystem.LoginPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="Default.aspx">Home</a></li>
+        <li>User Login</li>
+    </ul>
     
     <h3 class="text-center">Please input your credentials</h3>
 

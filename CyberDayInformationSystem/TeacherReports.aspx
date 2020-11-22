@@ -2,6 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <ul class="breadcrumb">
+        <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
+        <li>Teacher Reports</li>
+    </ul>
+
     <h3 class="text-center">Please Select a Report Type</h3>
 
     <asp:Table runat="server" HorizontalAlign="Center">
@@ -45,7 +50,7 @@
                         </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell ColumnSpan="4">
-                                <asp:Button ID="SearchByTagButton" runat="server" Text="Search"
+                                <asp:Button ID="SearchByTagButton" CssClass="btn-main reg" runat="server" Text="Search"
                                     OnClick="SearchByTagButton_Click" />
                             </asp:TableCell>
                         </asp:TableRow>
@@ -64,7 +69,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="RunBtn" runat="server" Text="Run Report?" OnClick="RunBtn_Click" />
+                <asp:Button ID="RunBtn" CssClass="btn-main reg" runat="server" Text="Run Report?" OnClick="RunBtn_Click" />
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -125,7 +130,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button ID="PrintBtn" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();"  />
+                <asp:Button ID="PrintBtn" CssClass="btn-main reg" runat="server" Text="Print Report" Visible="false" OnClientClick="return PrintReport();"  />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

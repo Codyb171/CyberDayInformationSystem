@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="Volunteer Administration" Language="C#" MasterPageFile="~/Volunteer.Master" AutoEventWireup="true" CodeBehind="VolunteerAdministration.aspx.cs" Inherits="CyberDayInformationSystem.VolunteerAdministration" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li>Volunteer Administration</li>
+    </ul>
+
     <h3>Assign Volunteers</h3>
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow ID="rowSelDate" runat="server" HorizontalAlign="Center">
@@ -34,7 +40,7 @@
             </asp:TableCell>
             
             <asp:TableCell ColumnSpan="2">
-                <button type="button" class="btn-main blue" runat="server" onserverclick="btnSubmit_Click">Submit ></button>
+                <button type="button" CssClass="btn-main reg" runat="server" onserverclick="btnSubmit_Click">Submit ></button>
             </asp:TableCell>
         </asp:TableRow>
 

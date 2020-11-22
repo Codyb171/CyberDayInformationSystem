@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="Permission Forms" Language="C#" MasterPageFile="~/Parent.Master" AutoEventWireup="true" CodeBehind="ParentStudentForms.aspx.cs" Inherits="CyberDayInformationSystem.ParentStudentForms" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="ParentDashboard.aspx">Parent Home</a></li>
+        <li>Permission Forms</li>
+    </ul>
+
    <div class="PrintPanel" id="PermissionForm"> 
    <h3>Photo Release</h3>
     <p>I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included
@@ -39,6 +45,7 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
+
         <asp:TableRow>
             <asp:TableCell ColumnSpan="2" HorizontalAlign="Center">
                 <asp:Label ID="lblParentEmail" runat="server" Text="Parent Email: " Font-Size="16px"></asp:Label>
@@ -49,19 +56,10 @@
                 </asp:RequiredFieldValidator>
             </asp:TableCell>
         </asp:TableRow>
-<%--        <asp:TableRow>
-            <asp:TableCell ColumnSpan="2" HorizontalAlign="Center">
-                <asp:Label ID="lblSignedDate" runat="server" Text="Today's Date: " Font-Size="16px"></asp:Label>
-            </asp:TableCell>
-            <asp:TableCell ColumnSpan="2" HorizontalAlign="Left">
-                <asp:TextBox ID="txtSignedDate" runat="server" Width="100"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="DateValid" runat="server" ErrorMessage="Date Required" ControlToValidate="txtSignedDate" ForeColor="Red" Font-Size="24px">
-                </asp:RequiredFieldValidator>
-            </asp:TableCell>
-        </asp:TableRow>--%>
+
         <asp:TableRow>
             <asp:TableCell ColumnSpan="4" HorizontalAlign="Center">
-                <asp:Button ID="btnSubmit" CssClass="btn-main blue" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
+                <asp:Button ID="btnSubmit" CssClass="btn-main reg" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

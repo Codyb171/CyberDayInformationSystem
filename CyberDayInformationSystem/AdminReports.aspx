@@ -1,6 +1,11 @@
-﻿<%@ Page Title="Admin Reports" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminReports.aspx.cs" Inherits="CyberDayInformationSystem.AdminReports" %>
+﻿<%@ Page Title="Coordinator Reports" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminReports.aspx.cs" Inherits="CyberDayInformationSystem.AdminReports" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
+    <ul class="breadcrumb">
+        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li>Coordinator Reports</li>
+    </ul>
 
     <link href="AdminReports-Styling.css" rel="stylesheet" type="text/css" />
 

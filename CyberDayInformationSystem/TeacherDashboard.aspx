@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Teacher Dashboard" Language="C#" MasterPageFile="~/Teacher.Master" AutoEventWireup="true" CodeBehind="TeacherDashboard.aspx.cs" Inherits="CyberDayInformationSystem.TeacherDashboard" %>
+﻿<%@ Page Title="Teacher Home" Language="C#" MasterPageFile="~/Teacher.Master" AutoEventWireup="true" CodeBehind="TeacherDashboard.aspx.cs" Inherits="CyberDayInformationSystem.TeacherDashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="text-center">
         <h1>Welcome to the CyberDay Information System</h1>

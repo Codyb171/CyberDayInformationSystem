@@ -14,7 +14,6 @@
         <link href="Styling-Master.css" rel="stylesheet" type="text/css" />
         <webopt:BundleReference runat="server" Path="~/Content/css" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
         <script src="Scripts/popper.js"></script>
         <script src="Scripts/jquery.signalR-2.2.2.js"></script>
     </head>
@@ -58,7 +57,6 @@
                     <li><a href="Default.aspx">Home</a></li>
                     <li><a href="About.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
-                    <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>
             </div>
             <div class="PgTitle">

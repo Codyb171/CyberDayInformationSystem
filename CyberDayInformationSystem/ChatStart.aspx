@@ -7,7 +7,7 @@
         <asp:HiddenField ID="hiddenName" runat="server" Value=""/>
         <div class="page-content page-container" id="page-content">
             <div class="padding">
-                <div class="row container d-flex justify-content-center">
+                <div class="container d-flex justify-content-center">
                     <div class="col-md-6">
                         <div class="card card-bordered">
                             <div class="card-header">
@@ -30,9 +30,6 @@
                                 <img class="avatar avatar-xs" src="https://img.icons8.com/color/36/000000/administrator-male.png" alt="...">
                                 <input class="publisher-input" id="message" type="text" placeholder="Write something">
                                 <div class="wrapper">
-                                    <span class="publisher-btn file-group"><i class="fa fa-paperclip file-browser"></i>
-                                        <input type="file">
-                                    </span>
                                     <a class="publisher-btn" href="#" data-abc="true" data-emojiable="true"><i class="fa fa-smile"></i></a>
                                     <a class="btn btn-sm" href="#" type="button" id="sendmessage"><i class="fa fa-paper-plane"></i></a>
                                 </div>

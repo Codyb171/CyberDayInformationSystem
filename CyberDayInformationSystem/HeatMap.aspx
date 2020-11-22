@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="Heat Map" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="HeatMap.aspx.cs" Inherits="CyberDayInformationSystem.HeatMap" %>
 <asp:Content ID="heatMap" ContentPlaceHolderID="MainContent" runat="server">
 
+    <ul class="breadcrumb">
+        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li><a href="AdminReports.aspx">Coordinator Reports</a></li>
+        <li>Heat Map</li>
+    </ul>
+
     <link href="AdminReports-Styling.css" rel="stylesheet" type="text/css" />
     <h3 class="text-center">Historic Data</h3>
 
