@@ -338,3 +338,6 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/CyberDayInformationSystem/WebForm1.aspx
+/CyberDayInformationSystem/WebForm1.aspx.cs
+/CyberDayInformationSystem/WebForm1.aspx.designer.cs
