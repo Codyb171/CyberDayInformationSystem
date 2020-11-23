@@ -222,6 +222,7 @@
     <Content Include="lib\font-awesome\webfonts\fa-solid-900.svg" />
     <Content Include="LoginPage.aspx" />
     <Content Include="ParentDashboard.aspx" />
+    <Content Include="ParentInformationModify.aspx" />
     <Content Include="ParentStudentForms.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -390,6 +391,13 @@
     </Compile>
     <Compile Include="Itenerary.aspx.designer.cs">
       <DependentUpon>Itenerary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ParentInformationModify.aspx.cs">
+      <DependentUpon>ParentInformationModify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ParentInformationModify.aspx.designer.cs">
+      <DependentUpon>ParentInformationModify.aspx</DependentUpon>
     </Compile>
     <Compile Include="TeacherAccessCodeReport.aspx.cs">
       <DependentUpon>TeacherAccessCodeReport.aspx</DependentUpon>

@@ -49,6 +49,10 @@ namespace CyberDayInformationSystem
                     {
                         Session.Add("Master", "~/Volunteer.Master");
                     }
+                    else if (type == "Parent")
+                    {
+                        Session.Add("Master", "~/Parent.Master");
+                    }
                     else
                     {
                         Session.Add("Master", "~/Site.Master");
@@ -91,6 +95,12 @@ namespace CyberDayInformationSystem
             {
                 sql += "STAFFID from VOLUNTEER";
             }
+
+            if (type == "Parent")
+            {
+                sql += "GUARDIANID from GUARDIAN";
+            }    
+
             sql += " where EMAILADD Like @email";
             command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@EMAIL", Session["USER"].ToString());
@@ -113,6 +123,12 @@ namespace CyberDayInformationSystem
             {
                 if (dataReader.Read()) Session.Add("ID", dataReader["STAFFID"].ToString());
                 Response.Redirect("AdminDashboard.aspx");
+            }
+
+            if (type == "Parent")
+            {
+                if (dataReader.Read()) Session.Add("ID", dataReader["GUARDIANID"].ToString());
+                Response.Redirect("ParentDashboard.aspx");
             }
         }
     }

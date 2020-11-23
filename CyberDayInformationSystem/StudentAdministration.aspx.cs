@@ -126,21 +126,24 @@ namespace CyberDayInformationSystem
                 UserInfoLbl.Text = "Student Saved Successfully!!";
 
                 //Generate access code and password for the student
-                string generatedUser, generatedPass;
+                string generatedUser, generatedPassStu;
 
                 generatedUser = last + first;
-                generatedPass = last + age.ToString();
+                generatedPassStu = last + age.ToString();
 
-                string hashPW = PasswordHash.HashPassword(generatedPass);
+                string hashPW = PasswordHash.HashPassword(generatedPassStu);
 
-                //Write to DB
+                //Generate password for parent
+                string generatedPassPar = first + age.ToString();
+                string parHashPW = PasswordHash.HashPassword(generatedPassPar);
+
+                //Write to User DB - Student
                 string userWrite = "INSERT into Users (FIRSTNAME, LASTNAME, USERNAME, USERTYPE)" +
-                    " values (@FIRSTNAME, @LASTNAME, @USERNAME, @USERTYPE";
+                    " values (@FIRSTNAME, @LASTNAME, @USERNAME, @USERTYPE)";
                 var writeCommand = new SqlCommand(userWrite, connection);
                 string fName = first;
                 string lName = last;
                 string userName = generatedUser;
-                connection.Open();
                 writeCommand.Parameters.AddWithValue("@FIRSTNAME", fName);
                 writeCommand.Parameters.AddWithValue("@LASTNAME", lName);
                 writeCommand.Parameters.AddWithValue("@USERNAME", userName);
@@ -148,18 +151,55 @@ namespace CyberDayInformationSystem
 
                 writeCommand.ExecuteNonQuery();
 
-                //Get the userID & write to PW DB
+                //Write to User DB - Parent
+                string parWrite = "INSERT INTO USERS (USERNAME, USERTYPE) VALUES (@USER, @TYPE)";
+                var parWriteCmd = new SqlCommand(parWrite, connection);
+                parWriteCmd.Parameters.AddWithValue("@USER", userName);
+                parWriteCmd.Parameters.AddWithValue("@TYPE", "Parent");
+
+                parWriteCmd.ExecuteNonQuery();
+
+                //Get the userID & write to PW DB - Student
                 string getUseId = "SELECT USERID FROM USERS WHERE USERNAME = @USER";
                 var getIdCommand = new SqlCommand(getUseId, connection);
-                command.Parameters.AddWithValue("@USER", userName);
+                getIdCommand.Parameters.AddWithValue("@USER", userName);
+
                 var id = (int)command.ExecuteScalar();
+
                 string insertSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
-                command = new SqlCommand(insertSql, connection);
-                command.Parameters.AddWithValue("@ID", id);
-                command.Parameters.AddWithValue("@USER", userName);
-                command.Parameters.AddWithValue("@PASS", hashPW);
-                command.ExecuteNonQuery();
-                connection.Close();
+                var insertCommand = new SqlCommand(insertSql, connection);
+                insertCommand.Parameters.AddWithValue("@ID", id);
+                insertCommand.Parameters.AddWithValue("@USER", userName);
+                insertCommand.Parameters.AddWithValue("@PASS", hashPW);
+                insertCommand.ExecuteNonQuery();
+
+                //Create placeholder Parent
+                string parentWrite = "INSERT into Guardian (FIRSTNAME, LASTNAME) values (@FNAME, @LNAME)";
+                var parWriteCommand = new SqlCommand(parentWrite, connection);
+                parWriteCommand.Parameters.AddWithValue("@FNAME", fName);
+                parWriteCommand.Parameters.AddWithValue("@LNAME", lName);
+                parWriteCommand.ExecuteNonQuery();
+
+                //Get ParentID and connect to student
+                string getParID = "SELECT GUARDIANID FROM GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
+                var getParIDCmd = new SqlCommand(getParID, connection);
+                getParIDCmd.Parameters.AddWithValue("@FNAME", fName);
+                getParIDCmd.Parameters.AddWithValue("@LNAME", lName);
+                var parID = (int)command.ExecuteScalar();
+
+                string stuParConnect = "UPDATE STUDENT SET GUARDIAN = @GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
+                var stuParConnectCmd = new SqlCommand(stuParConnect, connection);
+                stuParConnectCmd.Parameters.AddWithValue("@GUARDIAN", parID);
+                stuParConnectCmd.Parameters.AddWithValue("@FNAME", fName);
+                stuParConnectCmd.Parameters.AddWithValue("@LNAME", lName);
+                stuParConnectCmd.ExecuteNonQuery();
+
+                //Write to PW DB - Parent
+                string insertParSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
+                var insertParCmd = new SqlCommand(insertParSql, connection);
+                insertParCmd.Parameters.AddWithValue("@ID", parID);
+                insertParCmd.Parameters.AddWithValue("@USER", userName);
+                insertParCmd.Parameters.AddWithValue("@PASS", parHashPW);
 
             }
         }

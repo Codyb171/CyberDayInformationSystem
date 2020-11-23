@@ -28,13 +28,18 @@ namespace CyberDayInformationSystem
         //        Response.Redirect("BadSession.aspx");
         //    }
         //}
+
+        private int _parentID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptInclude(Page, GetType(),"SaveString.js", "/Scripts/src/methods/SaveString.js");
+            ScriptManager.RegisterClientScriptInclude(Page, GetType(), "SaveString.js", "/Scripts/src/methods/SaveString.js");
+
+            _parentID = int.Parse(Session["ID"].ToString());
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            //Generate Email output String
             string output =
                 "Photo Release \n I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included \n" +
                 "in whole or in part, or reproductions thereof in color or otherwise for any lawful purpose whatsoever, including but not limited to use in any CyberDay publication or on the\n" +
@@ -46,25 +51,25 @@ namespace CyberDayInformationSystem
                 "of	any	blurring, distortion, alteration, optical illusion,	or use	in	composite form,	whether	intentional	or	otherwise, that may	occur or be	produced\n" +
                 "in	the	taking of said images or videotapes, or	in	processing	tending	towards	the	completion	of	the	finished product,	including	publication	on	the\n" +
                 "internet, in	brochures,	or	any	other advertisements or promotional materials.\n";
-            if (photoPermission.SelectedValue == "1")
+            if (ddlPhotoPermission.SelectedValue == "1")
             {
-                output += "By checking this box, I authorize CyberDay to use my child's photograph.\n";
+                output += "I DO authorize CyberDay to use my child's photograph.\n";
             }
             else
             {
-                output += "By checking this box, I DO NOT authorize CyberDay to use my child's photograph.\n";
+                output += "I DO NOT authorize CyberDay to use my child's photograph.\n";
             }
 
             output += "Permission to Retain Email\n" +
                      "CyberDay would like to follow our student participant's academic progress and be able to reach out to them to provide guidance and opportunities when we are able.\n";
-            if (retainEmail.SelectedValue == "1")
+            if (ddlEmailPermission.SelectedValue == "1")
             {
-                output += "By checking this box, I authorize CyberDay to retain my student's email address for the purposes of tracking their\n" +
+                output += "I DO authorize CyberDay to retain my student's email address for the purposes of tracking their\n" +
                           "academic progress and informing them of potential opportunities.\n";
             }
             else
             {
-                output += "By checking this box, I DO NOT authorize CyberDay to retain my student's email address.\n";
+                output += "I DO NOT authorize CyberDay to retain my student's email address.\n";
             }
 
             output +=
@@ -72,7 +77,10 @@ namespace CyberDayInformationSystem
             output += "Parent Full Name: " + txtParentName.Text + "\n";
             output += "Parent Email: " + txtParentEmail.Text + "\n";
             output += "Today's Date: " + DateTime.Now;
+            //End of Generate
 
+            //Save the photo approval to DB
+            //use parentID to link to the right student
             
         }
     }

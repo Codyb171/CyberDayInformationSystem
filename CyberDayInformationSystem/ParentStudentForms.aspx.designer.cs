@@ -15,22 +15,22 @@ namespace CyberDayInformationSystem
     {
 
         /// <summary>
-        /// photoPermission control.
+        /// ddlPhotoPermission control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList photoPermission;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPhotoPermission;
 
         /// <summary>
-        /// retainEmail control.
+        /// ddlEmailPermission control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList retainEmail;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmailPermission;
 
         /// <summary>
         /// tblParentInfo control.
