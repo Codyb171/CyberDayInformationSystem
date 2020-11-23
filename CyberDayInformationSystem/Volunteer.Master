@@ -56,9 +56,8 @@
                 </button>
 
                 <ul>
-                    <li><a href="Default.aspx">Home</a></li>
-                    <li><a href="About.aspx">About</a></li>
-                    <li><a href="Contact.aspx">Contact</a></li>
+                    <li><a href="VolunteerDashboard.aspx">Volunteer Home</a></li>
+                    <li><a href="VolunteerEventReport.aspx">Event Data</a></li>
                     <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>
             </div>

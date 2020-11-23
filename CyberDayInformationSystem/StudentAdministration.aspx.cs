@@ -124,6 +124,43 @@ namespace CyberDayInformationSystem
 
                 command.ExecuteNonQuery();
                 UserInfoLbl.Text = "Student Saved Successfully!!";
+
+                //Generate access code and password for the student
+                string generatedUser, generatedPass;
+
+                generatedUser = last + first;
+                generatedPass = last + age.ToString();
+
+                string hashPW = PasswordHash.HashPassword(generatedPass);
+
+                //Write to DB
+                string userWrite = "INSERT into Users (FIRSTNAME, LASTNAME, USERNAME, USERTYPE)" +
+                    " values (@FIRSTNAME, @LASTNAME, @USERNAME, @USERTYPE";
+                var writeCommand = new SqlCommand(userWrite, connection);
+                string fName = first;
+                string lName = last;
+                string userName = generatedUser;
+                connection.Open();
+                writeCommand.Parameters.AddWithValue("@FIRSTNAME", fName);
+                writeCommand.Parameters.AddWithValue("@LASTNAME", lName);
+                writeCommand.Parameters.AddWithValue("@USERNAME", userName);
+                writeCommand.Parameters.AddWithValue("@USERTPYE", "Student");
+
+                writeCommand.ExecuteNonQuery();
+
+                //Get the userID & write to PW DB
+                string getUseId = "SELECT USERID FROM USERS WHERE USERNAME = @USER";
+                var getIdCommand = new SqlCommand(getUseId, connection);
+                command.Parameters.AddWithValue("@USER", userName);
+                var id = (int)command.ExecuteScalar();
+                string insertSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
+                command = new SqlCommand(insertSql, connection);
+                command.Parameters.AddWithValue("@ID", id);
+                command.Parameters.AddWithValue("@USER", userName);
+                command.Parameters.AddWithValue("@PASS", hashPW);
+                command.ExecuteNonQuery();
+                connection.Close();
+
             }
         }
 
