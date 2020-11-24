@@ -125,11 +125,11 @@ namespace CyberDayInformationSystem
                 command.ExecuteNonQuery();
                 UserInfoLbl.Text = "Student Saved Successfully!!";
 
-                Generations(first, last, age);
+                Generations(first, last);
             }
         }
 
-        private void Generations(string first, string last, int age)
+        private void Generations(string first, string last)
         {
             var dbcs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             var authcs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
@@ -144,12 +144,12 @@ namespace CyberDayInformationSystem
             string generatedUser, generatedPassStu;
 
             generatedUser = last + first;
-            generatedPassStu = last + age.ToString();
+            generatedPassStu = last + "student";
 
             string hashPW = PasswordHash.HashPassword(generatedPassStu);
 
             //Generate password for parent
-            string generatedPassPar = first + age.ToString();
+            string generatedPassPar = first + "parent";
             string parHashPW = PasswordHash.HashPassword(generatedPassPar);
 
             //Write to User DB - Student
