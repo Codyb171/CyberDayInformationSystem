@@ -430,6 +430,9 @@ namespace CyberDayInformationSystem
                 case "3":
                     ReportSearch.ActiveViewIndex = 1;
                     break;
+                case "5":
+                    RunBtn.Visible = true;
+                    break;
             }
         }
 
