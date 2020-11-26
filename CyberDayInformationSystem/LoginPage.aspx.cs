@@ -99,7 +99,12 @@ namespace CyberDayInformationSystem
             if (type == "Parent")
             {
                 sql += "GUARDIANID from GUARDIAN";
-            }    
+            }
+            
+            if (type == "Student")
+            {
+                sql += "STUDENTID from STUDENT";
+            }
 
             sql += " where EMAILADD Like @email";
             command = new SqlCommand(sql, connection);
@@ -129,6 +134,12 @@ namespace CyberDayInformationSystem
             {
                 if (dataReader.Read()) Session.Add("ID", dataReader["GUARDIANID"].ToString());
                 Response.Redirect("ParentDashboard.aspx");
+            }
+
+            if (type == "Student")
+            {
+                if (dataReader.Read()) Session.Add("ID", dataReader["STUDENTID"].ToString());
+                Response.Redirect("StudentDashboard.aspx");
             }
         }
     }
