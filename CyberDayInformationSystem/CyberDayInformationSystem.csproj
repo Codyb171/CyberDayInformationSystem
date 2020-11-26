@@ -244,7 +244,6 @@
     <Content Include="Admin.Master" />
     <Content Include="Parent.Master" />
     <Content Include="Scripts\jquery.tablednd.js" />
-    <Content Include="TeacherAccessCodeReport.aspx" />
     <Content Include="VolunteerEventReport.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -398,13 +397,6 @@
     </Compile>
     <Compile Include="ParentInformationModify.aspx.designer.cs">
       <DependentUpon>ParentInformationModify.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TeacherAccessCodeReport.aspx.cs">
-      <DependentUpon>TeacherAccessCodeReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TeacherAccessCodeReport.aspx.designer.cs">
-      <DependentUpon>TeacherAccessCodeReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="VolunteerEventReport.aspx.cs">
       <DependentUpon>VolunteerEventReport.aspx</DependentUpon>

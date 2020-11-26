@@ -188,6 +188,9 @@
                                         <asp:Label ID="UserInfoLbl" runat="server" Text=""></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <%-- Label to show student username, parent username, button to display password, label to display passwords --%>
+                                </asp:TableRow>
                             </asp:View>
                             <asp:View ID="ModifyView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">

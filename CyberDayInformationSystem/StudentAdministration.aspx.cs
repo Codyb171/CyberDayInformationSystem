@@ -126,6 +126,7 @@ namespace CyberDayInformationSystem
                 UserInfoLbl.Text = "Student Saved Successfully!!";
 
                 Generations(first, last);
+                ViewPW();
             }
         }
 
@@ -258,6 +259,15 @@ namespace CyberDayInformationSystem
             stuParConnectCmd.ExecuteNonQuery();
         }
 
+        private void ViewPW()
+        {
+            //Make front end labels visible
+            //Populate labels with the student and parent's usernames
+            //Make buttons visible to show passwords for each
+            //On button click - show the passwords
+            //On button click - hide the passwords
+        }
+        
         //public int GetCurrentStudent()
         //{
         //    int count = 1;

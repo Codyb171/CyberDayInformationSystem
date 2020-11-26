@@ -5,4 +5,6 @@
         <li>Parent Information</li>
     </ul>
 
+    <%-- Show the parent that is logged in's contact information to allow them to edit it --%>
+
 </asp:Content>

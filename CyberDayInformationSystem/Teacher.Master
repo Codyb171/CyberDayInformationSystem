@@ -59,7 +59,6 @@
                     <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
                     <li><a href="StudentAdministration.aspx">Student Administration</a></li>
                     <li><a href="TeacherReports.aspx">Reports</a></li>
-                    <li><a href="TeacherAccessCodeReport.aspx">Access Codes</a></li>
                     <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>
             </div>
