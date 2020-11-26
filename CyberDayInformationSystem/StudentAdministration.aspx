@@ -189,7 +189,25 @@
                                     </asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                                    <%-- Label to show student username, parent username, button to display password, label to display passwords --%>
+                                    <asp:TableCell>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                       <asp:Label ID="ShowLbl" runat="server" Text="Show Credentials?  " Visible="false"></asp:Label>
+                                        <asp:CheckBox ID="ShowPassCheck" runat="server" AutoPostBack="true" OnCheckedChanged="ShowPassCheck_CheckedChanged" Visible="false"/>
+                                        <br />
+                                        <br />
+                                        <asp:Label ID="StudentUserLbl" runat="server" Text="Student Username: " Visible="false"></asp:Label>
+                                        <asp:Label ID="UsernameLbl" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="StudentUserPass" runat="server" Text="Student Password: " Visible="false"></asp:Label>
+                                        <asp:Label ID="PasswordLbl" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />                                        <br />
+                                        <asp:Label ID="ParentUserLbl" runat="server" Text="Parent Username: " Visible="false"></asp:Label>
+                                        <asp:Label ID="UsernameLblPar" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="ParentUserPass" runat="server" Text="Parent Password: " Visible="false"></asp:Label>
+                                        <asp:Label ID="PasswordLblPar" runat="server" Text="" Visible="false"></asp:Label>
+                                    </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
                             <asp:View ID="ModifyView" runat="server">

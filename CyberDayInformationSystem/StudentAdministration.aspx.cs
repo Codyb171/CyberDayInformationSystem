@@ -124,9 +124,10 @@ namespace CyberDayInformationSystem
 
                 command.ExecuteNonQuery();
                 UserInfoLbl.Text = "Student Saved Successfully!!";
+                ShowLbl.Visible = true;
+                ShowPassCheck.Visible = true;
 
                 Generations(first, last);
-                ViewPW();
             }
         }
 
@@ -257,15 +258,17 @@ namespace CyberDayInformationSystem
             stuParConnectCmd.Parameters.AddWithValue("@FNAME", fName);
             stuParConnectCmd.Parameters.AddWithValue("@LNAME", lName);
             stuParConnectCmd.ExecuteNonQuery();
+
+            ViewPW(generatedStuUser, generatedPassStu, generatedParUser, generatedPassPar);
         }
 
-        private void ViewPW()
+        // Sets the username and passwords to the labels
+        private void ViewPW(string stuUser, string stuPass, string parUser, string parPass)
         {
-            //Make front end labels visible
-            //Populate labels with the student and parent's usernames
-            //Make buttons visible to show passwords for each
-            //On button click - show the passwords
-            //On button click - hide the passwords
+            UsernameLbl.Text = stuUser;
+            PasswordLbl.Text = stuPass;
+            UsernameLblPar.Text = parUser;
+            PasswordLblPar.Text = parPass;
         }
         
         //public int GetCurrentStudent()
@@ -639,5 +642,32 @@ namespace CyberDayInformationSystem
                 deleteCommand.ExecuteNonQuery();
             //}
         }
+
+        // When the check box is checked, view student and parent credentials
+        protected void ShowPassCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShowPassCheck.Checked == true)
+            {
+                StudentUserLbl.Visible = true;
+                UsernameLbl.Visible = true;
+                StudentUserPass.Visible = true;
+                PasswordLbl.Visible = true;
+                ParentUserLbl.Visible = true;
+                UsernameLblPar.Visible = true;
+                ParentUserPass.Visible = true;
+                PasswordLblPar.Visible = true;
+            } else
+            {
+                StudentUserLbl.Visible = false;
+                UsernameLbl.Visible = false;
+                StudentUserPass.Visible = false;
+                PasswordLbl.Visible = false;
+                ParentUserLbl.Visible = false;
+                UsernameLblPar.Visible = false;
+                ParentUserPass.Visible = false;
+                PasswordLblPar.Visible = false;
+            }
+        }
+
     }
 }
