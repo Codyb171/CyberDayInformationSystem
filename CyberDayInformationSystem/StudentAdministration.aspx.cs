@@ -33,12 +33,6 @@ namespace CyberDayInformationSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                TshirtSizeList.Items.Insert(0, new ListItem(String.Empty));
-                EditSizeList.Items.Insert(0, new ListItem(String.Empty));
-                GenderDropDown.Items.Insert(0, new ListItem(String.Empty));
-            }
 
             if (Page.IsPostBack)
             {
