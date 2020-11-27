@@ -53,6 +53,10 @@ namespace CyberDayInformationSystem
                     {
                         Session.Add("Master", "~/Parent.Master");
                     }
+                    else if (type == "Student")
+                    {
+                        Session.Add("Master", "~/Student.Master");
+                    }
                     else
                     {
                         Session.Add("Master", "~/Site.Master");

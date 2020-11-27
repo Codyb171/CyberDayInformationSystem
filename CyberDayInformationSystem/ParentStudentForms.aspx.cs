@@ -29,12 +29,21 @@ namespace CyberDayInformationSystem
             }
         }
 
-        private int _parentID;
+        private int guardianID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptInclude(Page, GetType(), "SaveString.js", "/Scripts/src/methods/SaveString.js");
+            if (Session["TYPE"] != null)
+            {
+                if (Session["TYPE"].ToString() == "Parent")
+                {
+                    guardianID = int.Parse(Session["ID"].ToString());
+                }
+                else
+                {
+                    guardianID = 0;
+                }
 
-            _parentID = int.Parse(Session["ID"].ToString());
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -79,12 +88,26 @@ namespace CyberDayInformationSystem
             output += "Today's Date: " + DateTime.Now;
             //End of Generate
 
-            //Set PhotoRelease
+            if (ddlPhotoPermission.SelectedValue == "1")
+            {
+                //Set PhotoRelease
+                var dbcs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                var authcs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
 
-            //Save the photo approval to DB
-            //use parentID to link to the right student
-            // UPDATE STUDENT SET PHOTORELEASE = "YES" WHERE GUARDIANID = @GUARDIANID
-            
+                var dbcon = new SqlConnection(dbcs);
+                var authcon = new SqlConnection(authcs);
+
+                dbcon.Open();
+                authcon.Open();
+
+                //Save the photo approval to DB
+                string updatePR = "UPDATE STUDENT SET PHOTORELEASE = @PHOTOPERM WHERE GUARDIAN = @GUARDIAN";
+                var updatePRCmd = new SqlCommand(updatePR, dbcon);
+                updatePRCmd.Parameters.AddWithValue("@PHOTOPERM", "YES");
+                updatePRCmd.Parameters.AddWithValue("@GUARDIAN", guardianID);
+
+                updatePRCmd.ExecuteNonQuery();
+            }
         }
     }
 }
