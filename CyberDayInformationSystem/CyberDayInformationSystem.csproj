@@ -392,8 +392,8 @@
     <Compile Include="AdminStudentNotes.aspx.designer.cs">
       <DependentUpon>AdminStudentNotes.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Itenerary.aspx.cs">
-      <DependentUpon>Itenerary.aspx</DependentUpon>
+    <Compile Include="Itinerary.aspx.cs">
+      <DependentUpon>Itinerary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Itinerary.aspx.designer.cs">

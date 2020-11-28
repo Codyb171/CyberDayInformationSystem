@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using System.IO;
+
 using System.Data;
 using ClosedXML.Excel;
 
@@ -14,9 +14,8 @@ using System.Data.SqlClient;
 
 namespace CyberDayInformationSystem
 {
-    public partial class Itenerary : System.Web.UI.Page
+    public partial class Itinerary : System.Web.UI.Page
     {
-
         void Page_PreInit(Object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
@@ -39,7 +38,7 @@ namespace CyberDayInformationSystem
         {
             if (!this.IsPostBack)
             {
-                
+
             }
         }
 

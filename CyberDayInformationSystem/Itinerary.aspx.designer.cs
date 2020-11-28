@@ -11,7 +11,7 @@ namespace CyberDayInformationSystem
 {
 
 
-    public partial class Itenerary
+    public partial class Itinerary
     {
 
         /// <summary>
