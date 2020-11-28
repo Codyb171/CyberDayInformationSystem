@@ -109,10 +109,12 @@ namespace CyberDayInformationSystem
             }
         }
 
-        protected void setTable(DataTable dt)
+        protected void setTable(DataTable dt)  // use a dataview to filter out empty rows??
         {
             if (dt != null)
             {
+                dt = RemoveEmptyRows(dt);
+
                 using (var bulkCopy = new SqlBulkCopy(ConfigurationManager.ConnectionStrings["INFO"].ConnectionString, SqlBulkCopyOptions.KeepIdentity))
                 {
                     foreach (DataColumn col in dt.Columns)
@@ -121,22 +123,42 @@ namespace CyberDayInformationSystem
                     }
 
                     bulkCopy.BulkCopyTimeout = 600;
-                    bulkCopy.DestinationTableName = "CurrentItenerary";
+                    bulkCopy.DestinationTableName = "CURRENTITINERARY";
                     bulkCopy.WriteToServer(dt);
                     Label1.ForeColor = System.Drawing.Color.Green;
-                    Label1.Text = "Itenerary Commited Successfully!";
+                    Label1.Text = "Itinerary Commited Successfully!";
                 }
             }
             else
             {
                 Label1.ForeColor = System.Drawing.Color.Red;
-                Label1.Text = "No Itenerary Uploaded! Please upload a file.";
+                Label1.Text = "No Itinerary Uploaded! Please upload a file.";
             }
         }
 
+
+        private static DataTable RemoveEmptyRows(DataTable source)
+        {
+            DataTable dt1 = source.Clone(); //copy the structure 
+            for (int i = 0; i <= source.Rows.Count - 1; i++) //iterate through the rows of the source
+            {
+                DataRow currentRow = source.Rows[i];  //copy the current row 
+                foreach (var colValue in currentRow.ItemArray)//move along the columns 
+                {
+                    if (!string.IsNullOrEmpty(colValue.ToString())) // if there is a value in a column, copy the row and finish
+                    {
+                        dt1.ImportRow(currentRow);
+                        break; //break and get a new row                        
+                    }
+                }
+            }
+            return dt1;
+        }
+
+
         protected void clearTable()
         {
-            String query1 = "delete from CurrentItenerary;";
+            String query1 = "delete from CURRENTITINERARY;";
 
             // define db connection 
             SqlConnection sqlConnect = new SqlConnection(ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString());

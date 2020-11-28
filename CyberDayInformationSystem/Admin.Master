@@ -74,6 +74,7 @@
                     <li><a href="AdminReports.aspx">Reports</a></li>
                     <li><a href="UserCreation.aspx">Create Users</a></li>
                     <li><a href="ChatStart.aspx">Chat</a></li>
+                    <li><a href="Itinerary.aspx">Create Itinerary</a></li>
                 </ul>
             </div>
             <div class="PgTitle">

@@ -185,7 +185,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="HeatMap.aspx" />
-    <Content Include="Itenerary.aspx" />
+    <Content Include="Itinerary.aspx" />
     <Content Include="lib\font-awesome\css\all.css" />
     <Content Include="lib\font-awesome\css\all.min.css" />
     <Content Include="lib\font-awesome\css\brands.css" />
@@ -385,12 +385,12 @@
     <Compile Include="AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Itenerary.aspx.cs">
-      <DependentUpon>Itenerary.aspx</DependentUpon>
+    <Compile Include="Itinerary.aspx.cs">
+      <DependentUpon>Itinerary.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Itenerary.aspx.designer.cs">
-      <DependentUpon>Itenerary.aspx</DependentUpon>
+    <Compile Include="Itinerary.aspx.designer.cs">
+      <DependentUpon>Itinerary.aspx</DependentUpon>
     </Compile>
     <Compile Include="ParentInformationModify.aspx.cs">
       <DependentUpon>ParentInformationModify.aspx</DependentUpon>
@@ -612,7 +612,7 @@
     <Content Include="Teacher.Master" />
     <Content Include="Volunteer.Master" />
     <Content Include="Student.Master" />
-    <Content Include="Uploads\test2.xlsx" />
+    <Content Include="Uploads\Default_Itinerary.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
