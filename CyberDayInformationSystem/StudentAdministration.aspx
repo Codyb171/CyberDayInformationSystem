@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <ul class="breadcrumb">
-        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
         <li>Student Administration</li>
     </ul>
     
@@ -247,11 +247,11 @@
                                         <asp:Button ID="EditStudentBtn" CssClass="btn-main reg" runat="server" Text="Edit Student" Visible="False" OnClick="EditStudentBtn_Click" />
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:Button ID="DeleteStudentBtn" CssClass="btn-main reg" runat="server" Text="Delete Student?" Visible="False" OnClick="DeleteStudentBtn_OnClick" />
+                                        <%--<asp:Button ID="DeleteStudentBtn" CssClass="btn-main reg" runat="server" Text="Delete Student?" Visible="False" OnClick="DeleteStudentBtn_OnClick" />--%>
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
-<%--                            <asp:View ID="EditView" runat="server">
+                            <asp:View ID="EditView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:Label ID="EditFirstName" runat="server" Text="First Name: " Width="100px"></asp:Label>
@@ -389,7 +389,7 @@
                                         <asp:Label ID="EditLabelStatus" runat="server" Text=""></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
-                            </asp:View>--%>
+                            </asp:View>
                         </asp:MultiView>
                     </asp:TableCell>
                 </asp:TableRow>

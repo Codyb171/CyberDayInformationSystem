@@ -2,12 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <ul class="breadcrumb">
-        <li><a href="Default.aspx">Home</a></li>
-        <li>User Creation</li>
-    </ul>
-
-
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
