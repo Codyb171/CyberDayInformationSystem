@@ -124,104 +124,171 @@ namespace CyberDayInformationSystem
 
                 command.ExecuteNonQuery();
                 UserInfoLbl.Text = "Student Saved Successfully!!";
+                ShowLbl.Visible = true;
+                ShowPassCheck.Visible = true;
 
-                //Generate access code and password for the student
-                string generatedUser, generatedPassStu;
-
-                generatedUser = last + first;
-                generatedPassStu = last + age.ToString();
-
-                string hashPW = PasswordHash.HashPassword(generatedPassStu);
-
-                //Generate password for parent
-                string generatedPassPar = first + age.ToString();
-                string parHashPW = PasswordHash.HashPassword(generatedPassPar);
-
-                //Write to User DB - Student
-                string userWrite = "INSERT into Users (FIRSTNAME, LASTNAME, USERNAME, USERTYPE)" +
-                    " values (@FIRSTNAME, @LASTNAME, @USERNAME, @USERTYPE)";
-                var writeCommand = new SqlCommand(userWrite, connection);
-                string fName = first;
-                string lName = last;
-                string userName = generatedUser;
-                writeCommand.Parameters.AddWithValue("@FIRSTNAME", fName);
-                writeCommand.Parameters.AddWithValue("@LASTNAME", lName);
-                writeCommand.Parameters.AddWithValue("@USERNAME", userName);
-                writeCommand.Parameters.AddWithValue("@USERTPYE", "Student");
-
-                writeCommand.ExecuteNonQuery();
-
-                //Write to User DB - Parent
-                string parWrite = "INSERT INTO USERS (USERNAME, USERTYPE) VALUES (@USER, @TYPE)";
-                var parWriteCmd = new SqlCommand(parWrite, connection);
-                parWriteCmd.Parameters.AddWithValue("@USER", userName);
-                parWriteCmd.Parameters.AddWithValue("@TYPE", "Parent");
-
-                parWriteCmd.ExecuteNonQuery();
-
-                //Get the userID & write to PW DB - Student
-                string getUseId = "SELECT USERID FROM USERS WHERE USERNAME = @USER";
-                var getIdCommand = new SqlCommand(getUseId, connection);
-                getIdCommand.Parameters.AddWithValue("@USER", userName);
-
-                var id = (int)command.ExecuteScalar();
-
-                string insertSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
-                var insertCommand = new SqlCommand(insertSql, connection);
-                insertCommand.Parameters.AddWithValue("@ID", id);
-                insertCommand.Parameters.AddWithValue("@USER", userName);
-                insertCommand.Parameters.AddWithValue("@PASS", hashPW);
-                insertCommand.ExecuteNonQuery();
-
-                //Create placeholder Parent
-                string parentWrite = "INSERT into Guardian (FIRSTNAME, LASTNAME) values (@FNAME, @LNAME)";
-                var parWriteCommand = new SqlCommand(parentWrite, connection);
-                parWriteCommand.Parameters.AddWithValue("@FNAME", fName);
-                parWriteCommand.Parameters.AddWithValue("@LNAME", lName);
-                parWriteCommand.ExecuteNonQuery();
-
-                //Get ParentID and connect to student
-                string getParID = "SELECT GUARDIANID FROM GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
-                var getParIDCmd = new SqlCommand(getParID, connection);
-                getParIDCmd.Parameters.AddWithValue("@FNAME", fName);
-                getParIDCmd.Parameters.AddWithValue("@LNAME", lName);
-                var parID = (int)command.ExecuteScalar();
-
-                string stuParConnect = "UPDATE STUDENT SET GUARDIAN = @GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
-                var stuParConnectCmd = new SqlCommand(stuParConnect, connection);
-                stuParConnectCmd.Parameters.AddWithValue("@GUARDIAN", parID);
-                stuParConnectCmd.Parameters.AddWithValue("@FNAME", fName);
-                stuParConnectCmd.Parameters.AddWithValue("@LNAME", lName);
-                stuParConnectCmd.ExecuteNonQuery();
-
-                //Write to PW DB - Parent
-                string insertParSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
-                var insertParCmd = new SqlCommand(insertParSql, connection);
-                insertParCmd.Parameters.AddWithValue("@ID", parID);
-                insertParCmd.Parameters.AddWithValue("@USER", userName);
-                insertParCmd.Parameters.AddWithValue("@PASS", parHashPW);
-
+                Generations(first, last);
             }
         }
 
-        //public int GetCurrentStudent()
-        //{
-        //    int count = 1;
-        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-        //    string testSql = "Select count(*) from Student";
-        //    var connection = new SqlConnection(cs);
-        //    connection.Open();
-        //    var command = new SqlCommand(testSql, connection);
-        //    var dataReader = command.ExecuteReader();
-        //    if (dataReader.Read())
-        //    {
-        //        count = dataReader.GetInt32(0);
-        //    }
+        private void Generations(string first, string last)
+        {
+            var dbcs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            var authcs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
 
-        //    dataReader.Close();
-        //    count++;
-        //    return count;
-        //}
+            var dbcon = new SqlConnection(dbcs);
+            var authcon = new SqlConnection(authcs);
+
+            dbcon.Open();
+            authcon.Open();
+
+            //Generate username for student
+            string generatedStuUser = last + first;
+
+            //Generate username for parent
+            string generatedParUser = "Parent" + first + last;
+
+            //Generate password for student
+            string generatedPassStu = last + "student";
+            string hashPW = PasswordHash.HashPassword(generatedPassStu);
+
+            //Generate password for parent
+            string generatedPassPar = last + "parent";
+            string parHashPW = PasswordHash.HashPassword(generatedPassPar);
+
+            //Write to User DB - Student
+            string userWrite = "INSERT into Users (FIRSTNAME, LASTNAME, USERNAME, USERTYPE)" +
+                " values (@FIRSTNAME, @LASTNAME, @USERNAME, @USERTYPE)";
+            var writeCommand = new SqlCommand(userWrite, authcon);
+            string fName = first;
+            string lName = last;
+            string userName = generatedStuUser;
+
+            writeCommand.Parameters.AddWithValue("@FIRSTNAME", fName);
+            writeCommand.Parameters.AddWithValue("@LASTNAME", lName);
+            writeCommand.Parameters.AddWithValue("@USERNAME", userName);
+            writeCommand.Parameters.AddWithValue("@USERTYPE", "Student");
+
+            writeCommand.ExecuteNonQuery();
+
+            //Get the userID & write to PW DB - Student
+            string getUseId = "SELECT MAX(USERID) FROM USERS";
+            var getIdCommand = new SqlCommand(getUseId, authcon);
+            getIdCommand.Parameters.AddWithValue("@USER", userName);
+            int stuid = 0;
+
+            SqlDataReader sturead = getIdCommand.ExecuteReader();
+
+            while (sturead.Read())
+            {
+                stuid = sturead.GetInt32(0);
+            }
+
+            sturead.Close();
+
+            string insertSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
+            var insertCommand = new SqlCommand(insertSql, authcon);
+            insertCommand.Parameters.AddWithValue("@ID", stuid);
+            insertCommand.Parameters.AddWithValue("@USER", userName);
+            insertCommand.Parameters.AddWithValue("@PASS", hashPW);
+            insertCommand.ExecuteNonQuery();
+
+            //Write to User DB - Parent
+            string parWrite = "INSERT INTO USERS (FIRSTNAME, LASTNAME, USERNAME, USERTYPE) VALUES (@FNAME, @LNAME, @USER, @TYPE)";
+            var parWriteCmd = new SqlCommand(parWrite, authcon);
+            parWriteCmd.Parameters.AddWithValue("@FNAME", "Parent " + fName);
+            parWriteCmd.Parameters.AddWithValue("@LNAME", lName);
+            parWriteCmd.Parameters.AddWithValue("@USER", generatedParUser);
+            parWriteCmd.Parameters.AddWithValue("@TYPE", "Parent");
+
+            parWriteCmd.ExecuteNonQuery();
+
+            //Write to PW DB - Parent
+            string getParId = "SELECT MAX(USERID) FROM USERS";
+            var getParIdCmd = new SqlCommand(getParId, authcon);
+            int parid = 0;
+
+            SqlDataReader paridread = getParIdCmd.ExecuteReader();
+
+            while (paridread.Read())
+            {
+                parid = paridread.GetInt32(0);
+            }
+
+            paridread.Close();
+
+            string insertParSql = "INSERT INTO PASSWORDS VALUES(@ID, @USER, @PASS)";
+            var insertParCmd = new SqlCommand(insertParSql, authcon);
+            insertParCmd.Parameters.AddWithValue("@ID", parid);
+            insertParCmd.Parameters.AddWithValue("@USER", generatedParUser);
+            insertParCmd.Parameters.AddWithValue("@PASS", parHashPW);
+
+            insertParCmd.ExecuteNonQuery();
+
+            //Create placeholder Parent
+            string parentWrite = "INSERT into Guardian (FIRSTNAME, LASTNAME, EMAILADD, PHONE, CONTACT) " +
+                "values (@FNAME, @LNAME, @EMAIL, @PHONE, @CONTACT)";
+            var parWriteCommand = new SqlCommand(parentWrite, dbcon);
+            parWriteCommand.Parameters.AddWithValue("@FNAME", fName);
+            parWriteCommand.Parameters.AddWithValue("@LNAME", lName);
+            parWriteCommand.Parameters.AddWithValue("@EMAIL", " ");
+            parWriteCommand.Parameters.AddWithValue("@PHONE", "0000000000");
+            parWriteCommand.Parameters.AddWithValue("@CONTACT", "YES");
+            parWriteCommand.ExecuteNonQuery();
+
+            //Get ParentID and connect to student
+            string getGuardID = "SELECT GUARDIANID FROM GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
+            var getGuardIDCmd = new SqlCommand(getGuardID, dbcon);
+            getGuardIDCmd.Parameters.AddWithValue("@FNAME", fName);
+            getGuardIDCmd.Parameters.AddWithValue("@LNAME", lName);
+            int guardId = 0;
+
+            SqlDataReader guardRead = getGuardIDCmd.ExecuteReader();
+
+            while (guardRead.Read())
+            {
+                guardId = guardRead.GetInt32(0);
+            }
+
+            guardRead.Close();
+
+            string stuParConnect = "UPDATE STUDENT SET GUARDIAN = @GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
+            var stuParConnectCmd = new SqlCommand(stuParConnect, dbcon);
+            stuParConnectCmd.Parameters.AddWithValue("@GUARDIAN", guardId);
+            stuParConnectCmd.Parameters.AddWithValue("@FNAME", fName);
+            stuParConnectCmd.Parameters.AddWithValue("@LNAME", lName);
+            stuParConnectCmd.ExecuteNonQuery();
+
+            ViewPW(generatedStuUser, generatedPassStu, generatedParUser, generatedPassPar);
+        }
+
+        // Sets the username and passwords to the labels
+        private void ViewPW(string stuUser, string stuPass, string parUser, string parPass)
+        {
+            UsernameLbl.Text = stuUser;
+            PasswordLbl.Text = stuPass;
+            UsernameLblPar.Text = parUser;
+            PasswordLblPar.Text = parPass;
+        }
+
+        public int GetCurrentStudent()
+        {
+            int count = 1;
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            string testSql = "Select count(*) from Student";
+            var connection = new SqlConnection(cs);
+            connection.Open();
+            var command = new SqlCommand(testSql, connection);
+            var dataReader = command.ExecuteReader();
+            if (dataReader.Read())
+            {
+                count = dataReader.GetInt32(0);
+            }
+
+            dataReader.Close();
+            count++;
+            return count;
+        }
 
         private int StudentExists()
         {
@@ -261,26 +328,21 @@ namespace CyberDayInformationSystem
             return add;
         }
 
-
-
-        protected void FunctionSelection_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnCreateStuClick(object sender, EventArgs e)
         {
-            if (FunctionSelection.SelectedValue == "1")
-            {
-                SelectedFunction.ActiveViewIndex = 0;
-                if (_teacherID == 0)
-                {
-                    TeacherList(1);
-                    CoordinatorView.ActiveViewIndex = 0;
-                }
-                ClearEditForms();
-            }
-            else if (FunctionSelection.SelectedValue == "2")
-            {
-                ClearEditForms();
-                SelectedFunction.ActiveViewIndex = 1;
-            }
+            SelectedFunction.ActiveViewIndex = 0;
+            //if (_teacherID == 0)
+            //{
+            //    TeacherList(1);
+            //    CoordinatorView.ActiveViewIndex = 0;
+            //}
+            ClearEditForms();
+        }
 
+        protected void btnModStuClick(object sender, EventArgs e)
+        {
+            ClearEditForms();
+            SelectedFunction.ActiveViewIndex = 1;
         }
 
         // Searches based on user input to the textbox
@@ -350,7 +412,7 @@ namespace CyberDayInformationSystem
                 connection.Close();
             }
 
-            DeleteStudentBtn.Visible = true;
+            //DeleteStudentBtn.Visible = true;
             EditStudentBtn.Visible = true;
         }
 
@@ -377,7 +439,7 @@ namespace CyberDayInformationSystem
                 EditGenderList.SelectedValue = dataReader["GENDER"].ToString();
                 EditAttendeeBtn.SelectedValue = dataReader["PREVIOUSATTENDEE"].ToString();
                 EditMealBtn.SelectedValue = dataReader["MEALTICKET"].ToString();
-                SchoolList(int.Parse(EditTeacherDropDown.SelectedValue),2);
+                SchoolList(int.Parse(EditTeacherDropDown.SelectedValue), 2);
             }
 
             SelectedFunction.ActiveViewIndex = 2;
@@ -408,7 +470,7 @@ namespace CyberDayInformationSystem
                 EditTeacherDropDown.DataBind();
                 EditTeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
             }
-            
+
         }
 
         private void SchoolList(int teacherID,int caller)
@@ -444,7 +506,7 @@ namespace CyberDayInformationSystem
                     EditSchoolDropDown.SelectedIndex = 0;
                 }
             }
-            
+
         }
 
         protected void TeacherDropDown_SelectedIndexChanged(object sender, EventArgs e)
@@ -453,7 +515,7 @@ namespace CyberDayInformationSystem
             {
                 SchoolDropDown.Items.Clear();
             }
-            if(FunctionSelection.SelectedValue == "1")
+            if(SelectedFunction.ActiveViewIndex == 1)
             {
                 if (TeacherDropDown.SelectedIndex == 0)
                 {
@@ -466,7 +528,7 @@ namespace CyberDayInformationSystem
                 }
 
             }
-            if(FunctionSelection.SelectedValue == "2")
+            if (SelectedFunction.ActiveViewIndex == 2)
             {
                 if (EditTeacherDropDown.SelectedIndex == 0)
                 {
@@ -547,33 +609,61 @@ namespace CyberDayInformationSystem
             SearchByTagButton_Click(sender, e);
         }
 
-        protected void DeleteStudentBtn_OnClick(object sender, EventArgs e)
-        {
+        //DID WE DECIDE TO KEEP THE DELETE FUNCTION????
+        //protected void DeleteStudentBtn_OnClick(object sender, EventArgs e)
+        //{
             
-            int idToDelete= int.Parse(studentModifyDtl.DataKey[0].ToString());
-            var cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
-            var connection = new SqlConnection(cs);
-            //var loginCommand = new SqlCommand();
-            var deleteCommand = new SqlCommand();
-            //string user = Session["USER"].ToString();
-            //string pass = "FROM THE THING SARA DID";
-            ////add function to require password
-            ////need sara's help for this
-            //connection.Open();
-            //loginCommand.Connection = connection;
-            //loginCommand.CommandType = CommandType.StoredProcedure;
-            //loginCommand.CommandText = "UserLogin";
-            //loginCommand.Parameters.AddWithValue("@username", user);
-            //var loginResults = loginCommand.ExecuteReader();
-            //var passHash = loginResults["PASSWORDHASH"].ToString();
-            //if (PasswordHash.ValidatePassword(pass, passHash))
-            //{
-                deleteCommand.Connection = connection;
-                deleteCommand.CommandType = CommandType.StoredProcedure;
-                deleteCommand.CommandText = "DeleteStudent";
-                deleteCommand.Parameters.AddWithValue("@STUDENTID", idToDelete);
-                deleteCommand.ExecuteNonQuery();
-            //}
+        //    int idToDelete= int.Parse(studentModifyDtl.DataKey[0].ToString());
+        //    var cs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+        //    var connection = new SqlConnection(cs);
+        //    //var loginCommand = new SqlCommand();
+        //    var deleteCommand = new SqlCommand();
+        //    //string user = Session["USER"].ToString();
+        //    //string pass = "FROM THE THING SARA DID";
+        //    ////add function to require password
+        //    ////need sara's help for this
+        //    //connection.Open();
+        //    //loginCommand.Connection = connection;
+        //    //loginCommand.CommandType = CommandType.StoredProcedure;
+        //    //loginCommand.CommandText = "UserLogin";
+        //    //loginCommand.Parameters.AddWithValue("@username", user);
+        //    //var loginResults = loginCommand.ExecuteReader();
+        //    //var passHash = loginResults["PASSWORDHASH"].ToString();
+        //    //if (PasswordHash.ValidatePassword(pass, passHash))
+        //    //{
+        //        deleteCommand.Connection = connection;
+        //        deleteCommand.CommandType = CommandType.StoredProcedure;
+        //        deleteCommand.CommandText = "DeleteStudent";
+        //        deleteCommand.Parameters.AddWithValue("@STUDENTID", idToDelete);
+        //        deleteCommand.ExecuteNonQuery();
+        //    //}
+        //}
+
+        // When the check box is checked, view student and parent credentials
+        protected void ShowPassCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShowPassCheck.Checked == true)
+            {
+                StudentUserLbl.Visible = true;
+                UsernameLbl.Visible = true;
+                StudentUserPass.Visible = true;
+                PasswordLbl.Visible = true;
+                ParentUserLbl.Visible = true;
+                UsernameLblPar.Visible = true;
+                ParentUserPass.Visible = true;
+                PasswordLblPar.Visible = true;
+            } else
+            {
+                StudentUserLbl.Visible = false;
+                UsernameLbl.Visible = false;
+                StudentUserPass.Visible = false;
+                PasswordLbl.Visible = false;
+                ParentUserLbl.Visible = false;
+                UsernameLblPar.Visible = false;
+                ParentUserPass.Visible = false;
+                PasswordLblPar.Visible = false;
+            }
         }
+
     }
 }

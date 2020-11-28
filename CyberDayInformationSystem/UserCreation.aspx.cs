@@ -30,7 +30,7 @@ namespace CyberDayInformationSystem
                 {
                     if (Page.IsPostBack == false)
                     {
-                        UserTypeSelection.Items.Add(new ListItem("Coordinator", "4"));
+                        UserTypeSelection.Items.Insert(3, new ListItem("Coordinator", "4"));
                     }
                 }
             }

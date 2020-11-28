@@ -2,21 +2,15 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <ul class="breadcrumb">
-        <li><a href="Default.aspx">Home</a></li>
-        <li>User Creation</li>
-    </ul>
-
-
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
                 <p class="h5">Please Select A User Type</p>
-                <asp:RadioButtonList class="custom-radio" ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
+                 <asp:DropDownList ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
                     <asp:ListItem Value="1">Teacher</asp:ListItem>
                     <asp:ListItem Value="2">Staff Volunteer</asp:ListItem>
                     <asp:ListItem Value="3">Student Volunteer</asp:ListItem>
-                </asp:RadioButtonList>
+                </asp:DropDownList>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

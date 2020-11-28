@@ -15,13 +15,22 @@ namespace CyberDayInformationSystem
     {
 
         /// <summary>
-        /// FunctionSelection control.
+        /// btnCreateStu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList FunctionSelection;
+        protected global::System.Web.UI.WebControls.Button btnCreateStu;
+
+        /// <summary>
+        /// btnModStu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModStu;
 
         /// <summary>
         /// SelectedFunction control.
@@ -357,6 +366,96 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Label UserInfoLbl;
 
         /// <summary>
+        /// ShowLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ShowLbl;
+
+        /// <summary>
+        /// ShowPassCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ShowPassCheck;
+
+        /// <summary>
+        /// StudentUserLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StudentUserLbl;
+
+        /// <summary>
+        /// UsernameLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UsernameLbl;
+
+        /// <summary>
+        /// StudentUserPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label StudentUserPass;
+
+        /// <summary>
+        /// PasswordLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PasswordLbl;
+
+        /// <summary>
+        /// ParentUserLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ParentUserLbl;
+
+        /// <summary>
+        /// UsernameLblPar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UsernameLblPar;
+
+        /// <summary>
+        /// ParentUserPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ParentUserPass;
+
+        /// <summary>
+        /// PasswordLblPar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PasswordLblPar;
+
+        /// <summary>
         /// ModifyView control.
         /// </summary>
         /// <remarks>
@@ -427,15 +526,6 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button EditStudentBtn;
-
-        /// <summary>
-        /// DeleteStudentBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteStudentBtn;
 
         /// <summary>
         /// EditView control.

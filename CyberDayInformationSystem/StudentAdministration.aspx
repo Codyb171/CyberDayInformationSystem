@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <ul class="breadcrumb">
-        <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
+        <li><a href="TeacherDashboard.aspx">Teacher Home</a></li>
         <li>Student Administration</li>
     </ul>
     
@@ -12,11 +12,11 @@
         <div class="text-center">
             <asp:Table runat="server" HorizontalAlign="Center">
                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="4">
-                        <asp:RadioButtonList ID="FunctionSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionSelection_SelectedIndexChanged">
-                            <asp:ListItem Value="1">Create a Student</asp:ListItem>
-                            <asp:ListItem Value="2">Modify a Student</asp:ListItem>
-                        </asp:RadioButtonList>
+                    <asp:TableCell ColumnSpan="2">
+                        <asp:Button ID="btnCreateStu" CssClass="btn-main reg" runat="server" Text="Create A Student" CausesValidation="false" OnClick="btnCreateStuClick" />
+                    </asp:TableCell>
+                    <asp:TableCell ColumnSpan="2">
+                        <asp:Button ID="btnModStu" CssClass="btn-main reg" runat="server" Text="Modify A Student" CausesValidation="false" OnClick="btnModStuClick" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -188,6 +188,27 @@
                                         <asp:Label ID="UserInfoLbl" runat="server" Text=""></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <asp:TableCell>
+                                    </asp:TableCell>
+                                    <asp:TableCell>
+                                       <asp:Label ID="ShowLbl" runat="server" Text="Show Credentials?  " Visible="false"></asp:Label>
+                                        <asp:CheckBox ID="ShowPassCheck" runat="server" AutoPostBack="true" OnCheckedChanged="ShowPassCheck_CheckedChanged" Visible="false"/>
+                                        <br />
+                                        <br />
+                                        <asp:Label ID="StudentUserLbl" runat="server" Text="Student Username: " Visible="false"></asp:Label>
+                                        <asp:Label ID="UsernameLbl" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="StudentUserPass" runat="server" Text="Student Password: " Visible="false"></asp:Label>
+                                        <asp:Label ID="PasswordLbl" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />                                        <br />
+                                        <asp:Label ID="ParentUserLbl" runat="server" Text="Parent Username: " Visible="false"></asp:Label>
+                                        <asp:Label ID="UsernameLblPar" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />
+                                        <asp:Label ID="ParentUserPass" runat="server" Text="Parent Password: " Visible="false"></asp:Label>
+                                        <asp:Label ID="PasswordLblPar" runat="server" Text="" Visible="false"></asp:Label>
+                                    </asp:TableCell>
+                                </asp:TableRow>
                             </asp:View>
                             <asp:View ID="ModifyView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -226,7 +247,7 @@
                                         <asp:Button ID="EditStudentBtn" CssClass="btn-main reg" runat="server" Text="Edit Student" Visible="False" OnClick="EditStudentBtn_Click" />
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:Button ID="DeleteStudentBtn" CssClass="btn-main reg" runat="server" Text="Delete Student?" Visible="False" OnClick="DeleteStudentBtn_OnClick" />
+                                        <%--<asp:Button ID="DeleteStudentBtn" CssClass="btn-main reg" runat="server" Text="Delete Student?" Visible="False" OnClick="DeleteStudentBtn_OnClick" />--%>
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
