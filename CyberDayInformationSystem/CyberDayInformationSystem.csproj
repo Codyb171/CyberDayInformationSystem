@@ -162,6 +162,7 @@
     <Content Include="AdminReports-Styling.css" />
     <Content Include="AdminReports.aspx" />
     <Content Include="AdminDashboard.aspx" />
+    <Content Include="AdminStudentNotes.aspx" />
     <Content Include="BadSession.aspx" />
     <Content Include="ChatStart.aspx" />
     <Content Include="Contact.aspx" />
@@ -383,6 +384,13 @@
     </Compile>
     <Compile Include="AdminDashboard.aspx.designer.cs">
       <DependentUpon>AdminDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminStudentNotes.aspx.cs">
+      <DependentUpon>AdminStudentNotes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminStudentNotes.aspx.designer.cs">
+      <DependentUpon>AdminStudentNotes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Itenerary.aspx.cs">
       <DependentUpon>Itenerary.aspx</DependentUpon>
