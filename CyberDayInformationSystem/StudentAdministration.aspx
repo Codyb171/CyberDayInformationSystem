@@ -12,11 +12,11 @@
         <div class="text-center">
             <asp:Table runat="server" HorizontalAlign="Center">
                 <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="4">
-                        <asp:RadioButtonList ID="FunctionSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionSelection_SelectedIndexChanged">
-                            <asp:ListItem Value="1">Create a Student</asp:ListItem>
-                            <asp:ListItem Value="2">Modify a Student</asp:ListItem>
-                        </asp:RadioButtonList>
+                    <asp:TableCell ColumnSpan="2">
+                        <asp:Button ID="btnCreateStu" CssClass="btn-main reg" runat="server" Text="Create A Student" CausesValidation="false" OnClick="btnCreateStuClick" />
+                    </asp:TableCell>
+                    <asp:TableCell ColumnSpan="2">
+                        <asp:Button ID="btnModStu" CssClass="btn-main reg" runat="server" Text="Modify A Student" CausesValidation="false" OnClick="btnModStuClick" />
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -251,7 +251,7 @@
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
-                            <asp:View ID="EditView" runat="server">
+<%--                            <asp:View ID="EditView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="1">
                                         <asp:Label ID="EditFirstName" runat="server" Text="First Name: " Width="100px"></asp:Label>
@@ -389,7 +389,7 @@
                                         <asp:Label ID="EditLabelStatus" runat="server" Text=""></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
-                            </asp:View>
+                            </asp:View>--%>
                         </asp:MultiView>
                     </asp:TableCell>
                 </asp:TableRow>

@@ -36,7 +36,7 @@ namespace CyberDayInformationSystem
             if (!Page.IsPostBack)
             {
                 TshirtSizeList.Items.Insert(0, new ListItem(String.Empty));
-                EditSizeList.Items.Insert(0, new ListItem(String.Empty));
+                //EditSizeList.Items.Insert(0, new ListItem(String.Empty));
                 GenderDropDown.Items.Insert(0, new ListItem(String.Empty));
             }
 
@@ -328,26 +328,21 @@ namespace CyberDayInformationSystem
             return add;
         }
 
-
-
-        protected void FunctionSelection_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnCreateStuClick(object sender, EventArgs e)
         {
-            if (FunctionSelection.SelectedValue == "1")
-            {
-                SelectedFunction.ActiveViewIndex = 0;
-                if (_teacherID == 0)
-                {
-                    TeacherList(1);
-                    CoordinatorView.ActiveViewIndex = 0;
-                }
-                ClearEditForms();
-            }
-            else if (FunctionSelection.SelectedValue == "2")
-            {
-                ClearEditForms();
-                SelectedFunction.ActiveViewIndex = 1;
-            }
+            SelectedFunction.ActiveViewIndex = 0;
+            //if (_teacherID == 0)
+            //{
+            //    TeacherList(1);
+            //    CoordinatorView.ActiveViewIndex = 0;
+            //}
+            ClearEditForms();
+        }
 
+        protected void btnModStuClick(object sender, EventArgs e)
+        {
+            ClearEditForms();
+            SelectedFunction.ActiveViewIndex = 1;
         }
 
         // Searches based on user input to the textbox
@@ -421,62 +416,64 @@ namespace CyberDayInformationSystem
             EditStudentBtn.Visible = true;
         }
 
-        protected void EditStudentBtn_Click(object sender, EventArgs e)
-        {
-            _idToEdit = int.Parse(studentModifyDtl.DataKey[0].ToString());
-            Session.Add("StudentID", _idToEdit);
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            var connection = new SqlConnection(cs);
-            string sql =
-                "Select S.FIRSTNAME, S.LASTNAME, S.AGE, S.GENDER, S.PREVIOUSATTENDEE, S.MEALTICKET, S.TEACHER FROM STUDENT S" +
-                " WHERE STUDENTID = @ID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@ID", _idToEdit);
-            connection.Open();
-            SqlDataReader dataReader = command.ExecuteReader();
-            TeacherList(2);
-            if (dataReader.Read())
-            {
-                EditTeacherDropDown.SelectedValue = dataReader["TEACHER"].ToString();
-                EditFirstNameTxt.Text = dataReader["FIRSTNAME"].ToString();
-                EditLastNameTxt.Text = dataReader["LASTNAME"].ToString();
-                EditAgeTxt.Text = dataReader["AGE"].ToString();
-                EditGenderList.SelectedValue = dataReader["GENDER"].ToString();
-                EditAttendeeBtn.SelectedValue = dataReader["PREVIOUSATTENDEE"].ToString();
-                EditMealBtn.SelectedValue = dataReader["MEALTICKET"].ToString();
-                SchoolList(int.Parse(EditTeacherDropDown.SelectedValue),2);
-            }
+        //DEAD CODE?????
+        //protected void EditStudentBtn_Click(object sender, EventArgs e)
+        //{
+        //    _idToEdit = int.Parse(studentModifyDtl.DataKey[0].ToString());
+        //    Session.Add("StudentID", _idToEdit);
+        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+        //    var connection = new SqlConnection(cs);
+        //    string sql =
+        //        "Select S.FIRSTNAME, S.LASTNAME, S.AGE, S.GENDER, S.PREVIOUSATTENDEE, S.MEALTICKET, S.TEACHER FROM STUDENT S" +
+        //        " WHERE STUDENTID = @ID";
+        //    SqlCommand command = new SqlCommand(sql, connection);
+        //    command.Parameters.AddWithValue("@ID", _idToEdit);
+        //    connection.Open();
+        //    SqlDataReader dataReader = command.ExecuteReader();
+        //    //TeacherList(2);
+        //    if (dataReader.Read())
+        //    {
+        //        EditTeacherDropDown.SelectedValue = dataReader["TEACHER"].ToString();
+        //        EditFirstNameTxt.Text = dataReader["FIRSTNAME"].ToString();
+        //        EditLastNameTxt.Text = dataReader["LASTNAME"].ToString();
+        //        EditAgeTxt.Text = dataReader["AGE"].ToString();
+        //        EditGenderList.SelectedValue = dataReader["GENDER"].ToString();
+        //        EditAttendeeBtn.SelectedValue = dataReader["PREVIOUSATTENDEE"].ToString();
+        //        EditMealBtn.SelectedValue = dataReader["MEALTICKET"].ToString();
+        //        SchoolList(int.Parse(EditTeacherDropDown.SelectedValue),2);
+        //    }
 
-            SelectedFunction.ActiveViewIndex = 2;
-        }
+        //    SelectedFunction.ActiveViewIndex = 2;
+        //}
 
-        private void TeacherList(int caller)
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command = "select teacherid, (title + ' ' + firstname + ' '+ lastname) as NAME from Teacher";
-            connection.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            if (caller == 1)
-            {
-                TeacherDropDown.DataSource = dt;
-                TeacherDropDown.DataTextField = "NAME";
-                TeacherDropDown.DataValueField = "TEACHERID";
-                TeacherDropDown.DataBind();
-                TeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
-            }
-            else
-            {
-                EditTeacherDropDown.DataSource = dt;
-                EditTeacherDropDown.DataTextField = "NAME";
-                EditTeacherDropDown.DataValueField = "TEACHERID";
-                EditTeacherDropDown.DataBind();
-                EditTeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
-            }
+        //I AM FAIRLY CERTAIN THIS IS NOW USELESS CODE BECAUSE WE ARE NOW NOT ALLOWING COORDINATORS TO CREATE STUDENTS.
+        //private void TeacherList(int caller)
+        //{
+        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+        //    SqlConnection connection = new SqlConnection(cs);
+        //    string command = "select teacherid, (title + ' ' + firstname + ' '+ lastname) as NAME from Teacher";
+        //    connection.Open();
+        //    SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+        //    DataTable dt = new DataTable();
+        //    adpt.Fill(dt);
+        //    if (caller == 1)
+        //    {
+        //        TeacherDropDown.DataSource = dt;
+        //        TeacherDropDown.DataTextField = "NAME";
+        //        TeacherDropDown.DataValueField = "TEACHERID";
+        //        TeacherDropDown.DataBind();
+        //        TeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
+        //    }
+        //    else
+        //    {
+        //        EditTeacherDropDown.DataSource = dt;
+        //        EditTeacherDropDown.DataTextField = "NAME";
+        //        EditTeacherDropDown.DataValueField = "TEACHERID";
+        //        EditTeacherDropDown.DataBind();
+        //        EditTeacherDropDown.Items.Insert(0, new ListItem(String.Empty));
+        //    }
             
-        }
+        //}
 
         private void SchoolList(int teacherID,int caller)
         {
@@ -501,15 +498,15 @@ namespace CyberDayInformationSystem
                     SchoolDropDown.SelectedIndex = 0;
                 }
 
-                else
-                {
-                    EditSchoolDropDown.DataSource = dt;
-                    EditSchoolDropDown.DataBind();
-                    EditSchoolDropDown.DataTextField = "Name";
-                    EditSchoolDropDown.DataValueField = "SCHOOLID";
-                    EditSchoolDropDown.DataBind();
-                    EditSchoolDropDown.SelectedIndex = 0;
-                }
+                //else
+                //{
+                //    EditSchoolDropDown.DataSource = dt;
+                //    EditSchoolDropDown.DataBind();
+                //    EditSchoolDropDown.DataTextField = "Name";
+                //    EditSchoolDropDown.DataValueField = "SCHOOLID";
+                //    EditSchoolDropDown.DataBind();
+                //    EditSchoolDropDown.SelectedIndex = 0;
+                //}
             }
             
         }
@@ -520,7 +517,7 @@ namespace CyberDayInformationSystem
             {
                 SchoolDropDown.Items.Clear();
             }
-            if(FunctionSelection.SelectedValue == "1")
+            if(SelectedFunction.ActiveViewIndex == 1)
             {
                 if (TeacherDropDown.SelectedIndex == 0)
                 {
@@ -533,61 +530,62 @@ namespace CyberDayInformationSystem
                 }
 
             }
-            if(FunctionSelection.SelectedValue == "2")
-            {
-                if (EditTeacherDropDown.SelectedIndex == 0)
-                {
-                    EditSchoolDropDown.Items.Clear();
-                }
-                else
-                {
-                    int teacherID = int.Parse(EditTeacherDropDown.SelectedValue);
-                    SchoolList(teacherID, 2);
-                }
+            //if(SelectedFunction.ActiveViewIndex == 2)
+            //{
+            //    if (EditTeacherDropDown.SelectedIndex == 0)
+            //    {
+            //        EditSchoolDropDown.Items.Clear();
+            //    }
+            //    else
+            //    {
+            //        int teacherID = int.Parse(EditTeacherDropDown.SelectedValue);
+            //        SchoolList(teacherID, 2);
+            //    }
 
-            }
+            //}
         }
 
-        protected void UpdateBtn_Click(object sender, EventArgs e)
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            var connection = new SqlConnection(cs);
-            connection.Open();
+        //DEAD CODE????
+        //protected void UpdateBtn_Click(object sender, EventArgs e)
+        //{
+        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+        //    var connection = new SqlConnection(cs);
+        //    connection.Open();
 
-            SqlCommand updateStudent = new SqlCommand(
-                "UPDATE Student set firstname = @FIRSTNAME, lastname = @LASTNAME, age = @AGE, GENDER = @GENDER, PREVIOUSATTENDEE = @PRE, MEALTICKET = @MEAL, " +
-                "teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID", connection);
-            string firstname = HttpUtility.HtmlEncode(EditFirstNameTxt.Text);
-            string lastname = HttpUtility.HtmlEncode(EditLastNameTxt.Text);
-            int age = int.Parse(HttpUtility.HtmlEncode(EditAgeTxt.Text));
-            int teacher = int.Parse(EditTeacherDropDown.SelectedValue);
-            int school = int.Parse(EditSchoolDropDown.SelectedValue);
+        //    SqlCommand updateStudent = new SqlCommand(
+        //        "UPDATE Student set firstname = @FIRSTNAME, lastname = @LASTNAME, age = @AGE, GENDER = @GENDER, PREVIOUSATTENDEE = @PRE, MEALTICKET = @MEAL, " +
+        //        "teacher = @TEACHER, school = @SCHOOL Where STUDENTID = @SID", connection);
+        //    string firstname = HttpUtility.HtmlEncode(EditFirstNameTxt.Text);
+        //    string lastname = HttpUtility.HtmlEncode(EditLastNameTxt.Text);
+        //    int age = int.Parse(HttpUtility.HtmlEncode(EditAgeTxt.Text));
+        //    int teacher = int.Parse(EditTeacherDropDown.SelectedValue);
+        //    int school = int.Parse(EditSchoolDropDown.SelectedValue);
 
 
-            try
-            {
-                updateStudent.Parameters.AddWithValue("@FIRSTNAME", firstname);
-                updateStudent.Parameters.AddWithValue("@LASTNAME", lastname);
-                updateStudent.Parameters.AddWithValue("@AGE", age);
-                updateStudent.Parameters.AddWithValue("@GENDER", EditGenderList.SelectedItem.Text);
-                updateStudent.Parameters.AddWithValue("@PRE", EditAttendeeBtn.SelectedItem.Text);
-                updateStudent.Parameters.AddWithValue("@MEAL", EditMealBtn.SelectedItem.Text);
-                updateStudent.Parameters.AddWithValue("@TEACHER", teacher);
-                updateStudent.Parameters.AddWithValue("@SCHOOL", school);
-                updateStudent.Parameters.AddWithValue("@SID", _idToEdit);
-                updateStudent.ExecuteNonQuery();
-                ClearEditForms();
-                EditLabelStatus.Text = "Student Updated Successfully!!";
-            }
-            catch (Exception ex)
-            {
-                Console.Out.Write(ex.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
+        //    try
+        //    {
+        //        updateStudent.Parameters.AddWithValue("@FIRSTNAME", firstname);
+        //        updateStudent.Parameters.AddWithValue("@LASTNAME", lastname);
+        //        updateStudent.Parameters.AddWithValue("@AGE", age);
+        //        updateStudent.Parameters.AddWithValue("@GENDER", EditGenderList.SelectedItem.Text);
+        //        updateStudent.Parameters.AddWithValue("@PRE", EditAttendeeBtn.SelectedItem.Text);
+        //        updateStudent.Parameters.AddWithValue("@MEAL", EditMealBtn.SelectedItem.Text);
+        //        updateStudent.Parameters.AddWithValue("@TEACHER", teacher);
+        //        updateStudent.Parameters.AddWithValue("@SCHOOL", school);
+        //        updateStudent.Parameters.AddWithValue("@SID", _idToEdit);
+        //        updateStudent.ExecuteNonQuery();
+        //        ClearEditForms();
+        //        EditLabelStatus.Text = "Student Updated Successfully!!";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.Out.Write(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
+        //}
 
         private void ClearEditForms()
         {
@@ -595,13 +593,13 @@ namespace CyberDayInformationSystem
             SearchByTagLN.Text = "";
             studentModifyDtl.DataSource = null;
             studentModifyDtl.DataBind();
-            EditAgeTxt.Text = "";
-            EditFirstNameTxt.Text = "";
-            EditLastNameTxt.Text = "";
-            EditGenderList.ClearSelection();
-            EditMealBtn.ClearSelection();
-            EditAttendeeBtn.ClearSelection();
-            EditSizeList.ClearSelection();
+            //EditAgeTxt.Text = "";
+            //EditFirstNameTxt.Text = "";
+            //EditLastNameTxt.Text = "";
+            //EditGenderList.ClearSelection();
+            //EditMealBtn.ClearSelection();
+            //EditAttendeeBtn.ClearSelection();
+            //EditSizeList.ClearSelection();
             TeacherDropDown.ClearSelection();
             SchoolDropDown.Items.Clear();
             EditStudentBtn.Visible = false;
