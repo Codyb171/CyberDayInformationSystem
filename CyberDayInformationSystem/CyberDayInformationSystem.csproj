@@ -182,6 +182,7 @@
     <Content Include="Content\Images\CircuitBoard.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="EmailCenter.aspx" />
     <Content Include="EventAdministration.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -391,6 +392,14 @@
     </Compile>
     <Compile Include="AdminStudentNotes.aspx.designer.cs">
       <DependentUpon>AdminStudentNotes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="EmailCenter.aspx.cs">
+      <DependentUpon>EmailCenter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EmailCenter.aspx.designer.cs">
+      <DependentUpon>EmailCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="Itinerary.aspx.cs">
       <DependentUpon>Itinerary.aspx</DependentUpon>
