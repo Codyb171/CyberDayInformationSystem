@@ -30,7 +30,7 @@ namespace CyberDayInformationSystem
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 mail.From = new MailAddress("cyberdayjmuofficial@gmail.com");
-                mail.To.Add("cyberdayjmuofficial@gmail.com");
+                mail.To.Add("cyberdayjmuofficial@gmail.com"); // dynamically add recipients here.  
                 mail.Subject = "Test Mail - 2";
                 mail.Body = "Dear [variable name], \n" +
                     "We are emailing in preperation of our upcoming event on [variable name]. Please complete the forms" +
