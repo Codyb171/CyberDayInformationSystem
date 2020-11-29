@@ -36,7 +36,7 @@ namespace CyberDayInformationSystem
                     "We are emailing in preperation of our upcoming event on [variable name]. Please complete the forms" +
                     "attached to this email prior to [variable name]. If you have any questions, email [cooridnator email]. \n\n" +
                     "Sincerely, \n" +
-                    "Email bot";
+                    "Dr. Dillon & Dr. Lough";
 
                 // could attach brochure to send out promotions, paperwork for registered participants
                 //System.Net.Mail.Attachment attachment;
@@ -44,7 +44,7 @@ namespace CyberDayInformationSystem
                 //mail.Attachments.Add(attachment);
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("cyberdayjmuofficial", "CyberDay!sGre@t");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("cyberdayjmuofficial", "CyberDay!sGre@t"); // need to protect this!
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
