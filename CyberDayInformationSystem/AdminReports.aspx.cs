@@ -121,16 +121,16 @@ namespace CyberDayInformationSystem
             string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT ";
             if (FirstNameTxt.Text != String.Empty && LastNameTxt.Text != String.Empty)
             {
-                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
+                command += " FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
                            + "%'";
             }
             else if (FirstNameTxt.Text != String.Empty)
             {
-                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
+                command += " FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
             }
-            else
+            else if (LastNameTxt.Text != String.Empty)
             {
-                command += "LASTNAME LIKE '% " + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
+                command += " LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
             }
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             connection.Open();
