@@ -29,13 +29,13 @@
                     <asp:View runat="server" ID="DateSearch">
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell runat="server">
-                                <asp:Label runat="server" ID="DateLbl" Text="Event Date: " ></asp:Label>
+                                <asp:Label runat="server" ID="DateLbl" Text="Event Date: "></asp:Label>
                                 <asp:TextBox runat="server" ID="DateTxt" TextMode="Date"></asp:TextBox>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center" >
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell runat="server">
-                                <asp:Button runat="server" ID="SearchDate" CssClass="btn-main reg" Text="Search" OnClick="SearchDate_OnClick" CausesValidation="False"/>
+                                <asp:Button runat="server" ID="SearchDate" CssClass="btn-main reg" Text="Search" OnClick="SearchDate_OnClick" CausesValidation="False" />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:View>
@@ -52,9 +52,9 @@
                                 <asp:TextBox runat="server" ID="LastNameTxt"></asp:TextBox>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center" >
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell runat="server">
-                                <asp:Button runat="server" ID="SearchNameBtn" Text="Search" CssClass="btn-main reg" OnClick="SearchNameBtn_OnClick" CausesValidation="False"/>
+                                <asp:Button runat="server" ID="SearchNameBtn" Text="Search" CssClass="btn-main reg" OnClick="SearchNameBtn_OnClick" CausesValidation="False" />
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:View>
@@ -75,61 +75,61 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
-                <asp:Button CssClass="btn-main reg" ID="RunBtn" runat="server" Text="Run Report?" OnClick="RunBtn_Click" Visible="False"/>
+                <asp:Button CssClass="btn-main reg" ID="RunBtn" runat="server" Text="Run Report?" OnClick="RunBtn_Click" Visible="False" />
             </asp:TableCell>
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="4">
                 <asp:Panel runat="server" ID="printPanel" CssClass="PrintPanel">
                     <asp:Table runat="server" ID="ReportTable" HorizontalAlign="Center">
-                    <asp:TableRow runat="server" HorizontalAlign="Center">
-                        <asp:TableCell ColumnSpan="4">
-                            <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
-                        </asp:TableCell>
-                    </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
-                        <asp:TableCell ColumnSpan="4">
-                            <asp:GridView ID="SelectedGridView" runat="server" AutoGenerateColumns="True" CellPadding="5" Width="900">
-                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                            </asp:GridView>
-                        </asp:TableCell>
-                    </asp:TableRow>
+                            <asp:TableCell ColumnSpan="4">
+                                <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
+                            </asp:TableCell>
+                        </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
-                        <asp:TableCell ColumnSpan="2">
-                            <asp:Label ID="SecondaryGrid1Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
-                        </asp:TableCell>
-                        <asp:TableCell ColumnSpan="2">
-                            <asp:Label ID="SecondaryGrid2Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
-                        </asp:TableCell>
-                    </asp:TableRow>
+                            <asp:TableCell ColumnSpan="4">
+                                <asp:GridView ID="SelectedGridView" runat="server" AutoGenerateColumns="True" CellPadding="5" Width="900">
+                                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                                </asp:GridView>
+                            </asp:TableCell>
+                        </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
-                        <asp:TableCell ColumnSpan="2">
-                            <asp:GridView ID="SecondaryGridView1" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
-                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                            </asp:GridView>
-                        </asp:TableCell>
-                        <asp:TableCell ColumnSpan="2">
-                            <asp:GridView ID="SecondaryGridView2" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
-                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                            </asp:GridView>
-                        </asp:TableCell>
-                    </asp:TableRow>
+                            <asp:TableCell ColumnSpan="4">
+                                <asp:Label ID="TertiaryGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
+                            </asp:TableCell>
+                        </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
-                        <asp:TableCell ColumnSpan="4">
-                            <asp:Label ID="TertiaryGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
-                        </asp:TableCell>
-                    </asp:TableRow>
+                            <asp:TableCell ColumnSpan="4">
+                                <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900">
+                                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                                </asp:GridView>
+                            </asp:TableCell>
+                        </asp:TableRow>
                         <asp:TableRow runat="server" HorizontalAlign="Center">
-                        <asp:TableCell ColumnSpan="4">
-                            <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900">
-                                <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
-                                <RowStyle BackColor="#bfdfff" ForeColor="Black" />
-                            </asp:GridView>
-                        </asp:TableCell>
-                    </asp:TableRow>
+                            <asp:TableCell ColumnSpan="2">
+                                <asp:Label ID="SecondaryGrid1Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell ColumnSpan="2">
+                                <asp:Label ID="SecondaryGrid2Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                            <asp:TableCell ColumnSpan="2">
+                                <asp:GridView ID="SecondaryGridView1" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
+                                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                                </asp:GridView>
+                            </asp:TableCell>
+                            <asp:TableCell ColumnSpan="2">
+                                <asp:GridView ID="SecondaryGridView2" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
+                                    <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
+                                    <RowStyle BackColor="#bfdfff" ForeColor="Black" />
+                                </asp:GridView>
+                            </asp:TableCell>
+                        </asp:TableRow>
                     </asp:Table>
                 </asp:Panel>
             </asp:TableCell>
@@ -141,7 +141,7 @@
         </asp:TableRow>
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell runat="server">
-                <asp:Button ID="clearBtn" CssClass="btn-main reg" runat="server" Text="Start Over?" OnClick="clearBtn_OnClick" Visible="False"/>
+                <asp:Button ID="clearBtn" CssClass="btn-main reg" runat="server" Text="Start Over?" OnClick="clearBtn_OnClick" Visible="False" />
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
