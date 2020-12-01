@@ -126,8 +126,8 @@ namespace CyberDayInformationSystem
             }
         }
 
-        protected void CreateBut_Click(object sender, EventArgs e) // reformat code. looks gross...
-        {//fix
+        protected void CreateBut_Click(object sender, EventArgs e) 
+        {
             if (Page.IsValid)
             {
                 {
@@ -143,28 +143,18 @@ namespace CyberDayInformationSystem
                         insert.ExecuteNonQuery();
                         connection.Close();
                     }
-                    //string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
-                    //connection.Open();
-                    //insert.Parameters.AddWithValue("@FILENAME", fileName);
-                    //insert.ExecuteNonQuery();
-                    //connection.Close();
                 }
 
                 getItineraryID();
 
-                {
+                
                     if (ViewState["ITINERARYID"] != null)
                     {
                         string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                         SqlConnection connection = new SqlConnection(cs);
                         SqlCommand insert = new SqlCommand("INSERT INTO EVENT(EVENTDATE, EVENTITINERARY) VALUES(@DATE, @ITINERARY)", connection);
 
-                        //string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
-                        //date = date.ToString("dd/MM/yyyy HH:mm");
                         string date = String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text));
-
-                        /*String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))*/
-                        ;
                         int itinerary = Int32.Parse(ViewState["ITINERARYID"].ToString());
                         connection.Open();
                         insert.Parameters.AddWithValue("@DATE", date);
@@ -176,7 +166,7 @@ namespace CyberDayInformationSystem
                         NotifLBL.Text = "Your event on " + date + " has successfully been created!";
                         NotifLBL.Visible = true;
                         ClearInfo();
-                    }
+                    
 
                 }
             }
@@ -225,6 +215,8 @@ namespace CyberDayInformationSystem
             NotifLBL.Text = "Your event has successfully been modified!";
             NotifLBL.Visible = true;
             ClearInfo();
+
+            EventDateList();
         }
 
         protected void updateFileName(int id)
