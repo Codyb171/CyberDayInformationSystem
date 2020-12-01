@@ -59,16 +59,16 @@ namespace CyberDayInformationSystem
         {
             //Generate Email output String
             string output =
-                "Photo Release \n I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included \n" +
-                "in whole or in part, or reproductions thereof in color or otherwise for any lawful purpose whatsoever, including but not limited to use in any CyberDay publication or on the\n" +
-                "CyberDay websites, without payment or any other consideration. \n" +
-                "I hereby waive any right that I may have to inspect and/or approve the finished product or the copy that may be used in connection therewith, wherein My Child's likeness" +
-                "\nappears, or the use to which it may be applied.\n" +
-                "I hereby	release, discharge,	and	agree to indemnify and hold	harmless CyberDay and their agents from	all	claims,	demands, and causes	of action that I or	My Child have or may\n" +
-                " have by reason	of	this authorization or use	of	My	Child’s	photographic portraits,	pictures, digital images or videotapes,	including any liability	by	virtue\n" +
-                "of	any	blurring, distortion, alteration, optical illusion,	or use	in	composite form,	whether	intentional	or	otherwise, that may	occur or be	produced\n" +
-                "in	the	taking of said images or videotapes, or	in	processing	tending	towards	the	completion	of	the	finished product,	including	publication	on	the\n" +
-                "internet, in	brochures,	or	any	other advertisements or promotional materials.\n";
+                "Photo Release \nI hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or " +
+                "in which My Child may be included in whole or in part, or reproductions thereof in color or otherwise for any lawful purpose whatsoever, including but not " +
+                "limited to use in any CyberDay publication or on the CyberDay websites, without payment or any other consideration.\n" +
+                "I hereby waive any right that I may have to inspect and/or approve the finished product or the copy that may be used in connection therewith, wherein My Child's likeness " +
+                "appears, or the use to which it may be applied.\n" +
+                "I hereby release, discharge, and agree to indemnify and hold harmless CyberDay and their agents from all claims, demands, and causes of action that I or My Child " +
+                "have or may have by reason of this authorization or use of My Child’s photographic portraits, pictures, digital images or videotapes, including any liability by " +
+                "virtue of any blurring, distortion, alteration, optical illusion, or use in composite form, intentional or otherwise, that may occur or be produced in the taking " +
+                "of said images or videotapes, or in processing tending towards the completion of the finished product, including publication on the internet, in brochures, or any " +
+                "other advertisements or promotional materials.\n";
             if (ddlPhotoPermission.SelectedValue == "1")
             {
                 output += "I DO authorize CyberDay to use my child's photograph.\n";
