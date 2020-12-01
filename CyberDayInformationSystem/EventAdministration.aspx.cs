@@ -85,12 +85,7 @@ namespace CyberDayInformationSystem
             EventDelDDL.DataValueField = "EVENTID";
             EventDelDDL.DataBind();
             EventDelDDL.Items.Insert(0, new ListItem(String.Empty));
-            CreateEventTaskDDL.DataSource = dt;
-            CreateEventTaskDDL.DataBind();
-            CreateEventTaskDDL.DataTextField = "EVENTDATE";
-            CreateEventTaskDDL.DataValueField = "EVENTID";
-            CreateEventTaskDDL.DataBind();
-            CreateEventTaskDDL.Items.Insert(0, new ListItem(String.Empty));
+
             connection.Close();
         }
 
@@ -108,6 +103,7 @@ namespace CyberDayInformationSystem
                 SqlDataReader reader = select.ExecuteReader();
                 while (reader.Read())
                 {
+                    //fix
                     NewDateTxt.Text = (reader["EVENTDATE"].ToString());
                 }
                 connection.Close();
@@ -131,7 +127,7 @@ namespace CyberDayInformationSystem
         }
 
         protected void CreateBut_Click(object sender, EventArgs e) // reformat code. looks gross...
-        {
+        {//fix
             if (Page.IsValid)
             {
                 {
@@ -139,32 +135,49 @@ namespace CyberDayInformationSystem
                     SqlConnection connection = new SqlConnection(cs);
                     SqlCommand insert = new SqlCommand("INSERT INTO EVENTITINERARY(FILENAME) VALUES(@FILENAME)", connection);
 
-                    string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
-                    connection.Open();
-                    insert.Parameters.AddWithValue("@FILENAME", fileName);
-                    insert.ExecuteNonQuery();
-                    connection.Close();
+                    if (ViewState["FILENAME"] != null)
+                    {
+                        string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
+                        connection.Open();
+                        insert.Parameters.AddWithValue("@FILENAME", fileName);
+                        insert.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    //string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
+                    //connection.Open();
+                    //insert.Parameters.AddWithValue("@FILENAME", fileName);
+                    //insert.ExecuteNonQuery();
+                    //connection.Close();
                 }
 
                 getItineraryID();
 
                 {
-                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-                    SqlConnection connection = new SqlConnection(cs);
-                    SqlCommand insert = new SqlCommand("INSERT INTO EVENT(EVENTDATE, EVENTITINERARY) VALUES(@DATE, @ITINERARY)", connection);
+                    if (ViewState["ITINERARYID"] != null)
+                    {
+                        string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                        SqlConnection connection = new SqlConnection(cs);
+                        SqlCommand insert = new SqlCommand("INSERT INTO EVENT(EVENTDATE, EVENTITINERARY) VALUES(@DATE, @ITINERARY)", connection);
 
-                    string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
-                    int itinerary = Int32.Parse(ViewState["ITINERARYID"].ToString());
-                    connection.Open();
-                    insert.Parameters.AddWithValue("@DATE", date);
-                    insert.Parameters.AddWithValue("@ITINERARY", itinerary);
-                    insert.ExecuteNonQuery();
-                    connection.Close();
+                        //string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
+                        //date = date.ToString("dd/MM/yyyy HH:mm");
+                        string date = String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text));
 
-                    NotifLBL.ForeColor = System.Drawing.Color.Green;
-                    NotifLBL.Text = "Your event on " + date + " has successfully been created!";
-                    NotifLBL.Visible = true;
-                    ClearInfo();
+                        /*String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))*/
+                        ;
+                        int itinerary = Int32.Parse(ViewState["ITINERARYID"].ToString());
+                        connection.Open();
+                        insert.Parameters.AddWithValue("@DATE", date);
+                        insert.Parameters.AddWithValue("@ITINERARY", itinerary);
+                        insert.ExecuteNonQuery();
+                        connection.Close();
+
+                        NotifLBL.ForeColor = System.Drawing.Color.Green;
+                        NotifLBL.Text = "Your event on " + date + " has successfully been created!";
+                        NotifLBL.Visible = true;
+                        ClearInfo();
+                    }
+
                 }
             }
         }
@@ -190,8 +203,14 @@ namespace CyberDayInformationSystem
             SqlCommand update = new SqlCommand("UPDATE EVENT SET EVENTDATE = @DATE, EVENTITINERARY = @ITINERARYID WHERE EVENTID = @VALUE", connection);
 
             int value = int.Parse(EventDateDDL.SelectedValue);
-            string date = HttpUtility.HtmlEncode(NewDateTxt.Text); // protect this from bad formatting!!!
-            string itineraryID = HttpUtility.HtmlEncode(NewDateTxt.Text);
+            //string date = HttpUtility.HtmlEncode(NewDateTxt.Text); // protect this from bad formatting!!!
+            string date = String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(NewDateTxt.Text)); // protect this from bad formatting!!!
+
+            String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text));
+
+            // string itineraryID = HttpUtility.HtmlEncode(NewDateTxt.Text);
+            string itineraryID = date;
+
 
             connection.Open();
             update.Parameters.AddWithValue("@DATE", date);
@@ -210,39 +229,102 @@ namespace CyberDayInformationSystem
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE EVENT = @VALUE", connection);
-            SqlCommand delete2 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
-            string select = "SELECT EVENTDATE, EVENTID FROM EVENT";
-
-            int value = int.Parse(EventDelDDL.SelectedValue);
-            int eventID = int.Parse(EventDelDDL.SelectedValue);
-
+            SqlCommand query = new SqlCommand("select itineraryid from eventitinerary where itineraryid = (select EVENTITINERARY from event where eventid = " 
+                + int.Parse(EventDelDDL.SelectedValue) + ")", connection);
+            //string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
             connection.Open();
-            delete.Parameters.AddWithValue("@VALUE", value);
-            delete.ExecuteNonQuery();
-            delete2.Parameters.AddWithValue("@EVENTID", eventID);
-            delete2.ExecuteNonQuery();
-            SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            EventDelDDL.DataSource = dt;
-            EventDelDDL.DataBind();
-            EventDelDDL.DataTextField = "EVENTDATE";
-            EventDelDDL.DataValueField = "EVENTID";
-            EventDelDDL.DataBind();
+            //query.Parameters.AddWithValue("@FILENAME", fileName);
+            SqlDataReader queryResults = query.ExecuteReader();
+
+            if (queryResults.Read())
+            {
+                // ViewState["ITINERARYID"] = queryResults.GetInt32(queryResults.GetOrdinal("ITINERARYID"));
+
+                SqlCommand delete1 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
+                SqlCommand delete2 = new SqlCommand("DELETE FROM EVENTITINERARY WHERE ITINERARYID = @ITINERARYID", connection);
+
+                string select = "SELECT EVENTDATE, EVENTID FROM EVENT";
+
+                int itineraryID = queryResults.GetInt32(queryResults.GetOrdinal("ITINERARYID"));
+                int eventID = int.Parse(EventDelDDL.SelectedValue);
+
+                queryResults.Close();
+
+                delete1.Parameters.AddWithValue("@EVENTID", eventID);
+                delete1.ExecuteNonQuery();
+                delete2.Parameters.AddWithValue("@ITINERARYID", itineraryID);
+                delete2.ExecuteNonQuery();
+
+                SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
+                DataTable dt = new DataTable();
+                adpt.Fill(dt);
+                EventDelDDL.DataSource = dt;
+                EventDelDDL.DataBind();
+                EventDelDDL.DataTextField = "EVENTDATE";
+                EventDelDDL.DataValueField = "EVENTID";
+                EventDelDDL.DataBind();
+                EventDelDDL.Items.Insert(0, "");
+                connection.Close();
+
+                ClearInfo();
+                NotifLBL.ForeColor = System.Drawing.Color.Green;
+                NotifLBL.Text = "Your event has successfully been deleted!"; // not showing up...
+                NotifLBL.Visible = true;
+            }
+            queryResults.Close();
             connection.Close();
 
-            NotifLBL.ForeColor = System.Drawing.Color.Green;
-            NotifLBL.Text = "Your event has successfully been deleted!";
-            NotifLBL.Visible = true;
-            ClearInfo();
+
+
+
+
+
+
+
+
+            //string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            //SqlConnection connection = new SqlConnection(cs);
+            //SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE ITINERARYID = @VALUE", connection);
+            //SqlCommand delete2 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
+            //SqlCommand getItineraryID = new SqlCommand("select itineraryid from eventitinerary where itineraryid = (select EVENTITINERARY from event where eventid = 6)", connection);
+            //string select = "SELECT EVENTDATE, EVENTID FROM EVENT";
+
+            //int value = int.Parse(EventDelDDL.SelectedValue);
+            //int eventID = int.Parse(EventDelDDL.SelectedValue);
+
+            //connection.Open();
+            //SqlDataAdapter results = new SqlDataAdapter(getItineraryID.ToString(), connection);
+            
+
+            //delete.Parameters.AddWithValue("@VALUE", value);
+            //delete.ExecuteNonQuery();
+            //delete2.Parameters.AddWithValue("@EVENTID", eventID);
+            //delete2.ExecuteNonQuery();
+            
+            //SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
+            //DataTable dt = new DataTable();
+            //adpt.Fill(dt);
+            //EventDelDDL.DataSource = dt;
+            //EventDelDDL.DataBind();
+            //EventDelDDL.DataTextField = "EVENTDATE";
+            //EventDelDDL.DataValueField = "EVENTID";
+            //EventDelDDL.DataBind();
+            //connection.Close();
+
+            //NotifLBL.ForeColor = System.Drawing.Color.Green;
+            //NotifLBL.Text = "Your event has successfully been deleted!";
+            //NotifLBL.Visible = true;
+            //ClearInfo();
         }
 
         protected void ImportExcel(object sender, EventArgs e)
         {
             if (FileUpload1.HasFile && docType())
             {
-                ViewState["FILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
+                // ViewState["FILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
+                ViewState["FILENAME"] = String.Join(".", String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
+
+                bug.Text= String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(NewDateTxt.Text));
 
                 //Save the uploaded Excel file with a dynamically created name; Overwrites if there is already the same name there.
                 string filePath = Server.MapPath("~/Uploads/") + ViewState["FILENAME"];
@@ -289,7 +371,7 @@ namespace CyberDayInformationSystem
         protected void ImportExcelModify()
         {
             if (FileUpload2.HasFile && docType())
-            {
+            { //fix
                 ViewState["FILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload2.PostedFile.FileName);
 
                 //Save the uploaded Excel file with a dynamically created name; Overwrites if there is already the same name there.
@@ -384,6 +466,8 @@ namespace CyberDayInformationSystem
 
         protected int getItineraryID()
         {
+            if (ViewState["FILENAME"] != null)
+            {
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 SqlConnection connection = new SqlConnection(cs);
                 SqlCommand query = new SqlCommand("SELECT ITINERARYID FROM EVENTITINERARY WHERE FILENAME = '" + ViewState["FILENAME"].ToString() + "'", connection);
@@ -401,6 +485,8 @@ namespace CyberDayInformationSystem
                 connection.Close();
 
                 return Int32.Parse(ViewState["ITINERARYID"].ToString());
+            }
+            else return 0;
         }
 
         protected void ImportExcelModify(int id) // binds table from a saved excel file.
