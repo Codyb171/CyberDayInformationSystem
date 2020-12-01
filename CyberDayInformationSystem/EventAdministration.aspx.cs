@@ -219,10 +219,26 @@ namespace CyberDayInformationSystem
             update.ExecuteNonQuery();
             connection.Close();
 
+            updateFileName(getItineraryIDFromModDDL(value));
+
             NotifLBL.ForeColor = System.Drawing.Color.Green;
             NotifLBL.Text = "Your event has successfully been modified!";
             NotifLBL.Visible = true;
             ClearInfo();
+        }
+
+        protected void updateFileName(int id)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            SqlCommand update = new SqlCommand("UPDATE EVENTITINERARY SET FILENAME = @FILENAME " +
+                "WHERE ITINERARYID = @ID", connection);
+
+            connection.Open();
+            update.Parameters.AddWithValue("@FILENAME", NewDateTxt.Text + ".xlsx");
+            update.Parameters.AddWithValue("@ID", id);
+            update.ExecuteNonQuery();
+            connection.Close();
         }
 
         protected void DelBut_Click(object sender, EventArgs e)
@@ -231,15 +247,11 @@ namespace CyberDayInformationSystem
             SqlConnection connection = new SqlConnection(cs);
             SqlCommand query = new SqlCommand("select itineraryid from eventitinerary where itineraryid = (select EVENTITINERARY from event where eventid = " 
                 + int.Parse(EventDelDDL.SelectedValue) + ")", connection);
-            //string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
             connection.Open();
-            //query.Parameters.AddWithValue("@FILENAME", fileName);
             SqlDataReader queryResults = query.ExecuteReader();
 
             if (queryResults.Read())
             {
-                // ViewState["ITINERARYID"] = queryResults.GetInt32(queryResults.GetOrdinal("ITINERARYID"));
-
                 SqlCommand delete1 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
                 SqlCommand delete2 = new SqlCommand("DELETE FROM EVENTITINERARY WHERE ITINERARYID = @ITINERARYID", connection);
 
@@ -273,55 +285,12 @@ namespace CyberDayInformationSystem
             }
             queryResults.Close();
             connection.Close();
-
-
-
-
-
-
-
-
-
-            //string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            //SqlConnection connection = new SqlConnection(cs);
-            //SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE ITINERARYID = @VALUE", connection);
-            //SqlCommand delete2 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
-            //SqlCommand getItineraryID = new SqlCommand("select itineraryid from eventitinerary where itineraryid = (select EVENTITINERARY from event where eventid = 6)", connection);
-            //string select = "SELECT EVENTDATE, EVENTID FROM EVENT";
-
-            //int value = int.Parse(EventDelDDL.SelectedValue);
-            //int eventID = int.Parse(EventDelDDL.SelectedValue);
-
-            //connection.Open();
-            //SqlDataAdapter results = new SqlDataAdapter(getItineraryID.ToString(), connection);
-            
-
-            //delete.Parameters.AddWithValue("@VALUE", value);
-            //delete.ExecuteNonQuery();
-            //delete2.Parameters.AddWithValue("@EVENTID", eventID);
-            //delete2.ExecuteNonQuery();
-            
-            //SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
-            //DataTable dt = new DataTable();
-            //adpt.Fill(dt);
-            //EventDelDDL.DataSource = dt;
-            //EventDelDDL.DataBind();
-            //EventDelDDL.DataTextField = "EVENTDATE";
-            //EventDelDDL.DataValueField = "EVENTID";
-            //EventDelDDL.DataBind();
-            //connection.Close();
-
-            //NotifLBL.ForeColor = System.Drawing.Color.Green;
-            //NotifLBL.Text = "Your event has successfully been deleted!";
-            //NotifLBL.Visible = true;
-            //ClearInfo();
         }
 
         protected void ImportExcel(object sender, EventArgs e)
         {
             if (FileUpload1.HasFile && docType())
             {
-                // ViewState["FILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
                 ViewState["FILENAME"] = String.Join(".", String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
 
                 bug.Text= String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(NewDateTxt.Text));
@@ -368,14 +337,15 @@ namespace CyberDayInformationSystem
             }
         }
 
-        protected void ImportExcelModify()
+        protected void ImportExcelModify() // saves a new excel on modification
         {
             if (FileUpload2.HasFile && docType())
             { //fix
-                ViewState["FILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload2.PostedFile.FileName);
+                ViewState["MODIFYFILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload2.PostedFile.FileName);
+                ViewState["MODIFYFILENAME"] = NewDateTxt.Text;
 
                 //Save the uploaded Excel file with a dynamically created name; Overwrites if there is already the same name there.
-                string filePath = Server.MapPath("~/Uploads/") + ViewState["FILENAME"];
+                string filePath = Server.MapPath("~/Uploads/") + ViewState["MODIFYFILENAME"];
                 FileUpload2.SaveAs(filePath);
 
                 //Open the Excel file using ClosedXML.
@@ -413,6 +383,30 @@ namespace CyberDayInformationSystem
                         GridViewModify.DataBind();
                     }
                 }
+            }
+            else //fix if no file uploaded but date is changed, rename and save the file
+            { // get the correct file name... then resave the excel
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                SqlConnection connection = new SqlConnection(cs);
+                SqlCommand query = new SqlCommand("SELECT FILENAME FROM EVENTITINERARY WHERE ITINERARYID = (SELECT EVENTITINERARY FROM EVENT WHERE EVENTID = " + 
+                    Int32.Parse(EventDateDDL.SelectedValue.ToString()) +")", connection);
+                //string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
+                connection.Open();
+               // query.Parameters.AddWithValue("@FILENAME", fileName);
+                SqlDataReader queryResults = query.ExecuteReader();
+
+                if (queryResults.Read()) //If a filename is found, update it to the new name.
+                {
+                    // Renames the file with the updated Date.
+                    var sourcePath = Server.MapPath("~/Uploads/") + queryResults.GetString(queryResults.GetOrdinal("FILENAME"));
+                    var newName = NewDateTxt.Text + ".xlsx"; // could split the query result to better determine the file extension.
+                    var directory = Path.GetDirectoryName(sourcePath);
+                    var destinationPath = Path.Combine(directory, newName);
+                    File.Move(sourcePath, destinationPath);
+                    ViewState["MODIFYFILENAME"] = NewDateTxt.Text;
+                }
+                queryResults.Close();
+                connection.Close();
             }
         }
 
@@ -494,7 +488,8 @@ namespace CyberDayInformationSystem
             // Gets the filename for the selected value.
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand query = new SqlCommand("SELECT FILENAME FROM EVENTITINERARY WHERE ITINERARYID = (SELECT EVENTITINERARY FROM EVENT WHERE EVENTID = " + id +")", connection);
+            SqlCommand query = new SqlCommand("SELECT FILENAME FROM EVENTITINERARY WHERE ITINERARYID = " +
+                "(SELECT EVENTITINERARY FROM EVENT WHERE EVENTID = " + id +")", connection);
             connection.Open();
             SqlDataReader queryResults = query.ExecuteReader();
 
