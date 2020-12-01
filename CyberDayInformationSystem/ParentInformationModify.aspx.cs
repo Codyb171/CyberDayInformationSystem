@@ -79,6 +79,7 @@ namespace CyberDayInformationSystem
             command.ExecuteNonQuery();
 
             authcon.Close();
+            UpdateSuccessfulLbl.Text = "Information updated successfully!";
         }
 
     }

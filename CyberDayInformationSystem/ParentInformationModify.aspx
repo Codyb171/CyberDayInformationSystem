@@ -52,6 +52,11 @@
                             <asp:RequiredFieldValidator ID="PhoneValid" runat="server" ErrorMessage="Please enter a phone number" ControlToValidate="PhoneTxt" ForeColor="Red">
                             </asp:RequiredFieldValidator>
                         </asp:TableCell>
+                    </asp:TableRow>
+                <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell>
+                            <asp:Label ID="UpdateSuccessfulLbl" runat="server" Text=""></asp:Label>
+                        </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server" HorizontalAlign="Center">
                     <asp:TableCell>
