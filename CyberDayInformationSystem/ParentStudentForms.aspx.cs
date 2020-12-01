@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
 
 namespace CyberDayInformationSystem
 {
@@ -29,21 +30,29 @@ namespace CyberDayInformationSystem
             }
         }
 
-        private int guardianID;
+        private int _guardianID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["TYPE"] != null)
-            {
-                if (Session["TYPE"].ToString() == "Parent")
-                {
-                    guardianID = int.Parse(Session["ID"].ToString());
-                }
-                else
-                {
-                    guardianID = 0;
-                }
+            _guardianID = GetId();
+        }
 
+        protected int GetId()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            var connection = new SqlConnection(cs);
+            string sql = "Select GUARDIANID FROM GUARDIAN WHERE CONCAT(FIRSTNAME, ' ', LASTNAME) LIKE '%" + Session["NAME"] + "%'";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader dataReader = command.ExecuteReader();
+            int id = 0;
+
+            if (dataReader.Read())
+            {
+                id = int.Parse(dataReader["GUARDIANID"].ToString());
             }
+            connection.Close();
+            return id;
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -88,6 +97,20 @@ namespace CyberDayInformationSystem
             output += "Today's Date: " + DateTime.Now;
             //End of Generate
 
+            string parName = HttpUtility.HtmlEncode(txtParentName.Text);
+            string parEmail = HttpUtility.HtmlEncode(txtParentEmail.Text);
+            string subject = "CyberDay Student Permission Form Receipt";
+
+            if (EmailCenter.send(parEmail, subject, output) == true)
+            {
+                lblSentStatus.Text = "Email reciept sent successfully!";
+            }
+
+            else
+            {
+                lblSentStatus.Text = "Error sending reciept.";
+            }
+
             if (ddlPhotoPermission.SelectedValue == "1")
             {
                 //Set PhotoRelease
@@ -104,7 +127,7 @@ namespace CyberDayInformationSystem
                 string updatePR = "UPDATE STUDENT SET PHOTORELEASE = @PHOTOPERM WHERE GUARDIAN = @GUARDIAN";
                 var updatePRCmd = new SqlCommand(updatePR, dbcon);
                 updatePRCmd.Parameters.AddWithValue("@PHOTOPERM", "YES");
-                updatePRCmd.Parameters.AddWithValue("@GUARDIAN", guardianID);
+                updatePRCmd.Parameters.AddWithValue("@GUARDIAN", _guardianID);
 
                 updatePRCmd.ExecuteNonQuery();
             }

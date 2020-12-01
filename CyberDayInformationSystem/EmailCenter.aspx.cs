@@ -16,13 +16,15 @@ namespace CyberDayInformationSystem
             if (!IsPostBack)
             {
 
-                send();
+                //send(); - I dunno if we need this
             }
         }
 
-        protected void send()
+        //sendTo: the recipient's email
+        //subject: email's subject line
+        //body: the email's body
+        public static Boolean send(string sendTo, string subject, string body)
         {
-
             //http://csharp.net-informations.com/communications/csharp-email-attachment.htm
 
             try
@@ -30,13 +32,10 @@ namespace CyberDayInformationSystem
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 mail.From = new MailAddress("cyberdayjmuofficial@gmail.com");
-                mail.To.Add("cyberdayjmuofficial@gmail.com"); // dynamically add recipients here.  
-                mail.Subject = "Test Mail - 2";
-                mail.Body = "Dear [variable name], \n" +
-                    "We are emailing in preperation of our upcoming event on [variable name]. Please complete the forms" +
-                    "attached to this email prior to [variable name]. If you have any questions, email [cooridnator email]. \n\n" +
-                    "Sincerely, \n" +
-                    "Dr. Dillon & Dr. Lough";
+                mail.To.Add(sendTo); // dynamically add recipients here.  
+                mail.Bcc.Add("cyberdayjmuofficial@gmail.com");
+                mail.Subject = subject;
+                mail.Body = body;
 
                 // could attach brochure to send out promotions, paperwork for registered participants
                 //System.Net.Mail.Attachment attachment;
@@ -48,11 +47,14 @@ namespace CyberDayInformationSystem
                 SmtpServer.EnableSsl = true;
 
                 SmtpServer.Send(mail);
-                // add confirmation
+
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+
+                return false;
             }
         }
     }

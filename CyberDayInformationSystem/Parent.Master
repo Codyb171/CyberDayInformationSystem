@@ -50,16 +50,8 @@
                 </div>
             </div>
             <div class="Nav">
-                <%--<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>--%>
-
                 <ul>
-                    <li><a href="ParentDashboard.aspx">Parent Dashboard</a></li>
-                    <li><a href="Default.aspx">CyberDay Home</a></li>
-                    <li><a href="About.aspx">About</a></li>
-                    <li><a href="Contact.aspx">Contact</a></li>
+                    <li><a href="ParentDashboard.aspx">Parent Home</a></li>
                     <li><a href="ParentInformationModify.aspx">Parent Information</a></li>
                     <li><a href="ParentStudentForms.aspx">Permission Forms</a></li>
                 </ul>
