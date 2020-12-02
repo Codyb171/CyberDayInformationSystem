@@ -212,8 +212,6 @@ namespace CyberDayInformationSystem
                             }
                         }
 
-
-
                     }
                     TertiaryGridView.DataSource = dt;
                     TertiaryGridView.DataBind();
