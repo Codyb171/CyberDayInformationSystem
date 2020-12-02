@@ -36,7 +36,7 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Parent")
                 {
-                    guardianID = int.Parse(Session["ID"].ToString());
+                    guardianID = GetId();
                 }
                 else
                 {
@@ -44,6 +44,25 @@ namespace CyberDayInformationSystem
                 }
 
             }
+        }
+
+        protected int GetId()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            var connection = new SqlConnection(cs);
+            string sql = "Select GUARDIANID FROM GUARDIAN WHERE CONCAT(FIRSTNAME, ' ', LASTNAME) LIKE '%" + Session["NAME"] + "%'";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader dataReader = command.ExecuteReader();
+            int id = 0;
+
+            if (dataReader.Read())
+            {
+                id = int.Parse(dataReader["GUARDIANID"].ToString());
+            }
+            connection.Close();
+            return id;
+
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
