@@ -7,6 +7,7 @@
             <asp:TableCell>
                 <p class="h5">Please Select A User Type</p>
                  <asp:DropDownList ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
+                     <asp:ListItem Value=""></asp:ListItem>
                     <asp:ListItem Value="1">Teacher</asp:ListItem>
                     <asp:ListItem Value="2">Staff Volunteer</asp:ListItem>
                     <asp:ListItem Value="3">Student Volunteer</asp:ListItem>
