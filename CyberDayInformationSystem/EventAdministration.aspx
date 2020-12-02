@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Event Administration" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EventAdministration.aspx.cs" Inherits="CyberDayInformationSystem.EventAdministration" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <ul class="breadcrumb">
@@ -8,7 +9,7 @@
 
     <h3>Please Select an Action</h3>
 
-    <asp:Label  ID="bug" Text="" runat="server" />
+    <asp:Label ID="bug" Text="" runat="server" />
 
     <div class="text-center">
         <asp:Table ID="Table1" runat="server" HorizontalAlign="Center">
@@ -38,7 +39,7 @@
                         <asp:View ID="CreateEventView" runat="server">
                             <asp:TableRow runat="server" HorizontalAlign="Left">
                                 <asp:TableCell ColumnSpan="2">
-                                    <asp:Label ID="EventDateLbl" runat="server" Text="Event Date (MM/DD/YYYY):" ></asp:Label>
+                                    <asp:Label ID="EventDateLbl" runat="server" Text="Event Date (MM/DD/YYYY):"></asp:Label>
                                 </asp:TableCell>
                                 <asp:TableCell ColumnSpan="2">
                                     <asp:TextBox ID="EventDateTxt" runat="server" TextMode="Date"></asp:TextBox>
@@ -52,21 +53,21 @@
                                 <asp:TableCell ColumnSpan="4">
                                     <asp:Label ID="createGVLabel" runat="server" Text="Create Itinerary: " Width="200"></asp:Label>
                                     <br />
-                                        <asp:HyperLink runat="server" Text="Download Itinerary Creation Form" NavigateUrl="~/Uploads/Default_Itinerary.xlsx" Enabled="true"></asp:HyperLink>  
-    <br />
-<asp:FileUpload ID="FileUpload1" runat="server" />
-<asp:Button ID="btnImport" runat="server" Text="Import" OnClick="ImportExcel" />
-    <asp:BulletedList ID="BulletedList1" runat="server" BulletStyle="Numbered">
-        <asp:ListItem Text="Download Itinerary Creation Form." />
-        <asp:ListItem Text="Create Itinerary in MS Excel." />
-        <asp:ListItem Text="Import completed file." />
-        <asp:ListItem Text="Review and Create." />
-    </asp:BulletedList>
-<br />
-     <asp:Label ID="NotifLBL" runat="server" Font-Bold="true" ForeColor="Green"></asp:Label>
+                                    <asp:HyperLink runat="server" Text="Download Itinerary Creation Form" NavigateUrl="~/Uploads/Default_Itinerary.xlsx" Enabled="true"></asp:HyperLink>
                                     <br />
-<asp:GridView ID="GridView1" AlternatingRowStyle-BackColor="White" BackColor="#f4efe1" runat="server" ForeColor="#33333" HeaderStyle-BackColor="#d3cdb6" CellPadding="5">
-</asp:GridView>
+                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                    <asp:Button ID="btnImport" runat="server" Text="Import" OnClick="ImportExcel" />
+                                    <asp:BulletedList ID="BulletedList1" runat="server" BulletStyle="Numbered">
+                                        <asp:ListItem Text="Download Itinerary Creation Form." />
+                                        <asp:ListItem Text="Create Itinerary in MS Excel." />
+                                        <asp:ListItem Text="Import completed file." />
+                                        <asp:ListItem Text="Review and Create." />
+                                    </asp:BulletedList>
+                                    <br />
+                                    <asp:Label ID="NotifLBL" runat="server" Font-Bold="true" ForeColor="Green"></asp:Label>
+                                    <br />
+                                    <asp:GridView ID="GridView1" AlternatingRowStyle-BackColor="White" BackColor="#f4efe1" runat="server" ForeColor="#33333" HeaderStyle-BackColor="#d3cdb6" CellPadding="5">
+                                    </asp:GridView>
                                 </asp:TableCell>
 
                             </asp:TableRow>
@@ -78,11 +79,11 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:ValidationSummary ID="EventCreateValid" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red"/>
+                                    <asp:ValidationSummary ID="EventCreateValid" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red" />
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>
-<%--MODIFY--%>
+                        <%--MODIFY--%>
                         <asp:View ID="ModifyView" runat="server">
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="2">
@@ -98,35 +99,36 @@
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="2" HorizontalAlign="Center">
                                     </asp:TableCell>
-                                           <asp:TableCell ColumnSpan="1" HorizontalAlign="Center" >
-                                         <asp:Label runat="server" Text="Date: "></asp:Label>
-                                               <asp:TextBox ID="NewDateTxt" runat="server" Width="150" TextMode="Date"></asp:TextBox>
-                                               </asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1" HorizontalAlign="Center">
+                                        <asp:Label runat="server" Text="Date: "></asp:Label>
+                                        <asp:TextBox ID="NewDateTxt" runat="server" Width="150" TextMode="Date"></asp:TextBox>
+                                    </asp:TableCell>
                                 </asp:TableRow>
 
                                 <asp:TableRow runat="server" HorizontalAlign="Left">
-                                    <asp:TableCell ColumnSpan="2">                          
+                                    <asp:TableCell ColumnSpan="2">
                                         <asp:Label ID="Label1" runat="server" Text="Update Itinerary: " Width="200"></asp:Label>
-                                            <br />
-                                        <asp:HyperLink runat="server" Text="Download Itinerary Creation Form" NavigateUrl="~/Uploads/Default_Itinerary.xlsx" Enabled="true"></asp:HyperLink>  
-                                            <br />
+                                        <br />
+                                        <asp:HyperLink runat="server" Text="Download Itinerary Creation Form" NavigateUrl="~/Uploads/Default_Itinerary.xlsx" Enabled="true"></asp:HyperLink>
+                                        <br />
                                         <asp:FileUpload ID="FileUpload2" runat="server" />
                                         <%--<asp:Button ID="ModGVBtn" runat="server" Text="Import" OnClick="ImportExcel" />--%>
-                                            <asp:BulletedList ID="BulletedList2" runat="server" BulletStyle="Numbered">
-                                                <asp:ListItem Text="Download Itinerary Creation Form." />
-                                                <asp:ListItem Text="Create Itinerary in MS Excel." />
-                                                <asp:ListItem Text="Import completed file." />
-                                                <asp:ListItem Text="Click Modify." />
-                                            </asp:BulletedList>
-                                            <br />
+                                        <asp:BulletedList ID="BulletedList2" runat="server" BulletStyle="Numbered">
+                                            <asp:ListItem Text="Download Itinerary Creation Form." />
+                                            <asp:ListItem Text="Create Itinerary in MS Excel." />
+                                            <asp:ListItem Text="Import completed file." />
+                                            <asp:ListItem Text="Click Modify." />
+                                        </asp:BulletedList>
+                                        <br />
                                     </asp:TableCell>
-   
+
                                     <asp:TableCell ColumnSpan="1">
-                                         <asp:GridView ID="GridViewModify" runat="server" AlternatingRowStyle-BackColor="White" BackColor="#f4efe1" ForeColor="#33333" HeaderStyle-BackColor="#d3cdb6" CellPadding="5"></asp:GridView>
+                                        <asp:GridView ID="GridViewModify" runat="server" AlternatingRowStyle-BackColor="White" BackColor="#f4efe1" ForeColor="#33333" HeaderStyle-BackColor="#d3cdb6" CellPadding="5"></asp:GridView>
                                         <%-- <asp:CustomValidator ID="NewStartValid" runat="server" ErrorMessage="New start time must be different from old start time" ForeColor="Red" ControlToValidate="NewStartTxt" OnServerValidate="NewStartValid_ServerValidate" Display="None"></asp:CustomValidator>
                                         <asp:RegularExpressionValidator ID="NewStartExp" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="NewStartTxt"
                                             ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None"></asp:RegularExpressionValidator>
-                              --%>      </asp:TableCell>
+                                        --%>
+                                    </asp:TableCell>
                                 </asp:TableRow>
                             </asp:Table>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
@@ -136,12 +138,12 @@
                             </asp:TableRow>
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="4">
-                                    <asp:ValidationSummary ID="ModEventValSum" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red"/>
+                                    <asp:ValidationSummary ID="ModEventValSum" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red" />
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:View>
 
-<%--DELETE--%>
+                        <%--DELETE--%>
                         <asp:View ID="DeleteView" runat="server">
                             <asp:TableRow runat="server" HorizontalAlign="Center">
                                 <asp:TableCell ColumnSpan="1">
@@ -166,12 +168,12 @@
                 </asp:TableCell>
             </asp:TableRow>
 
- 
+
 
             <asp:TableFooterRow runat="server" HorizontalAlign="Center">
                 <asp:TableCell ColumnSpan="4">
                    
-                    </asp:TableCell>
+                </asp:TableCell>
             </asp:TableFooterRow>
         </asp:Table>
     </div>
