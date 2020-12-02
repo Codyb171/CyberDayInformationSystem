@@ -231,5 +231,4 @@ namespace CyberDayInformationSystem
             printPanel.Controls.Add(ReportTable);
         }
     }
-    }
 }
