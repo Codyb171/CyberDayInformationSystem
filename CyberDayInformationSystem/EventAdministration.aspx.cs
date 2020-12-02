@@ -6,63 +6,53 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.IO;
+using ClosedXML.Excel;
+
+
 namespace CyberDayInformationSystem
 {
     public partial class EventAdministration : Page
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
-            if (Session["TYPE"] != null)
-            {
-                MasterPageFile = (Session["Master"].ToString());
-                if (Session["TYPE"].ToString() != "Coordinator")
-                {
-                    Session.Add("Redirected", 1);
-                    Response.Redirect("BadSession.aspx");
-                }
-            }
-            else
-            {
-                Session.Add("Redirected", 0);
-                Response.Redirect("BadSession.aspx");
-            }
+            //if (Session["TYPE"] != null)
+            //{
+            //    MasterPageFile = (Session["Master"].ToString());
+            //    if (Session["TYPE"].ToString() != "Coordinator")
+            //    {
+            //        Session.Add("Redirected", 1);
+            //        Response.Redirect("BadSession.aspx");
+            //    }
+            //}
+            //else
+            //{
+            //    Session.Add("Redirected", 0);
+            //    Response.Redirect("BadSession.aspx");
+            //}
         }
 
         private int _eventToModify;
         protected void Page_Load(object sender, EventArgs e)
         {
+            SelectedViewMode.ActiveViewIndex = 0;
+
             if (Session["EDITEVENTID"] != null)
             {
                 _eventToModify = int.Parse(Session["EDITEVENTID"].ToString());
             }
         }
 
-        protected void EventorTask_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (EventorTask.SelectedValue == "1")
-            {
-                SelectedViewMode.ActiveViewIndex = 0;
-            }
-
-            if (EventorTask.SelectedValue == "2")
-            {
-                SelectedViewMode.ActiveViewIndex = 1;
-            }
-        }
-
         protected void FunctionSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TaskMultiView.ActiveViewIndex = -1;
-            
             if (EventFunctionSelection.SelectedValue == "1") //create event
             {
                 NotifLBL.Text = String.Empty;
                 SelectedFunction.ActiveViewIndex = 0;
-                EventRoomList();
             }
             if (EventFunctionSelection.SelectedValue == "2") //mod event
             {
-                NotifLBL.Text = String.Empty;              
+                NotifLBL.Text = String.Empty;
                 SelectedFunction.ActiveViewIndex = 1;
                 EventDateList();
             }
@@ -71,30 +61,6 @@ namespace CyberDayInformationSystem
                 NotifLBL.Text = String.Empty;
                 SelectedFunction.ActiveViewIndex = 2;
                 EventDateList();
-            }           
-        }
-
-        protected void TaskFunctionSelection_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedFunction.ActiveViewIndex = -1;
-            
-            if (TaskFunctionSelection.SelectedValue == "1") //create task
-            {
-                NotifLBL.Text = String.Empty;
-                TaskMultiView.ActiveViewIndex = 0;
-                EventDateList();
-            }
-            if (TaskFunctionSelection.SelectedValue == "2") //mod task
-            {
-                NotifLBL.Text = String.Empty;
-                TaskMultiView.ActiveViewIndex = 1;
-                TaskList();
-            }
-            if (TaskFunctionSelection.SelectedValue == "3") //delete task
-            {
-                NotifLBL.Text = String.Empty;
-                TaskMultiView.ActiveViewIndex = 2;
-                TaskList();
             }
         }
 
@@ -119,63 +85,15 @@ namespace CyberDayInformationSystem
             EventDelDDL.DataValueField = "EVENTID";
             EventDelDDL.DataBind();
             EventDelDDL.Items.Insert(0, new ListItem(String.Empty));
-            CreateEventTaskDDL.DataSource = dt;
-            CreateEventTaskDDL.DataBind();
-            CreateEventTaskDDL.DataTextField = "EVENTDATE";
-            CreateEventTaskDDL.DataValueField = "EVENTID";
-            CreateEventTaskDDL.DataBind();
-            CreateEventTaskDDL.Items.Insert(0, new ListItem(String.Empty));
+
             connection.Close();
         }
 
-        public void EventRoomList()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command = "SELECT (BUILDING + ' ' + ROOMNUMBER) AS Room, ROOMID FROM ROOMRESERVATIONS";
-            connection.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            EventLocationDDL.DataSource = dt;
-            EventLocationDDL.DataBind();
-            EventLocationDDL.DataTextField = "Room";
-            EventLocationDDL.DataValueField = "ROOMID";
-            EventLocationDDL.DataBind();
-            EventLocationDDL.Items.Insert(0, new ListItem(String.Empty));
-            connection.Close();
-        }
-
-        public void TaskList()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command = "SELECT (EVENTTASKS.TITLE + ' - ' + EVENT.EVENTDATE) AS eventtask, (EVENTTASKS.TASKID) AS TaskID FROM EVENTTASKS, EVENT;";
-            connection.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            ModTaskDDL.DataSource = dt;
-            ModTaskDDL.DataBind();
-            ModTaskDDL.DataTextField = "eventtask";
-            ModTaskDDL.DataValueField = "TaskID";
-            ModTaskDDL.DataBind();
-            ModTaskDDL.Items.Insert(0, new ListItem(String.Empty));
-            TaskDelDDL.DataSource = dt;
-            TaskDelDDL.DataBind();
-            TaskDelDDL.DataTextField = "eventtask";
-            TaskDelDDL.DataValueField = "TaskID";
-            TaskDelDDL.DataBind();
-            TaskDelDDL.Items.Insert(0, new ListItem(String.Empty));
-            connection.Close();
-        }
-
-        public void OldTimeDisplay()
+        public void OldTimeDisplay() //OriginalDateDisplay
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString.ToString();
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand select = new SqlCommand("SELECT STARTTIME, ENDTIME FROM EVENT WHERE EVENTID = @VALUE", connection);
-            SqlCommand select2 = new SqlCommand("SELECT STARTTIME, ENDTIME FROM EVENTTASKS WHERE TASKID = @TASKVALUE", connection);
+            SqlCommand select = new SqlCommand("SELECT EVENTDATE FROM EVENT WHERE EVENTID = @VALUE", connection);
 
             if (EventFunctionSelection.SelectedValue == "2")
             {
@@ -185,25 +103,11 @@ namespace CyberDayInformationSystem
                 SqlDataReader reader = select.ExecuteReader();
                 while (reader.Read())
                 {
-                    OldStartTxt.Text = (reader["STARTTIME"].ToString());
-                    OldEndTxt.Text = (reader["ENDTIME"].ToString());
+                    //fix
+                    NewDateTxt.Text = (reader["EVENTDATE"].ToString());
                 }
                 connection.Close();
-            }
-
-            if (TaskFunctionSelection.SelectedValue == "2")
-            {
-                int value = int.Parse(ModTaskDDL.SelectedValue);
-                connection.Open();
-                select2.Parameters.AddWithValue("@TASKVALUE", value);
-                SqlDataReader reader = select2.ExecuteReader();
-                while (reader.Read())
-                {
-                    TaskOldStart.Text = reader["STARTTIME"].ToString();
-                    TaskOldEnd.Text = reader["ENDTIME"].ToString();
-                }
-                connection.Close();
-            }            
+            }   
         }
 
         public void ClearInfo()
@@ -211,10 +115,7 @@ namespace CyberDayInformationSystem
             if (EventFunctionSelection.SelectedValue == "1")
             {
                 EventDateDDL.ClearSelection();
-                EventTimeTxt.Text = String.Empty;
-                EndTimeTxt.Text = String.Empty;
-                EventLocationDDL.ClearSelection();
-            }           
+            }
             if (EventFunctionSelection.SelectedValue == "2")
             {
                 EventDateDDL.ClearSelection();
@@ -223,140 +124,52 @@ namespace CyberDayInformationSystem
             {
                 EventDelDDL.ClearSelection();
             }
-            if (TaskFunctionSelection.SelectedValue == "1") 
-            {
-                CreateEventTaskDDL.ClearSelection();
-                TaskTitleTxt.Text = String.Empty;
-                TaskStartTimeTxt.Text = String.Empty;
-                TaskEndTimeTxt.Text = String.Empty;
-            }
-            if (TaskFunctionSelection.SelectedValue == "2")
-            {
-                ModTaskDDL.ClearSelection();
-            }
-            if (TaskFunctionSelection.SelectedValue == "3")
-            {
-                TaskDelDDL.ClearSelection();
-            }
         }
 
-        protected void CreateBut_Click(object sender, EventArgs e)
+        protected void CreateBut_Click(object sender, EventArgs e) 
         {
             if (Page.IsValid)
             {
-                if (CheckEvent() == 0)
                 {
                     string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                     SqlConnection connection = new SqlConnection(cs);
-                    SqlCommand insert = new SqlCommand("INSERT INTO EVENT(EVENTDATE, STARTTIME, ENDTIME, LOCATION) VALUES(@DATE, @STARTTIME, @ENDTIME, @ROOM)", connection);
+                    SqlCommand insert = new SqlCommand("INSERT INTO EVENTITINERARY(FILENAME) VALUES(@FILENAME)", connection);
 
-                    string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
-                    string end = HttpUtility.HtmlEncode(EndTimeTxt.Text);
-                    string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
-                    int room = int.Parse(EventLocationDDL.SelectedValue);
-                    connection.Open();
-                    insert.Parameters.AddWithValue("@DATE", date);
-                    insert.Parameters.AddWithValue("@STARTTIME", start);
-                    insert.Parameters.AddWithValue("@ENDTIME", end);
-                    insert.Parameters.AddWithValue("@ROOM", room);
-                    insert.ExecuteNonQuery();
-                    connection.Close();
+                    if (ViewState["FILENAME"] != null)
+                    {
+                        string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
+                        connection.Open();
+                        insert.Parameters.AddWithValue("@FILENAME", fileName);
+                        insert.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                }
 
-                    NotifLBL.Text = "Your event has successfully been created!";
-                    NotifLBL.Visible = true;
-                    ClearInfo();
+                getItineraryID();
+
+                
+                    if (ViewState["ITINERARYID"] != null)
+                    {
+                        string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                        SqlConnection connection = new SqlConnection(cs);
+                        SqlCommand insert = new SqlCommand("INSERT INTO EVENT(EVENTDATE, EVENTITINERARY) VALUES(@DATE, @ITINERARY)", connection);
+
+                        string date = String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text));
+                        int itinerary = Int32.Parse(ViewState["ITINERARYID"].ToString());
+                        connection.Open();
+                        insert.Parameters.AddWithValue("@DATE", date);
+                        insert.Parameters.AddWithValue("@ITINERARY", itinerary);
+                        insert.ExecuteNonQuery();
+                        connection.Close();
+
+                        NotifLBL.ForeColor = System.Drawing.Color.Green;
+                        NotifLBL.Text = "Your event on " + date + " has successfully been created!";
+                        NotifLBL.Visible = true;
+                        ClearInfo();
+                    
+
                 }
             }
-        }
-
-        protected void CreateTaskBut_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                if (CheckTask() == 0)
-                {
-                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-                    SqlConnection connection = new SqlConnection(cs);
-                    SqlCommand insert = new SqlCommand("INSERT INTO EVENTTASKS(TITLE, STARTTIME, ENDTIME) VALUES(@TITLE, @STARTTIME, @ENDTIME)", connection);
-                    SqlCommand insert2 = new SqlCommand("INSERT INTO EVENTITINERARY VALUES(@EVENT, @TASK)", connection);
-                    SqlCommand select = new SqlCommand("SELECT TASKID FROM EVENTTASKS WHERE TITLE = @TITLE AND STARTTIME = @STARTTIME AND ENDTIME = @ENDTIME", connection);
-
-                    string title = HttpUtility.HtmlEncode(TaskTitleTxt.Text);
-                    string start = HttpUtility.HtmlEncode(TaskStartTimeTxt.Text);
-                    string end = HttpUtility.HtmlEncode(TaskEndTimeTxt.Text);
-                    int eventKey = int.Parse(CreateEventTaskDDL.SelectedValue);
-                    int taskKey;
-
-                    connection.Open();
-                    insert.Parameters.AddWithValue("@TITLE", title);
-                    insert.Parameters.AddWithValue("@STARTTIME", start);
-                    insert.Parameters.AddWithValue("@ENDTIME", end);
-                    insert.ExecuteNonQuery();
-                    select.Parameters.AddWithValue("@TITLE", title);
-                    select.Parameters.AddWithValue("@STARTTIME", start);
-                    select.Parameters.AddWithValue("@ENDTIME", end);
-                    taskKey = (int)select.ExecuteScalar();
-                    insert2.Parameters.AddWithValue("@EVENT", eventKey);
-                    insert2.Parameters.AddWithValue("@TASK", taskKey);
-                    insert2.ExecuteNonQuery();
-                    connection.Close();
-
-                    NotifLBL.Text = "Your task has successfully been created!";
-                    NotifLBL.Visible = true;
-                    ClearInfo();
-                }
-            }
-        }
-
-        public int CheckEvent()
-        {
-            int add;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand check = new SqlCommand("Select count(*) from EVENT where EVENTDATE = @DATE AND STARTTIME = @STARTTIME AND ENDTIME = @ENDTIME" +
-                                              " AND LOCATION = @ROOM", connection);
-
-            string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
-            string end = HttpUtility.HtmlEncode(EndTimeTxt.Text);
-            string date = HttpUtility.HtmlEncode(EventDateTxt.Text);
-            int room = int.Parse(EventLocationDDL.SelectedValue);
-            connection.Open();
-            check.Parameters.AddWithValue("@DATE", date);
-            check.Parameters.AddWithValue("@STARTTIME", start);
-            check.Parameters.AddWithValue("@ENDTIME", end);
-            check.Parameters.AddWithValue("@ROOM", room);
-            add = (int)check.ExecuteScalar();
-            connection.Close();
-            if (add > 0)
-            {
-                NotifLBL.Text = "An event already exists with this data";
-                NotifLBL.Visible = true;
-            }
-            return add;
-        }
-
-        public int CheckTask()
-        {
-            int add;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            SqlCommand check = new SqlCommand("Select count(*) from EVENTTASKS where TITLE = @TITLE AND STARTTIME = @STARTTIME AND ENDTIME = @ENDTIME", connection);
-
-            string title = HttpUtility.HtmlEncode(TaskTitleTxt.Text);
-            string start = HttpUtility.HtmlEncode(TaskStartTimeTxt.Text);
-            string end = HttpUtility.HtmlEncode(TaskEndTimeTxt.Text);
-            connection.Open();
-            check.Parameters.AddWithValue("@TITLE", title);
-            check.Parameters.AddWithValue("@STARTTIME", start);
-            check.Parameters.AddWithValue("@ENDTIME", end);
-            add = (int)check.ExecuteScalar();
-            connection.Close();
-            if (add > 0)
-            {
-                NotifLBL.Text = "A task already exists with this data";
-                NotifLBL.Visible = true;
-            }
-            return add;
         }
 
         protected void EventDateDDL_SelectedIndexChanged(object sender, EventArgs e)
@@ -365,256 +178,375 @@ namespace CyberDayInformationSystem
             {
                 ModifyTbl.Visible = true;
                 ModifyBut.Visible = true;
-                OldTitleTxt.Text = EventDateDDL.SelectedItem.ToString();
-                OldTimeDisplay();
-            }
-        }
-
-        protected void ModTaskDDL_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ModTaskDDL.SelectedIndex != 0)
-            {
-                ModTaskTbl.Visible = true;
-                ModTaskBut.Visible = true;
-                ModTaskOldTitle.Text = ModTaskDDL.SelectedItem.ToString();
+                ImportExcelModify(Int32.Parse(EventDateDDL.SelectedValue));
                 OldTimeDisplay();
             }
         }
 
         protected void ModifyBut_Click(object sender, EventArgs e)
         {
+            // get/set new itinerary
+            ImportExcelModify();
+
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand update = new SqlCommand("UPDATE FROM EVENT SET DATE = @DATE, STARTTIME = @STARTTIME, ENDTIME = @ENDTIME WHERE EVENTID = @VALUE", connection);
+            SqlCommand update = new SqlCommand("UPDATE EVENT SET EVENTDATE = @DATE, EVENTITINERARY = @ITINERARYID WHERE EVENTID = @VALUE", connection);
 
             int value = int.Parse(EventDateDDL.SelectedValue);
-            string date = HttpUtility.HtmlEncode(NewTitleTxt.Text);
-            string start = HttpUtility.HtmlEncode(NewStartTxt.Text);
-            string end = HttpUtility.HtmlEncode(NewEndTxt.Text);
+            //string date = HttpUtility.HtmlEncode(NewDateTxt.Text); // protect this from bad formatting!!!
+            string date = String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(NewDateTxt.Text)); // protect this from bad formatting!!!
+
+            String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text));
+
+            // string itineraryID = HttpUtility.HtmlEncode(NewDateTxt.Text);
+            string itineraryID = date;
+
 
             connection.Open();
             update.Parameters.AddWithValue("@DATE", date);
-            update.Parameters.AddWithValue("@STARTTIME", start);
-            update.Parameters.AddWithValue("@ENDTIME", end);
+            update.Parameters.AddWithValue("@ITINERARYID", getItineraryIDFromModDDL(value));
             update.Parameters.AddWithValue("@VALUE", value);
             update.ExecuteNonQuery();
             connection.Close();
 
+            updateFileName(getItineraryIDFromModDDL(value));
+
+            NotifLBL.ForeColor = System.Drawing.Color.Green;
             NotifLBL.Text = "Your event has successfully been modified!";
             NotifLBL.Visible = true;
             ClearInfo();
+
+            EventDateList();
         }
 
-        protected void ModtaskBut_Click(object sender, EventArgs e)
+        protected void updateFileName(int id)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand update = new SqlCommand("UPDATE FROM EVENTTASKS SET TITLE = @TITLE, STARTTIME = @STARTTIME, ENDTIME = @ENDTIME WHERE TASKID = @VALUE", connection);
-
-            int value = int.Parse(ModTaskDDL.SelectedValue);
-            string title = HttpUtility.HtmlEncode(ModTaskNewTitle.Text);
-            string start = HttpUtility.HtmlEncode(TaskNewStart.Text);
-            string end = HttpUtility.HtmlEncode(TaskNewEnd.Text);
+            SqlCommand update = new SqlCommand("UPDATE EVENTITINERARY SET FILENAME = @FILENAME " +
+                "WHERE ITINERARYID = @ID", connection);
 
             connection.Open();
-            update.Parameters.AddWithValue("@TITLE", title);
-            update.Parameters.AddWithValue("@STARTTIME", start);
-            update.Parameters.AddWithValue("@ENDTIME", end);
-            update.Parameters.AddWithValue("@VALUE", value);
+            update.Parameters.AddWithValue("@FILENAME", NewDateTxt.Text + ".xlsx");
+            update.Parameters.AddWithValue("@ID", id);
             update.ExecuteNonQuery();
             connection.Close();
-
-            NotifLBL.Text = "Your task has successfully been modified!";
-            NotifLBL.Visible = true;
-            ClearInfo();
         }
 
         protected void DelBut_Click(object sender, EventArgs e)
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE EVENT = @VALUE", connection);
-            SqlCommand delete2 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
-            string select = "SELECT EVENTDATE, EVENTID FROM EVENT";            
-
-            int value = int.Parse(EventDelDDL.SelectedValue);
-            int eventID = int.Parse(EventDelDDL.SelectedValue);
-
+            SqlCommand query = new SqlCommand("select itineraryid from eventitinerary where itineraryid = (select EVENTITINERARY from event where eventid = " 
+                + int.Parse(EventDelDDL.SelectedValue) + ")", connection);
             connection.Open();
-            delete.Parameters.AddWithValue("@VALUE", value);
-            delete.ExecuteNonQuery();
-            delete2.Parameters.AddWithValue("@EVENTID", eventID);
-            delete2.ExecuteNonQuery();
-            SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            EventDelDDL.DataSource = dt;
-            EventDelDDL.DataBind();
-            EventDelDDL.DataTextField = "EVENTDATE";
-            EventDelDDL.DataValueField = "EVENTID";
-            EventDelDDL.DataBind();
-            connection.Close();
+            SqlDataReader queryResults = query.ExecuteReader();
 
-            NotifLBL.Text = "Your event has successfully been deleted!";
-            NotifLBL.Visible = true;
-            ClearInfo();
+            if (queryResults.Read())
+            {
+                SqlCommand delete1 = new SqlCommand("DELETE FROM EVENT WHERE EVENTID = @EVENTID", connection);
+                SqlCommand delete2 = new SqlCommand("DELETE FROM EVENTITINERARY WHERE ITINERARYID = @ITINERARYID", connection);
+
+                string select = "SELECT EVENTDATE, EVENTID FROM EVENT";
+
+                int itineraryID = queryResults.GetInt32(queryResults.GetOrdinal("ITINERARYID"));
+                int eventID = int.Parse(EventDelDDL.SelectedValue);
+
+                queryResults.Close();
+
+                delete1.Parameters.AddWithValue("@EVENTID", eventID);
+                delete1.ExecuteNonQuery();
+                delete2.Parameters.AddWithValue("@ITINERARYID", itineraryID);
+                delete2.ExecuteNonQuery();
+
+                SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
+                DataTable dt = new DataTable();
+                adpt.Fill(dt);
+                EventDelDDL.DataSource = dt;
+                EventDelDDL.DataBind();
+                EventDelDDL.DataTextField = "EVENTDATE";
+                EventDelDDL.DataValueField = "EVENTID";
+                EventDelDDL.DataBind();
+                EventDelDDL.Items.Insert(0, "");
+                connection.Close();
+
+                ClearInfo();
+                NotifLBL.ForeColor = System.Drawing.Color.Green;
+                NotifLBL.Text = "Your event has successfully been deleted!"; // not showing up...
+                NotifLBL.Visible = true;
+            }
+            queryResults.Close();
+            connection.Close();
         }
 
-        protected void TaskDelBut_Click(object sender, EventArgs e)
+        protected void ImportExcel(object sender, EventArgs e)
         {
+            if (FileUpload1.HasFile && docType())
+            {
+                ViewState["FILENAME"] = String.Join(".", String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
+
+                bug.Text= String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(NewDateTxt.Text));
+
+                //Save the uploaded Excel file with a dynamically created name; Overwrites if there is already the same name there.
+                string filePath = Server.MapPath("~/Uploads/") + ViewState["FILENAME"];
+                FileUpload1.SaveAs(filePath);
+
+                //Open the Excel file using ClosedXML.
+                using (XLWorkbook workBook = new XLWorkbook(filePath))
+                {
+                    //Read the first Sheet from Excel file.
+                    IXLWorksheet workSheet = workBook.Worksheet(1);
+                    DataTable dt = new DataTable();
+
+                    //Loop through the Worksheet rows.
+                    bool firstRow = true;
+                    foreach (IXLRow row in workSheet.Rows())
+                    {
+                        //Use the first row to add columns to DataTable.
+                        if (firstRow)
+                        {
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Columns.Add(cell.Value.ToString());
+                            }
+                            firstRow = false;
+                        }
+                        else
+                        {
+                            //Add rows to DataTable.
+                            dt.Rows.Add();
+                            int i = 0;
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                i++;
+                            }
+                        }
+                        GridView1.DataSource = dt;
+                        GridView1.DataBind();
+                    }
+                }
+            }
+        }
+
+        protected void ImportExcelModify() // saves a new excel on modification
+        {
+            if (FileUpload2.HasFile && docType())
+            { //fix
+                ViewState["MODIFYFILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload2.PostedFile.FileName);
+                ViewState["MODIFYFILENAME"] = NewDateTxt.Text;
+
+                //Save the uploaded Excel file with a dynamically created name; Overwrites if there is already the same name there.
+                string filePath = Server.MapPath("~/Uploads/") + ViewState["MODIFYFILENAME"];
+                FileUpload2.SaveAs(filePath);
+
+                //Open the Excel file using ClosedXML.
+                using (XLWorkbook workBook = new XLWorkbook(filePath))
+                {
+                    //Read the first Sheet from Excel file.
+                    IXLWorksheet workSheet = workBook.Worksheet(1);
+                    DataTable dt = new DataTable();
+
+                    //Loop through the Worksheet rows.
+                    bool firstRow = true;
+                    foreach (IXLRow row in workSheet.Rows())
+                    {
+                        //Use the first row to add columns to DataTable.
+                        if (firstRow)
+                        {
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Columns.Add(cell.Value.ToString());
+                            }
+                            firstRow = false;
+                        }
+                        else
+                        {
+                            //Add rows to DataTable.
+                            dt.Rows.Add();
+                            int i = 0;
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                i++;
+                            }
+                        }
+                        GridViewModify.DataSource = dt;
+                        GridViewModify.DataBind();
+                    }
+                }
+            }
+            else //fix if no file uploaded but date is changed, rename and save the file
+            { // get the correct file name... then resave the excel
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                SqlConnection connection = new SqlConnection(cs);
+                SqlCommand query = new SqlCommand("SELECT FILENAME FROM EVENTITINERARY WHERE ITINERARYID = (SELECT EVENTITINERARY FROM EVENT WHERE EVENTID = " + 
+                    Int32.Parse(EventDateDDL.SelectedValue.ToString()) +")", connection);
+                //string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
+                connection.Open();
+               // query.Parameters.AddWithValue("@FILENAME", fileName);
+                SqlDataReader queryResults = query.ExecuteReader();
+
+                if (queryResults.Read()) //If a filename is found, update it to the new name.
+                {
+                    // Renames the file with the updated Date.
+                    var sourcePath = Server.MapPath("~/Uploads/") + queryResults.GetString(queryResults.GetOrdinal("FILENAME"));
+                    var newName = NewDateTxt.Text + ".xlsx"; // could split the query result to better determine the file extension.
+                    var directory = Path.GetDirectoryName(sourcePath);
+                    var destinationPath = Path.Combine(directory, newName);
+                    File.Move(sourcePath, destinationPath);
+                    ViewState["MODIFYFILENAME"] = NewDateTxt.Text;
+                }
+                queryResults.Close();
+                connection.Close();
+            }
+        }
+
+        protected Boolean docType()
+        {
+            if (Path.GetExtension(this.FileUpload1.FileName) == ".xlsx" || Path.GetExtension(this.FileUpload1.FileName) == ".xls")
+            {
+                return true;
+            }
+            else if (Path.GetExtension(this.FileUpload2.FileName) == ".xlsx" || Path.GetExtension(this.FileUpload2.FileName) == ".xls")
+            {
+                return true;
+            }
+            else
+            {
+                NotifLBL.ForeColor = System.Drawing.Color.Red;
+                NotifLBL.Text = "BAD FILE TYPE. Please submit an .xlsx or a .xls file type!";
+                return false;
+            }
+        }
+        protected void setTable(DataTable dt)  // use a dataview to filter out empty rows??
+        {
+            if (dt != null)
+            {
+                dt = RemoveEmptyRows(dt);
+            }
+            else
+            {
+                NotifLBL.ForeColor = System.Drawing.Color.Red;
+                NotifLBL.Text = "No Itinerary Uploaded! Please upload a file.";
+            }
+        }
+
+        private static DataTable RemoveEmptyRows(DataTable source)
+        {
+            DataTable dt1 = source.Clone(); //copy the structure 
+            for (int i = 0; i <= source.Rows.Count - 1; i++) //iterate through the rows of the source
+            {
+                DataRow currentRow = source.Rows[i];  //copy the current row 
+                foreach (var colValue in currentRow.ItemArray)//move along the columns 
+                {
+                    if (!string.IsNullOrEmpty(colValue.ToString())) // if there is a value in a column, copy the row and finish
+                    {
+                        dt1.ImportRow(currentRow);
+                        break; //break and get a new row                        
+                    }
+                }
+            }
+            return dt1;
+        }
+
+        protected int getItineraryID()
+        {
+            if (ViewState["FILENAME"] != null)
+            {
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                SqlConnection connection = new SqlConnection(cs);
+                SqlCommand query = new SqlCommand("SELECT ITINERARYID FROM EVENTITINERARY WHERE FILENAME = '" + ViewState["FILENAME"].ToString() + "'", connection);
+                string fileName = HttpUtility.HtmlEncode(ViewState["FILENAME"].ToString());
+                connection.Open();
+                query.Parameters.AddWithValue("@FILENAME", fileName);
+                SqlDataReader queryResults = query.ExecuteReader();
+
+                if (queryResults.Read())
+                {
+                    ViewState["ITINERARYID"] = queryResults.GetInt32(queryResults.GetOrdinal("ITINERARYID"));
+                }
+
+                queryResults.Close();
+                connection.Close();
+
+                return Int32.Parse(ViewState["ITINERARYID"].ToString());
+            }
+            else return 0;
+        }
+
+        protected void ImportExcelModify(int id) // binds table from a saved excel file.
+        {
+            // Gets the filename for the selected value.
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            SqlCommand delete = new SqlCommand("DELETE FROM EVENTITINERARY WHERE TASK = @VALUE", connection);
-            SqlCommand delete2 = new SqlCommand("DELETE FROM EVENTTASKS WHERE TASKID = @TASKID", connection);
-            string select = "SELECT (EVENTTASKS.TITLE + ' - ' + EVENT.EVENTDATE) AS eventtask, (EVENTTASKS.TASKID) AS TaskID FROM EVENTTASKS, EVENT";           
-
-            int value = int.Parse(TaskDelDDL.SelectedValue);
-            int taskID = int.Parse(TaskDelDDL.SelectedValue);
-
+            SqlCommand query = new SqlCommand("SELECT FILENAME FROM EVENTITINERARY WHERE ITINERARYID = " +
+                "(SELECT EVENTITINERARY FROM EVENT WHERE EVENTID = " + id +")", connection);
             connection.Open();
-            delete.Parameters.AddWithValue("@VALUE", value);
-            delete.ExecuteNonQuery();
-            delete2.Parameters.AddWithValue("@TASKID", taskID);
-            delete2.ExecuteNonQuery();
-            SqlDataAdapter adpt = new SqlDataAdapter(select, connection);
-            DataTable dt = new DataTable();
-            adpt.Fill(dt);
-            TaskDelDDL.DataSource = dt;
-            TaskDelDDL.DataBind();
-            TaskDelDDL.DataTextField = "eventtask";
-            TaskDelDDL.DataValueField = "TaskID";
-            TaskDelDDL.DataBind();
+            SqlDataReader queryResults = query.ExecuteReader();
+
+            if (queryResults.Read())
+            {
+                ViewState["MODIFYFILENAME"] = queryResults.GetString(queryResults.GetOrdinal("FILENAME"));
+            }
+
+            queryResults.Close();
             connection.Close();
 
-            NotifLBL.Text = "Your task has successfully been deleted!";
-            NotifLBL.Visible = true;
-            ClearInfo();
+                //Open the Excel file using ClosedXML.
+                using (XLWorkbook workBook = new XLWorkbook(Server.MapPath("~/Uploads/" + ViewState["MODIFYFILENAME"].ToString())))
+                {
+                    //Read the first Sheet from Excel file.
+                    IXLWorksheet workSheet = workBook.Worksheet(1);
+                    DataTable dt = new DataTable();
+
+                    //Loop through the Worksheet rows.
+                    bool firstRow = true;
+                    foreach (IXLRow row in workSheet.Rows())
+                    {
+                        //Use the first row to add columns to DataTable.
+                        if (firstRow)
+                        {
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Columns.Add(cell.Value.ToString());
+                            }
+                            firstRow = false;
+                        }
+                        else
+                        {
+                            //Add rows to DataTable.
+                            dt.Rows.Add();
+                            int i = 0;
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                i++;
+                            }
+                        }
+                        GridViewModify.DataSource = dt;
+                        GridViewModify.DataBind();
+                    }
+                }
         }
 
-        protected void TimeRangeValid_ServerValidate(object source, ServerValidateEventArgs args)
+        protected int getItineraryIDFromModDDL(int value)
         {
-            if (EventFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string start = HttpUtility.HtmlEncode(EventTimeTxt.Text);
-                    string end = HttpUtility.HtmlEncode(EndTimeTxt.Text);
-                    string randomDt = "01/01/2000 ";
-                    args.IsValid = DateTime.Parse(randomDt + end) > DateTime.Parse(randomDt + start);
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
-            
-            if (TaskFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string start = HttpUtility.HtmlEncode(TaskNewStart.Text);
-                    string end = HttpUtility.HtmlEncode(TaskNewEnd.Text);
-                    string randomDt = "01/01/2000 ";
-                    args.IsValid = DateTime.Parse(randomDt + end) > DateTime.Parse(randomDt + start);
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
-        }
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                SqlConnection connection = new SqlConnection(cs);
+                SqlCommand query = new SqlCommand("SELECT EVENTITINERARY FROM EVENT WHERE EVENTID = " + value, connection);
+                connection.Open();
+                SqlDataReader queryResults = query.ExecuteReader();
 
-        protected void NewTitleValid_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            if (EventFunctionSelection.SelectedValue == "2")
-            {
-                try
+                if (queryResults.Read())
                 {
-                    string old = HttpUtility.HtmlEncode(OldTitleTxt.Text);
-                    string updated = HttpUtility.HtmlEncode(NewTitleTxt.Text);
-                    args.IsValid = updated != old;
+                    ViewState["MODIFYITINERARYID"] = queryResults.GetInt32(queryResults.GetOrdinal("EVENTITINERARY"));
                 }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
-            
-            if (TaskFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string old = HttpUtility.HtmlEncode(ModTaskOldTitle.Text);
-                    string updated = HttpUtility.HtmlEncode(ModTaskNewTitle.Text);
-                    args.IsValid = updated != old;
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
-        }
 
-        protected void NewStartValid_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            if (EventFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string old = HttpUtility.HtmlEncode(OldStartTxt.Text);
-                    string updated = HttpUtility.HtmlEncode(NewStartTxt.Text);
-                    args.IsValid = updated != old;
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
+                queryResults.Close();
+                connection.Close();
 
-            if (TaskFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string old = HttpUtility.HtmlEncode(TaskOldStart.Text);
-                    string updated = HttpUtility.HtmlEncode(TaskNewStart.Text);
-                    args.IsValid = updated != old;
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
-        }
-
-        protected void NewEndValid_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            if (EventFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string old = HttpUtility.HtmlEncode(OldEndTxt.Text);
-                    string updated = HttpUtility.HtmlEncode(NewEndTxt.Text);
-                    args.IsValid = updated != old;
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
-            
-            if (TaskFunctionSelection.SelectedValue == "2")
-            {
-                try
-                {
-                    string old = HttpUtility.HtmlEncode(TaskOldEnd.Text);
-                    string updated = HttpUtility.HtmlEncode(TaskNewEnd.Text);
-                    args.IsValid = updated != old;
-                }
-                catch (Exception)
-                {
-                    args.IsValid = false;
-                }
-            }
+            return Int32.Parse(ViewState["MODIFYITINERARYID"].ToString());
         }
     }
 }
