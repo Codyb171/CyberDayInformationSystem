@@ -5,28 +5,31 @@ using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Presentation;
+using DocumentFormat.OpenXml.Vml;
 
 namespace CyberDayInformationSystem
 {
     public partial class AdminReports : Page
     {
-        void Page_PreInit(Object sender, EventArgs e)
-        {
-            if (Session["TYPE"] != null)
-            {
-                MasterPageFile = (Session["Master"].ToString());
-                if (Session["TYPE"].ToString() != "Coordinator")
-                {
-                    Session.Add("Redirected", 1);
-                    Response.Redirect("BadSession.aspx");
-                }
-            }
-            else
-            {
-                Session.Add("Redirected", 0);
-                Response.Redirect("BadSession.aspx");
-            }
-        }
+        //void Page_PreInit(Object sender, EventArgs e)
+        //{
+        //    if (Session["TYPE"] != null)
+        //    {
+        //        MasterPageFile = (Session["Master"].ToString());
+        //        if (Session["TYPE"].ToString() != "Coordinator")
+        //        {
+        //            Session.Add("Redirected", 1);
+        //            Response.Redirect("BadSession.aspx");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Session.Add("Redirected", 0);
+        //        Response.Redirect("BadSession.aspx");
+        //    }
+        //}
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptInclude(Page, GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
@@ -41,10 +44,6 @@ namespace CyberDayInformationSystem
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
             string command = "select EVENTID, EVENTDATE from EVENT ";
-            if (DateTxt.Text != String.Empty)
-            {
-                command += "where EVENTDATE = \'" + HttpUtility.HtmlEncode(DateTxt.Text) + "\'";
-            }
             connection.Open();
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
@@ -121,16 +120,16 @@ namespace CyberDayInformationSystem
             string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT ";
             if (FirstNameTxt.Text != String.Empty && LastNameTxt.Text != String.Empty)
             {
-                command += " FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
+                command += "where FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
                            + "%'";
             }
             else if (FirstNameTxt.Text != String.Empty)
             {
-                command += " FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
+                command += "where FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
             }
             else if (LastNameTxt.Text != String.Empty)
             {
-                command += " LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
+                command += "where LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
             }
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             connection.Open();
@@ -151,11 +150,8 @@ namespace CyberDayInformationSystem
             {
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int eventID = int.Parse(SelectionDropDown.SelectedValue);
-                string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\", " +
-                             " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),EV.STARTTIME),4),3,0,':')as datetime),100),7) AS \"START\"," +
-                             " right(convert(varchar(20), cast(stuff(right('0000' + convert(varchar(4), EV.ENDTIME), 4), 3, 0, ':') as datetime), 100), 7) AS \"END\"," +
-                             " (RR.BUILDING + ' ' + RR.ROOMNUMBER) AS \"Room\" from EVENT EV LEFT OUTER JOIN ROOMRESERVATIONS RR " +
-                             " on EV.LOCATION = RR.ROOMID where EVENTID = " + eventID;
+                string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\" " +
+                             " from EVENT EV where EVENTID = " + eventID;
                 DataTable dt = new DataTable();
                 SqlConnection conn = new SqlConnection(cs);
                 SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -381,37 +377,63 @@ namespace CyberDayInformationSystem
 
             TertiaryGridLbl.Text = "Event Itinerary";
             TertiaryGridLbl.Visible = true;
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
-            string sql = "select ET.TITLE, (V.FIRSTNAME + ' ' + V.LASTNAME) AS INSTRUCTOR," +
-                " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),ET.STARTTIME),4),3,0,':')as datetime),100),7) AS \"START\"," +
-                " right(convert(varchar(20), cast(stuff(right('0000' + convert(varchar(4), ET.ENDTIME), 4), 3, 0, ':') as datetime), 100), 7) AS \"END\"" +
-                " FROM EVENTTASKS ET JOIN EVENTITINERARY EI ON EI.TASK = ET.TASKID JOIN VOLUNTEER V ON ET.INSTRUCTOR = V.STAFFID JOIN EVENT E ON E.EVENTID = EI.EVENT" +
-                " WHERE E.EVENTID = " +eventID + 
-                " ORDER BY EI.TASK; ";
-            DataTable dt = new DataTable();
-            SqlConnection conn = new SqlConnection(cs);
-            SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
-            conn.Open();
-            adapt.Fill(dt);
-            conn.Close();
-            if (dt.Rows.Count > 0)
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            string command =
+                "select EI.filename from eventitinerary EI join event E on E.EVENTITINERARY = EI.ITINERARYID WHERE E.EVENTID = " +
+                eventID;
+            connection.Open();
+            SqlCommand sqlCom = new SqlCommand(command, connection);
+            SqlDataReader reader = sqlCom.ExecuteReader();
+            if (reader.Read())
             {
-                TertiaryGridView.DataSource = dt;
-                TertiaryGridView.DataBind();
-            }
-            else
-            {
-                dt = new DataTable();
-                DataColumn dc1 = new DataColumn("Itinerary");
-                dt.Columns.Add(dc1);
-                DataRow dr1 = dt.NewRow();
-                dr1[0] = "No Event Itinerary Found";
-                dt.Rows.Add(dr1);
-                TertiaryGridView.DataSource = dt;
-                TertiaryGridView.DataBind();
+                string fileName = reader.GetString(0);
+                string filePath = Server.MapPath("~/Uploads/") + fileName;
+                //Open the Excel file using ClosedXML.
+                using (XLWorkbook workBook = new XLWorkbook(filePath))
+                {
+                    //Read the first Sheet from Excel file.
+                    IXLWorksheet workSheet = workBook.Worksheet(1);
+
+                    //Create a new DataTable.
+                    DataTable dt = new DataTable();
+
+                    //Loop through the Worksheet rows.
+                    bool firstRow = true;
+                    foreach (IXLRow row in workSheet.Rows())
+                    {
+                        //Use the first row to add columns to DataTable.
+                        if (firstRow)
+                        {
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Columns.Add(cell.Value.ToString());
+                            }
+
+                            firstRow = false;
+                        }
+                        else
+                        {
+                            //Add rows to DataTable.
+                            dt.Rows.Add();
+                            int i = 0;
+                            foreach (IXLCell cell in row.Cells())
+                            {
+                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
+                                i++;
+                            }
+                        }
+
+
+
+                    }
+                    TertiaryGridView.DataSource = dt;
+                    TertiaryGridView.DataBind();
+                }
             }
         }
+
         protected void FunctionList_SelectedIndexChanged(object sender, EventArgs e)
         {
             EmptyGridView();
@@ -423,6 +445,12 @@ namespace CyberDayInformationSystem
             switch (FunctionList.SelectedValue)
             {
                 case "1":
+                    SelectionLbl.Text = "Event Date: ";
+                    EventList();
+                    SelectionLbl.Visible = true;
+                    SelectionDropDown.Visible = true;
+                    RunBtn.Visible = true;
+                    break;
                 case "4":
                     ReportSearch.ActiveViewIndex = 0;
                     break;
