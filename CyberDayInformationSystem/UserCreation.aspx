@@ -5,7 +5,7 @@
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
-                <p class="h5">Please Select A User Type</p>
+                <p class="h5">Select A User Type</p>
                  <asp:DropDownList ID="UserTypeSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UserTypeSelection_SelectedIndexChanged">
                     <asp:ListItem Value="1">Teacher</asp:ListItem>
                     <asp:ListItem Value="2">Staff Volunteer</asp:ListItem>

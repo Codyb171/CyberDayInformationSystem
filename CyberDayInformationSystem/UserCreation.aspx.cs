@@ -43,6 +43,7 @@ namespace CyberDayInformationSystem
                 MajorDropDown.Items.Insert(0, new ListItem(String.Empty));
                 MinorDropDown.Items.Insert(0, new ListItem(String.Empty));
                 OrgDropDown.Items.Insert(0, new ListItem(String.Empty));
+                UserTypeSelection.Items.Insert(0,new ListItem(String.Empty));
             }
         }
 
@@ -100,6 +101,18 @@ namespace CyberDayInformationSystem
             {
                 CreateUser(3);
                 CreateStaff(3);
+                TitleDropDown.ClearSelection();
+                FirstNameTxt.Text = "";
+                LastNameTxt.Text = "";
+                PhoneTxt.Text = "";
+                EmailTxt.Text = "";
+                TshirtSizeList.ClearSelection();
+            }
+
+            if (UserTypeSelection.SelectedValue == "4")
+            {
+                CreateUser(4);
+                CreateStaff(4);
                 TitleDropDown.ClearSelection();
                 FirstNameTxt.Text = "";
                 LastNameTxt.Text = "";
