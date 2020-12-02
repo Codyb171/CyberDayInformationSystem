@@ -13,23 +13,23 @@ namespace CyberDayInformationSystem
 {
     public partial class AdminReports : Page
     {
-        //void Page_PreInit(Object sender, EventArgs e)
-        //{
-        //    if (Session["TYPE"] != null)
-        //    {
-        //        MasterPageFile = (Session["Master"].ToString());
-        //        if (Session["TYPE"].ToString() != "Coordinator")
-        //        {
-        //            Session.Add("Redirected", 1);
-        //            Response.Redirect("BadSession.aspx");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session.Add("Redirected", 0);
-        //        Response.Redirect("BadSession.aspx");
-        //    }
-        //}
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptInclude(Page, GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
@@ -151,7 +151,7 @@ namespace CyberDayInformationSystem
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int eventID = int.Parse(SelectionDropDown.SelectedValue);
                 string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\" " +
-                             " from EVENT EV where EVENTID = " + eventID;
+                             " from EVENT EV where EV.EVENTID = " + eventID;
                 DataTable dt = new DataTable();
                 SqlConnection conn = new SqlConnection(cs);
                 SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);

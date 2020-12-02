@@ -80,7 +80,7 @@ namespace CyberDayInformationSystem
             {
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int eventID = int.Parse(ddlEvents.SelectedValue);
-                string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\" where EVENTID = " + eventID;
+                string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\" from event EV where EV.EVENTID = " + eventID;
                 DataTable dt = new DataTable();
                 SqlConnection conn = new SqlConnection(cs);
                 SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);

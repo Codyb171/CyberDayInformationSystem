@@ -16,20 +16,20 @@ namespace CyberDayInformationSystem
     {
         void Page_PreInit(Object sender, EventArgs e)
         {
-            //if (Session["TYPE"] != null)
-            //{
-            //    MasterPageFile = (Session["Master"].ToString());
-            //    if (Session["TYPE"].ToString() != "Coordinator")
-            //    {
-            //        Session.Add("Redirected", 1);
-            //        Response.Redirect("BadSession.aspx");
-            //    }
-            //}
-            //else
-            //{
-            //    Session.Add("Redirected", 0);
-            //    Response.Redirect("BadSession.aspx");
-            //}
+            if (Session["TYPE"] != null)
+            {
+                MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
         }
 
         private int _eventToModify;
