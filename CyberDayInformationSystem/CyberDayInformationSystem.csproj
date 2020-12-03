@@ -246,6 +246,7 @@
     <Content Include="Admin.Master" />
     <Content Include="Parent.Master" />
     <Content Include="StudentEventReport.aspx" />
+    <Content Include="StudentInformationModify.aspx" />
     <Content Include="VolunteerEventReport.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -421,6 +422,13 @@
     </Compile>
     <Compile Include="StudentEventReport.aspx.designer.cs">
       <DependentUpon>StudentEventReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentInformationModify.aspx.cs">
+      <DependentUpon>StudentInformationModify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentInformationModify.aspx.designer.cs">
+      <DependentUpon>StudentInformationModify.aspx</DependentUpon>
     </Compile>
     <Compile Include="VolunteerEventReport.aspx.cs">
       <DependentUpon>VolunteerEventReport.aspx</DependentUpon>
