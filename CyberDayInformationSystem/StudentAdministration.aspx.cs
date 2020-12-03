@@ -230,7 +230,7 @@ namespace CyberDayInformationSystem
             string parentWrite = "INSERT into Guardian (FIRSTNAME, LASTNAME, EMAILADD, PHONE, CONTACT) " +
                 "values (@FNAME, @LNAME, @EMAIL, @PHONE, @CONTACT)";
             var parWriteCommand = new SqlCommand(parentWrite, dbcon);
-            parWriteCommand.Parameters.AddWithValue("@FNAME", fName);
+            parWriteCommand.Parameters.AddWithValue("@FNAME", "Parent " + fName);
             parWriteCommand.Parameters.AddWithValue("@LNAME", lName);
             parWriteCommand.Parameters.AddWithValue("@EMAIL", " ");
             parWriteCommand.Parameters.AddWithValue("@PHONE", "0000000000");
@@ -240,7 +240,7 @@ namespace CyberDayInformationSystem
             //Get ParentID and connect to student
             string getGuardID = "SELECT GUARDIANID FROM GUARDIAN WHERE FIRSTNAME = @FNAME AND LASTNAME = @LNAME";
             var getGuardIDCmd = new SqlCommand(getGuardID, dbcon);
-            getGuardIDCmd.Parameters.AddWithValue("@FNAME", fName);
+            getGuardIDCmd.Parameters.AddWithValue("@FNAME", "Parent " + fName);
             getGuardIDCmd.Parameters.AddWithValue("@LNAME", lName);
             int guardId = 0;
 

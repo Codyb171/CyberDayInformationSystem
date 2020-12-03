@@ -8,7 +8,7 @@
 
     <h3>Select a Function</h3>
     <asp:Table runat="server" HorizontalAlign="Center">
-        <asp:TableRow runat="server" HorizontalAlign="Center">
+        <asp:TableRow ID="rowFunctionBtn" runat="server" HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="2">
                 <asp:Button ID="btnAssignVol" CssClass="btn-main reg" runat="server" Text="Assign Volunteers" CausesValidation="false" OnClick="btnAssignVol_Click" />
             </asp:TableCell>
@@ -56,6 +56,12 @@
                             </asp:TableCell>
                         </asp:TableRow>
 
+                        <asp:TableRow ID="rowBtnReset" runat="server" HorizontalAlign="Center" Visible="false">
+                            <asp:TableCell ColumnSpan="4">
+                                <asp:Button ID="btnReset" CssClass="btn-main reg" runat="server" Text="Reset" OnClick="btnReset_Click" />
+                            </asp:TableCell>
+                        </asp:TableRow>
+
                         <asp:TableRow runat="server" HorizontalAlign="Center">
                             <asp:TableCell ColumnSpan="4">
                                 <asp:Label ID="lblStatus" runat="server" Text=""></asp:Label>
@@ -97,6 +103,12 @@
             
                             <asp:TableCell ColumnSpan="2">
                                 <asp:Button ID="btnUnassign" CssClass="btn-main reg" runat="server" Text="Submit >" OnClick="btnUnassign_Click" />
+                            </asp:TableCell>
+                        </asp:TableRow>
+
+                        <asp:TableRow ID="rowReset" runat="server" HorizontalAlign="Center" Visible="false">
+                            <asp:TableCell ColumnSpan="4">
+                                <asp:Button ID="btnRestart" CssClass="btn-main reg" runat="server" Text="Reset" OnClick="btnReset_Click" />
                             </asp:TableCell>
                         </asp:TableRow>
 
