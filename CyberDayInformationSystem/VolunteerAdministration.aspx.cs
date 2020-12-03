@@ -167,20 +167,17 @@ namespace CyberDayInformationSystem
             // Get volunteers
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connect = new SqlConnection(cs);
-            string sqlCommand = "SELECT (V.FIRSTNAME + ' ' + V.LASTNAME) as NAME, V.STAFFID from VOLUNTEER V " +
-                "JOIN EVENTSTAFF ES on ES.STAFF = V.STAFFID WHERE ES.EVENT = @ToEdit";
+            string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER";
             connect.Open();
-            SqlCommand getCmd = new SqlCommand(sqlCommand, connect);
-            getCmd.Parameters.AddWithValue("@ToEdit", _eventID);
-            SqlDataAdapter adapt = new SqlDataAdapter(getCmd);
+            SqlDataAdapter adapt = new SqlDataAdapter(sqlCommand, connect);
             DataTable dataTable = new DataTable();
             adapt.Fill(dataTable);
-            ddlVols.DataSource = dataTable;
-            ddlVols.DataBind();
-            ddlVols.DataTextField = "NAME";
-            ddlVols.DataValueField = "STAFFID";
-            ddlVols.DataBind();
-            ddlVols.Items.Insert(0, new ListItem(String.Empty));
+            ddlVol.DataSource = dataTable;
+            ddlVol.DataBind();
+            ddlVol.DataTextField = "NAME";
+            ddlVol.DataValueField = "STAFFID";
+            ddlVol.DataBind();
+            ddlVol.Items.Insert(0, new ListItem(String.Empty));
             connect.Close();
 
             rowVol.Visible = true;
@@ -198,15 +195,10 @@ namespace CyberDayInformationSystem
         
         protected void btnUnassign_Click(object sender, EventArgs e)
         {
-            int selVolID = Convert.ToInt32(ddlVols.SelectedItem.Value);
+            int selVolID = Convert.ToInt32(ddlVol.SelectedItem.Value);
+
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connect = new SqlConnection(cs);
-            string sqlUnassign = "DELETE from EVENTSTAFF where STAFF = @VOLID and EVENT = @EVENTID";
-            connect.Open();
-            SqlCommand delCmd = new SqlCommand(sqlUnassign, connect);
-            delCmd.Parameters.AddWithValue("@VOLID", selVolID);
-            delCmd.Parameters.AddWithValue("@EVENTID", _eventID);
-            int result = delCmd.ExecuteNonQuery();
 
             string getNameCmd = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME from VOLUNTEER WHERE STAFFID = @ID";
             SqlConnection getCon = new SqlConnection(cs);
@@ -216,14 +208,21 @@ namespace CyberDayInformationSystem
 
             string volName = (string)getName.ExecuteScalar();
 
+            string sqlUnassign = "DELETE from EVENTSTAFF where STAFF = @VOLID and EVENT = @EVENTID";
+            connect.Open();
+            SqlCommand delCmd = new SqlCommand(sqlUnassign, connect);
+            delCmd.Parameters.AddWithValue("@VOLID", selVolID);
+            delCmd.Parameters.AddWithValue("@EVENTID", _eventID);
+            
+            int result = delCmd.ExecuteNonQuery();
 
             if (result < 0)
             {
-                lblStatus.Text = "There was an unexpected error removing " + volName + ".";
+                lblStat.Text = "Volunteer " + volName + " was not registered for this event date.";
             }
             if (result > 0)
             {
-                lblStatus.Text = "Volunteer " + volName + " removed successfully!";
+                lblStat.Text = "Volunteer " + volName + " removed successfully!";
             }
         }
 
