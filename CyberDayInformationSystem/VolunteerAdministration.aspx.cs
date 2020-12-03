@@ -9,23 +9,23 @@ namespace CyberDayInformationSystem
 {
     public partial class VolunteerAdministration : Page
     {
-        void Page_PreInit(Object sender, EventArgs e)
-        {
-            if (Session["TYPE"] != null)
-            {
-                MasterPageFile = (Session["Master"].ToString());
-                if (Session["TYPE"].ToString() != "Coordinator")
-                {
-                    Session.Add("Redirected", 1);
-                    Response.Redirect("BadSession.aspx");
-                }
-            }
-            else
-            {
-                Session.Add("Redirected", 0);
-                Response.Redirect("BadSession.aspx");
-            }
-        }
+        //void Page_PreInit(Object sender, EventArgs e)
+        //{
+        //    if (Session["TYPE"] != null)
+        //    {
+        //        MasterPageFile = (Session["Master"].ToString());
+        //        if (Session["TYPE"].ToString() != "Coordinator")
+        //        {
+        //            Session.Add("Redirected", 1);
+        //            Response.Redirect("BadSession.aspx");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Session.Add("Redirected", 0);
+        //        Response.Redirect("BadSession.aspx");
+        //    }
+        //}
         protected void Page_Load(object sender, EventArgs e)
         {
             // Fill currently available CyberDay Dates
@@ -57,11 +57,15 @@ namespace CyberDayInformationSystem
         protected void btnAssignVol_Click(object sender, EventArgs e)
         {
             SelectedFunction.ActiveViewIndex = 0;
+            rowFunctionBtn.Visible = false;
+            rowBtnReset.Visible = true;
         }
 
         protected void btnDelVol_Click(object sender, EventArgs e)
         {
             SelectedFunction.ActiveViewIndex = 1;
+            rowFunctionBtn.Visible = false;
+            rowReset.Visible = true;
         }
 
         private static int _eventID;
@@ -158,14 +162,17 @@ namespace CyberDayInformationSystem
             ddlDates.Enabled = false;
             rowNext.Visible = false;
 
-            _eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
+            _eventID = Convert.ToInt32(ddlDates.SelectedItem.Value);
 
             // Get volunteers
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connect = new SqlConnection(cs);
-            string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER WHERE ";
+            //string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER " +
+            //    "RIGHT JOIN EVENTSTAFF on EVENTSTAFF.STAFF = VOLUNTEER.STAFFID WHERE EVENTSTAFF.EVENT = @ToEdit";
             connect.Open();
-            SqlDataAdapter adapt = new SqlDataAdapter(sqlCommand, connect);
+            SqlCommand getCmd = new SqlCommand(sqlCommand, connect);
+            getCmd.Parameters.AddWithValue("@ToEdit", _eventID);
+            SqlDataAdapter adapt = new SqlDataAdapter(getCmd);
             DataTable dataTable = new DataTable();
             adapt.Fill(dataTable);
             ddlVols.DataSource = dataTable;
@@ -176,8 +183,8 @@ namespace CyberDayInformationSystem
             ddlVols.Items.Insert(0, new ListItem(String.Empty));
             connect.Close();
 
-            rowSelVol.Visible = true;
-            rowSubmitBtn.Visible = true;
+            rowVol.Visible = true;
+            rowBtns.Visible = true;
         }
 
         protected void btnReturn_Click(object sender, EventArgs e)
@@ -185,13 +192,49 @@ namespace CyberDayInformationSystem
             rowVol.Visible = false;
             rowBtns.Visible = false;
 
-            ddlDates.Visible = true;
+            ddlDates.Enabled = true;
             rowNext.Visible = true;
         }
-
+        
         protected void btnUnassign_Click(object sender, EventArgs e)
         {
+            int selVolID = Convert.ToInt32(ddlVols.SelectedItem.Value);
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connect = new SqlConnection(cs);
+            string sqlUnassign = "DELETE from EVENTSTAFF where STAFF = @VOLID and EVENT = @EVENTID";
+            connect.Open();
+            SqlCommand delCmd = new SqlCommand(sqlUnassign, connect);
+            delCmd.Parameters.AddWithValue("@VOLID", selVolID);
+            delCmd.Parameters.AddWithValue("@EVENTID", _eventID);
+            int result = delCmd.ExecuteNonQuery();
 
+            string getNameCmd = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME from VOLUNTEER WHERE STAFFID = @ID";
+            SqlConnection getCon = new SqlConnection(cs);
+            SqlCommand getName = new SqlCommand(getNameCmd, getCon);
+            getName.Parameters.AddWithValue("@ID", selVolID);
+            getCon.Open();
+
+            string volName = (string)getName.ExecuteScalar();
+
+
+            if (result < 0)
+            {
+                lblStatus.Text = "There was an unexpected error removing " + volName + ".";
+            }
+            if (result > 0)
+            {
+                lblStatus.Text = "Volunteer " + volName + " removed successfully!";
+            }
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            SelectedFunction.ActiveViewIndex = -1;
+            rowFunctionBtn.Visible = true;
+            ddlDates.ClearSelection();
+            ddlEventDates.ClearSelection();
+            ddlVol.ClearSelection();
+            ddlVols.ClearSelection();
         }
     }
 }
