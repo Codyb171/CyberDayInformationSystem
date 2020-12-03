@@ -9,23 +9,23 @@ namespace CyberDayInformationSystem
 {
     public partial class VolunteerAdministration : Page
     {
-        //void Page_PreInit(Object sender, EventArgs e)
-        //{
-        //    if (Session["TYPE"] != null)
-        //    {
-        //        MasterPageFile = (Session["Master"].ToString());
-        //        if (Session["TYPE"].ToString() != "Coordinator")
-        //        {
-        //            Session.Add("Redirected", 1);
-        //            Response.Redirect("BadSession.aspx");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session.Add("Redirected", 0);
-        //        Response.Redirect("BadSession.aspx");
-        //    }
-        //}
+        void Page_PreInit(Object sender, EventArgs e)
+        {
+            if (Session["TYPE"] != null)
+            {
+                MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator")
+                {
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
+                }
+            }
+            else
+            {
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             // Fill currently available CyberDay Dates
@@ -214,7 +214,7 @@ namespace CyberDayInformationSystem
             delCmd.Parameters.AddWithValue("@VOLID", selVolID);
             delCmd.Parameters.AddWithValue("@EVENTID", _eventID);
             
-            int result = delCmd.ExecuteNonQuery();
+            int result = (int)delCmd.ExecuteNonQuery();
 
             if (result < 0)
             {
