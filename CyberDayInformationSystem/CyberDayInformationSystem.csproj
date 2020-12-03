@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AdminAssignTeachers.aspx" />
     <Content Include="AdminReports-Styling.css" />
     <Content Include="AdminReports.aspx" />
     <Content Include="AdminDashboard.aspx" />
@@ -372,6 +373,13 @@
     </Compile>
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AdminAssignTeachers.aspx.cs">
+      <DependentUpon>AdminAssignTeachers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminAssignTeachers.aspx.designer.cs">
+      <DependentUpon>AdminAssignTeachers.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminReports.aspx.cs">
       <DependentUpon>AdminReports.aspx</DependentUpon>

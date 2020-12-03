@@ -59,6 +59,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="AdminStudentNotes.aspx">Student Notes</a>
                             <a class="dropdown-item" href="AdminSchoolCreation.aspx">School Administration</a>
+                            <a class="dropdown-item" href="AdminAssignTeachers.aspx">Teacher Administration</a>
                         </div>
                     </li>
                     <li><a href="EventAdministration.aspx">Events</a></li>
