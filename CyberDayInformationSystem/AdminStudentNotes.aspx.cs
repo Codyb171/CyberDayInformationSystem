@@ -50,6 +50,7 @@ namespace CyberDayInformationSystem
             studentModDtl.PageIndex = e.NewPageIndex;
             studentModDtl.DataBind();
             CurView.ActiveViewIndex = 1;
+            SearchNameBtn_OnClick(sender,e);
         }
 
         protected void btnAddNotes_Click(object sender, EventArgs e)
@@ -170,10 +171,13 @@ namespace CyberDayInformationSystem
             else
             {
                 dt = new DataTable();
+                DataColumn dc2 = new DataColumn("NOTEID");
                 DataColumn dc1 = new DataColumn("No Data");
+                dt.Columns.Add(dc2);
                 dt.Columns.Add(dc1);
                 DataRow dr1 = dt.NewRow();
-                dr1[0] = "No notes found for this student";
+                dr1[1] = "No notes found for this student";
+                dr1[0] = "0";
                 dt.Rows.Add(dr1);
                 StudentNoteView.DataSource = dt;
                 StudentNoteView.DataBind();
