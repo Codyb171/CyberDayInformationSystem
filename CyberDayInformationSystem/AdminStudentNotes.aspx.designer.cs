@@ -24,6 +24,60 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.MultiView CurView;
 
         /// <summary>
+        /// StudentSearchView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View StudentSearchView;
+
+        /// <summary>
+        /// FirstNameLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FirstNameLbl;
+
+        /// <summary>
+        /// FirstNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
+
+        /// <summary>
+        /// LastNameLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LastNameLbl;
+
+        /// <summary>
+        /// LastNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
+
+        /// <summary>
+        /// SearchNameBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchNameBtn;
+
+        /// <summary>
         /// StudentDetailView control.
         /// </summary>
         /// <remarks>
@@ -49,6 +103,15 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DetailsView studentModDtl;
+
+        /// <summary>
+        /// StudentNoteView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView StudentNoteView;
 
         /// <summary>
         /// btnAddNotes control.
