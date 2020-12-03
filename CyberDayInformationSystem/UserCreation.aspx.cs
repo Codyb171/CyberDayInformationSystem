@@ -262,47 +262,6 @@ namespace CyberDayInformationSystem
             }
         }
 
-        //private int GetID(int type)
-        //{
-        //    int id = 0;
-        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-        //    SqlConnection connection = new SqlConnection(cs);
-        //    SqlCommand command;
-        //    SqlDataReader dataReader;
-        //    string sql;
-        //    connection.Open();
-        //    switch (type)
-        //    {
-        //        case 1:
-        //        {
-        //            sql = "select cast(Max(TEACHERID) as varchar) From TEACHER";
-        //            command = new SqlCommand(sql, connection);
-        //            dataReader = command.ExecuteReader();
-        //            if (dataReader.Read())
-        //            {
-        //                id = int.Parse(dataReader.GetString(0));
-        //            }
-
-        //            break;
-        //        }
-        //        case 2:
-        //        {
-        //            sql = "select cast(Max(STAFFID) as varchar) From VOLUNTEER";
-        //            command = new SqlCommand(sql, connection);
-        //            dataReader = command.ExecuteReader();
-        //            if (dataReader.Read())
-        //            {
-        //                id = int.Parse(dataReader.GetString(0));
-        //            }
-
-        //            break;
-        //        }
-        //    }
-
-        //    connection.Close();
-        //    return id + 1;
-        //}
-
         private int TeacherExists()
         {
             int add = 0;
