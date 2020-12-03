@@ -13,23 +13,18 @@ namespace CyberDayInformationSystem
         {
             if (Session["TYPE"] != null)
             {
-                string type = Session["TYPE"].ToString();
-                if (type == "Student")
+                MasterPageFile = (Session["Master"].ToString());
+                if (Session["TYPE"].ToString() != "Coordinator" && Session["TYPE"].ToString() != "Student Volunteer" && Session["TYPE"].ToString() != "Staff Volunteer"
+                    && Session["TYPE"].ToString() != "Teacher")
                 {
-                    this.MasterPageFile = "~/Student.Master";
-                }
-                else if (type == "Coordinator")
-                {
-                    this.MasterPageFile = "~/Admin.Master";
-                }
-                else if (type == "Student Volunteer" || type == "Staff Volunteer")
-                {
-                    this.MasterPageFile = "~/Volunteer.Master";
+                    Session.Add("Redirected", 1);
+                    Response.Redirect("BadSession.aspx");
                 }
             }
             else
             {
-                this.MasterPageFile = "~/Site.Master";
+                Session.Add("Redirected", 0);
+                Response.Redirect("BadSession.aspx");
             }
         }
         protected void Page_Load(object sender, EventArgs e)

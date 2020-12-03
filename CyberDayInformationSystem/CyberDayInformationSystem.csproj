@@ -245,10 +245,8 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Admin.Master" />
     <Content Include="Parent.Master" />
-    <Content Include="Scripts\jquery.tablednd.js" />
     <Content Include="StudentEventReport.aspx" />
     <Content Include="VolunteerEventReport.aspx" />
-    <Content Include="WebForm2.aspx" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -430,13 +428,6 @@
     </Compile>
     <Compile Include="VolunteerEventReport.aspx.designer.cs">
       <DependentUpon>VolunteerEventReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\WriteDocument.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -638,6 +629,7 @@
     <Content Include="Volunteer.Master" />
     <Content Include="Student.Master" />
     <Content Include="Uploads\Default_Itinerary.xlsx" />
+    <Content Include="Uploads\2021-01-15_Itinerary.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -74,20 +74,21 @@ namespace CyberDayInformationSystem
             SelectionDropDown.Items.Clear();
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            string command = "select STAFFID, (firstname + ' ' + lastname) as NAME from Volunteer where ";
+            string command = "select STAFFID, (firstname + ' ' + lastname) as NAME from Volunteer ";
             if (FirstNameTxt.Text != String.Empty && LastNameTxt.Text != String.Empty)
             {
-                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
+                command += "where FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
                     + "%'";
             }
             else if (FirstNameTxt.Text != String.Empty)
             {
-                command += "FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
+                command += "where FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
             }
-            else
+            else if(LastNameTxt.Text != String.Empty)
             {
-                command += "LASTNAME LIKE '% " + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
+                command += "where LASTNAME LIKE '% " + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
             }
+
             SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
             DataTable dt = new DataTable();
             adpt.Fill(dt);
