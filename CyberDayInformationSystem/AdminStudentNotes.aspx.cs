@@ -32,7 +32,10 @@ namespace CyberDayInformationSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CurView.ActiveViewIndex = 0;
+            if (!Page.IsPostBack)
+            {
+                CurView.ActiveViewIndex = 0;
+            }
             if (Page.IsPostBack)
             {
                 if (Session["StudentID"] != null)
@@ -46,6 +49,7 @@ namespace CyberDayInformationSystem
         {
             studentModDtl.PageIndex = e.NewPageIndex;
             studentModDtl.DataBind();
+            CurView.ActiveViewIndex = 1;
         }
 
         protected void btnAddNotes_Click(object sender, EventArgs e)
@@ -179,6 +183,7 @@ namespace CyberDayInformationSystem
         {
             studentModDtl.PageIndex = e.NewPageIndex;
             studentModDtl.DataBind();
+            CurView.ActiveViewIndex = 2;
         }
 
     }

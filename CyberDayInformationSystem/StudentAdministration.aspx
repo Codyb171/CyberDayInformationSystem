@@ -18,10 +18,14 @@
                     <asp:TableCell ColumnSpan="2">
                         <asp:Button ID="btnModStu" CssClass="btn-main reg" runat="server" Text="Modify A Student" CausesValidation="false" OnClick="btnModStuClick" />
                     </asp:TableCell>
+                    <asp:TableCell ColumnSpan="2">
+                        <asp:Button ID="btnAssignStu" CssClass="btn-main reg" runat="server" Text="Assign Student To Event" CausesValidation="false" OnClick="btnAssignStu_Click" Width="240px"/>
+                    </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow runat="server" HorizontalAlign="Center">
                     <asp:TableCell>
                         <asp:MultiView ID="SelectedFunction" runat="server">
+                            
                             <asp:View ID="CreateView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="1">
@@ -210,6 +214,7 @@
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
+
                             <asp:View ID="ModifyView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="2">
@@ -251,6 +256,7 @@
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
+
                             <asp:View ID="EditView" runat="server">
                                 <asp:TableRow runat="server" HorizontalAlign="Center">
                                     <asp:TableCell ColumnSpan="1">
@@ -390,6 +396,42 @@
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:View>
+
+                            <asp:View ID="AssignView" runat="server">
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <asp:TableCell ColumnSpan="1">
+                                        <asp:Label ID="PickStuLbl" runat="server" Text="Select Student: " Width="150px"></asp:Label>
+                                    </asp:TableCell>
+                                    <asp:TableCell ColumnSpan="2">
+                                        <asp:DropDownList ID="StudentDDL" runat="server" AutoPostBack="true" Width="200px"></asp:DropDownList>
+                                    </asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1">
+                                        <asp:RequiredFieldValidator ID="AssignStuReq" runat="server" ErrorMessage="Required Field" ForeColor="Red" ControlToValidate="StudentDDL"></asp:RequiredFieldValidator>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <asp:TableCell ColumnSpan="1">
+                                        <asp:Label ID="PickEventLbl" runat="server" Text="Select Event: " Width="150px"></asp:Label>
+                                    </asp:TableCell>
+                                    <asp:TableCell ColumnSpan="2">
+                                        <asp:DropDownList ID="EventDDL" runat="server" AutoPostBack="true" Width="200px"></asp:DropDownList>
+                                    </asp:TableCell>
+                                    <asp:TableCell ColumnSpan="1">
+                                        <asp:RequiredFieldValidator ID="AssignEventReq" runat="server" ErrorMessage="Required Field" ForeColor="Red" ControlToValidate="EventDDL"></asp:RequiredFieldValidator>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <asp:TableCell ColumnSpan="4">
+                                        <asp:Button ID="AssignBtn" CssClass="btn-main reg" runat="server" Text="Assign" OnClick="AssignBtn_Click"/>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow runat="server" HorizontalAlign="Center">
+                                    <asp:TableCell ColumnSpan="1">
+                                        <asp:Label ID="NotifLBL" runat="server" Visible="false"></asp:Label>
+                                    </asp:TableCell>
+                                </asp:TableRow>
+                            </asp:View>
+
                         </asp:MultiView>
                     </asp:TableCell>
                 </asp:TableRow>
