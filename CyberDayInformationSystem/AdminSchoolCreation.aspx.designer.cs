@@ -11,170 +11,206 @@ namespace CyberDayInformationSystem
 {
 
 
-    public partial class AdminStudentNotes
+    public partial class AdminSchoolCreation
     {
 
         /// <summary>
-        /// CurView control.
+        /// tblSchoolInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView CurView;
+        protected global::System.Web.UI.WebControls.Table tblSchoolInfo;
 
         /// <summary>
-        /// StudentSearchView control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View StudentSearchView;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// FirstNameLbl control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label FirstNameLbl;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// FirstNameTxt control.
+        /// RequiredFieldValidatorName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorName;
 
         /// <summary>
-        /// LastNameLbl control.
+        /// lblAdd1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LastNameLbl;
+        protected global::System.Web.UI.WebControls.Label lblAdd1;
 
         /// <summary>
-        /// LastNameTxt control.
+        /// txtAdd1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
+        protected global::System.Web.UI.WebControls.TextBox txtAdd1;
 
         /// <summary>
-        /// SearchNameBtn control.
+        /// RequiredFieldValidatorAdd1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchNameBtn;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorAdd1;
 
         /// <summary>
-        /// StudentDetailView control.
+        /// lblAdd2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View StudentDetailView;
+        protected global::System.Web.UI.WebControls.Label lblAdd2;
 
         /// <summary>
-        /// tblSelect control.
+        /// txtAdd2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblSelect;
+        protected global::System.Web.UI.WebControls.TextBox txtAdd2;
 
         /// <summary>
-        /// studentModDtl control.
+        /// lblCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView studentModDtl;
+        protected global::System.Web.UI.WebControls.Label lblCity;
 
         /// <summary>
-        /// btnAddNotes control.
+        /// txtCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddNotes;
+        protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
-        /// AddNotesView control.
+        /// RequiredFieldValidatorCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View AddNotesView;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCity;
 
         /// <summary>
-        /// tblAdd control.
+        /// lblState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblAdd;
+        protected global::System.Web.UI.WebControls.Label lblState;
 
         /// <summary>
-        /// StudentNoteView control.
+        /// txtState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView StudentNoteView;
+        protected global::System.Web.UI.WebControls.TextBox txtState;
 
         /// <summary>
-        /// lblStuFName control.
+        /// RequiredFieldValidatorState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStuFName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorState;
 
         /// <summary>
-        /// lblStuLName control.
+        /// lblZip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStuLName;
+        protected global::System.Web.UI.WebControls.Label lblZip;
 
         /// <summary>
-        /// lblAddNote control.
+        /// txtZip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddNote;
+        protected global::System.Web.UI.WebControls.TextBox txtZip;
 
         /// <summary>
-        /// txtAddNote control.
+        /// RequiredFieldValidatorZip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAddNote;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorZip;
+
+        /// <summary>
+        /// lblPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPhone;
+
+        /// <summary>
+        /// txtPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPhone;
+
+        /// <summary>
+        /// RequiredFieldValidatorPhone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorPhone;
+
+        /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
 
         /// <summary>
         /// btnSubmit control.
@@ -184,15 +220,6 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-
-        /// <summary>
-        /// btnBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
 
         /// <summary>
         /// lblStatus control.
