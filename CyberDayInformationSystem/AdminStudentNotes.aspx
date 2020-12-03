@@ -7,7 +7,7 @@
 
     <asp:MultiView ID="CurView" runat="server">
         <asp:View ID="StudentSearchView" runat="server">
-            <asp:Table runat="server">
+            <asp:Table runat="server" HorizontalAlign="Center">
                 <asp:TableRow runat="server" HorizontalAlign="Center">
                     <asp:TableCell runat="server">
                         <asp:Label runat="server" ID="FirstNameLbl" Text="First Name: "></asp:Label>
@@ -38,12 +38,6 @@
                         </asp:DetailsView>
                     </asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow runat="server">
-                    <asp:TableCell runat="server">
-                        <asp:DetailsView ID="StudentNoteView" runat="server" Height="50px" Width="301px" AutoGenerateRows="True" DataKeyNames="NOTEID"
-                                         DefaultMode="ReadOnly" Visible="True" AllowPaging="True" HorizontalAlign="Center" OnPageIndexChanging="StudentNoteView_OnPageIndexChanging"></asp:DetailsView>
-                    </asp:TableCell>
-                </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell ColumnSpan="2" HorizontalAlign="Center">
                         <asp:Button ID="btnAddNotes" CssClass="btn-main reg" runat="server" Text="Add Notes" OnClick="btnAddNotes_Click" />
@@ -55,14 +49,21 @@
         <asp:View ID="AddNotesView" runat="server">
             <asp:Table ID="tblAdd" runat="server" HorizontalAlign="Center">
                 <asp:TableRow runat="server">
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:Label ID="lblStuFName" runat="server" Text=""></asp:Label>
+                    <asp:TableCell runat="server" ColumnSpan="4">
+                        <asp:DetailsView ID="StudentNoteView" runat="server" Height="50px" Width="301px" AutoGenerateRows="True" DataKeyNames="NOTEID"
+                            DefaultMode="ReadOnly" Visible="True" AllowPaging="True" HorizontalAlign="Center"
+                            OnPageIndexChanging="StudentNoteView_OnPageIndexChanging">
+                            <PagerSettings Mode="NextPrevious" Position="Bottom" Visible="True"></PagerSettings>
+                        </asp:DetailsView>
                     </asp:TableCell>
-                    <asp:TableCell ColumnSpan="2">
+                </asp:TableRow>
+                <asp:TableRow runat="server" HorizontalAlign="Center">
+                    <asp:TableCell ColumnSpan="4">
+                        <asp:Label ID="lblStuFName" runat="server" Text=""></asp:Label>
                         <asp:Label ID="lblStuLName" runat="server" Text=""></asp:Label>
                     </asp:TableCell>
                 </asp:TableRow>
-                <asp:TableRow>
+                <asp:TableRow HorizontalAlign="Center">
                     <asp:TableCell ColumnSpan="2">
                         <asp:Label ID="lblAddNote" runat="server" Text="Note: (limit 100 characters)"></asp:Label>
                     </asp:TableCell>
