@@ -15,6 +15,15 @@ namespace CyberDayInformationSystem
     {
 
         /// <summary>
+        /// rowFunctionBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow rowFunctionBtn;
+
+        /// <summary>
         /// btnAssignVol control.
         /// </summary>
         /// <remarks>
@@ -150,6 +159,24 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.Button btnSubmit;
 
         /// <summary>
+        /// rowBtnReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow rowBtnReset;
+
+        /// <summary>
+        /// btnReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReset;
+
+        /// <summary>
         /// lblStatus control.
         /// </summary>
         /// <remarks>
@@ -265,6 +292,24 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUnassign;
+
+        /// <summary>
+        /// rowReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow rowReset;
+
+        /// <summary>
+        /// btnRestart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRestart;
 
         /// <summary>
         /// lblStat control.

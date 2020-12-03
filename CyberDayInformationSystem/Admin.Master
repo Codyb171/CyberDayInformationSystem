@@ -54,7 +54,13 @@
             <div class="Nav">
                 <ul>
                     <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
-                    <li><a href="AdminStudentNotes.aspx">Student Attendees</a></li>
+                    <li class ="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Attendees</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="AdminStudentNotes.aspx">Student Notes</a>
+                            <a class="dropdown-item" href="AdminSchoolCreation.aspx">School Administration</a>
+                        </div>
+                    </li>
                     <li><a href="EventAdministration.aspx">Events</a></li>
                     <li><a href="VolunteerAdministration.aspx">Volunteers</a></li>
                     <li><a href="AdminReports.aspx">Reports</a></li>
