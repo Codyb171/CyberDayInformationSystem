@@ -40,7 +40,7 @@
             </asp:TableCell>
             
             <asp:TableCell ColumnSpan="2">
-                <button type="button" CssClass="btn-main reg" runat="server" onserverclick="btnSubmit_Click">Submit ></button>
+                <button type="button" class="btn-main reg" runat="server" onserverclick="btnSubmit_Click">Submit ></button>
             </asp:TableCell>
         </asp:TableRow>
 
