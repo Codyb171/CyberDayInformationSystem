@@ -6,6 +6,27 @@
     </ul>
 
     <asp:MultiView ID="CurView" runat="server">
+        <asp:View ID="StudentSearchView" runat="server">
+            <asp:Table runat="server">
+                <asp:TableRow runat="server" HorizontalAlign="Center">
+                    <asp:TableCell runat="server">
+                        <asp:Label runat="server" ID="FirstNameLbl" Text="First Name: "></asp:Label>
+                        <asp:TextBox runat="server" ID="FirstNameTxt"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow runat="server" HorizontalAlign="Center">
+                    <asp:TableCell runat="server">
+                        <asp:Label runat="server" ID="LastNameLbl" Text="Last  Name: "></asp:Label>
+                        <asp:TextBox runat="server" ID="LastNameTxt"></asp:TextBox>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow runat="server" HorizontalAlign="Center">
+                    <asp:TableCell runat="server">
+                        <asp:Button runat="server" ID="SearchNameBtn" Text="Search" CssClass="btn-main reg" OnClick="SearchNameBtn_OnClick" CausesValidation="False" />
+                    </asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+        </asp:View>
         <asp:View ID="StudentDetailView" runat="server">
             <asp:Table ID="tblSelect" runat="server" HorizontalAlign="Center">
                 <asp:TableRow>
@@ -13,8 +34,14 @@
                         <asp:DetailsView ID="studentModDtl" runat="server" HorizontalAlign="Center"
                             AutoGenerateRows="True" DataKeyNames="STUDENTID" DefaultMode="ReadOnly"
                             Height="50px" Width="301px" Visible="true" AllowPaging="True" OnPageIndexChanging="StudentModifyDtl_PageIndexChanging">
-                            <PagerSettings Mode="Numeric" Position="Bottom" Visible="True"/>
+                            <PagerSettings Mode="Numeric" Position="Bottom" Visible="True" />
                         </asp:DetailsView>
+                    </asp:TableCell>
+                </asp:TableRow>
+                <asp:TableRow runat="server">
+                    <asp:TableCell runat="server">
+                        <asp:DetailsView ID="StudentNoteView" runat="server" Height="50px" Width="301px" AutoGenerateRows="True" DataKeyNames="NOTEID"
+                                         DefaultMode="ReadOnly" Visible="True" AllowPaging="True" HorizontalAlign="Center" OnPageIndexChanging="StudentNoteView_OnPageIndexChanging"></asp:DetailsView>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>

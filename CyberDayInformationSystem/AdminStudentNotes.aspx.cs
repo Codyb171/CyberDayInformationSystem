@@ -31,34 +31,6 @@ namespace CyberDayInformationSystem
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            var connection = new SqlConnection(cs);
-            DataTable dt = new DataTable();
-            connection.Open();
-            string sql = "Select STUDENTID, FIRSTNAME, LASTNAME, NOTES FROM STUDENT " +
-                "LEFT JOIN STUDENTNOTES on STUDENTID = STUDENT";
-            SqlDataAdapter select = new SqlDataAdapter(sql, connection);
-            select.Fill(dt);
-
-            if (dt.Rows.Count > 0)
-            {
-                studentModDtl.DataSource = dt;
-                studentModDtl.DataBind();
-            }
-            else
-            {
-                dt = new DataTable();
-                DataColumn dc1 = new DataColumn("No Data");
-                dt.Columns.Add(dc1);
-                DataRow dr1 = dt.NewRow();
-                dr1[0] = "No Students found with that data";
-                dt.Rows.Add(dr1);
-                studentModDtl.DataSource = dt;
-                studentModDtl.DataBind();
-            }
-
-            CurView.ActiveViewIndex = 0;
-
             if (Page.IsPostBack)
             {
                 if (Session["StudentID"] != null)
@@ -72,6 +44,8 @@ namespace CyberDayInformationSystem
         {
             studentModDtl.PageIndex = e.NewPageIndex;
             studentModDtl.DataBind();
+            int student = int.Parse(studentModDtl.DataKey[0].ToString());
+            StudentNoteFill(student);
         }
 
         protected void btnAddNotes_Click(object sender, EventArgs e)
@@ -90,7 +64,7 @@ namespace CyberDayInformationSystem
                 lblStuFName.Text = dataReader["FIRSTNAME"].ToString();
                 lblStuFName.Text = dataReader["LASTNAME"].ToString();
             }
-            CurView.ActiveViewIndex = 1;
+            CurView.ActiveViewIndex = 2;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -119,15 +93,89 @@ namespace CyberDayInformationSystem
                 connection.Close();
             }
 
-            CurView.ActiveViewIndex = 1;
+            CurView.ActiveViewIndex = 2;
 
         }
 
+
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            CurView.ActiveViewIndex = 0;
+            CurView.ActiveViewIndex = 1;
             txtAddNote.Text = "";
             lblStatus.Text = "";
+        }
+
+        protected void SearchNameBtn_OnClick(object sender, EventArgs e)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            string command = "select STUDENTID as ID, (FIRSTNAME + ' ' + LASTNAME) as NAME from STUDENT ";
+            if (FirstNameTxt.Text != String.Empty && LastNameTxt.Text != String.Empty)
+            {
+                command += "where FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%' AND LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text)
+                           + "%'";
+            }
+            else if (FirstNameTxt.Text != String.Empty)
+            {
+                command += "where FIRSTNAME LIKE '%" + HttpUtility.HtmlEncode(FirstNameTxt.Text) + "%'";
+            }
+            else if (LastNameTxt.Text != String.Empty)
+            {
+                command += "where LASTNAME LIKE '%" + HttpUtility.HtmlEncode(LastNameTxt.Text) + "%'";
+            }
+            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+            connection.Open();
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                studentModDtl.DataSource = dt;
+                studentModDtl.DataBind();
+            }
+            else
+            {
+                dt = new DataTable();
+                DataColumn dc1 = new DataColumn("No Data");
+                dt.Columns.Add(dc1);
+                DataRow dr1 = dt.NewRow();
+                dr1[0] = "No Students found with that data";
+                dt.Rows.Add(dr1);
+                studentModDtl.DataSource = dt;
+                studentModDtl.DataBind();
+            }
+            CurView.ActiveViewIndex = 1;
+        }
+
+        public void StudentNoteFill(int studentID)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            string command = "select NOTEID, NOTES from studentnotes where student = " + studentID;
+            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+            connection.Open();
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                studentModDtl.DataSource = dt;
+                studentModDtl.DataBind();
+            }
+            else
+            {
+                dt = new DataTable();
+                DataColumn dc1 = new DataColumn("No Data");
+                dt.Columns.Add(dc1);
+                DataRow dr1 = dt.NewRow();
+                dr1[0] = "No Students found with that data";
+                dt.Rows.Add(dr1);
+                studentModDtl.DataSource = dt;
+                studentModDtl.DataBind();
+            }
+        }
+        protected void StudentNoteView_OnPageIndexChanging(object sender, DetailsViewPageEventArgs e)
+        {
+            studentModDtl.PageIndex = e.NewPageIndex;
+            studentModDtl.DataBind();
         }
     }
 }
