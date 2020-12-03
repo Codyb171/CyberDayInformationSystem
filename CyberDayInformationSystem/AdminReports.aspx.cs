@@ -13,23 +13,23 @@ namespace CyberDayInformationSystem
 {
     public partial class AdminReports : Page
     {
-        void Page_PreInit(Object sender, EventArgs e)
-        {
-            if (Session["TYPE"] != null)
-            {
-                MasterPageFile = (Session["Master"].ToString());
-                if (Session["TYPE"].ToString() != "Coordinator")
-                {
-                    Session.Add("Redirected", 1);
-                    Response.Redirect("BadSession.aspx");
-                }
-            }
-            else
-            {
-                Session.Add("Redirected", 0);
-                Response.Redirect("BadSession.aspx");
-            }
-        }
+        //void Page_PreInit(Object sender, EventArgs e)
+        //{
+        //    if (Session["TYPE"] != null)
+        //    {
+        //        MasterPageFile = (Session["Master"].ToString());
+        //        if (Session["TYPE"].ToString() != "Coordinator")
+        //        {
+        //            Session.Add("Redirected", 1);
+        //            Response.Redirect("BadSession.aspx");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Session.Add("Redirected", 0);
+        //        Response.Redirect("BadSession.aspx");
+        //    }
+        //}
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptInclude(Page, GetType(), "PrintReport.js", "Scripts/src/methods/PrintReport.js");
@@ -373,6 +373,39 @@ namespace CyberDayInformationSystem
             }
         }
 
+        private void StudentPermissionInfo(int studentID)
+        {
+            TertiaryGridLbl.Text = "Student Permission Form";
+            TertiaryGridLbl.Visible = true;
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            string sql =
+                "SELECT SP.PHOTORELEASE AS \"Photo Release\", SP.EMAILRETENTION AS \" Email Retention\", format((dateadd(hour, -5,SP.DATESIGNED)), 'MM/dd/yyyy hh:mm tt') as \"Signed On \", (G.FIRSTNAME + \' \' + G.LASTNAME) AS \"Signed By\" FROM STUDENTPERMISSIONS SP JOIN " +
+                "STUDENT S ON SP.STUDENT = S.STUDENTID JOIN GUARDIAN G ON G.GUARDIANID = S.GUARDIAN WHERE S.STUDENTID = " +
+                studentID;
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(cs);
+            SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
+            conn.Open();
+            adapt.Fill(dt);
+            conn.Close();
+            if (dt.Rows.Count > 0)
+            {
+                TertiaryGridView.DataSource = dt;
+                TertiaryGridView.DataBind();
+            }
+            else
+            {
+                dt = new DataTable();
+                DataColumn dc1 = new DataColumn("Permission Form");
+                dt.Columns.Add(dc1);
+                DataRow dr1 = dt.NewRow();
+                dr1[0] = "No Permission form on file";
+                dt.Rows.Add(dr1);
+                TertiaryGridView.DataSource = dt;
+                TertiaryGridView.DataBind();
+            }
+        }
+
         private void EventItinerary()
         {
 
@@ -499,6 +532,7 @@ namespace CyberDayInformationSystem
                     StudentGridFill(studentID);
                     StudentNotesInfo(studentID);
                     StudentTeacherInfo(studentID);
+                    StudentPermissionInfo(studentID);
                     FillPanel();
                 }
 
