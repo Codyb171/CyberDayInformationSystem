@@ -610,7 +610,6 @@ namespace CyberDayInformationSystem
             SearchByTagButton_Click(sender, e);
         }
 
-        //DID WE DECIDE TO KEEP THE DELETE FUNCTION????
         //protected void DeleteStudentBtn_OnClick(object sender, EventArgs e)
         //{
             

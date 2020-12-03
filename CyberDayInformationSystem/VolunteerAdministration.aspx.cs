@@ -44,8 +44,24 @@ namespace CyberDayInformationSystem
                 ddlEventDates.DataValueField = "EVENTID";
                 ddlEventDates.DataBind();
                 ddlEventDates.Items.Insert(0, new ListItem(String.Empty));
+
+                ddlDates.DataSource = dataTable;
+                ddlDates.DataBind();
+                ddlDates.DataTextField = "EVENTDATE";
+                ddlDates.DataValueField = "EVENTID";
+                ddlDates.DataBind();
+                ddlDates.Items.Insert(0, new ListItem(String.Empty));
                 connect.Close();
             }
+        }
+        protected void btnAssignVol_Click(object sender, EventArgs e)
+        {
+            SelectedFunction.ActiveViewIndex = 0;
+        }
+
+        protected void btnDelVol_Click(object sender, EventArgs e)
+        {
+            SelectedFunction.ActiveViewIndex = 1;
         }
 
         private static int _eventID;
@@ -134,6 +150,48 @@ namespace CyberDayInformationSystem
 
             ddlEventDates.Enabled = true;
             rowDateNextBtn.Visible = true;
+        }
+
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+            // Change visiblity to move to next step. Display selected value.
+            ddlDates.Enabled = false;
+            rowNext.Visible = false;
+
+            _eventID = Convert.ToInt32(ddlEventDates.SelectedItem.Value);
+
+            // Get volunteers
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connect = new SqlConnection(cs);
+            string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER WHERE ";
+            connect.Open();
+            SqlDataAdapter adapt = new SqlDataAdapter(sqlCommand, connect);
+            DataTable dataTable = new DataTable();
+            adapt.Fill(dataTable);
+            ddlVols.DataSource = dataTable;
+            ddlVols.DataBind();
+            ddlVols.DataTextField = "NAME";
+            ddlVols.DataValueField = "STAFFID";
+            ddlVols.DataBind();
+            ddlVols.Items.Insert(0, new ListItem(String.Empty));
+            connect.Close();
+
+            rowSelVol.Visible = true;
+            rowSubmitBtn.Visible = true;
+        }
+
+        protected void btnReturn_Click(object sender, EventArgs e)
+        {
+            rowVol.Visible = false;
+            rowBtns.Visible = false;
+
+            ddlDates.Visible = true;
+            rowNext.Visible = true;
+        }
+
+        protected void btnUnassign_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

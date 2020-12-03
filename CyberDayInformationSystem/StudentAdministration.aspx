@@ -6,7 +6,7 @@
         <li>Student Administration</li>
     </ul>
     
-    <h3>Please Select a Task</h3>
+    <h3>Select a Function</h3>
 
     <div class="text-center">
         <div class="text-center">
