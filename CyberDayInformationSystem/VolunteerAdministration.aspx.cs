@@ -167,8 +167,8 @@ namespace CyberDayInformationSystem
             // Get volunteers
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connect = new SqlConnection(cs);
-            //string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER " +
-            //    "RIGHT JOIN EVENTSTAFF on EVENTSTAFF.STAFF = VOLUNTEER.STAFFID WHERE EVENTSTAFF.EVENT = @ToEdit";
+            string sqlCommand = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME, STAFFID from VOLUNTEER " +
+                "RIGHT JOIN EVENTSTAFF on EVENTSTAFF.STAFF = VOLUNTEER.STAFFID WHERE EVENTSTAFF.EVENT = @ToEdit";
             connect.Open();
             SqlCommand getCmd = new SqlCommand(sqlCommand, connect);
             getCmd.Parameters.AddWithValue("@ToEdit", _eventID);
