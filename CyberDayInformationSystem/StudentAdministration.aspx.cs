@@ -346,6 +346,14 @@ namespace CyberDayInformationSystem
             SelectedFunction.ActiveViewIndex = 1;
         }
 
+        protected void btnAssignStu_Click(object sender, EventArgs e)
+        {
+            ClearEditForms();
+            EventDateList();
+            StudentList();
+            SelectedFunction.ActiveViewIndex = 3;
+        }
+
         // Searches based on user input to the textbox
         protected void SearchByTagButton_Click(object sender, EventArgs e)
         {
@@ -444,6 +452,42 @@ namespace CyberDayInformationSystem
             }
 
             SelectedFunction.ActiveViewIndex = 2;
+        }
+
+        private void EventDateList()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            string command = "SELECT EVENTDATE, EVENTID FROM EVENT";
+            connection.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            EventDDL.DataSource = dt;
+            EventDDL.DataBind();
+            EventDDL.DataTextField = "EVENTDATE";
+            EventDDL.DataValueField = "EVENTID";
+            EventDDL.DataBind();
+            EventDDL.Items.Insert(0, new ListItem(String.Empty));
+            connection.Close();
+        }
+
+        private void StudentList()
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            string command = "SELECT (FIRSTNAME + ' ' + LASTNAME) AS Name, STUDENTID FROM STUDENT";
+            connection.Open();
+            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+            DataTable dt = new DataTable();
+            adpt.Fill(dt);
+            StudentDDL.DataSource = dt;
+            StudentDDL.DataBind();
+            StudentDDL.DataTextField = "Name";
+            StudentDDL.DataValueField = "STUDENTID";
+            StudentDDL.DataBind();
+            StudentDDL.Items.Insert(0, new ListItem(String.Empty));
+            connection.Close();
         }
 
         private void TeacherList(int caller)
@@ -665,5 +709,55 @@ namespace CyberDayInformationSystem
             }
         }
 
+        protected void AssignBtn_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                if (CheckAssign() == 0)
+                {
+                    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                    SqlConnection connection = new SqlConnection(cs);
+                    SqlCommand insert = new SqlCommand("INSERT INTO EVENTROSTER(EVENT, STUDENT) VALUES(@EVENT, @STUDENT)", connection);
+
+                    int eventKey = int.Parse(EventDDL.SelectedValue);
+                    int studentKey = int.Parse(StudentDDL.SelectedValue);
+
+                    connection.Open();
+                    insert.Parameters.AddWithValue("@EVENT", eventKey);
+                    insert.Parameters.AddWithValue("@STUDENT", studentKey);
+                    insert.ExecuteNonQuery();
+                    connection.Close();
+
+                    NotifLBL.Text = "Student has successfully been registered!";
+                    NotifLBL.Visible = true;
+                    EventDDL.ClearSelection();
+                    StudentDDL.ClearSelection();
+                }
+            }
+        }
+
+        private int CheckAssign()
+        {
+            int add;
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            SqlConnection connection = new SqlConnection(cs);
+            SqlCommand check = new SqlCommand("SELECT COUNT(*) FROM EVENTROSTER WHERE EVENT = @EVENT AND STUDENT = @STUDENT", connection);
+
+            int eventKey = int.Parse(EventDDL.SelectedValue);
+            int studentKey = int.Parse(StudentDDL.SelectedValue);
+
+            connection.Open();
+            check.Parameters.AddWithValue("@EVENT", eventKey);
+            check.Parameters.AddWithValue("@STUDENT", studentKey);
+            add = (int)check.ExecuteScalar();
+            connection.Close();
+
+            if (add > 0)
+            {
+                NotifLBL.Text = "This student has already been registered.";
+                NotifLBL.Visible = true;
+            }
+            return add;
+        }
     }
 }
