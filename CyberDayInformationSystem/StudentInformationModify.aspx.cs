@@ -35,7 +35,7 @@ namespace CyberDayInformationSystem
             {
                 if (Session["TYPE"].ToString() == "Parent")
                 {
-                        guardianID = GetId(); /*int.Parse(Session["ID"].ToString())*/
+                        guardianID = GetId();
                 }
                 else
                 {
