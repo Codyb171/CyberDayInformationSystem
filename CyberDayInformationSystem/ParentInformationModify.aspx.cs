@@ -59,6 +59,7 @@ namespace CyberDayInformationSystem
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
+            UpdateAuthDB();
             string CS = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             var authcon = new SqlConnection(CS);
             authcon.Open();
@@ -73,15 +74,33 @@ namespace CyberDayInformationSystem
             var command = new SqlCommand(sql, authcon);
             command.Parameters.AddWithValue("@FIRSTNAME", firstName);
             command.Parameters.AddWithValue("@LASTNAME", lastName);
-            command.Parameters.AddWithValue("@EMAiL", email);
+            command.Parameters.AddWithValue("@EMAIL", email);
             command.Parameters.AddWithValue("@PHONE", phone);
             command.Parameters.AddWithValue("@ID", _idToEdit);
             command.ExecuteNonQuery();
-
+            
             authcon.Close();
             UpdateSuccessfulLbl.Text = "Information updated successfully!";
         }
 
+        public void UpdateAuthDB()
+        {
+            string CS = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            var authcon = new SqlConnection(CS);
+            authcon.Open();
+
+            string firstName = HttpUtility.HtmlEncode(firstNameTxt.Text);
+            string lastName = HttpUtility.HtmlEncode(LastNameTxt.Text);
+            string sql =
+                "Update Users set FIRSTNAME = @FIRSTNAME, LASTNAME = @LASTNAME where CONCAT(FIRSTNAME, ' ', LASTNAME) LIKE '%" +
+                Session["NAME"] + "%'";
+            var command = new SqlCommand(sql, authcon);
+            command.Parameters.AddWithValue("@FIRSTNAME", firstName);
+            command.Parameters.AddWithValue("@LASTNAME", lastName);
+            command.ExecuteNonQuery();
+            authcon.Close();
+            Session["NAME"] = firstName + " " + lastName;
+        }
     }
 }
 

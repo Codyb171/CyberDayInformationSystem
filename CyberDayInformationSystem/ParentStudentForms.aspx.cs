@@ -65,8 +65,29 @@ namespace CyberDayInformationSystem
 
         }
 
+        public int getStudent(int gID)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            var connection = new SqlConnection(cs);
+            string sql = "Select STUDENTID from student where Guardian = " + gID;
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader dataReader = command.ExecuteReader();
+            int id = 0;
+
+            if (dataReader.Read())
+            {
+                id = int.Parse(dataReader["STUDENTID"].ToString());
+            }
+            connection.Close();
+            return id;
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            string photo = "No";
+            string email = "No";
+            int student = getStudent(guardianID);
             //Generate Email output String
             string output =
                 "Photo Release \n I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included \n" +
@@ -82,6 +103,8 @@ namespace CyberDayInformationSystem
             if (ddlPhotoPermission.SelectedValue == "1")
             {
                 output += "I DO authorize CyberDay to use my child's photograph.\n";
+                photo = "Yes";
+
             }
             else
             {
@@ -89,11 +112,13 @@ namespace CyberDayInformationSystem
             }
 
             output += "Permission to Retain Email\n" +
-                     "CyberDay would like to follow our student participant's academic progress and be able to reach out to them to provide guidance and opportunities when we are able.\n";
+                      "CyberDay would like to follow our student participant's academic progress and be able to reach out to them to provide guidance and opportunities when we are able.\n";
             if (ddlEmailPermission.SelectedValue == "1")
             {
-                output += "I DO authorize CyberDay to retain my student's email address for the purposes of tracking their\n" +
-                          "academic progress and informing them of potential opportunities.\n";
+                output +=
+                    "I DO authorize CyberDay to retain my student's email address for the purposes of tracking their\n" +
+                    "academic progress and informing them of potential opportunities.\n";
+                email = "Yes";
             }
             else
             {
@@ -106,27 +131,26 @@ namespace CyberDayInformationSystem
             output += "Parent Email: " + txtParentEmail.Text + "\n";
             output += "Today's Date: " + DateTime.Now;
             //End of Generate
+            string parName = HttpUtility.HtmlEncode(txtParentName.Text);
+            string parEmail = HttpUtility.HtmlEncode(txtParentEmail.Text);
+            string subject = "CyberDay Student Permission Form Receipt";
+            EmailCenter.send(parEmail, subject, output);
 
-            if (ddlPhotoPermission.SelectedValue == "1")
-            {
-                //Set PhotoRelease
-                var dbcs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-                var authcs = ConfigurationManager.ConnectionStrings["AUTH"].ConnectionString;
+            //Set PhotoRelease
+            var dbcs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
 
-                var dbcon = new SqlConnection(dbcs);
-                var authcon = new SqlConnection(authcs);
+            var dbcon = new SqlConnection(dbcs);
 
-                dbcon.Open();
-                authcon.Open();
-
-                //Save the photo approval to DB
-                string updatePR = "UPDATE STUDENT SET PHOTORELEASE = @PHOTOPERM WHERE GUARDIAN = @GUARDIAN";
-                var updatePRCmd = new SqlCommand(updatePR, dbcon);
-                updatePRCmd.Parameters.AddWithValue("@PHOTOPERM", "YES");
-                updatePRCmd.Parameters.AddWithValue("@GUARDIAN", guardianID);
-
-                updatePRCmd.ExecuteNonQuery();
-            }
+            dbcon.Open();
+            //Save the photo approval to DB
+            string updatePR = "Insert into STUDENTPERMISSIONS(PHOTORELEASE,EMAILRETENTION,PARENT,STUDENT) VALUES(@PHOTO, @EMAIL, @PARENT, @STUDENT)";
+            var updatePRCmd = new SqlCommand(updatePR, dbcon);
+            updatePRCmd.Parameters.AddWithValue("@PHOTO",photo);
+            updatePRCmd.Parameters.AddWithValue("@EMAIL",email);
+            updatePRCmd.Parameters.AddWithValue("@Parent", guardianID);
+            updatePRCmd.Parameters.AddWithValue("@STUDENT",student);
+            updatePRCmd.ExecuteNonQuery();
+            dbcon.Close();
         }
     }
 }
