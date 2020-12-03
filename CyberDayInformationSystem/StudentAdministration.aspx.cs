@@ -89,6 +89,7 @@ namespace CyberDayInformationSystem
             TshirtSizeList.ClearSelection();
             GenderDropDown.ClearSelection();
             TeacherDropDown.ClearSelection();
+            noteTxt.Text = "";
         }
 
         private void SendStudent()

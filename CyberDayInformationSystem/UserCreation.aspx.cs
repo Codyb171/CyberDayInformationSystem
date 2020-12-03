@@ -174,7 +174,7 @@ namespace CyberDayInformationSystem
                 command.ExecuteNonQuery();
                 SendPassword(user);
                 connection.Close();
-                UserInfoLbl.Text = "User Has been created successfully";
+                UserInfoLbl.Text = "User " + first + last + " has been created successfully";
             }
         }
 
@@ -261,47 +261,6 @@ namespace CyberDayInformationSystem
                 connection.Close();
             }
         }
-
-        //private int GetID(int type)
-        //{
-        //    int id = 0;
-        //    string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-        //    SqlConnection connection = new SqlConnection(cs);
-        //    SqlCommand command;
-        //    SqlDataReader dataReader;
-        //    string sql;
-        //    connection.Open();
-        //    switch (type)
-        //    {
-        //        case 1:
-        //        {
-        //            sql = "select cast(Max(TEACHERID) as varchar) From TEACHER";
-        //            command = new SqlCommand(sql, connection);
-        //            dataReader = command.ExecuteReader();
-        //            if (dataReader.Read())
-        //            {
-        //                id = int.Parse(dataReader.GetString(0));
-        //            }
-
-        //            break;
-        //        }
-        //        case 2:
-        //        {
-        //            sql = "select cast(Max(STAFFID) as varchar) From VOLUNTEER";
-        //            command = new SqlCommand(sql, connection);
-        //            dataReader = command.ExecuteReader();
-        //            if (dataReader.Read())
-        //            {
-        //                id = int.Parse(dataReader.GetString(0));
-        //            }
-
-        //            break;
-        //        }
-        //    }
-
-        //    connection.Close();
-        //    return id + 1;
-        //}
 
         private int TeacherExists()
         {
@@ -394,7 +353,8 @@ namespace CyberDayInformationSystem
             if (dataReader.Read())
             {
                 add = 1;
-                UserInfoLbl.Text = "A user with this Information already Exists";
+                UserInfoLbl.Text = "A user with thie name " + first + last + " already exists";
+
             }
 
             dataReader.Close();
