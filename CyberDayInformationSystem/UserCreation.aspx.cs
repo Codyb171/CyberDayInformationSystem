@@ -174,7 +174,7 @@ namespace CyberDayInformationSystem
                 command.ExecuteNonQuery();
                 SendPassword(user);
                 connection.Close();
-                UserInfoLbl.Text = "User Has been created successfully";
+                UserInfoLbl.Text = "User " + first + last + " has been created successfully";
             }
         }
 
@@ -394,7 +394,8 @@ namespace CyberDayInformationSystem
             if (dataReader.Read())
             {
                 add = 1;
-                UserInfoLbl.Text = "A user with this Information already Exists";
+                UserInfoLbl.Text = "A user with thie name " + first + last + " already exists";
+
             }
 
             dataReader.Close();

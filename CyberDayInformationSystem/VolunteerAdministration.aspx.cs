@@ -91,12 +91,20 @@ namespace CyberDayInformationSystem
             SqlCommand chkDupe = new SqlCommand(dupeCheck, connect);
             connect.Open();
 
+            string getNameCmd = "SELECT FIRSTNAME + ' ' + LASTNAME as NAME from VOLUNTEER WHERE STAFFID = @ID";
+            SqlConnection getCon = new SqlConnection(cs);
+            SqlCommand getName = new SqlCommand(getNameCmd, getCon);
+            getName.Parameters.AddWithValue("@ID", selVolID);
+            getCon.Open();
+
+            string volName = (string)getName.ExecuteScalar();
+
 
             int dupeCount = (int)chkDupe.ExecuteScalar();
 
             if (dupeCount > 0)
             {
-                lblStatus.Text = "Volunteer is already registered for this day!";
+                lblStatus.Text = "Volunteer " + volName + " is already registered for this day!";
             }
             else
             {
@@ -105,13 +113,14 @@ namespace CyberDayInformationSystem
 
                 int result = toRoster.ExecuteNonQuery();
 
+
                 if (result < 0)
                 {
-                    lblStatus.Text = "There was an unexpected error.";
+                    lblStatus.Text = "There was an unexpected error adding " + volName + ".";
                 }
                 if (result > 0)
                 {
-                    lblStatus.Text = "Volunteer added successfully!";
+                    lblStatus.Text = "Volunteer " + volName + " added successfully!";
                 }
             }
 
