@@ -4,7 +4,7 @@
     <h3>Please Select an Action</h3>
 
     <div class="text-center">
-        <asp:Table ID="ButtonTable" runat="server">
+        <asp:Table ID="ButtonTable" runat="server" HorizontalAlign="Center">
             <asp:TableRow runat="server" HorizontalAlign="Center">
                 <asp:TableCell runat="server">
                     <asp:Button ID="ManualBtn" runat="server" Text="Create an event Manually?" OnClick="ManualBtn_OnClick" />
@@ -391,98 +391,100 @@
                 </asp:Table>
             </asp:View>
             <asp:View ID="ExcelView" runat="server">
-                <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell runat="server" ColumnSpan="2">
-                        <asp:Label ID="EXSchoolLbl" runat="server" Text="School:"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell runat="server" ColumnSpan="2">
-                        <asp:DropDownList ID="EXSchoolDDL" runat="server">
-                        </asp:DropDownList>
-                    </asp:TableCell>
-                    <asp:TableCell>
-                        <asp:RequiredFieldValidator ID="EXSchoolValid" runat="server" ErrorMessage="Please Pick a School" ControlToValidate="EXSchoolDDL" ForeColor="Red">
-                        </asp:RequiredFieldValidator>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:Label ID="EXDateLbl" runat="server" Text="Event Date: " Width="200"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:TextBox ID="EXDateTxt" runat="server" TextMode="Date"></asp:TextBox>
-                    </asp:TableCell>
-                    <asp:TableCell ColumnSpan="1">
-                        <asp:RequiredFieldValidator ID="EXDateValid" runat="server" ErrorMessage="Event Date Required" ControlToValidate="EXDateTxt" ForeColor="Red" Display="None">
-                        </asp:RequiredFieldValidator>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:Label ID="EXStartTime" runat="server" Text="Start Time (hh:mm): " Width="200"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:TextBox ID="EXStartTimeTxt" TextMode="Time" runat="server"></asp:TextBox>
-                    </asp:TableCell>
-                    <asp:TableCell ColumnSpan="1">
-                        <asp:RequiredFieldValidator ID="EXStartRequired" runat="server" ErrorMessage="Start Time Required" ControlToValidate="EXStartTimeTxt" ForeColor="Red" Display="None">
-                        </asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="EXStartFormat" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="EXStartTimeTxt"
-                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None">
-                        </asp:RegularExpressionValidator>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:Label ID="EXEndTimeLbl" runat="server" Text="End Time (hh:mm): " Width="200"></asp:Label>
-                    </asp:TableCell>
-                    <asp:TableCell ColumnSpan="2">
-                        <asp:TextBox ID="EXEndTimeTxt" runat="server" TextMode="Time"></asp:TextBox>
-                    </asp:TableCell>
-                    <asp:TableCell ColumnSpan="1">
-                        <asp:RequiredFieldValidator ID="EXEndTimeRequired" runat="server" ErrorMessage="End Time Required" ControlToValidate="EXEndTimeTxt" ForeColor="Red" Display="None">
-                        </asp:RequiredFieldValidator>
-                        <asp:RegularExpressionValidator ID="EXEndTimeFormat" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="EXEndTimeTxt"
-                            ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None">
-                        </asp:RegularExpressionValidator>
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow runat="server" HorizontalAlign="Left">
-                    <asp:TableCell ColumnSpan="4">
-                        <asp:Label ID="createGVLabel" runat="server" Text="Create Itinerary: " Width="200"></asp:Label>
-                        <br />
-                        <asp:HyperLink runat="server" Text="Download Itinerary Creation Form" NavigateUrl="~/Uploads/Default_Itinerary.xlsx" Enabled="true"></asp:HyperLink>
-                        <br />
-                        <asp:FileUpload ID="FileUpload1" runat="server" />
-                        <asp:Button ID="btnImport" runat="server" Text="Import" OnClick="ImportExcel" />
-                        <asp:BulletedList ID="BulletedList1" runat="server" BulletStyle="Numbered">
-                            <asp:ListItem Text="Download Itinerary Creation Form." />
-                            <asp:ListItem Text="Create Itinerary in MS Excel." />
-                            <asp:ListItem Text="Import completed file." />
-                            <asp:ListItem Text="Review and Create." />
-                        </asp:BulletedList>
-                        <br />
-                        <asp:Label ID="Label2" runat="server" Font-Bold="true" ForeColor="Green"></asp:Label>
-                        <br />
-                        <asp:GridView ID="GridView1" AlternatingRowStyle-BackColor="White" BackColor="#f4efe1" runat="server" ForeColor="#33333" HeaderStyle-BackColor="#d3cdb6" CellPadding="5">
-                        </asp:GridView>
-                        <asp:Label ID="bug" Text="" runat="server" />
-                    </asp:TableCell>
+                <asp:Table runat="server" HorizontalAlign="Center">
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell runat="server" ColumnSpan="2">
+                            <asp:Label ID="EXSchoolLbl" runat="server" Text="School:"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell runat="server" ColumnSpan="2">
+                            <asp:DropDownList ID="EXSchoolDDL" runat="server">
+                            </asp:DropDownList>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:RequiredFieldValidator ID="EXSchoolValid" runat="server" ErrorMessage="Please Pick a School" ControlToValidate="EXSchoolDDL" ForeColor="Red">
+                            </asp:RequiredFieldValidator>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:Label ID="EXDateLbl" runat="server" Text="Event Date: " Width="200"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:TextBox ID="EXDateTxt" runat="server" TextMode="Date"></asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="1">
+                            <asp:RequiredFieldValidator ID="EXDateValid" runat="server" ErrorMessage="Event Date Required" ControlToValidate="EXDateTxt" ForeColor="Red" Display="None">
+                            </asp:RequiredFieldValidator>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:Label ID="EXStartTime" runat="server" Text="Start Time (hh:mm): " Width="200"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:TextBox ID="EXStartTimeTxt" TextMode="Time" runat="server"></asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="1">
+                            <asp:RequiredFieldValidator ID="EXStartRequired" runat="server" ErrorMessage="Start Time Required" ControlToValidate="EXStartTimeTxt" ForeColor="Red" Display="None">
+                            </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="EXStartFormat" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="EXStartTimeTxt"
+                                ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None">
+                            </asp:RegularExpressionValidator>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:Label ID="EXEndTimeLbl" runat="server" Text="End Time (hh:mm): " Width="200"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="2">
+                            <asp:TextBox ID="EXEndTimeTxt" runat="server" TextMode="Time"></asp:TextBox>
+                        </asp:TableCell>
+                        <asp:TableCell ColumnSpan="1">
+                            <asp:RequiredFieldValidator ID="EXEndTimeRequired" runat="server" ErrorMessage="End Time Required" ControlToValidate="EXEndTimeTxt" ForeColor="Red" Display="None">
+                            </asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="EXEndTimeFormat" runat="server" ErrorMessage="Please enter in the correct format for time." ForeColor="Red" ControlToValidate="EXEndTimeTxt"
+                                ValidationExpression="^(?:[01]?[0-9]|2[0-3]):[0-5][0-9]$" Display="None">
+                            </asp:RegularExpressionValidator>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Left">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:Label ID="createGVLabel" runat="server" Text="Create Itinerary: " Width="200"></asp:Label>
+                            <br />
+                            <asp:HyperLink runat="server" Text="Download Itinerary Creation Form" NavigateUrl="~/Uploads/Default_Itinerary.xlsx" Enabled="true"></asp:HyperLink>
+                            <br />
+                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                            <asp:Button ID="btnImport" runat="server" Text="Import" OnClick="ImportExcel" />
+                            <asp:BulletedList ID="BulletedList1" runat="server" BulletStyle="Numbered">
+                                <asp:ListItem Text="Download Itinerary Creation Form." />
+                                <asp:ListItem Text="Create Itinerary in MS Excel." />
+                                <asp:ListItem Text="Import completed file." />
+                                <asp:ListItem Text="Review and Create." />
+                            </asp:BulletedList>
+                            <br />
+                            <asp:Label ID="Label2" runat="server" Font-Bold="true" ForeColor="Green"></asp:Label>
+                            <br />
+                            <asp:GridView ID="GridView1" AlternatingRowStyle-BackColor="White" BackColor="#f4efe1" runat="server" ForeColor="#33333" HeaderStyle-BackColor="#d3cdb6" CellPadding="5">
+                            </asp:GridView>
+                            <asp:Label ID="bug" Text="" runat="server" />
+                        </asp:TableCell>
 
-                </asp:TableRow>
-                <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="4">
-                        <asp:Button ID="EXCreateBtn" runat="server" Text="Create Event" CausesValidation="true" OnClick="EXCreateBtn_OnClick" />
-                    </asp:TableCell>
-                </asp:TableRow>
-                <asp:TableRow runat="server" HorizontalAlign="Center">
-                    <asp:TableCell ColumnSpan="4">
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red" />
-                    </asp:TableCell>
-                </asp:TableRow>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:Button ID="EXCreateBtn" runat="server" Text="Create Event" CausesValidation="true" OnClick="EXCreateBtn_OnClick" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableCell ColumnSpan="4">
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" Enabled="True" ForeColor="Red" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Table>
             </asp:View>
             <asp:View ID="ViewEvents" runat="server">
             </asp:View>
         </asp:MultiView>
-        
+
     </div>
 </asp:Content>
