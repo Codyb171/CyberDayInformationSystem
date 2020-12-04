@@ -29,13 +29,43 @@ namespace CyberDayInformationSystem
                 Session.Add("Redirected", 0);
                 Response.Redirect("BadSession.aspx");
             }
+            
         }
 
-        private int _idToEdit;
-
+        private int guardianID;
         protected void Page_Load(object sender, EventArgs e)
         {
-            _idToEdit = GetId();
+            if (Session["TYPE"] != null)
+            {
+                if (Session["TYPE"].ToString() == "Parent")
+                {
+                    guardianID = GetId();
+                }
+                else
+                {
+                    guardianID = 0;
+                }
+            }
+
+            if (!Page.IsPostBack)
+            {
+                string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+                var connection = new SqlConnection(cs);
+                string sql =
+                    "Select G.FIRSTNAME, G.LASTNAME, G.EMAILADD, G.PHONE FROM GUARDIAN G" +
+                    " WHERE GUARDIANID = @GUARDIANID";
+                SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@GUARDIANID", guardianID);
+                connection.Open();
+                SqlDataReader dataReader = command.ExecuteReader();
+                if (dataReader.Read())
+                {
+                    firstNameTxt.Text = dataReader["FIRSTNAME"].ToString();
+                    LastNameTxt.Text = dataReader["LASTNAME"].ToString();
+                    EmailTxt.Text = dataReader["EMAILADD"].ToString();
+                    PhoneTxt.Text = dataReader["PHONE"].ToString();
+                }
+            }
         }
 
         protected int GetId()
@@ -76,7 +106,7 @@ namespace CyberDayInformationSystem
             command.Parameters.AddWithValue("@LASTNAME", lastName);
             command.Parameters.AddWithValue("@EMAIL", email);
             command.Parameters.AddWithValue("@PHONE", phone);
-            command.Parameters.AddWithValue("@ID", _idToEdit);
+            command.Parameters.AddWithValue("@ID", guardianID);
             command.ExecuteNonQuery();
             
             authcon.Close();
