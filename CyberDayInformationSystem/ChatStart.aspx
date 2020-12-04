@@ -6,7 +6,6 @@
     <body>
         <asp:HiddenField ID="hiddenName" runat="server" Value=""/>
         <div class="page-content page-container" id="page-content">
-            <div class="padding">
                 <div class="container d-flex justify-content-center">
                     <div class="col-md-6">
                         <div class="card card-bordered">
