@@ -86,7 +86,7 @@ namespace CyberDayInformationSystem
 
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void BtnSubmit_Click(object sender, EventArgs e)
         {
             string photo = "No";
             string email = "No";

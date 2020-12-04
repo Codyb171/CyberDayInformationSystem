@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="User Creation" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserCreation.aspx.cs" Inherits="CyberDayInformationSystem.UserCreation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
     <asp:Table runat="server" HorizontalAlign="Center">
         <asp:TableRow runat="server" HorizontalAlign="Center">
             <asp:TableCell>
@@ -57,7 +59,7 @@
                 <asp:Label ID="PhoneLbl" runat="server" Text="Phone Number:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="PhoneTxt" runat="server" TextMode="Phone" AutoCompleteType="HomePhone"></asp:TextBox>
+                <asp:TextBox ID="PhoneTxt" runat="server" TextMode="Phone" ClientIDMode="Static" AutoCompleteType="HomePhone"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:RequiredFieldValidator ID="PhoneValid" runat="server" ErrorMessage="Please enter a phone number" ControlToValidate="PhoneTxt" ForeColor="Red">
@@ -252,5 +254,11 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+        <script>
+        $(document).ready(function () {
+            $("#PhoneTxt").inputmask({ mask: "(999) 999-9999" });
+            $(":input").inputmask();
+        });
+        </script>
 </asp:Content>
 

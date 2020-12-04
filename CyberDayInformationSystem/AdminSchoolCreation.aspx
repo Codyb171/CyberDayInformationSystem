@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="School Creation" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AdminSchoolCreation.aspx.cs" Inherits="CyberDayInformationSystem.AdminSchoolCreation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
     <ul class="breadcrumb">
         <li><a href="AdminDashboard.aspx">Coordinator Home</a></li>
         <li>Attendees</li>
@@ -103,4 +106,10 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <script>
+        $(document).ready(function () {
+            $("#txtPhone").inputmask({ mask: "(999) 999-9999" });
+            $(":input").inputmask();
+        });
+    </script>
 </asp:Content>

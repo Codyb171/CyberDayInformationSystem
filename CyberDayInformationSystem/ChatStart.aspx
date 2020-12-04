@@ -37,7 +37,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <script src="scripts/jquery-3.5.1.min.js"></script>
         <script src="scripts/jquery.signalR-2.2.2.js"></script>
         <script src="/signalr/hubs"></script>
