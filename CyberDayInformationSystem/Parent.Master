@@ -27,6 +27,7 @@
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
+                <asp:scriptReference Path="~/Scripts/umd/popper.min.js" />
                 <asp:ScriptReference Name="bootstrap" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
@@ -60,8 +61,13 @@
                     <li><a href="Default.aspx">CyberDay Home</a></li>
                     <li><a href="About.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
-                    <li><a href="ParentInformationModify.aspx">Parent Information</a></li>
-                    <li><a href="StudentInformationModify.aspx">Student Information</a></li>
+                    <li class ="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Update Information</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="ParentInformationModify.aspx">Parent Information</a>
+                            <a class="dropdown-item" href="StudentInformationModify.aspx">Student Information</a>
+                        </div>
+                    </li>
                     <li><a href="ParentStudentForms.aspx">Permission Forms</a></li>
                 </ul>
             </div>
