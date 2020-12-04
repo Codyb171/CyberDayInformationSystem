@@ -59,7 +59,7 @@
                 <asp:Label ID="PhoneLbl" runat="server" Text="Phone Number:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell>
-                <asp:TextBox ID="PhoneTxt" runat="server" TextMode="Phone" ClientIDMode="Static" AutoCompleteType="HomePhone"></asp:TextBox>
+                <asp:TextBox ID="PhoneTxt" runat="server" ClientIDMode="Static" TextMode="Phone" AutoCompleteType="HomePhone"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell>
                 <asp:RequiredFieldValidator ID="PhoneValid" runat="server" ErrorMessage="Please enter a phone number" ControlToValidate="PhoneTxt" ForeColor="Red">

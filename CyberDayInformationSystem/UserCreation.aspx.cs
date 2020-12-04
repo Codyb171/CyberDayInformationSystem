@@ -79,9 +79,11 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
                 TshirtSizeList.ClearSelection();
                 SchoolDropDown.ClearSelection();
                 GradeDropDown.ClearSelection();
+                PasswordTxt1.Text = "";
             }
 
             if (UserTypeSelection.SelectedValue == "2")
@@ -93,9 +95,10 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
+                PasswordTxt1.Text = "";
+                PasswordTxt2.Text = "";
                 TshirtSizeList.ClearSelection();
-                SchoolDropDown.ClearSelection();
-                GradeDropDown.ClearSelection();
             }
 
             if (UserTypeSelection.SelectedValue == "3")
@@ -107,7 +110,13 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
                 TshirtSizeList.ClearSelection();
+                MajorDropDown.ClearSelection();
+                MinorDropDown.ClearSelection();
+                OrgDropDown.ClearSelection();
+                PasswordTxt1.Text = "";
+                PasswordTxt2.Text = "";
             }
 
             if (UserTypeSelection.SelectedValue == "4")
@@ -119,7 +128,10 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
                 TshirtSizeList.ClearSelection();
+                PasswordTxt1.Text = "";
+                PasswordTxt2.Text = "";
             }
         }
 

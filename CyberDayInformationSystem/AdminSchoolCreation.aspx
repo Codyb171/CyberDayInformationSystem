@@ -84,7 +84,7 @@
                 <asp:Label ID="lblPhone" runat="server" Text="Phone Number:"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="2">
-                <asp:TextBox ID="txtPhone" runat="server" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="txtPhone" runat="server" ClientIDMode="Static" TextMode="Phone" AutoCompleteType="HomePhone"></asp:TextBox>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="1">
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorPhone" runat="server" ErrorMessage="Phone is required" ForeColor="Red" ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
