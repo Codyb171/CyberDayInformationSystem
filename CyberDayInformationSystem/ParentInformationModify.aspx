@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="Parent Information" Language="C#" MasterPageFile="~/Parent.Master" AutoEventWireup="true" CodeBehind="ParentInformationModify.aspx.cs" Inherits="CyberDayInformationSystem.ParentInformationModify" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
     <ul class="breadcrumb">
         <li><a href="ParentDashboard.aspx">Parent Home</a></li>
         <li>Parent Information</li>
@@ -19,7 +22,7 @@
                         <asp:TextBox ID="firstNameTxt" runat="server" Text=""></asp:TextBox>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <asp:RequiredFieldValidator ID="FirstNameValid" runat="server" ErrorMessage="First Name Required" ControlToValidate="FirstNameTxt" ForeColor="Red">
+                        <asp:RequiredFieldValidator ID="FirstNameValid" runat="server" ErrorMessage="First Name Required" ControlToValidate="firstNameTxt" ForeColor="Red">
                         </asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
@@ -46,7 +49,7 @@
                 <asp:TableRow runat="server" HorizontalAlign="Center">
                     <asp:TableCell>
                         <asp:Label ID="PhoneLbl" runat="server" Text="Phone: " Width="200"></asp:Label>
-                        <asp:TextBox ID="PhoneTxt" runat="server" TextMode="Phone" AutoCompleteType="HomePhone"></asp:TextBox>
+                        <asp:TextBox ID="PhoneTxt" runat="server" ClientIDMode="Static" TextMode="Phone" AutoCompleteType="HomePhone"></asp:TextBox>
                         </asp:TableCell>
                         <asp:TableCell>
                             <asp:RequiredFieldValidator ID="PhoneValid" runat="server" ErrorMessage="Please enter a phone number" ControlToValidate="PhoneTxt" ForeColor="Red">
@@ -66,4 +69,10 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <script>
+        $(document).ready(function () {
+            $("#PhoneTxt").inputmask({ mask: "(999) 999-9999" });
+            $(":input").inputmask();
+        });
+    </script>
 </asp:Content>

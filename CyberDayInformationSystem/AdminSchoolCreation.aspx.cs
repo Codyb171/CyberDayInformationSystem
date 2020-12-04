@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -70,7 +71,9 @@ namespace CyberDayInformationSystem
                 string city = HttpUtility.HtmlEncode(txtCity.Text);
                 string state = HttpUtility.HtmlEncode(txtState.Text);
                 string zip = HttpUtility.HtmlEncode(txtZip.Text);
-                SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(txtPhone.Text));
+                string maskedPhone = HttpUtility.HtmlEncode(txtPhone.Text);
+                string result = Regex.Replace(maskedPhone, @"[^0-9]", "");
+                SqlInt64 phone = SqlInt64.Parse(result);
 
                 string sql = "Insert into SCHOOL(NAME, ADDRESS1, ADDRESS2, CITY, STATE, ZIPCODE, PHONE) " +
                     "VALUES(@SCHOOL, @ADD1, @ADD2, @CITY, @STATE, @ZIP, @PHONE)";

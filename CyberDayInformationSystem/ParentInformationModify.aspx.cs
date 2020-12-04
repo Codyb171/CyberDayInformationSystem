@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -97,7 +98,9 @@ namespace CyberDayInformationSystem
             string firstName = HttpUtility.HtmlEncode(firstNameTxt.Text);
             string lastName = HttpUtility.HtmlEncode(LastNameTxt.Text);
             string email = HttpUtility.HtmlEncode(EmailTxt.Text);
-            SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(PhoneTxt.Text));
+            string maskedPhone = HttpUtility.HtmlEncode(PhoneTxt.Text);
+            string result = Regex.Replace(maskedPhone, @"[^0-9]", "");
+            SqlInt64 phone = SqlInt64.Parse(result);
 
             string sql = "Update GUARDIAN set FIRSTNAME = @FIRSTNAME, LASTNAME = @LASTNAME, EMAILADD = @EMAIL, PHONE = @PHONE WHERE GUARDIANID = @ID";
 

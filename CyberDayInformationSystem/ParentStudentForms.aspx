@@ -60,7 +60,7 @@
 
         <asp:TableRow>
             <asp:TableCell ColumnSpan="4" HorizontalAlign="Center">
-                <asp:Button ID="btnSubmit" CssClass="btn-main reg" runat="server" Text="Submit" OnClick="btnSubmit_Click"/>
+                <asp:Button ID="btnSubmit" CssClass="btn-main reg" runat="server" Text="Submit" OnClick="BtnSubmit_Click"/>
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>

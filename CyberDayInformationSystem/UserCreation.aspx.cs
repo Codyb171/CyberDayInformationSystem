@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -78,9 +79,11 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
                 TshirtSizeList.ClearSelection();
                 SchoolDropDown.ClearSelection();
                 GradeDropDown.ClearSelection();
+                PasswordTxt1.Text = "";
             }
 
             if (UserTypeSelection.SelectedValue == "2")
@@ -92,9 +95,10 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
+                PasswordTxt1.Text = "";
+                PasswordTxt2.Text = "";
                 TshirtSizeList.ClearSelection();
-                SchoolDropDown.ClearSelection();
-                GradeDropDown.ClearSelection();
             }
 
             if (UserTypeSelection.SelectedValue == "3")
@@ -106,7 +110,13 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
                 TshirtSizeList.ClearSelection();
+                MajorDropDown.ClearSelection();
+                MinorDropDown.ClearSelection();
+                OrgDropDown.ClearSelection();
+                PasswordTxt1.Text = "";
+                PasswordTxt2.Text = "";
             }
 
             if (UserTypeSelection.SelectedValue == "4")
@@ -118,7 +128,10 @@ namespace CyberDayInformationSystem
                 LastNameTxt.Text = "";
                 PhoneTxt.Text = "";
                 EmailTxt.Text = "";
+                MealBtn.ClearSelection();
                 TshirtSizeList.ClearSelection();
+                PasswordTxt1.Text = "";
+                PasswordTxt2.Text = "";
             }
         }
 
@@ -208,7 +221,9 @@ namespace CyberDayInformationSystem
                 string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
                 string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
                 string email = HttpUtility.HtmlEncode(EmailTxt.Text);
-                SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(PhoneTxt.Text));
+                string maskedPhone = HttpUtility.HtmlEncode(PhoneTxt.Text);
+                string result = Regex.Replace(maskedPhone, @"[^0-9]", "");
+                SqlInt64 phone = SqlInt64.Parse(result);
                 int grade = int.Parse(GradeDropDown.SelectedValue);
                 int school = int.Parse(SchoolDropDown.SelectedValue);
                 string sql =
@@ -236,7 +251,9 @@ namespace CyberDayInformationSystem
                 string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
                 string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
                 string email = HttpUtility.HtmlEncode(EmailTxt.Text);
-                SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(PhoneTxt.Text));
+                string maskedPhone = HttpUtility.HtmlEncode(PhoneTxt.Text);
+                string result = Regex.Replace(maskedPhone, @"[^0-9]", "");
+                SqlInt64 phone = SqlInt64.Parse(result);
                 string sql = "Insert into VOLUNTEER(FIRSTNAME,LASTNAME,PHONE,EMAILADD,TYPE) VALUES(@FIRST, @LAST, @PHONE, @EMAIL, @TYPE)";
                 connection.Open();
                 var command = new SqlCommand(sql, connection);
@@ -272,7 +289,9 @@ namespace CyberDayInformationSystem
             string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
             string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
             string email = HttpUtility.HtmlEncode(EmailTxt.Text);
-            SqlInt64 phone = SqlInt64.Parse(PhoneTxt.Text);
+            string maskedPhone = HttpUtility.HtmlEncode(PhoneTxt.Text);
+            string result = Regex.Replace(maskedPhone, @"[^0-9]", "");
+            SqlInt64 phone = SqlInt64.Parse(result);
             int grade = int.Parse(GradeDropDown.SelectedValue);
             int school = int.Parse(SchoolDropDown.SelectedValue);
             string sql =
@@ -306,7 +325,9 @@ namespace CyberDayInformationSystem
             string first = HttpUtility.HtmlEncode(FirstNameTxt.Text);
             string last = HttpUtility.HtmlEncode(LastNameTxt.Text);
             string email = HttpUtility.HtmlEncode(EmailTxt.Text);
-            SqlInt64 phone = SqlInt64.Parse(HttpUtility.HtmlEncode(PhoneTxt.Text));
+            string maskedPhone = HttpUtility.HtmlEncode(PhoneTxt.Text);
+            string result = Regex.Replace(maskedPhone, @"[^0-9]", "");
+            SqlInt64 phone = SqlInt64.Parse(result);
             string sql =
                 "SELECT STAFFID FROM VOLUNTEER WHERE FIRSTNAME = @FIRST AND LASTNAME = @LAST and EMAILADD = @EMAIL AND PHONE = @PHONE AND TYPE = @TYPE";
             var command = new SqlCommand(sql, connection);
@@ -324,6 +345,10 @@ namespace CyberDayInformationSystem
                 command.Parameters.AddWithValue("@TYPE", "Student Volunteer");
             }
 
+            if (type == 4)
+            {
+                command.Parameters.AddWithValue("@TYPE", "Coordinator");
+            }
             var dataReader = command.ExecuteReader();
             if (dataReader.Read())
             {
