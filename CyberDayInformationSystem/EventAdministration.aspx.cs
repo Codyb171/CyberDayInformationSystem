@@ -14,23 +14,23 @@ namespace CyberDayInformationSystem
 {
     public partial class EventAdministration : Page
     {
-        void Page_PreInit(Object sender, EventArgs e)
-        {
-            if (Session["TYPE"] != null)
-            {
-                MasterPageFile = (Session["Master"].ToString());
-                if (Session["TYPE"].ToString() != "Coordinator")
-                {
-                    Session.Add("Redirected", 1);
-                    Response.Redirect("BadSession.aspx");
-                }
-            }
-            else
-            {
-                Session.Add("Redirected", 0);
-                Response.Redirect("BadSession.aspx");
-            }
-        }
+        //void Page_PreInit(Object sender, EventArgs e)
+        //{
+        //    if (Session["TYPE"] != null)
+        //    {
+        //        MasterPageFile = (Session["Master"].ToString());
+        //        if (Session["TYPE"].ToString() != "Coordinator")
+        //        {
+        //            Session.Add("Redirected", 1);
+        //            Response.Redirect("BadSession.aspx");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Session.Add("Redirected", 0);
+        //        Response.Redirect("BadSession.aspx");
+        //    }
+        //}
 
         private int _eventToModify;
         protected void Page_Load(object sender, EventArgs e)
@@ -283,7 +283,7 @@ namespace CyberDayInformationSystem
         {
             if (FileUpload1.HasFile && docType())
             {
-                ViewState["FILENAME"] = String.Join(".", String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))) + "_Itinerary" + Path.GetExtension(FileUpload1.PostedFile.FileName);
+                ViewState["FILENAME"] = String.Join(".", String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(EventDateTxt.Text))) + Path.GetExtension(FileUpload1.PostedFile.FileName);
 
                 bug.Text= String.Format("{0:d/M/yyyy HH:mm}", HttpUtility.HtmlEncode(NewDateTxt.Text));
 
@@ -333,7 +333,7 @@ namespace CyberDayInformationSystem
         {
             if (FileUpload2.HasFile && docType())
             { //fix
-                ViewState["MODIFYFILENAME"] = String.Join(".", EventDateTxt.Text.Split('/')) + "_Itinerary" + Path.GetExtension(FileUpload2.PostedFile.FileName);
+                ViewState["MODIFYFILENAME"] = String.Join(".", EventDateTxt.Text.Split('/'))+ Path.GetExtension(FileUpload2.PostedFile.FileName);
                 ViewState["MODIFYFILENAME"] = NewDateTxt.Text;
 
                 //Save the uploaded Excel file with a dynamically created name; Overwrites if there is already the same name there.
