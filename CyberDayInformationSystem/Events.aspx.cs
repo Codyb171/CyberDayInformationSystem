@@ -663,7 +663,7 @@ namespace CyberDayInformationSystem
                         }
                         GridView1.DataSource = dt;
                         GridView1.DataBind();
-                        BulkTaskInsert(dt);
+                        //BulkTaskInsert(dt);
                     }
                 }
             }
@@ -730,7 +730,7 @@ namespace CyberDayInformationSystem
                         "INSERT INTO EVENT1(EVENTNAME, EVENTDATE, STARTTIME, ENDTIME) VALUES(@NAME, @DATE, @STARTTIME, @ENDTIME)",
                         connection);
                 string school = EXSchoolDDL.SelectedItem.Text;
-                string start = HttpUtility.HtmlEncode(EXStartTime.Text);
+                string start = HttpUtility.HtmlEncode(EXStartTimeTxt.Text);
                 string end = HttpUtility.HtmlEncode(EXEndTimeTxt.Text);
                 string date = HttpUtility.HtmlEncode(EXDateTxt.Text);
                 connection.Open();
