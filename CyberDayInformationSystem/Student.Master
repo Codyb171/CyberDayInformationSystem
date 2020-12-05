@@ -52,7 +52,6 @@
                 <ul>
                     <li><a href="StudentDashboard.aspx">Student Home</a></li>
                     <li><a href="StudentEventReport.aspx">CyberDay Schedule</a></li>
-                    <li><a href="ParentStudentForms.aspx">Permission Forms</a></li>
                 </ul>
             </div>
             <div class="PgTitle">

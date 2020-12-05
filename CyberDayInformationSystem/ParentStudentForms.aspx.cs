@@ -16,7 +16,7 @@ namespace CyberDayInformationSystem
             if (Session["TYPE"] != null)
             {
                 MasterPageFile = (Session["Master"].ToString());
-                if (Session["TYPE"].ToString() != "Student")
+                if (Session["TYPE"].ToString() != "Parent")
                 {
                     Session.Add("Redirected", 1);
                     Response.Redirect("BadSession.aspx");
@@ -30,14 +30,12 @@ namespace CyberDayInformationSystem
         }
 
         private int guardianID;
-        private int studentID;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["TYPE"] != null)
             {
-                if (Session["TYPE"].ToString() == "Student")
+                if (Session["TYPE"].ToString() == "Parent")
                 {
-                    studentID = GetStudentId();
                     guardianID = GetId();
                 }
                 else
@@ -48,11 +46,30 @@ namespace CyberDayInformationSystem
             }
         }
 
-        protected int GetStudentId()
+        protected int GetId()
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             var connection = new SqlConnection(cs);
-            string sql = "Select STUDENTID FROM STUDENT WHERE CONCAT(FIRSTNAME, ' ', LASTNAME) LIKE '%" + Session["NAME"] + "%'";
+            string sql = "Select GUARDIANID FROM GUARDIAN WHERE CONCAT(FIRSTNAME, ' ', LASTNAME) LIKE '%" + Session["NAME"] + "%'";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            SqlDataReader dataReader = command.ExecuteReader();
+            int id = 0;
+
+            if (dataReader.Read())
+            {
+                id = int.Parse(dataReader["GUARDIANID"].ToString());
+            }
+            connection.Close();
+            return id;
+
+        }
+
+        public int getStudent(int gID)
+        {
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            var connection = new SqlConnection(cs);
+            string sql = "Select STUDENTID from student where Guardian = " + gID;
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
             SqlDataReader dataReader = command.ExecuteReader();
@@ -66,31 +83,13 @@ namespace CyberDayInformationSystem
             return id;
 
         }
-
-        protected int GetId()
-        {
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            var connection = new SqlConnection(cs);
-            string sql = "Select S.GUARDIAN FROM STUDENT S WHERE S.STUDENTID = " + studentID;
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            SqlDataReader dataReader = command.ExecuteReader();
-            int id = 0;
-
-            if (dataReader.Read())
-            {
-                id = int.Parse(dataReader["GUARDIAN"].ToString());
-            }
-            connection.Close();
-            return id;
-
-        }
+   
 
         protected void BtnSubmit_Click(object sender, EventArgs e)
         {
             string photo = "No";
             string email = "No";
-            int student = GetStudentId();
+            int student = getStudent(guardianID);
             //Generate Email output String
             string output =
                 "Photo Release \n I hereby grant CyberDay and their agents the absolute right and permission to use pictures, digital images, or videotapes of My Child, or in which My Child may be included \n" +

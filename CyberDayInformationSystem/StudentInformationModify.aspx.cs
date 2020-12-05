@@ -109,7 +109,7 @@ namespace CyberDayInformationSystem
                 updateStudent.Parameters.AddWithValue("@EMAIL", email);
                 updateStudent.Parameters.AddWithValue("@GUARDIAN", guardianID);
                 updateStudent.ExecuteNonQuery();
-                EditLabelStatus.Text = "Student Updated Successfully!!";
+                EditLabelStatus.Text = "Student Updated Successfully!";
             }
             catch (Exception ex)
             {

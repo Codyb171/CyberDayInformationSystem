@@ -60,6 +60,7 @@
                             <a class="dropdown-item" href="StudentInformationModify.aspx">Student Information</a>
                         </div>
                     </li>
+                    <li><a href="ParentStudentForms.aspx">Permission Forms</a></li>
                 </ul>
             </div>
             <div class="PgTitle">
