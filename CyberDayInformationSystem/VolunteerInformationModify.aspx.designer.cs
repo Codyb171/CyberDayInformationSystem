@@ -132,6 +132,24 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PhoneValid;
 
         /// <summary>
+        /// MealTicketLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MealTicketLbl;
+
+        /// <summary>
+        /// MealTicketDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList MealTicketDDL;
+
+        /// <summary>
         /// RowStuPrevVol control.
         /// </summary>
         /// <remarks>
@@ -157,24 +175,6 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList PrevVolDDL;
-
-        /// <summary>
-        /// MealTicketLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label MealTicketLbl;
-
-        /// <summary>
-        /// MealTicketDDL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList MealTicketDDL;
 
         /// <summary>
         /// RowStuCurMajor control.
@@ -321,15 +321,6 @@ namespace CyberDayInformationSystem
         protected global::System.Web.UI.WebControls.DropDownList OrgDropDown;
 
         /// <summary>
-        /// UpdateSuccessfulLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UpdateSuccessfulLbl;
-
-        /// <summary>
         /// UpdateBtn control.
         /// </summary>
         /// <remarks>
@@ -337,5 +328,14 @@ namespace CyberDayInformationSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button UpdateBtn;
+
+        /// <summary>
+        /// UpdateSuccessfulLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UpdateSuccessfulLbl;
     }
 }
