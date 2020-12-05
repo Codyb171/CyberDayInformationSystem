@@ -74,7 +74,7 @@ namespace CyberDayInformationSystem
             TertiaryGridLbl.Text = "Event Itinerary";
             TertiaryGridLbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            int eventID = int.Parse(SelectionDropDown.SelectedValue);
+            int eventID = int.Parse(ddlEvents.SelectedValue);
             string sql = "select ET.TITLE," +
                          " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),ET.STARTTIME),4),3,0,':')as datetime),100),7) AS \"Start Time\"," +
                          " ET.LOCATION as Location" +
