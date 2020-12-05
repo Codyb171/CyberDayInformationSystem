@@ -156,7 +156,7 @@ namespace CyberDayInformationSystem
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList EditAttendeeBtn;
+        protected global::System.Web.UI.WebControls.DropDownList EditAttendeeBtn;
 
         /// <summary>
         /// EditAttendeeValid control.
