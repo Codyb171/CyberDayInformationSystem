@@ -368,7 +368,7 @@
                                         <asp:Label ID="EditTeacher" runat="server" Text="Teacher: " Width="100px"></asp:Label>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="2">
-                                        <asp:DropDownList ID="EditTeacherDropDown" runat="server" AutoPostBack="true" Width="200px" OnSelectedIndexChanged="TeacherDropDown_SelectedIndexChanged">
+                                        <asp:DropDownList ID="EditTeacherDropDown" runat="server" AutoPostBack="true" Width="200px" OnSelectedIndexChanged="TeacherDropDown_SelectedIndexChanged" Enabled="false">
                                         </asp:DropDownList>
                                     </asp:TableCell>
                                     <asp:TableCell ColumnSpan="1">
