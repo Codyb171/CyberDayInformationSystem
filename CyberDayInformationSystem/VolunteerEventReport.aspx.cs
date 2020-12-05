@@ -135,7 +135,8 @@ namespace CyberDayInformationSystem
             SecondaryGrid1Lbl.Text = "Volunteers";
             SecondaryGrid1Lbl.Visible = true;
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            int eventID = int.Parse(ddlEvents.SelectedValue);
+            int eventID = int.Parse(ddlEvents
+                .SelectedValue);
             string sql = "SELECT(V.FIRSTNAME + ' ' + V.LASTNAME) AS NAME, V.TYPE as ROLE FROM VOLUNTEER V join EVENTSTAFF ES on ES.STAFF = V.STAFFID join " +
             "EVENT EV on EV.EVENTID = ES.EVENT where EVENTID = " + eventID;
             DataTable dt = new DataTable();
