@@ -415,11 +415,11 @@ namespace CyberDayInformationSystem
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             int eventID = int.Parse(SelectionDropDown.SelectedValue);
             string sql = "select ET.TITLE," +
-                         " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),ET.STARTTIME),4),3,0,':')as datetime),100),7) AS \"Start Time\"," +
-                         " ET.LOCATION as Location"+
-                         " FROM EVENTTASKS ET JOIN EVENTITINERARY EI ON EI.TASK = ET.TASKID JOIN VOLUNTEER V ON ET.INSTRUCTOR = V.STAFFID JOIN EVENT E ON E.EVENTID = EI.EVENT" +
+                         " right('0' + ltrim(right(convert(varchar,cast(ET.STARTTIME as dateTime), 100), 7)), 7) AS \"Start Time\"," +
+                         " ET.LOCATION as Location" +
+                         " FROM EVENTTASKS ET JOIN EVENTITINERARY EI ON EI.TASK = ET.TASKID JOIN EVENT E ON E.EVENTID = EI.EVENT" +
                          " WHERE E.EVENTID = " + eventID +
-                         " ORDER BY EI.TASK; ";
+                         " ORDER BY EI.TASK ";
             DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(cs);
             SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
