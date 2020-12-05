@@ -58,6 +58,7 @@
                 <ul>
                     <li><a href="VolunteerDashboard.aspx">Volunteer Home</a></li>
                     <li><a href="VolunteerEventReport.aspx">Event Data</a></li>
+                    <li><a href="VolunteerInformationModify.aspx">Update Information</a></li>
                     <li><a href="ChatStart.aspx">Chat</a></li>
                 </ul>
             </div>

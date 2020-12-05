@@ -81,12 +81,12 @@
             <asp:TableCell ColumnSpan="4">
                 <asp:Panel runat="server" ID="printPanel" CssClass="PrintPanel">
                     <asp:Table runat="server" ID="ReportTable" HorizontalAlign="Center">
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableRow runat="server" HorizontalAlign="Center" VerticalAlign="Top">
                             <asp:TableCell ColumnSpan="4">
                                 <asp:Label ID="SelectedGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableRow runat="server" HorizontalAlign="Center" VerticalAlign="Top">
                             <asp:TableCell ColumnSpan="4">
                                 <asp:GridView ID="SelectedGridView" runat="server" AutoGenerateColumns="True" CellPadding="5" Width="900">
                                     <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
@@ -94,12 +94,12 @@
                                 </asp:GridView>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableRow runat="server" HorizontalAlign="Center" VerticalAlign="Top">
                             <asp:TableCell ColumnSpan="4">
                                 <asp:Label ID="TertiaryGridLbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableRow runat="server" HorizontalAlign="Center" VerticalAlign="Top">
                             <asp:TableCell ColumnSpan="4">
                                 <asp:GridView ID="TertiaryGridView" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="900">
                                     <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
@@ -107,7 +107,7 @@
                                 </asp:GridView>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableRow runat="server" HorizontalAlign="Center" VerticalAlign="Top">
                             <asp:TableCell ColumnSpan="2">
                                 <asp:Label ID="SecondaryGrid1Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
@@ -115,14 +115,14 @@
                                 <asp:Label ID="SecondaryGrid2Lbl" runat="server" Text="" Visible="false" Font-Size="Larger"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
-                        <asp:TableRow runat="server" HorizontalAlign="Center">
+                        <asp:TableRow runat="server" HorizontalAlign="Center" VerticalAlign="Top">
                             <asp:TableCell ColumnSpan="2">
                                 <asp:GridView ID="SecondaryGridView1" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
                                     <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
                                     <RowStyle BackColor="#bfdfff" ForeColor="Black" />
                                 </asp:GridView>
                             </asp:TableCell>
-                            <asp:TableCell ColumnSpan="2">
+                            <asp:TableCell ColumnSpan="2" VerticalAlign="Top">
                                 <asp:GridView ID="SecondaryGridView2" runat="server" AutoGenerateColumns="true" CellPadding="5" Width="450">
                                     <HeaderStyle BackColor="#0066cc" Font-Bold="true" ForeColor="White" />
                                     <RowStyle BackColor="#bfdfff" ForeColor="Black" />

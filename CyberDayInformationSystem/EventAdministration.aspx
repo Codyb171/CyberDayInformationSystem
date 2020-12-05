@@ -18,11 +18,11 @@
                     <asp:MultiView ID="SelectedViewMode" runat="server">
                         <asp:View ID="EventView" runat="server">
                             <asp:TableCell ColumnSpan="4">
-                                <asp:RadioButtonList ID="EventFunctionSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionSelection_SelectedIndexChanged">
+                                <asp:DropDownList ID="EventFunctionSelection" runat="server" AutoPostBack="true" OnSelectedIndexChanged="FunctionSelection_SelectedIndexChanged">
                                     <asp:ListItem Value="1">Create an Event</asp:ListItem>
                                     <asp:ListItem Value="2">Modify an Event</asp:ListItem>
                                     <asp:ListItem Value="3">Delete an Event</asp:ListItem>
-                                </asp:RadioButtonList>
+                                </asp:DropdownList>
                             </asp:TableCell>
                         </asp:View>
                         <asp:View ID="TaskView" runat="server">
