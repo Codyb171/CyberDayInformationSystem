@@ -186,11 +186,9 @@
     <Content Include="Default.aspx" />
     <Content Include="EmailCenter.aspx" />
     <Content Include="EventAdministration.aspx" />
-    <Content Include="Events.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="HeatMap.aspx" />
-    <Content Include="Itinerary.aspx" />
     <Content Include="lib\font-awesome\css\all.css" />
     <Content Include="lib\font-awesome\css\all.min.css" />
     <Content Include="lib\font-awesome\css\brands.css" />
@@ -418,20 +416,6 @@
     </Compile>
     <Compile Include="EmailCenter.aspx.designer.cs">
       <DependentUpon>EmailCenter.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Events.aspx.cs">
-      <DependentUpon>Events.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Events.aspx.designer.cs">
-      <DependentUpon>Events.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Itinerary.aspx.cs">
-      <DependentUpon>Itinerary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Itinerary.aspx.designer.cs">
-      <DependentUpon>Itinerary.aspx</DependentUpon>
     </Compile>
     <Compile Include="ParentInformationModify.aspx.cs">
       <DependentUpon>ParentInformationModify.aspx</DependentUpon>

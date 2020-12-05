@@ -69,6 +69,41 @@ namespace CyberDayInformationSystem
             FillPanel();
         }
 
+        private void EventItinerary()
+        {
+            TertiaryGridLbl.Text = "Event Itinerary";
+            TertiaryGridLbl.Visible = true;
+            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
+            int eventID = int.Parse(SelectionDropDown.SelectedValue);
+            string sql = "select ET.TITLE," +
+                         " right(convert(varchar(20),cast(stuff(right('0000' + convert(varchar(4),ET.STARTTIME),4),3,0,':')as datetime),100),7) AS \"Start Time\"," +
+                         " ET.LOCATION as Location" +
+                         " FROM EVENTTASKS ET JOIN EVENTITINERARY EI ON EI.TASK = ET.TASKID JOIN VOLUNTEER V ON ET.INSTRUCTOR = V.STAFFID JOIN EVENT E ON E.EVENTID = EI.EVENT" +
+                         " WHERE E.EVENTID = " + eventID +
+                         " ORDER BY EI.TASK; ";
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(cs);
+            SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
+            conn.Open();
+            adapt.Fill(dt);
+            conn.Close();
+            if (dt.Rows.Count > 0)
+            {
+                TertiaryGridView.DataSource = dt;
+                TertiaryGridView.DataBind();
+            }
+            else
+            {
+                dt = new DataTable();
+                DataColumn dc1 = new DataColumn("Itinerary");
+                dt.Columns.Add(dc1);
+                DataRow dr1 = dt.NewRow();
+                dr1[0] = "No Event Itinerary Found";
+                dt.Rows.Add(dr1);
+                TertiaryGridView.DataSource = dt;
+                TertiaryGridView.DataBind();
+            }
+        }
         private void EventGrid()
         {
             SelectedGridLbl.Text = "Event Data";
@@ -77,7 +112,10 @@ namespace CyberDayInformationSystem
             {
                 string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
                 int eventID = int.Parse(ddlEvents.SelectedValue);
-                string sql = "Select 'CyberDay' as \"Event Name\", EV.EVENTDATE as \"Event Date\" from EVENT EV where EV.EVENTID = " + eventID;
+                string sql = "Select EV.EVENTNAME as \"Event Name\", EV.EVENTDATE as \"Event Date\", " +
+                             " right('0' + ltrim(right(convert(varchar,cast(EV.STARTTIME as dateTime), 100), 7)), 7)  AS \"START\"," +
+                             " right('0' + ltrim(right(convert(varchar,cast(EV.ENDTIME as dateTime), 100), 7)), 7)  AS \"END\" " +
+                             " from EVENT EV where EV.EVENTID = " + eventID;
                 DataTable dt = new DataTable();
                 SqlConnection conn = new SqlConnection(cs);
                 SqlDataAdapter adapt = new SqlDataAdapter(sql, conn);
@@ -92,7 +130,6 @@ namespace CyberDayInformationSystem
             }
 
         }
-
         private void EventStaffGrid()
         {
             SecondaryGrid1Lbl.Text = "Volunteers";
@@ -160,64 +197,6 @@ namespace CyberDayInformationSystem
             }
         }
 
-        private void EventItinerary()
-        {
-            TertiaryGridLbl.Text = "Event Itinerary";
-            TertiaryGridLbl.Visible = true;
-            int eventID = int.Parse(ddlEvents.SelectedValue);
-            string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
-            SqlConnection connection = new SqlConnection(cs);
-            string command =
-                "select EI.filename from eventitinerary EI join event E on E.EVENTITINERARY = EI.ITINERARYID WHERE E.EVENTID = " +
-                eventID;
-            connection.Open();
-            SqlCommand sqlCom = new SqlCommand(command, connection);
-            SqlDataReader reader = sqlCom.ExecuteReader();
-            if (reader.Read())
-            {
-                string fileName = reader.GetString(0);
-                string filePath = Server.MapPath("~/Uploads/") + fileName;
-                //Open the Excel file using ClosedXML.
-                using (XLWorkbook workBook = new XLWorkbook(filePath))
-                {
-                    //Read the first Sheet from Excel file.
-                    IXLWorksheet workSheet = workBook.Worksheet(1);
-
-                    //Create a new DataTable.
-                    DataTable dt = new DataTable();
-
-                    //Loop through the Worksheet rows.
-                    bool firstRow = true;
-                    foreach (IXLRow row in workSheet.Rows())
-                    {
-                        //Use the first row to add columns to DataTable.
-                        if (firstRow)
-                        {
-                            foreach (IXLCell cell in row.Cells())
-                            {
-                                dt.Columns.Add(cell.Value.ToString());
-                            }
-
-                            firstRow = false;
-                        }
-                        else
-                        {
-                            //Add rows to DataTable.
-                            dt.Rows.Add();
-                            int i = 0;
-                            foreach (IXLCell cell in row.Cells())
-                            {
-                                dt.Rows[dt.Rows.Count - 1][i] = cell.Value.ToString();
-                                i++;
-                            }
-                        }
-
-                    }
-                    TertiaryGridView.DataSource = dt;
-                    TertiaryGridView.DataBind();
-                }
-            }
-        }
 
         protected void btnRunNew_Click(object sender, EventArgs e)
         {
