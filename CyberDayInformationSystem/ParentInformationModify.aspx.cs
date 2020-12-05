@@ -65,6 +65,7 @@ namespace CyberDayInformationSystem
                     LastNameTxt.Text = dataReader["LASTNAME"].ToString();
                     EmailTxt.Text = dataReader["EMAILADD"].ToString();
                     PhoneTxt.Text = dataReader["PHONE"].ToString();
+                    
                 }
             }
         }
