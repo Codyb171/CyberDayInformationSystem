@@ -71,10 +71,10 @@
                 <asp:Label ID="EditAttendeeLbl" runat="server" Text="Previous Attendee?"></asp:Label>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="2">
-                <asp:RadioButtonList ID="EditAttendeeBtn" runat="server">
+                <asp:DropDownList ID="EditAttendeeBtn" runat="server">
                     <asp:ListItem>Yes</asp:ListItem>
                     <asp:ListItem>No</asp:ListItem>
-                </asp:RadioButtonList>
+                </asp:DropDownList>
             </asp:TableCell>
             <asp:TableCell ColumnSpan="1">
                 <asp:RequiredFieldValidator ID="EditAttendeeValid" runat="server" ErrorMessage="Required Field" ControlToValidate="EditAttendeeBtn" ForeColor="Red"></asp:RequiredFieldValidator>

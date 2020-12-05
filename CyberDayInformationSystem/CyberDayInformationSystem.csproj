@@ -362,6 +362,7 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="VolunteerAdministration.aspx" />
     <Content Include="VolunteerDashboard.aspx" />
+    <Content Include="VolunteerInformationModify.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -444,6 +445,13 @@
     </Compile>
     <Compile Include="VolunteerEventReport.aspx.designer.cs">
       <DependentUpon>VolunteerEventReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VolunteerInformationModify.aspx.cs">
+      <DependentUpon>VolunteerInformationModify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VolunteerInformationModify.aspx.designer.cs">
+      <DependentUpon>VolunteerInformationModify.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\WriteDocument.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

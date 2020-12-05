@@ -364,34 +364,37 @@ namespace CyberDayInformationSystem
             string sql =
                 "Select S.STUDENTID, S.FIRSTNAME, S.LASTNAME, S.AGE, S.GENDER, S.PREVIOUSATTENDEE, S.MEALTICKET," +
                 " (T.TITLE + ' ' + T.FIRSTNAME + ' ' + T.LASTNAME) AS \"TEACHER\", SC.NAME FROM STUDENT S LEFT JOIN TEACHER T on S.TEACHER = T.TEACHERID" +
-                " join SCHOOL SC ON SC.SCHOOLID = S.SCHOOL WHERE";
+                " join SCHOOL SC ON SC.SCHOOLID = S.SCHOOL WHERE S.TEACHER = @TEACHID";            
 
             try
             {
                 if (SearchByTagFN.Text != String.Empty && SearchByTagLN.Text != String.Empty)
                 {
-                    sql += " S.FIRSTNAME LIKE @FIRST AND S.LASTNAME LIKE @LAST";
+                    sql += " AND S.FIRSTNAME LIKE @FIRST AND S.LASTNAME LIKE @LAST";
                     SqlDataAdapter select = new SqlDataAdapter(sql, connection);
                     select.SelectCommand.Parameters.AddWithValue("@FIRST",
                         "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
                     select.SelectCommand.Parameters.AddWithValue("@LAST",
                         "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@TEACHID", _teacherID);
                     select.Fill(dt);
                 }
                 else if (SearchByTagFN.Text != String.Empty)
                 {
-                    sql += " S.FIRSTNAME LIKE @FIRST";
+                    sql += " AND S.FIRSTNAME LIKE @FIRST";
                     SqlDataAdapter select = new SqlDataAdapter(sql, connection);
                     select.SelectCommand.Parameters.AddWithValue("@FIRST",
                         "%" + HttpUtility.HtmlEncode(SearchByTagFN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@TEACHID", _teacherID);
                     select.Fill(dt);
                 }
                 else
                 {
-                    sql += " S.LASTNAME LIKE @LAST";
+                    sql += " AND S.LASTNAME LIKE @LAST";
                     SqlDataAdapter select = new SqlDataAdapter(sql, connection);
                     select.SelectCommand.Parameters.AddWithValue("@LAST",
                         "%" + HttpUtility.HtmlEncode(SearchByTagLN.Text) + "%");
+                    select.SelectCommand.Parameters.AddWithValue("@TEACHID", _teacherID);
                     select.Fill(dt);
                 }
 
@@ -476,9 +479,11 @@ namespace CyberDayInformationSystem
         {
             string cs = ConfigurationManager.ConnectionStrings["INFO"].ConnectionString;
             SqlConnection connection = new SqlConnection(cs);
-            string command = "SELECT (FIRSTNAME + ' ' + LASTNAME) AS Name, STUDENTID FROM STUDENT";
+            SqlCommand select = new SqlCommand("SELECT (FIRSTNAME + ' ' + LASTNAME) AS Name, STUDENTID FROM STUDENT WHERE TEACHER = @TEACHER", connection);
+
             connection.Open();
-            SqlDataAdapter adpt = new SqlDataAdapter(command, connection);
+            select.Parameters.AddWithValue("@TEACHER", _teacherID);
+            SqlDataAdapter adpt = new SqlDataAdapter(select);            
             DataTable dt = new DataTable();
             adpt.Fill(dt);
             StudentDDL.DataSource = dt;

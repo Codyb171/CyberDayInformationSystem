@@ -62,6 +62,7 @@ namespace CyberDayInformationSystem
                     EditAttendeeBtn.SelectedValue = dataReader["PREVIOUSATTENDEE"].ToString();
                     StudentEmailTxt.Text = dataReader["EMAILADD"].ToString();
                     EditGenderList.Items.Insert(0, new ListItem(String.Empty));
+                    EditAttendeeBtn.Items.Insert(0, new ListItem(String.Empty));
                 }
             }
         }
@@ -82,16 +83,6 @@ namespace CyberDayInformationSystem
             connection.Close();
             return id;
 
-        }
-
-        protected void ClearEditForms()
-        {
-            EditAgeTxt.Text = "";
-            EditFirstNameTxt.Text = "";
-            EditLastNameTxt.Text = "";
-            EditGenderList.ClearSelection();
-            StudentEmailTxt.Text = "";
-            EditAttendeeBtn.ClearSelection();
         }
 
         protected void UpdateBtn_Click(object sender, EventArgs e)
@@ -118,7 +109,6 @@ namespace CyberDayInformationSystem
                 updateStudent.Parameters.AddWithValue("@EMAIL", email);
                 updateStudent.Parameters.AddWithValue("@GUARDIAN", guardianID);
                 updateStudent.ExecuteNonQuery();
-                ClearEditForms();
                 EditLabelStatus.Text = "Student Updated Successfully!!";
             }
             catch (Exception ex)
