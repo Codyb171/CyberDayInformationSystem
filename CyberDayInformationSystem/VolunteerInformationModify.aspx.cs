@@ -36,7 +36,7 @@ namespace CyberDayInformationSystem
         {
             if (Session["TYPE"] != null)
             {
-                if (Session["TYPE"].ToString() == "Student Volunteer" && Session["TYPE"].ToString() == "Staff Volunteer")
+                if (Session["TYPE"].ToString() == "Student Volunteer" || Session["TYPE"].ToString() == "Staff Volunteer")
                 {
                     volID = GetId();
                 }
@@ -73,6 +73,7 @@ namespace CyberDayInformationSystem
                         MealTicketDDL.SelectedIndex = 2;
                     }
                 }
+                connection.Close();
                 dataReader.Close();
 
                 if (Session["TYPE"].ToString() == "Student Volunteer")
@@ -89,19 +90,20 @@ namespace CyberDayInformationSystem
                         " WHERE VOLUNTEERID = @VOLID";
                     SqlCommand stuCmd = new SqlCommand(stuSql, connection);
                     stuCmd.Parameters.AddWithValue("@VOLID", volID);
-                    SqlDataReader dr = stuCmd.ExecuteReader();
+                    connection.Open();
+                    SqlDataReader dataReader1 = stuCmd.ExecuteReader();
 
-                    if (dr.Read())
+                    if (dataReader1.Read())
                     {
-                        CurMajorLbl.Text = "Current Major: " + dr["MAJOR"].ToString();
-                        CurMinorLbl.Text = "Current Minor: " + dr["MINOR"].ToString();
-                        CurOrgLbl.Text = "Current Organization: " + dr["ORGANIZATION"].ToString();
+                        MajorDropDown.SelectedValue = dataReader1["MAJOR"].ToString();
+                        MinorDropDown.SelectedValue = dataReader1["MINOR"].ToString();
+                        OrgDropDown.SelectedValue = dataReader1["ORGANIZATION"].ToString();
 
-                        if (dataReader["PREVIOUSVOLUNTEER"].ToString() == "Yes")
+                        if (dataReader1["PREVIOUSVOLUNTEER"].ToString() == "Yes")
                         {
                             PrevVolDDL.SelectedIndex = 1;
                         }
-                        if (dataReader["PREVIOUSVOLUNTEER"].ToString() == "No")
+                        if (dataReader1["PREVIOUSVOLUNTEER"].ToString() == "No")
                         {
                             PrevVolDDL.SelectedIndex = 2;
                         }
